@@ -1,0 +1,20 @@
+{
+  "question": "Is the cost model reasonable?",
+  "answer": "V2.7 keeps the analytical search objective but audits/calibrates it with pipe, DMA, sync, and trace evidence when DES/trace artifacts are provided.",
+  "des_available": false,
+  "num_operations": null,
+  "pipe_duration": {},
+  "pipe_fraction": {},
+  "critical_pipe": null,
+  "pipe_bytes": {},
+  "dma_bytes_by_space_path": {},
+  "sync_counts_by_name": {},
+  "top_ops_by_duration": [],
+  "trace_summary": {
+    "available": false,
+    "files": [],
+    "num_events": 0,
+    "top_event_names": []
+  },
+  "conclusion": "analytical cost model without DES audit"
+}

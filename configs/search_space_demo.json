@@ -1,0 +1,100 @@
+{
+  "description": "V2.0 four-plan focused search space: TilingPlan, MultiBufferPlan, CVPipelinePlan, SyncPlan. Non-focused parameters are fixed or derived.",
+  "problem_shape_hint": {
+    "m_total": 16,
+    "n_total": 512,
+    "k_total": 512,
+    "outer_iterations": 8
+  },
+  "tile_candidates": [
+    {
+      "m": 16,
+      "n": 64,
+      "k": 64
+    },
+    {
+      "m": 16,
+      "n": 128,
+      "k": 64
+    },
+    {
+      "m": 16,
+      "n": 256,
+      "k": 64
+    },
+    {
+      "m": 16,
+      "n": 512,
+      "k": 64
+    },
+    {
+      "m": 32,
+      "n": 128,
+      "k": 64
+    },
+    {
+      "m": 32,
+      "n": 256,
+      "k": 64
+    },
+    {
+      "m": 32,
+      "n": 512,
+      "k": 64
+    },
+    {
+      "m": 64,
+      "n": 256,
+      "k": 128
+    },
+    {
+      "m": 64,
+      "n": 512,
+      "k": 128
+    }
+  ],
+  "block_dim_candidates": [
+    1
+  ],
+  "fusion_candidates": [
+    "keep_existing"
+  ],
+  "double_buffer": [
+    false,
+    true
+  ],
+  "cv_pipeline_stage": [
+    1,
+    2,
+    4
+  ],
+  "cv_split_ratio": [
+    "1:1"
+  ],
+  "memory_reuse_level": [
+    "level1"
+  ],
+  "sync_policy": [
+    "keep_existing",
+    "graph_sync_solver"
+  ],
+  "dma_policy": [
+    "keep_existing"
+  ],
+  "top_k": 10,
+  "layer1_top_w": 24,
+  "layer2_top_w": 12,
+  "focused_plans": [
+    "TilingPlan",
+    "MultiBufferPlan",
+    "CVPipelinePlan",
+    "SyncPlan"
+  ],
+  "fixed_or_derived_parameters": {
+    "fusion": "keep_existing",
+    "block_dim": "derived per tiling plan",
+    "cv_split_ratio": "1:1",
+    "memory_reuse_level": "level1",
+    "dma_policy": "keep_existing"
+  }
+}

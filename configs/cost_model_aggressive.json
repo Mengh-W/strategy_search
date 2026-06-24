@@ -1,0 +1,143 @@
+{
+  "metadata": {
+    "name": "cost_model_aggressive",
+    "purpose": "Exploration mode. Preserves optimistic overlap and GraphSyncSolver benefits for candidate discovery.",
+    "notes": "Do not report aggressive predicted speedup as measured speedup without profiling validation."
+  },
+  "cost_model_safety": {
+    "enabled": true,
+    "overlap_pressure_threshold": 0.78,
+    "overlap_pressure_slope": 0.25
+  },
+  "cost_model_risk_modes": {
+    "aggressive": {
+      "cv_estimated_overlap_multiplier": 1.0,
+      "cv_estimated_penalty_ratio": 0.0,
+      "sync_unknown_penalty_per_op": 0.0,
+      "sync_unknown_penalty_ratio": 0.0,
+      "event_reuse_penalty_per_op": 0.0,
+      "risk_score_bias": 8.0
+    }
+  },
+  "cost_model_strategy_effects": {
+    "multibuffer": {
+      "load_overlap_no_cv": 0.55,
+      "load_overlap_with_cv": 0.68,
+      "store_overlap": 0.35,
+      "load_overlap_cap": 0.88,
+      "store_overlap_cap": 0.62,
+      "template_adjustment": {
+        "M0_no_multibuffer": {
+          "load_bonus": 0.0,
+          "store_bonus": 0.0,
+          "overhead": 0.0
+        },
+        "M1_input_double_buffer": {
+          "load_bonus": 0.02,
+          "store_bonus": 0.0,
+          "overhead": 0.01
+        },
+        "M2_input_output_double_buffer": {
+          "load_bonus": 0.03,
+          "store_bonus": 0.05,
+          "overhead": 0.015
+        },
+        "M3_ping_pong_detected": {
+          "load_bonus": 0.05,
+          "store_bonus": 0.03,
+          "overhead": 0.01
+        },
+        "M4_cv_stage_aware_multibuffer": {
+          "load_bonus": 0.06,
+          "store_bonus": 0.03,
+          "overhead": 0.025
+        }
+      }
+    },
+    "cv_pipeline": {
+      "stage2_basic_overlap": 0.5,
+      "stage2_balanced_overlap": 0.58,
+      "prefill_large_sbs_reuse_overlap": 0.64,
+      "stage4_overlap": 0.68,
+      "mixed_cv_bonus": 0.04,
+      "auto_balance_bonus": 0.03,
+      "prefill_reuse_overlap_multiplier": 1.02,
+      "template_overhead": {
+        "P_PREFILL_LARGE_SBS_REUSE": 0.035,
+        "P1_stage2_basic": 0.015,
+        "P2_stage2_balanced": 0.02,
+        "P3_stage4_aggressive": 0.055,
+        "default": 0.02
+      },
+      "tile_mix_balance_alpha": 0.04,
+      "tile_mix_overlap_floor": 0.75,
+      "producer_consumer_distance_alpha": 0.025,
+      "producer_consumer_overlap_floor": 0.88,
+      "cv_overlap_cap": 0.78
+    },
+    "sync": {
+      "gss_barrier_mult": {
+        "low": 0.5,
+        "medium": 0.65,
+        "high": 0.8
+      },
+      "keep_barrier_mult": {
+        "low": 0.8,
+        "medium": 1.0,
+        "high": 1.25
+      },
+      "gss_event_mult_reuse": 0.72,
+      "gss_event_mult_no_reuse": 0.8,
+      "granularity_mult": {
+        "op": 1.0,
+        "tile": 0.88,
+        "stage": 0.78
+      },
+      "gss_base_stall": 0.7,
+      "event_reuse_stall_mult": 0.92,
+      "gss_granularity_stall_mult": {
+        "op": 1.0,
+        "tile": 0.9,
+        "stage": 0.82
+      },
+      "event_id_policy_stall_mult": {
+        "keep": 1.0,
+        "compact": 0.94,
+        "reuse": 0.88
+      },
+      "gss_local_move_stall_mult": 0.96,
+      "keep_barrier_level_stall_mult": {
+        "low": 0.95,
+        "medium": 1.0,
+        "high": 1.1
+      },
+      "keep_local_move_stall_mult": 0.98,
+      "template_adjustment": {
+        "Y0_keep_existing": {
+          "barrier": 1.0,
+          "event": 1.0,
+          "stall": 1.0,
+          "overhead": 0.0
+        },
+        "Y1_conservative_barrier": {
+          "barrier": 1.1,
+          "event": 1.0,
+          "stall": 1.06,
+          "overhead": 6.0
+        },
+        "Y2_graph_sync_solver": {
+          "barrier": 0.92,
+          "event": 0.94,
+          "stall": 0.93,
+          "overhead": 10.0
+        },
+        "Y3_event_reuse": {
+          "barrier": 1.0,
+          "event": 0.82,
+          "stall": 0.9,
+          "overhead": 8.0
+        }
+      }
+    }
+  }
+}

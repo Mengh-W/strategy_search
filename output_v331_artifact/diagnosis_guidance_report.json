@@ -1,0 +1,24 @@
+{
+  "enabled": false,
+  "mode": "off",
+  "source_files": [],
+  "signals": [],
+  "variable_bias": {
+    "f": 1.0,
+    "t": 1.0,
+    "B": 1.0,
+    "m": 1.0,
+    "s": 1.0,
+    "r": 1.0,
+    "ℓ": 1.0,
+    "y": 1.0,
+    "d": 1.0
+  },
+  "value_bias": {},
+  "coverage": [],
+  "unknown_signals": [],
+  "des_profile": null,
+  "bound_reports": [],
+  "counterfactual_reports": [],
+  "multi_kernel_reports": []
+}

@@ -1,0 +1,226 @@
+{
+  "question": "Is the cost model reasonable?",
+  "answer": "V3.3 keeps the analytical search objective but audits/calibrates it with pipe, DMA, sync, and trace evidence when DES/trace artifacts are provided.",
+  "des_available": true,
+  "num_operations": 6103,
+  "pipe_duration": {
+    "pipe_unknown": 7.0,
+    "pipe_s": 4199371.0,
+    "mte2": 48184.0,
+    "cube": 4422.0,
+    "pipe_mte1": 7629.0,
+    "fix": 19330.0,
+    "pipe_all": 1290.0,
+    "mte3": 5725.0,
+    "vector": 90205.0
+  },
+  "pipe_fraction": {
+    "pipe_unknown": 1.5995747873193937e-06,
+    "pipe_s": 0.9596011391714614,
+    "mte2": 0.011010558793171095,
+    "cube": 0.0010104742442180513,
+    "pipe_mte1": 0.0017433080074942364,
+    "fix": 0.004417111519840555,
+    "pipe_all": 0.000294778782234574,
+    "mte3": 0.0013082236653433612,
+    "vector": 0.020612806241449417
+  },
+  "critical_pipe": "pipe_s",
+  "pipe_bytes": {
+    "pipe_unknown": 3218048.0,
+    "pipe_s": 0.0,
+    "mte2": 1427456.0,
+    "cube": 0.0,
+    "pipe_mte1": 0.0,
+    "fix": 196608.0,
+    "pipe_all": 0.0,
+    "mte3": 65536.0,
+    "vector": 1559808.0
+  },
+  "dma_bytes_by_space_path": {
+    "gm->l1": 9717760.0,
+    "l0c->gm": 1572864.0,
+    "ub->ub": 36992.0,
+    "gm->ub": 1572864.0,
+    "ub->gm": 294912.0
+  },
+  "sync_counts_by_name": {
+    "sync_block_set": 51,
+    "set_flag": 138,
+    "wait_flag": 130,
+    "pipe_barrier": 180,
+    "sync_block_wait": 51
+  },
+  "top_ops_by_duration": [
+    {
+      "id": 115,
+      "name": "nd2nz",
+      "pipe": "PIPE_MTE2_C",
+      "duration": 320,
+      "bytes": 131072,
+      "flops": 0
+    },
+    {
+      "id": 203,
+      "name": "nd2nz",
+      "pipe": "PIPE_MTE2_C",
+      "duration": 320,
+      "bytes": 131072,
+      "flops": 0
+    },
+    {
+      "id": 291,
+      "name": "nd2nz",
+      "pipe": "PIPE_MTE2_C",
+      "duration": 320,
+      "bytes": 131072,
+      "flops": 0
+    },
+    {
+      "id": 379,
+      "name": "nd2nz",
+      "pipe": "PIPE_MTE2_C",
+      "duration": 320,
+      "bytes": 131072,
+      "flops": 0
+    },
+    {
+      "id": 467,
+      "name": "nd2nz",
+      "pipe": "PIPE_MTE2_C",
+      "duration": 320,
+      "bytes": 131072,
+      "flops": 0
+    },
+    {
+      "id": 555,
+      "name": "nd2nz",
+      "pipe": "PIPE_MTE2_C",
+      "duration": 320,
+      "bytes": 131072,
+      "flops": 0
+    },
+    {
+      "id": 643,
+      "name": "nd2nz",
+      "pipe": "PIPE_MTE2_C",
+      "duration": 320,
+      "bytes": 131072,
+      "flops": 0
+    },
+    {
+      "id": 731,
+      "name": "nd2nz",
+      "pipe": "PIPE_MTE2_C",
+      "duration": 320,
+      "bytes": 131072,
+      "flops": 0
+    },
+    {
+      "id": 1480,
+      "name": "load",
+      "pipe": "PIPE_MTE2_V",
+      "duration": 202,
+      "bytes": 16384,
+      "flops": 0
+    },
+    {
+      "id": 2136,
+      "name": "load",
+      "pipe": "PIPE_MTE2_V",
+      "duration": 202,
+      "bytes": 16384,
+      "flops": 0
+    }
+  ],
+  "trace_summary": {
+    "available": true,
+    "files": [
+      "sample_product/prefill_trace.json"
+    ],
+    "num_events": 5823,
+    "top_event_names": [
+      [
+        "load",
+        2064
+      ],
+      [
+        "cmpi",
+        1025
+      ],
+      [
+        "extui",
+        1024
+      ],
+      [
+        "index_cast",
+        320
+      ],
+      [
+        "pipe_barrier",
+        180
+      ],
+      [
+        "collapse_shape",
+        139
+      ],
+      [
+        "set_flag",
+        138
+      ],
+      [
+        "wait_flag",
+        130
+      ],
+      [
+        "sync",
+        102
+      ],
+      [
+        "apply",
+        52
+      ],
+      [
+        "sync_block_set",
+        51
+      ],
+      [
+        "sync_block_wait",
+        51
+      ],
+      [
+        "cast",
+        42
+      ],
+      [
+        "vmul",
+        40
+      ],
+      [
+        "vcast",
+        40
+      ],
+      [
+        "muli",
+        34
+      ],
+      [
+        "expand_shape",
+        32
+      ],
+      [
+        "nd2nz",
+        26
+      ],
+      [
+        "mmadL1.mte1",
+        24
+      ],
+      [
+        "mmadL1.cube",
+        24
+      ]
+    ]
+  },
+  "conclusion": "DES-assisted pipe/sync/DMA-aware cost audit"
+}

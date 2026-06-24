@@ -1,0 +1,33 @@
+{
+  "kernel_name": "chunk_kda",
+  "t_bound_us": 46109.90847324822,
+  "binding_tier": "component",
+  "binding_component": "vector",
+  "t_grid_floor_us": 46064.92319668896,
+  "t_core_floor_us": 46109.90847324822,
+  "t_serial_irreducible_us": 0.0,
+  "t_bound_hivm_us": 46064.92319668896,
+  "t_measured_us": null,
+  "compiler_headroom_us": 44.98527655926591,
+  "author_headroom_us": null,
+  "attribution": {
+    "grid": 0.0,
+    "gap1_wrong_unit": 0.0015605793886007198,
+    "gap2_coalescing": 0.0,
+    "gap3_avoidable_serial": 6.193396343951999e-06,
+    "gap4_intra_unit_exec": 0.025691657314375813
+  },
+  "profile": null,
+  "recommended_action": "Increase SIMD repeat/mask utilization",
+  "reachability": {
+    "t_bound_hivm_us": 46064.92319668896,
+    "t_bound_dsl_us": 46109.90847324822,
+    "t_measured_us": null,
+    "compiler_headroom_us": 44.98527655926591,
+    "author_headroom_us": null,
+    "is_violation": false,
+    "msprof_source": null,
+    "n_invocations": null,
+    "component_match": null
+  }
+}

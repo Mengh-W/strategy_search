@@ -1,0 +1,1005 @@
+{
+  "post_relax_rejected": [],
+  "layer1_rejected_preview": [
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 76352,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 272,
+          "k": 128
+        },
+        "block_dim": 16
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 60160,
+        "l1": 67520,
+        "l0a": 4096,
+        "l0b": 69632,
+        "l0c": 18432
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 74304,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 74304,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 65728,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 65728,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 74304,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 74304,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 65728,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 65728,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 74304,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 74304,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 65728,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 65728,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 74304,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    },
+    {
+      "layer": "L1",
+      "candidate": {
+        "fusion": "keep_existing",
+        "tile": {
+          "m": 16,
+          "n": 304,
+          "k": 112
+        },
+        "block_dim": 32
+      },
+      "reason": "single-buffer L0B overflow",
+      "footprint_bytes": {
+        "ub": 66304,
+        "l1": 74304,
+        "l0a": 3584,
+        "l0b": 68096,
+        "l0c": 20480
+      }
+    }
+  ]
+}

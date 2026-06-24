@@ -1,0 +1,79 @@
+{
+  "operations": [
+    {
+      "id": 1,
+      "name": "load_A",
+      "pipe": "MTE2",
+      "bytes": 8192,
+      "elements": 4096,
+      "flops": 0,
+      "duration": 100,
+      "loop_multiplier": 1,
+      "depends_on": [],
+      "src_space": "gm",
+      "dst_space": "l0a",
+      "repeat": 1,
+      "mask": 0
+    },
+    {
+      "id": 2,
+      "name": "load_B",
+      "pipe": "MTE2",
+      "bytes": 4096,
+      "elements": 2048,
+      "flops": 0,
+      "duration": 80,
+      "loop_multiplier": 1,
+      "depends_on": [],
+      "src_space": "gm",
+      "dst_space": "l0b",
+      "repeat": 1,
+      "mask": 0
+    },
+    {
+      "id": 3,
+      "name": "matmul",
+      "pipe": "Cube",
+      "bytes": 0,
+      "elements": 2048,
+      "flops": 16384,
+      "duration": 200,
+      "loop_multiplier": 1,
+      "depends_on": [1, 2],
+      "src_space": "",
+      "dst_space": "",
+      "repeat": 1,
+      "mask": 0
+    },
+    {
+      "id": 4,
+      "name": "store_out",
+      "pipe": "MTE_UB",
+      "bytes": 4096,
+      "elements": 2048,
+      "flops": 0,
+      "duration": 90,
+      "loop_multiplier": 1,
+      "depends_on": [3],
+      "src_space": "l0c",
+      "dst_space": "ub",
+      "repeat": 1,
+      "mask": 0
+    },
+    {
+      "id": 5,
+      "name": "load_B2",
+      "pipe": "MTE2",
+      "bytes": 4096,
+      "elements": 2048,
+      "flops": 0,
+      "duration": 80,
+      "loop_multiplier": 1,
+      "depends_on": [],
+      "src_space": "gm",
+      "dst_space": "l0b",
+      "repeat": 1,
+      "mask": 0
+    }
+  ]
+}

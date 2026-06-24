@@ -1,0 +1,1052 @@
+[
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 141568,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 96,
+        "k": 512
+      },
+      "block_dim": 24
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 32224,
+      "l1": 127808,
+      "l0a": 16384,
+      "l0b": 98304,
+      "l0c": 11776,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 174336,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 174336,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 156640,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 156640,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 174336,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 174336,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 156640,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 156640,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 174336,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 174336,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 156640,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 156640,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 174336,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  },
+  {
+    "layer": "L1",
+    "candidate": {
+      "fusion": "keep_existing",
+      "tile": {
+        "m": 16,
+        "n": 128,
+        "k": 512
+      },
+      "block_dim": 32
+    },
+    "reason": "single-buffer L0B overflow",
+    "footprint_bytes": {
+      "ub": 38368,
+      "l1": 174336,
+      "l0a": 16384,
+      "l0b": 131072,
+      "l0c": 13824,
+      "gm_ws": 0
+    }
+  }
+]

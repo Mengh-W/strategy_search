@@ -1,0 +1,33 @@
+{
+  "kernel_name": "sample_hivm",
+  "t_bound_us": Infinity,
+  "binding_tier": "component",
+  "binding_component": "cube",
+  "t_grid_floor_us": 0.6504616860964042,
+  "t_core_floor_us": Infinity,
+  "t_serial_irreducible_us": 0.0,
+  "t_bound_hivm_us": Infinity,
+  "t_measured_us": null,
+  "compiler_headroom_us": NaN,
+  "author_headroom_us": null,
+  "attribution": {
+    "grid": 0.0,
+    "gap1_wrong_unit": 0.0,
+    "gap2_coalescing": 0.0,
+    "gap3_avoidable_serial": 0.0,
+    "gap4_intra_unit_exec": NaN
+  },
+  "profile": null,
+  "recommended_action": "Fix grid partitioning \u2014 increase occupancy or load balance",
+  "reachability": {
+    "t_bound_hivm_us": Infinity,
+    "t_bound_dsl_us": Infinity,
+    "t_measured_us": null,
+    "compiler_headroom_us": NaN,
+    "author_headroom_us": null,
+    "is_violation": false,
+    "msprof_source": null,
+    "n_invocations": null,
+    "component_match": null
+  }
+}

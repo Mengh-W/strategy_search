@@ -1,0 +1,65 @@
+{
+  "question": "Are hardware boundaries reasonably enforced?",
+  "answer": "V2.7 uses analytical gates plus artifact evidence when available. Artifact data are not hard-coded; they validate scope, alignment, multibuffer, DMA-path, and sync-resource assumptions for the current input.",
+  "hardware_caps_bytes": {
+    "ub": 262144,
+    "l1": 1048576,
+    "l0a": 65536,
+    "l0b": 65536,
+    "l0c": 262144
+  },
+  "mlir_raw_memref_occurrence_bytes_by_space": {
+    "gm": 1114112,
+    "l0c": 40960,
+    "l1": 98304,
+    "ub": 394752
+  },
+  "mlir_unique_alloc_bytes_by_space": {
+    "ub": 98816,
+    "l1": 32768,
+    "l0c": 8192
+  },
+  "mlir_static_max_live_bytes_by_space": {
+    "l0a": 0,
+    "ub": 98816,
+    "l0c": 8192,
+    "l0b": 0,
+    "l1": 32768
+  },
+  "boundary_bytes_used_for_utilization": {
+    "l0a": 0,
+    "ub": 98816,
+    "l0c": 8192,
+    "l0b": 0,
+    "l1": 32768
+  },
+  "mlir_static_memref_utilization_by_space": {
+    "ub": 0.376953125,
+    "l1": 0.03125,
+    "l0a": 0.0,
+    "l0b": 0.0,
+    "l0c": 0.03125
+  },
+  "memrefs_by_space": {
+    "gm": 8,
+    "l0c": 5,
+    "l1": 9,
+    "ub": 33
+  },
+  "unique_alloc_count_by_space": {
+    "ub": 9,
+    "l1": 3,
+    "l0c": 1
+  },
+  "ping_pong_multibuffer_evidence": [],
+  "alignment_evidence": {
+    "hivm_storage_aligned_count": 0
+  },
+  "multibuffer_evidence": {
+    "hivm_multi_buffer_annotations": 0,
+    "des_multi_buffer_slots_histogram": {}
+  },
+  "dma_path_evidence": {},
+  "sync_resource_evidence": {},
+  "conclusion": "partially artifact-validated hardware boundary"
+}
