@@ -1,4 +1,31 @@
+# V6.4 update: official backend final sanitize
+
+V6.4 fixes the V6.3 official-document blockers found by manual audit: memref.subview now preserves GM/CBUF/UB address space, hivm.hir.load/store use GM→local and local→GM direction after subview lowering, Q/O tile subviews are relocated into tile-loop scope where possible, GM→CBUF copy in the sample path is lowered to local nd2nz staging, and a stricter v64 manual official audit is emitted. Linux backend parse/verify/compile remains required before claiming runnable performance.
+
+
+## V6.1 - four-plan Linux handoff and real backend validation package
+
+- 新增 `strategy_search/operation_rewrite/linux_handoff_v61.py`，在 V6.0 real operation materialization 后生成可复制到 Ascend Linux 的 `linux_handoff/` 目录。
+- 新增 `scripts/run_v61_four_plan_linux_handoff.sh/.cmd`。
+- `linux_handoff/` 包含 baseline/optimized HIVM、selected plan、backend command templates、acceptance gates、backend patch contract、Linux validation runner 和 msprof comparison collector。
+- `four_plan_operation_rewrite_summary.json` 新增 `v61_linux_handoff_created`、`v61_linux_handoff_dir`、`v61_backend_patch_contract`、`recommended_next_step`。
+- 明确边界：V6.1 不声称 Linux compile/run/msprof 已通过；它把项目推进到可在线下真实 backend 执行 parse/roundtrip/verify/compile/run/msprof 的落地 handoff 阶段。
+
 # Changelog
+## V6.0 - Four-Plan Real Operation Materialization
+
+- Added `strategy_search/operation_rewrite/real_operation_materialization_v60.py`.
+- Added a V6.0 materialization pass that moves V5.8/V5.9 semantic comments onto concrete HIVM operations as attributes or `annotation.mark` operations.
+- TilingPlan: materializes tile-slice bindings, reduction accumulator bindings, tail strategy guard, reduce-tile guard, and layout-aware guard into op attributes/annotations.
+- CVPipelinePlan: materializes stage role, prologue/steady/epilogue schedule, producer-consumer distance, tile index expression, pipeline template, stage count, and buffer-policy information into op attributes/annotations.
+- SyncPlan: annotates regenerated dependency information on `wait_flag` / `set_flag` operations after Tiling/MultiBuffer/CVPipeline rewrite.
+- MultiBufferPlan: adds `v60_multibuffer_use_def_coverage.json` for ping/pong slot coverage and conservative original-use risk reporting.
+- Added `v60_semantic_marker_materialization_audit.json`; V6.0 passes when `semantic_marker_as_logic_count = 0` and required V6.0 materialization attributes exist.
+- Added scripts: `scripts/run_v60_four_plan_real_operation_materialization.sh` and `.cmd`.
+- Added tests in `tests/test_v60_real_operation_materialization.py`.
+- Recommended Linux validation IR is now `optimized.four_plan_real_operation_materialized.hivm.mlir`.
+- Boundary remains: V6.0 is stronger Linux-handoff materialization, not proof of Linux parser/verifier/backend compile/correctness/msprof success.
+
 ## V5.9 - Four-Plan Semantic Rewrite Syntax/Schedule Hardening
 
 - Added `strategy_search/operation_rewrite/syntax_hardening_v59.py`.
@@ -161,3 +188,18 @@
 - Added `scripts/run_v58_tiling_cvpipeline_semantic_rewrite.sh/.cmd`.
 - Added V5.8 tests covering tiling axis/slice binding and CVPipeline stage schedule binding.
 - Scope boundary remains explicit: Linux backend compile/correctness/msprof validation is required before performance claims.
+
+## V6.2 - four-plan official-backend lowering hardening
+
+- Added `strategy_search/operation_rewrite/official_backend_lowering_v62.py`.
+- Lowers `annotation.mark` operations into nearby `memref.alloc` attributes when possible and strips loop/constant marker annotations for official backend handoff.
+- Normalizes Python-list-like generated attributes such as `hivm.tile_offsets="['%m_outer', ...]"` into compact backend-oriented strings such as `hivm.tile_offsets="m_outer,k_outer"`.
+- Materializes `D_tile` and `propagate_from_input` placeholders in generated HIVM candidates.
+- Adds strict MultiBuffer residual-use rewrite for HIVM operation lines after ping/pong buffers exist.
+- Adds `v62_official_backend_handoff_audit.json` with hard blockers and warnings, and updates Linux handoff to use `optimized.four_plan_official_backend_lowered.hivm.mlir` as the recommended optimized input.
+- Adds `tests/test_v62_official_backend_lowering.py`.
+
+## V6.3-four-plan-official-backend-subview-lowering
+- Adds official-style memref.subview lowering for mismatched hivm.hir.load/store operands.
+- Strips generated private v5/v6/tile/pipeline debug attrs from Linux handoff IR.
+- Adds v63 official-compare audit and backend contract.

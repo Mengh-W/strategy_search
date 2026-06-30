@@ -1,0 +1,76 @@
+{
+  "schema_version": "hivm_v63_subview_lowering_report_v1",
+  "mutation_performed": true,
+  "action_count": 4,
+  "actions": [
+    {
+      "line": 66,
+      "kind": "load_subview",
+      "source": "%Q_gm",
+      "tile": "%Q_gm_tile_v63_0",
+      "src_type": "memref<64x128xf16, #hivm.address_space<gm>>",
+      "tile_type": "memref<32x128xf16, #hivm.address_space<gm>>",
+      "local_type": "memref<32x128xf16, #hivm.address_space<ub>>",
+      "offsets": [
+        "%c0",
+        "%c0"
+      ],
+      "sizes": [
+        "32",
+        "128"
+      ]
+    },
+    {
+      "line": 83,
+      "kind": "load_subview",
+      "source": "%K_gm",
+      "tile": "%K_gm_tile_v63_1",
+      "src_type": "memref<1024x128xf16, #hivm.address_space<gm>>",
+      "tile_type": "memref<64x128xf16, #hivm.address_space<gm>>",
+      "local_type": "memref<64x128xf16, #hivm.address_space<ub>>",
+      "offsets": [
+        "%n_outer",
+        "%k_outer"
+      ],
+      "sizes": [
+        "64",
+        "128"
+      ]
+    },
+    {
+      "line": 85,
+      "kind": "load_subview",
+      "source": "%V_gm",
+      "tile": "%V_gm_tile_v63_2",
+      "src_type": "memref<1024x128xf16, #hivm.address_space<gm>>",
+      "tile_type": "memref<64x128xf16, #hivm.address_space<gm>>",
+      "local_type": "memref<64x128xf16, #hivm.address_space<ub>>",
+      "offsets": [
+        "%n_outer",
+        "%c0"
+      ],
+      "sizes": [
+        "64",
+        "128"
+      ]
+    },
+    {
+      "line": 145,
+      "kind": "store_subview",
+      "target": "%O_gm",
+      "tile": "%O_gm_tile_v63_3",
+      "dst_type": "memref<64x128xf16, #hivm.address_space<gm>>",
+      "tile_type": "memref<32x128xf16, #hivm.address_space<gm>>",
+      "local_type": "memref<32x128xf16, #hivm.address_space<ub>>",
+      "offsets": [
+        "%c0",
+        "%c0"
+      ],
+      "sizes": [
+        "32",
+        "128"
+      ]
+    }
+  ],
+  "note": "Offsets outside m/n/k tile-loop scope are conservatively lowered to %c0. Linux backend must still verify semantic correctness."
+}

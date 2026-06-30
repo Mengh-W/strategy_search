@@ -1,0 +1,483 @@
+{
+  "schema_version": "hivm_v58_tiling_semantic_full_rewrite_report_v1",
+  "mutation_performed": true,
+  "axis_binding": {
+    "schema_version": "hivm_v58_tiling_axis_binding_v1",
+    "confidence": "HIGH",
+    "axes": {
+      "M": {
+        "symbol": "%m_outer",
+        "extent": 64,
+        "tile": 32,
+        "evidence": "%Q_gm dim0 / %O_gm dim0"
+      },
+      "N": {
+        "symbol": "%n_outer",
+        "extent": 1024,
+        "tile": 64,
+        "evidence": "%K_gm dim0 / %V_gm dim0 sequence axis"
+      },
+      "K": {
+        "symbol": "%k_outer",
+        "extent": 128,
+        "tile": 128,
+        "evidence": "%Q_gm dim1 / %K_gm dim1 reduction-head axis"
+      },
+      "D": {
+        "symbol": "%d_outer",
+        "extent": 128,
+        "tile": 128,
+        "evidence": "%V_gm dim1 / %O_gm dim1 value/output feature axis"
+      }
+    },
+    "tensor_roles": {
+      "Q": {
+        "name": "%Q_gm",
+        "dims": [
+          64,
+          128
+        ],
+        "dtype": "f16",
+        "space": "unknown",
+        "kind": "func_arg"
+      },
+      "K": {
+        "name": "%K_gm",
+        "dims": [
+          1024,
+          128
+        ],
+        "dtype": "f16",
+        "space": "unknown",
+        "kind": "func_arg"
+      },
+      "V": {
+        "name": "%V_gm",
+        "dims": [
+          1024,
+          128
+        ],
+        "dtype": "f16",
+        "space": "unknown",
+        "kind": "func_arg"
+      },
+      "O": {
+        "name": "%O_gm",
+        "dims": [
+          64,
+          128
+        ],
+        "dtype": "f16",
+        "space": "unknown",
+        "kind": "func_arg"
+      }
+    },
+    "blockers": [],
+    "complete_for_sample_fa_pattern": true
+  },
+  "selected_tiling": {
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "loop_order": "outer_mkn",
+    "tail_strategy": "mask_or_pad",
+    "reduce_tile_policy": "half_k",
+    "layout_aware_tile": true
+  },
+  "actions": [
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 34,
+      "semantic": {
+        "op": "load",
+        "semantic_role": "Q_load_or_Q_stage",
+        "tile_offsets": [
+          "%m_outer",
+          "%k_outer"
+        ],
+        "tile_shape": [
+          32,
+          128
+        ],
+        "axis_map": [
+          "M",
+          "K"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 36,
+      "semantic": {
+        "op": "nd2nz",
+        "semantic_role": "layout_transform_tile",
+        "tile_offsets": [
+          "propagate_from_input"
+        ],
+        "tile_shape": [
+          "propagate_from_input"
+        ],
+        "axis_map": [
+          "layout-aware"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "bind_outer_tile_loops_to_axis_extents_and_tile_end_guards",
+      "line": 43
+    },
+    {
+      "parameter": "tail_strategy",
+      "operation_action": "materialize_tile_end_mask_or_pad_semantics",
+      "line": 43
+    },
+    {
+      "parameter": "reduce_tile_policy",
+      "operation_action": "materialize_partial_accumulator_semantics",
+      "line": 43
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 48,
+      "semantic": {
+        "op": "load",
+        "semantic_role": "K_load_or_K_stage",
+        "tile_offsets": [
+          "%n_outer",
+          "%k_outer"
+        ],
+        "tile_shape": [
+          64,
+          128
+        ],
+        "axis_map": [
+          "N",
+          "K"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 50,
+      "semantic": {
+        "op": "load",
+        "semantic_role": "V_load_or_V_stage",
+        "tile_offsets": [
+          "%n_outer",
+          "%d_outer"
+        ],
+        "tile_shape": [
+          64,
+          "D_tile"
+        ],
+        "axis_map": [
+          "N",
+          "D"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 52,
+      "semantic": {
+        "op": "nd2nz",
+        "semantic_role": "layout_transform_tile",
+        "tile_offsets": [
+          "propagate_from_input"
+        ],
+        "tile_shape": [
+          "propagate_from_input"
+        ],
+        "axis_map": [
+          "layout-aware"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 54,
+      "semantic": {
+        "op": "nd2nz",
+        "semantic_role": "layout_transform_tile",
+        "tile_offsets": [
+          "propagate_from_input"
+        ],
+        "tile_shape": [
+          "propagate_from_input"
+        ],
+        "axis_map": [
+          "layout-aware"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 56,
+      "semantic": {
+        "op": "copy",
+        "semantic_role": "K_load_or_K_stage",
+        "tile_offsets": [
+          "%n_outer",
+          "%k_outer"
+        ],
+        "tile_shape": [
+          64,
+          128
+        ],
+        "axis_map": [
+          "N",
+          "K"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 59,
+      "semantic": {
+        "op": "mmad",
+        "semantic_role": "QK_score_tile_compute",
+        "tile_offsets": [
+          "%m_outer",
+          "%n_outer",
+          "%k_outer"
+        ],
+        "tile_shape": [
+          32,
+          64,
+          128
+        ],
+        "axis_map": [
+          "M",
+          "N",
+          "K"
+        ],
+        "reduction": "partial_accumulate_over_K"
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 61,
+      "semantic": {
+        "op": "fixpipe",
+        "semantic_role": "vector_postprocess_tile_fixpipe",
+        "tile_offsets": [
+          "%m_outer",
+          "%n_outer"
+        ],
+        "tile_shape": [
+          32,
+          64
+        ],
+        "axis_map": [
+          "M",
+          "N"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 63,
+      "semantic": {
+        "op": "vreduce",
+        "semantic_role": "vector_postprocess_tile_vreduce",
+        "tile_offsets": [
+          "%m_outer",
+          "%n_outer"
+        ],
+        "tile_shape": [
+          32,
+          64
+        ],
+        "axis_map": [
+          "M",
+          "N"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 65,
+      "semantic": {
+        "op": "vsub",
+        "semantic_role": "vector_postprocess_tile_vsub",
+        "tile_offsets": [
+          "%m_outer",
+          "%n_outer"
+        ],
+        "tile_shape": [
+          32,
+          64
+        ],
+        "axis_map": [
+          "M",
+          "N"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 67,
+      "semantic": {
+        "op": "vexp",
+        "semantic_role": "vector_postprocess_tile_vexp",
+        "tile_offsets": [
+          "%m_outer",
+          "%n_outer"
+        ],
+        "tile_shape": [
+          32,
+          64
+        ],
+        "axis_map": [
+          "M",
+          "N"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 69,
+      "semantic": {
+        "op": "vreduce",
+        "semantic_role": "vector_postprocess_tile_vreduce",
+        "tile_offsets": [
+          "%m_outer",
+          "%n_outer"
+        ],
+        "tile_shape": [
+          32,
+          64
+        ],
+        "axis_map": [
+          "M",
+          "N"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 71,
+      "semantic": {
+        "op": "nd2nz",
+        "semantic_role": "layout_transform_tile",
+        "tile_offsets": [
+          "propagate_from_input"
+        ],
+        "tile_shape": [
+          "propagate_from_input"
+        ],
+        "axis_map": [
+          "layout-aware"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 73,
+      "semantic": {
+        "op": "mmad",
+        "semantic_role": "PV_output_tile_compute",
+        "tile_offsets": [
+          "%m_outer",
+          "%d_outer",
+          "%n_outer"
+        ],
+        "tile_shape": [
+          32,
+          "D_tile",
+          64
+        ],
+        "axis_map": [
+          "M",
+          "D",
+          "N"
+        ],
+        "reduction": "partial_accumulate_over_N"
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 75,
+      "semantic": {
+        "op": "fixpipe",
+        "semantic_role": "vector_postprocess_tile_fixpipe",
+        "tile_offsets": [
+          "%m_outer",
+          "%n_outer"
+        ],
+        "tile_shape": [
+          32,
+          64
+        ],
+        "axis_map": [
+          "M",
+          "N"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 83,
+      "semantic": {
+        "op": "vdiv",
+        "semantic_role": "vector_postprocess_tile_vdiv",
+        "tile_offsets": [
+          "%m_outer",
+          "%n_outer"
+        ],
+        "tile_shape": [
+          32,
+          64
+        ],
+        "axis_map": [
+          "M",
+          "N"
+        ]
+      }
+    },
+    {
+      "parameter": "tile_m/tile_n/tile_k",
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "line": 85,
+      "semantic": {
+        "op": "store",
+        "semantic_role": "O_store_tile",
+        "tile_offsets": [
+          "%m_outer",
+          "%d_outer"
+        ],
+        "tile_shape": [
+          32,
+          "D_tile"
+        ],
+        "axis_map": [
+          "M",
+          "D"
+        ]
+      }
+    }
+  ],
+  "action_count": 21,
+  "blockers": [],
+  "complete_strategy_parameters_covered": true,
+  "linux_backend_validation_required": true,
+  "claim_boundary": "V5.8 binds tiling strategy to loop axes and per-operation tile slice/reduction semantics in the emitted candidate. Official Linux backend must still lower/verify these bindings into dialect-legal loop/index/slice operations."
+}

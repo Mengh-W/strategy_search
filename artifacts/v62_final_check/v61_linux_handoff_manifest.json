@@ -1,0 +1,20 @@
+{
+  "schema_version": "hivm_v61_linux_handoff_manifest_v1",
+  "handoff_dir": "artifacts/v62_final_check/linux_handoff",
+  "baseline_ir": "artifacts/v62_final_check/linux_handoff/inputs/baseline.hivm.mlir",
+  "optimized_ir": "artifacts/v62_final_check/linux_handoff/inputs/optimized.hivm.mlir",
+  "selected_plan": "artifacts/v62_final_check/linux_handoff/inputs/selected_plan.json",
+  "runner": "artifacts/v62_final_check/linux_handoff/run_linux_validation.py",
+  "perf_collector": "artifacts/v62_final_check/linux_handoff/collect_msprof_compare.py",
+  "acceptance_gates": "artifacts/v62_final_check/linux_handoff/acceptance_gates.json",
+  "backend_patch_contract": "artifacts/v62_final_check/linux_handoff/backend_patch_contract.json",
+  "rewrite_summary_linux_ready_claim": false,
+  "linux_backend_validation_required": true,
+  "next_action": "Copy linux_handoff/ to Ascend Linux, fill backend_commands.json, run python3 run_linux_validation.py.",
+  "upstream_rewrite_summary": {
+    "four_plan_operation_rewrite_performed": true,
+    "v60_real_operation_materialization_performed": true,
+    "recommended_linux_validation_ir": "artifacts/v62_final_check/optimized.four_plan_official_backend_lowered.hivm.mlir",
+    "linux_precompile_blocker_count": 0
+  }
+}

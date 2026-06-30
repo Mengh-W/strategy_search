@@ -1,0 +1,167 @@
+{
+  "schema_version": "hivm_v58_cvpipeline_stage_graph_v1",
+  "stages": {
+    "load": [
+      {
+        "line": 66,
+        "op": "load",
+        "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub_mb0_ping : memref<32x128xf16, #hivm.address_space<ub>>)"
+      },
+      {
+        "line": 88,
+        "op": "load",
+        "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+      },
+      {
+        "line": 91,
+        "op": "load",
+        "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+      },
+      {
+        "line": 100,
+        "op": "copy",
+        "text": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+      }
+    ],
+    "layout": [
+      {
+        "line": 70,
+        "op": "nd2nz",
+        "text": "hivm.hir.nd2nz ins(%q_ub_mb0_ping : memref<32x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+      },
+      {
+        "line": 94,
+        "op": "nd2nz",
+        "text": "hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+      },
+      {
+        "line": 97,
+        "op": "nd2nz",
+        "text": "hivm.hir.nd2nz ins(%v_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+      },
+      {
+        "line": 115,
+        "op": "fixpipe",
+        "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>)"
+      },
+      {
+        "line": 136,
+        "op": "nd2nz",
+        "text": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x64xf16, #hivm.address_space<cbuf>>)"
+      },
+      {
+        "line": 152,
+        "op": "fixpipe",
+        "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%acc_ub_mb1_ping : memref<32x64xf32, #hivm.address_space<ub>>)"
+      }
+    ],
+    "compute": [
+      {
+        "line": 107,
+        "op": "mmad",
+        "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<32x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x128xf32, #hivm.address_s"
+      },
+      {
+        "line": 144,
+        "op": "mmad",
+        "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)"
+      }
+    ],
+    "vector": [
+      {
+        "line": 120,
+        "op": "vreduce",
+        "text": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x64xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+      },
+      {
+        "line": 124,
+        "op": "vsub",
+        "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space"
+      },
+      {
+        "line": 128,
+        "op": "vexp",
+        "text": "hivm.hir.vexp ins(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)"
+      },
+      {
+        "line": 131,
+        "op": "vreduce",
+        "text": "hivm.hir.vreduce ins(%p_ub : memref<32x1xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+      },
+      {
+        "line": 163,
+        "op": "vdiv",
+        "text": "hivm.hir.vdiv ins(%acc_ub_mb1_ping, %l_ub : memref<32x1xf32, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%acc_ub_mb1_ping : memref<32x1xf32, #hivm.add"
+      }
+    ],
+    "store": [
+      {
+        "line": 166,
+        "op": "store",
+        "text": "hivm.hir.store ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+      }
+    ],
+    "sync": [
+      {
+        "line": 62,
+        "op": "set_flag",
+        "text": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]"
+      },
+      {
+        "line": 101,
+        "op": "wait_flag",
+        "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+      },
+      {
+        "line": 106,
+        "op": "wait_flag",
+        "text": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]"
+      },
+      {
+        "line": 109,
+        "op": "set_flag",
+        "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]"
+      },
+      {
+        "line": 114,
+        "op": "wait_flag",
+        "text": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]"
+      },
+      {
+        "line": 138,
+        "op": "set_flag",
+        "text": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]"
+      },
+      {
+        "line": 143,
+        "op": "wait_flag",
+        "text": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]"
+      },
+      {
+        "line": 146,
+        "op": "set_flag",
+        "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]"
+      },
+      {
+        "line": 151,
+        "op": "wait_flag",
+        "text": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]"
+      },
+      {
+        "line": 154,
+        "op": "set_flag",
+        "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+      }
+    ]
+  },
+  "stage_counts": {
+    "load": 4,
+    "layout": 6,
+    "compute": 2,
+    "vector": 5,
+    "store": 1,
+    "sync": 10
+  },
+  "complete_minimal_pipeline_graph": true,
+  "blockers": []
+}

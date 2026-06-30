@@ -1,0 +1,97 @@
+{
+  "schema_version": "hivm_v64_final_official_sanitize_report_v1",
+  "input_ir": "artifacts/v64_check/optimized.four_plan_official_backend_subview_lowered.hivm.mlir",
+  "output_ir": "artifacts/v64_check/optimized.four_plan_official_backend_v64_sanitized.hivm.mlir",
+  "subview_address_space_fix": {
+    "schema_version": "hivm_v64_subview_address_space_fix_v1",
+    "mutation_performed": false,
+    "action_count": 0,
+    "actions": []
+  },
+  "subview_address_space_fix_after_q": {
+    "schema_version": "hivm_v64_subview_address_space_fix_v1",
+    "mutation_performed": false,
+    "action_count": 0,
+    "actions": []
+  },
+  "subview_address_space_fix_after_store": {
+    "schema_version": "hivm_v64_subview_address_space_fix_v1",
+    "mutation_performed": false,
+    "action_count": 0,
+    "actions": []
+  },
+  "tile_type_propagation": [
+    {
+      "schema_version": "hivm_v64_tile_type_propagation_v1",
+      "mutation_performed": false,
+      "action_count": 0,
+      "actions": []
+    },
+    {
+      "schema_version": "hivm_v64_tile_type_propagation_v1",
+      "mutation_performed": false,
+      "action_count": 0,
+      "actions": []
+    },
+    {
+      "schema_version": "hivm_v64_tile_type_propagation_v1",
+      "mutation_performed": false,
+      "action_count": 0,
+      "actions": []
+    }
+  ],
+  "q_load_relocation": {
+    "schema_version": "hivm_v64_q_load_relocation_v1",
+    "mutation_performed": true,
+    "old_span": [
+      34,
+      36
+    ],
+    "insert_after_pattern": "scf.for %n_outer",
+    "offsets": [
+      "%m_outer",
+      "%k_outer"
+    ]
+  },
+  "post_reduce_store_relocation": {
+    "schema_version": "hivm_v64_post_reduce_store_relocation_v1",
+    "mutation_performed": true,
+    "old_lines": [
+      70,
+      71,
+      72
+    ],
+    "insert_before": "end N-tile loop",
+    "store_offsets": [
+      "%m_outer",
+      "%c0"
+    ]
+  },
+  "gm_to_cbuf_copy_lowering": {
+    "schema_version": "hivm_v64_gm_to_cbuf_copy_lowering_v1",
+    "mutation_performed": true,
+    "action_count": 1,
+    "actions": [
+      {
+        "line": 47,
+        "kind": "gm_to_cbuf_copy_lowered_to_nd2nz",
+        "old": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+        "new": "hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%k_l1_pong : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+      }
+    ]
+  },
+  "comment_strip": {
+    "schema_version": "hivm_v64_comment_strip_v1",
+    "removed_comment_count": 6
+  },
+  "manual_official_audit": {
+    "schema_version": "hivm_v64_manual_official_audit_v1",
+    "issue_count": 0,
+    "hard_blocker_count": 0,
+    "counts_by_kind": {},
+    "passed_v64_portable_manual_official_audit": true,
+    "issues": [],
+    "claim_boundary": "Portable/static audit only. Official Ascend Linux parser/verifier/compiler remains the source of truth."
+  },
+  "claim_boundary": "V6.4 fixes the V6.3 portable official blockers; Linux backend validation is still required."
+}

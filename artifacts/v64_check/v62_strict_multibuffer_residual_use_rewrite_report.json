@@ -1,0 +1,42 @@
+{
+  "schema_version": "hivm_v62_strict_multibuffer_residual_use_rewrite_report_v1",
+  "mutation_performed": true,
+  "rewrite_count": 5,
+  "rewrites": [
+    {
+      "line": 112,
+      "base": "%s_ub",
+      "replacement": "%s_ub_mb2_ping",
+      "before": "hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space",
+      "after": "hivm.hir.vsub ins(%s_ub_mb2_ping, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.addr"
+    },
+    {
+      "line": 117,
+      "base": "%p_ub",
+      "replacement": "%p_ub_mb3_ping",
+      "before": "hivm.hir.vreduce ins(%p_ub  : memref<32x64xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\", hivm.v60_real_operation_material",
+      "after": "hivm.hir.vreduce ins(%p_ub_mb3_ping  : memref<32x64xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\", hivm.v60_real_operation"
+    },
+    {
+      "line": 121,
+      "base": "%p_ub",
+      "replacement": "%p_ub_mb3_ping",
+      "before": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>>) {hivm.v60_real_operation_materialized=true, hivm",
+      "after": "hivm.hir.nd2nz ins(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>>) {hivm.v60_real_operation_materialized=t"
+    },
+    {
+      "line": 127,
+      "base": "%p_ub",
+      "replacement": "%p_ub_mb3_ping",
+      "before": "hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>",
+      "after": "hivm.hir.mmad ins(%p_ub_mb3_ping, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_"
+    },
+    {
+      "line": 147,
+      "base": "%q_ub",
+      "replacement": "%q_ub_mb0_ping",
+      "before": "hivm.hir.store ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {hivm.v60_real_operation_materialized=true, hivm.v",
+      "after": "hivm.hir.store ins(%q_ub_mb0_ping : memref<32x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {hivm.v60_real_operation_materialized=tru"
+    }
+  ]
+}

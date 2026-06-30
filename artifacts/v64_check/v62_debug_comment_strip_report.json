@@ -1,0 +1,15 @@
+{
+  "schema_version": "hivm_v62_debug_comment_strip_report_v1",
+  "mutation_performed": true,
+  "removed_count": 2,
+  "removed": [
+    {
+      "line": 19,
+      "text": "//   restricted=true operation_movement=false loop_skewing=false"
+    },
+    {
+      "line": 120,
+      "text": "//   restricted=true operation_movement=false loop_skewing=false"
+    }
+  ]
+}

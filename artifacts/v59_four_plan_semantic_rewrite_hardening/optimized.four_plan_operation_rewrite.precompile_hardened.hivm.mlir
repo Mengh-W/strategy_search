@@ -112,7 +112,7 @@ module {
             // HIVM V5.5 TilingPlan shape rewrite on line 30: %k_l1_ping [96, 128] -> [64, 128]
             // HIVM V5.8 tile-slice binding: role=layout_transform_tile offsets=['propagate_from_input'] shape=['propagate_from_input'] axes=['layout-aware']
             hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>)
-            // HIVM V5.5 TilingPlan shape rewrite on line 31: %v_l1 [96, 128] -> [64, 128]
+            // HIVM V5.5 TilingPlan shape rewrite on line 31: %v_ub [96, 128] -> [64, 128]
             // HIVM V5.8 tile-slice binding: role=layout_transform_tile offsets=['propagate_from_input'] shape=['propagate_from_input'] axes=['layout-aware']
             hivm.hir.nd2nz ins(%v_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)
             // HIVM V5.5 TilingPlan shape rewrite on line 32: %k_l1_pong [96, 128] -> [64, 128]
@@ -141,16 +141,16 @@ module {
     hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]
             hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>)
     // HIVM V5.1 CVPipelinePlan group end: cvpipeline_true_rewrite_action_0000
-            // HIVM V5.5 TilingPlan shape rewrite on line 36: %s_ub [64, 96] -> [32, 64]
+            // HIVM V5.5 TilingPlan shape rewrite on line 36: %m_ub [64, 96] -> [32, 1]
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_vreduce offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.0 MultiBufferPlan use replacement: consumer %s_ub -> %s_ub_mb2_ping (multibuffer_true_rewrite_action_0002)
             // HIVM V5.8 CVPipeline stage binding: role=vector_postprocess_stage schedule=prologue/steady/epilogue distance=1
-            hivm.hir.vreduce ins(%s_ub_mb2_ping  : memref<32x64xf16, #hivm.address_space<ub>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op="max"}
-            // HIVM V5.5 TilingPlan shape rewrite on line 37: %s_ub [64, 96] -> [32, 64]
+            hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub  : memref<32x1xf32, #hivm.address_space<ub>) {reduce_op="max"}
+            // HIVM V5.5 TilingPlan shape rewrite on line 37: %p_ub [64, 96] -> [32, 64]
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_vsub offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.0 MultiBufferPlan use replacement: producer %p_ub -> %p_ub_mb3_ping (multibuffer_true_rewrite_action_0003)
             // HIVM V5.8 CVPipeline stage binding: role=vector_postprocess_stage schedule=prologue/steady/epilogue distance=1
-            hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>, memref<32x1xf32, #hivm.address_space<ub>) outs(%p_ub_mb3_ping  : memref<32x64xf16, #hivm.address_space<ub>)
+            hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>, memref<32x1xf32, #hivm.address_space<ub>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)
             // HIVM V5.5 TilingPlan shape rewrite on line 38: %p_ub [64, 96] -> [32, 64]
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_vexp offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.0 MultiBufferPlan use replacement: consumer %p_ub -> %p_ub_mb3_ping (multibuffer_true_rewrite_action_0003)
@@ -160,11 +160,11 @@ module {
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_vreduce offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.8 CVPipeline stage binding: role=vector_postprocess_stage schedule=prologue/steady/epilogue distance=1
             hivm.hir.vreduce ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%l_ub  : memref<32x1xf32, #hivm.address_space<ub>) {reduce_op="sum"}
-            // HIVM V5.5 TilingPlan shape rewrite on line 40: %v_l1 [64, 96] -> [64, 128]
+            // HIVM V5.5 TilingPlan shape rewrite on line 40: %p_ub [64, 96] -> [32, 64]
             // HIVM V5.8 tile-slice binding: role=layout_transform_tile offsets=['propagate_from_input'] shape=['propagate_from_input'] axes=['layout-aware']
             // HIVM V5.1 CVPipelinePlan group begin: cvpipeline_true_rewrite_action_0001 window=cv_window_0003
             //   restricted=true operation_movement=false loop_skewing=false
-            hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>)
+            hivm.hir.nd2nz ins(%p_ub  : memref<32x64xf16, #hivm.address_space<ub>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)
             // HIVM V5.1 CVPipelinePlan sync edge: load_to_compute (cvpipeline_true_rewrite_action_0001)
             // HIVM V5.8 CVPipeline stage binding: role=pipeline_sync_stage schedule=prologue/steady/epilogue distance=1
             hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]
@@ -175,7 +175,7 @@ module {
             // HIVM V5.8 CVPipeline stage binding: role=pipeline_sync_stage schedule=prologue/steady/epilogue distance=1
             hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]
             // HIVM V5.8 CVPipeline stage binding: role=cube_compute_stage schedule=prologue/steady/epilogue distance=1
-            hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>, memref<64x128xf16, #hivm.address_space<cbuf>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)
+            hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>, memref<64x128xf16, #hivm.address_space<cbuf>) outs(%s_l0c  : memref<32x64xf32, #hivm.address_space<cc>)
             // HIVM V5.1 CVPipelinePlan sync edge: compute_to_store (cvpipeline_true_rewrite_action_0001)
             // HIVM V5.8 CVPipeline stage binding: role=pipeline_sync_stage schedule=prologue/steady/epilogue distance=1
             hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]

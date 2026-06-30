@@ -1,0 +1,18 @@
+{
+  "schema_version": "hivm_v60_semantic_marker_materialization_audit_v1",
+  "passed_v60_marker_materialization_audit": true,
+  "semantic_marker_as_logic_count": 0,
+  "required_v60_attrs": [
+    "hivm.v60_tiling_materialized",
+    "hivm.v60_reduction_materialized",
+    "hivm.v60_cvpipeline_materialized",
+    "hivm.v60_sync_dependency_regenerated",
+    "hivm.v60_tail_guard_materialized",
+    "hivm.v60_reduce_guard_materialized",
+    "hivm.v60_pipeline_schedule_materialized"
+  ],
+  "missing_required_v60_attrs": [],
+  "blockers": [],
+  "linux_compile_ready_claim": false,
+  "backend_validation_required": true
+}

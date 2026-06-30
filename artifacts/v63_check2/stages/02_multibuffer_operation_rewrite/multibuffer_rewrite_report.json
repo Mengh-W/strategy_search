@@ -1,0 +1,298 @@
+{
+  "schema_version": "hivm_multibuffer_restricted_true_rewrite_v1",
+  "version": "V5.0-multibuffer-restricted-true-rewrite",
+  "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+  "mutation_performed": true,
+  "requested_action_count": 4,
+  "rewritten_action_count": 4,
+  "skipped_action_count": 0,
+  "rewritten_actions": [
+    {
+      "action_id": "multibuffer_true_rewrite_action_0000",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0000",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%q_ub",
+        "line": 8,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x128xf16, #hivm.address_space<ub>>",
+        "text": "%q_ub = memref.alloc() : memref<32x128xf16, #hivm.address_space<ub>>"
+      },
+      "symbol": "%q_ub",
+      "target_line": 8,
+      "producer_line": 35,
+      "consumer_line": 38,
+      "producer": {
+        "line": 35,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 38,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%q_ub_mb0_ping",
+        "pong": "%q_ub_mb0_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      },
+      "status": "REWRITTEN",
+      "inserted_after_line": 8,
+      "inserted_slot_symbols": [
+        "%q_ub_mb0_ping",
+        "%q_ub_mb0_pong"
+      ],
+      "replaced_lines": [
+        35,
+        38
+      ],
+      "producer_op": "load",
+      "consumer_op": "nd2nz"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0001",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0007",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%acc_ub",
+        "line": 10,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x128xf32, #hivm.address_space<ub>>",
+        "text": "%acc_ub = memref.alloc() : memref<32x128xf32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%acc_ub",
+      "target_line": 10,
+      "producer_line": 98,
+      "consumer_line": 107,
+      "producer": {
+        "line": 98,
+        "op": "hivm.hir.fixpipe",
+        "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<32x64xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 107,
+        "op": "hivm.hir.vdiv",
+        "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<32x1xf32, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<32x1xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%acc_ub_mb1_ping",
+        "pong": "%acc_ub_mb1_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      },
+      "status": "REWRITTEN",
+      "inserted_after_line": 10,
+      "inserted_slot_symbols": [
+        "%acc_ub_mb1_ping",
+        "%acc_ub_mb1_pong"
+      ],
+      "replaced_lines": [
+        98,
+        107
+      ],
+      "producer_op": "fixpipe",
+      "consumer_op": "vdiv"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0002",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0002",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%s_ub",
+        "line": 12,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x64xf16, #hivm.address_space<ub>>",
+        "text": "%s_ub = memref.alloc() : memref<32x64xf16, #hivm.address_space<ub>>"
+      },
+      "symbol": "%s_ub",
+      "target_line": 12,
+      "producer_line": 76,
+      "consumer_line": 79,
+      "producer": {
+        "line": 76,
+        "op": "hivm.hir.fixpipe",
+        "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<32x64xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 79,
+        "op": "hivm.hir.vreduce",
+        "text": "hivm.hir.vreduce ins(%s_ub : memref<32x1xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%s_ub_mb2_ping",
+        "pong": "%s_ub_mb2_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      },
+      "status": "REWRITTEN",
+      "inserted_after_line": 12,
+      "inserted_slot_symbols": [
+        "%s_ub_mb2_ping",
+        "%s_ub_mb2_pong"
+      ],
+      "replaced_lines": [
+        76,
+        79
+      ],
+      "producer_op": "fixpipe",
+      "consumer_op": "vreduce"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0003",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0001",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%p_ub",
+        "line": 14,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x64xf16, #hivm.address_space<ub>>",
+        "text": "%p_ub = memref.alloc() : memref<32x64xf16, #hivm.address_space<ub>>"
+      },
+      "symbol": "%p_ub",
+      "target_line": 14,
+      "producer_line": 82,
+      "consumer_line": 85,
+      "producer": {
+        "line": 82,
+        "op": "hivm.hir.vsub",
+        "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x1xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<32x1xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 85,
+        "op": "hivm.hir.vexp",
+        "text": "hivm.hir.vexp ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%p_ub_mb3_ping",
+        "pong": "%p_ub_mb3_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      },
+      "status": "REWRITTEN",
+      "inserted_after_line": 14,
+      "inserted_slot_symbols": [
+        "%p_ub_mb3_ping",
+        "%p_ub_mb3_pong"
+      ],
+      "replaced_lines": [
+        82,
+        85
+      ],
+      "producer_op": "vsub",
+      "consumer_op": "vexp"
+    }
+  ],
+  "skipped_actions": [],
+  "replacement_records": [
+    {
+      "action_id": "multibuffer_true_rewrite_action_0000",
+      "role": "producer",
+      "old_symbol": "%q_ub",
+      "new_symbol": "%q_ub_mb0_ping",
+      "line": 35,
+      "before": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+      "after": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub_mb0_ping : memref<32x128xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0000",
+      "role": "consumer",
+      "old_symbol": "%q_ub",
+      "new_symbol": "%q_ub_mb0_ping",
+      "line": 38,
+      "before": "hivm.hir.nd2nz ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+      "after": "hivm.hir.nd2nz ins(%q_ub_mb0_ping : memref<32x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0002",
+      "role": "producer",
+      "old_symbol": "%s_ub",
+      "new_symbol": "%s_ub_mb2_ping",
+      "line": 76,
+      "before": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<32x64xf16, #hivm.address_space<ub>>)",
+      "after": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0002",
+      "role": "consumer",
+      "old_symbol": "%s_ub",
+      "new_symbol": "%s_ub_mb2_ping",
+      "line": 79,
+      "before": "hivm.hir.vreduce ins(%s_ub : memref<32x1xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+      "after": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x1xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0003",
+      "role": "producer",
+      "old_symbol": "%p_ub",
+      "new_symbol": "%p_ub_mb3_ping",
+      "line": 82,
+      "before": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x1xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<32x1xf16, #hivm.address_space<ub>>)",
+      "after": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x1xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x1xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0003",
+      "role": "consumer",
+      "old_symbol": "%p_ub",
+      "new_symbol": "%p_ub_mb3_ping",
+      "line": 85,
+      "before": "hivm.hir.vexp ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>)",
+      "after": "hivm.hir.vexp ins(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0001",
+      "role": "producer",
+      "old_symbol": "%acc_ub",
+      "new_symbol": "%acc_ub_mb1_ping",
+      "line": 98,
+      "before": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<32x64xf32, #hivm.address_space<ub>>)",
+      "after": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%acc_ub_mb1_ping : memref<32x64xf32, #hivm.address_space<ub>>)"
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0001",
+      "role": "consumer",
+      "old_symbol": "%acc_ub",
+      "new_symbol": "%acc_ub_mb1_ping",
+      "line": 107,
+      "before": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<32x1xf32, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<32x1xf32, #hivm.address_space<ub>>)",
+      "after": "hivm.hir.vdiv ins(%acc_ub_mb1_ping, %l_ub : memref<32x1xf32, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%acc_ub_mb1_ping : memref<32x1xf32, #hivm.address_space<ub>>)"
+    }
+  ],
+  "replacement_count": 8,
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "portable restricted additive text-level MultiBufferPlan rewrite; real HivmOpsEditor verifier/DES/msprof still required"
+}

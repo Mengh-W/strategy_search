@@ -9,7 +9,7 @@ if str(ROOT) not in sys.path:
 from strategy_search.operation_rewrite.four_plan_operation_rewriter import run_four_plan_operation_rewrite
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Run V5.9 four-plan operation rewrite with semantic + syntax/schedule hardening")
+    ap = argparse.ArgumentParser(description="Run V6.0 four-plan operation rewrite with real operation materialization")
     ap.add_argument("--ir", required=True)
     ap.add_argument("--selected-plan", required=True)
     ap.add_argument("--output-dir", required=True)

@@ -1,0 +1,6 @@
+{
+  "schema_version": "hivm_v63_private_attr_strip_report_v1",
+  "mutation_performed": true,
+  "removed_debug_comment_count": 77,
+  "attr_lines_changed": 36
+}

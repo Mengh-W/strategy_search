@@ -1,0 +1,8 @@
+{
+  "schema_version": "hivm_v63_official_compare_audit_v1",
+  "issue_count": 0,
+  "counts_by_kind": {},
+  "passed_v63_portable_official_compare_audit": true,
+  "issues": [],
+  "claim_boundary": "Portable audit only. Official Ascend Linux parser/verifier/compiler is still required."
+}

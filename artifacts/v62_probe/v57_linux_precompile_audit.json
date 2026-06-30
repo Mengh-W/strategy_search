@@ -1,0 +1,19 @@
+{
+  "schema_version": "hivm_v57_linux_precompile_audit_v1",
+  "version": "V5.7-linux-precompile-audit",
+  "passed_portable_precompile_audit": true,
+  "linux_compile_ready_claim": false,
+  "backend_validation_required": true,
+  "brace_balanced": true,
+  "marker_checks": {
+    "TilingPlan semantic operation rewrite": true,
+    "MultiBufferPlan true rewrite": true,
+    "CVPipelinePlan sync edge": true,
+    "SyncPlan operation rewrite": true
+  },
+  "duplicate_ssa_definition_count": 0,
+  "undefined_symbol_count": 0,
+  "memref_type_mismatch_count": 0,
+  "blockers": [],
+  "note": "If this audit passes, the candidate is only precompile-audit-clean. Linux MLIR/HIVM parse/verifier/backend compile/correctness/msprof are still mandatory."
+}

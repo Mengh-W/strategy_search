@@ -1,0 +1,65 @@
+{
+  "schema_version": "hivm_v60_multibuffer_use_def_coverage_v1",
+  "buffer_count": 4,
+  "rows": [
+    {
+      "base_buffer": "%acc_ub",
+      "ping_slots": [
+        "%acc_ub_mb1_ping"
+      ],
+      "pong_slots": [
+        "%acc_ub_mb1_pong"
+      ],
+      "original_token_uses_after_rewrite": 0,
+      "ping_token_uses": 5,
+      "pong_token_uses": 2,
+      "has_ping_and_pong": true,
+      "unrewritten_use_risk": false
+    },
+    {
+      "base_buffer": "%p_ub",
+      "ping_slots": [
+        "%p_ub_mb3_ping"
+      ],
+      "pong_slots": [
+        "%p_ub_mb3_pong"
+      ],
+      "original_token_uses_after_rewrite": 4,
+      "ping_token_uses": 5,
+      "pong_token_uses": 2,
+      "has_ping_and_pong": true,
+      "unrewritten_use_risk": true
+    },
+    {
+      "base_buffer": "%q_ub",
+      "ping_slots": [
+        "%q_ub_mb0_ping"
+      ],
+      "pong_slots": [
+        "%q_ub_mb0_pong"
+      ],
+      "original_token_uses_after_rewrite": 2,
+      "ping_token_uses": 4,
+      "pong_token_uses": 2,
+      "has_ping_and_pong": true,
+      "unrewritten_use_risk": true
+    },
+    {
+      "base_buffer": "%s_ub",
+      "ping_slots": [
+        "%s_ub_mb2_ping"
+      ],
+      "pong_slots": [
+        "%s_ub_mb2_pong"
+      ],
+      "original_token_uses_after_rewrite": 2,
+      "ping_token_uses": 4,
+      "pong_token_uses": 2,
+      "has_ping_and_pong": true,
+      "unrewritten_use_risk": true
+    }
+  ],
+  "all_materialized_buffers_have_ping_pong": true,
+  "blockers": [],
+  "note": "original_token_uses_after_rewrite is conservative because some original buffers remain valid accumulators or non-bufferized ops; Linux use-def verifier is still required."
+}

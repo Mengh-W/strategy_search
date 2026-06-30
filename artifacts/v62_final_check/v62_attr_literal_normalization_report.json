@@ -1,0 +1,331 @@
+{
+  "schema_version": "hivm_v62_attr_literal_normalization_report_v1",
+  "mutation_performed": true,
+  "rewrite_count": 54,
+  "rewrites": [
+    {
+      "line": 67,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%k_outer']\"",
+      "after": "\"m_outer,k_outer\""
+    },
+    {
+      "line": 67,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 128]\"",
+      "after": "\"32x128\""
+    },
+    {
+      "line": 67,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'K']\"",
+      "after": "\"M,K\""
+    },
+    {
+      "line": 70,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['propagate_from_input']\"",
+      "after": "\"input\""
+    },
+    {
+      "line": 70,
+      "attr": "hivm.tile_shape",
+      "before": "\"['propagate_from_input']\"",
+      "after": "\"input\""
+    },
+    {
+      "line": 70,
+      "attr": "hivm.tile_axes",
+      "before": "\"['layout-aware']\"",
+      "after": "\"layout_aware\""
+    },
+    {
+      "line": 84,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%n_outer', '%k_outer']\"",
+      "after": "\"n_outer,k_outer\""
+    },
+    {
+      "line": 84,
+      "attr": "hivm.tile_shape",
+      "before": "\"[64, 128]\"",
+      "after": "\"64x128\""
+    },
+    {
+      "line": 84,
+      "attr": "hivm.tile_axes",
+      "before": "\"['N', 'K']\"",
+      "after": "\"N,K\""
+    },
+    {
+      "line": 86,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%n_outer', '%d_outer']\"",
+      "after": "\"n_outer,d_outer\""
+    },
+    {
+      "line": 86,
+      "attr": "hivm.tile_shape",
+      "before": "\"[64, 'D_tile']\"",
+      "after": "\"64x128\""
+    },
+    {
+      "line": 86,
+      "attr": "hivm.tile_axes",
+      "before": "\"['N', 'D']\"",
+      "after": "\"N,D\""
+    },
+    {
+      "line": 88,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['propagate_from_input']\"",
+      "after": "\"input\""
+    },
+    {
+      "line": 88,
+      "attr": "hivm.tile_shape",
+      "before": "\"['propagate_from_input']\"",
+      "after": "\"input\""
+    },
+    {
+      "line": 88,
+      "attr": "hivm.tile_axes",
+      "before": "\"['layout-aware']\"",
+      "after": "\"layout_aware\""
+    },
+    {
+      "line": 90,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['propagate_from_input']\"",
+      "after": "\"input\""
+    },
+    {
+      "line": 90,
+      "attr": "hivm.tile_shape",
+      "before": "\"['propagate_from_input']\"",
+      "after": "\"input\""
+    },
+    {
+      "line": 90,
+      "attr": "hivm.tile_axes",
+      "before": "\"['layout-aware']\"",
+      "after": "\"layout_aware\""
+    },
+    {
+      "line": 92,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%n_outer', '%k_outer']\"",
+      "after": "\"n_outer,k_outer\""
+    },
+    {
+      "line": 92,
+      "attr": "hivm.tile_shape",
+      "before": "\"[64, 128]\"",
+      "after": "\"64x128\""
+    },
+    {
+      "line": 92,
+      "attr": "hivm.tile_axes",
+      "before": "\"['N', 'K']\"",
+      "after": "\"N,K\""
+    },
+    {
+      "line": 98,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%n_outer', '%k_outer']\"",
+      "after": "\"m_outer,n_outer,k_outer\""
+    },
+    {
+      "line": 98,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 64, 128]\"",
+      "after": "\"32x64x128\""
+    },
+    {
+      "line": 98,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'N', 'K']\"",
+      "after": "\"M,N,K\""
+    },
+    {
+      "line": 105,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%n_outer']\"",
+      "after": "\"m_outer,n_outer\""
+    },
+    {
+      "line": 105,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 64]\"",
+      "after": "\"32x64\""
+    },
+    {
+      "line": 105,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'N']\"",
+      "after": "\"M,N\""
+    },
+    {
+      "line": 109,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%n_outer']\"",
+      "after": "\"m_outer,n_outer\""
+    },
+    {
+      "line": 109,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 64]\"",
+      "after": "\"32x64\""
+    },
+    {
+      "line": 109,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'N']\"",
+      "after": "\"M,N\""
+    },
+    {
+      "line": 112,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%n_outer']\"",
+      "after": "\"m_outer,n_outer\""
+    },
+    {
+      "line": 112,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 64]\"",
+      "after": "\"32x64\""
+    },
+    {
+      "line": 112,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'N']\"",
+      "after": "\"M,N\""
+    },
+    {
+      "line": 115,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%n_outer']\"",
+      "after": "\"m_outer,n_outer\""
+    },
+    {
+      "line": 115,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 64]\"",
+      "after": "\"32x64\""
+    },
+    {
+      "line": 115,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'N']\"",
+      "after": "\"M,N\""
+    },
+    {
+      "line": 117,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%n_outer']\"",
+      "after": "\"m_outer,n_outer\""
+    },
+    {
+      "line": 117,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 64]\"",
+      "after": "\"32x64\""
+    },
+    {
+      "line": 117,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'N']\"",
+      "after": "\"M,N\""
+    },
+    {
+      "line": 121,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['propagate_from_input']\"",
+      "after": "\"input\""
+    },
+    {
+      "line": 121,
+      "attr": "hivm.tile_shape",
+      "before": "\"['propagate_from_input']\"",
+      "after": "\"input\""
+    },
+    {
+      "line": 121,
+      "attr": "hivm.tile_axes",
+      "before": "\"['layout-aware']\"",
+      "after": "\"layout_aware\""
+    },
+    {
+      "line": 127,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%d_outer', '%n_outer']\"",
+      "after": "\"m_outer,d_outer,n_outer\""
+    },
+    {
+      "line": 127,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 'D_tile', 64]\"",
+      "after": "\"32x128x64\""
+    },
+    {
+      "line": 127,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'D', 'N']\"",
+      "after": "\"M,D,N\""
+    },
+    {
+      "line": 134,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%n_outer']\"",
+      "after": "\"m_outer,n_outer\""
+    },
+    {
+      "line": 134,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 64]\"",
+      "after": "\"32x64\""
+    },
+    {
+      "line": 134,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'N']\"",
+      "after": "\"M,N\""
+    },
+    {
+      "line": 145,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%n_outer']\"",
+      "after": "\"m_outer,n_outer\""
+    },
+    {
+      "line": 145,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 64]\"",
+      "after": "\"32x64\""
+    },
+    {
+      "line": 145,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'N']\"",
+      "after": "\"M,N\""
+    },
+    {
+      "line": 147,
+      "attr": "hivm.tile_offsets",
+      "before": "\"['%m_outer', '%d_outer']\"",
+      "after": "\"m_outer,d_outer\""
+    },
+    {
+      "line": 147,
+      "attr": "hivm.tile_shape",
+      "before": "\"[32, 'D_tile']\"",
+      "after": "\"32x128\""
+    },
+    {
+      "line": 147,
+      "attr": "hivm.tile_axes",
+      "before": "\"['M', 'D']\"",
+      "after": "\"M,D\""
+    }
+  ]
+}

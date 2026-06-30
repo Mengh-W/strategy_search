@@ -1,0 +1,1603 @@
+{
+  "schema_version": "hivm_v55_tiling_operation_true_rewrite_report_v1",
+  "version": "V5.5-tiling-operation-production-candidate-rewrite",
+  "mutation_kind": "local_memref_shape_and_operation_type_rewrite_candidate",
+  "selected_tiles": {
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "loop_order": "outer_mkn",
+    "tail_strategy": "mask_or_pad",
+    "reduce_tile_policy": "half_k",
+    "layout_aware_tile": true
+  },
+  "role_count": 13,
+  "roles": {
+    "%q_ub": {
+      "symbol": "%q_ub",
+      "target_shape": [
+        32,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 3,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "%q_ub = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>>"
+        },
+        {
+          "line": 16,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 17,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+        },
+        {
+          "line": 50,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+        }
+      ]
+    },
+    "%acc_ub": {
+      "symbol": "%acc_ub",
+      "target_shape": [
+        32,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 4,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "space": "ub",
+          "text": "%acc_ub = memref.alloc() : memref<64x128xf32, #hivm.address_space<ub>>"
+        },
+        {
+          "line": 42,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "space": "ub",
+          "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 49,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "space": "ub",
+          "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 49,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "space": "ub",
+          "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+        }
+      ]
+    },
+    "%s_ub": {
+      "symbol": "%s_ub",
+      "target_shape": [
+        32,
+        64
+      ],
+      "occurrences": [
+        {
+          "line": 5,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "%s_ub = memref.alloc() : memref<64x96xf16, #hivm.address_space<ub>>"
+        },
+        {
+          "line": 35,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 36,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+        },
+        {
+          "line": 37,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+        }
+      ]
+    },
+    "%p_ub": {
+      "symbol": "%p_ub",
+      "target_shape": [
+        32,
+        64
+      ],
+      "occurrences": [
+        {
+          "line": 6,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "%p_ub = memref.alloc() : memref<64x96xf16, #hivm.address_space<ub>>"
+        },
+        {
+          "line": 37,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 38,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 38,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 39,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+        },
+        {
+          "line": 40,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+        },
+        {
+          "line": 41,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+        }
+      ]
+    },
+    "%m_ub": {
+      "symbol": "%m_ub",
+      "target_shape": [
+        32,
+        1
+      ],
+      "occurrences": [
+        {
+          "line": 7,
+          "old_shape": [
+            64,
+            1
+          ],
+          "dtype": "f32",
+          "space": "ub",
+          "text": "%m_ub = memref.alloc() : memref<64x1xf32, #hivm.address_space<ub>>"
+        },
+        {
+          "line": 36,
+          "old_shape": [
+            64,
+            1
+          ],
+          "dtype": "f32",
+          "space": "ub",
+          "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+        }
+      ]
+    },
+    "%l_ub": {
+      "symbol": "%l_ub",
+      "target_shape": [
+        32,
+        1
+      ],
+      "occurrences": [
+        {
+          "line": 8,
+          "old_shape": [
+            64,
+            1
+          ],
+          "dtype": "f32",
+          "space": "ub",
+          "text": "%l_ub = memref.alloc() : memref<64x1xf32, #hivm.address_space<ub>>"
+        },
+        {
+          "line": 39,
+          "old_shape": [
+            64,
+            1
+          ],
+          "dtype": "f32",
+          "space": "ub",
+          "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+        }
+      ]
+    },
+    "%k_ub": {
+      "symbol": "%k_ub",
+      "target_shape": [
+        64,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 9,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "%k_ub = memref.alloc() : memref<96x128xf16, #hivm.address_space<ub>>"
+        },
+        {
+          "line": 28,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 30,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+        }
+      ]
+    },
+    "%v_ub": {
+      "symbol": "%v_ub",
+      "target_shape": [
+        64,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 10,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "%v_ub = memref.alloc() : memref<96x128xf16, #hivm.address_space<ub>>"
+        },
+        {
+          "line": 29,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 31,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "ub",
+          "text": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+        }
+      ]
+    },
+    "%q_l1": {
+      "symbol": "%q_l1",
+      "target_shape": [
+        32,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 11,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "%q_l1 = memref.alloc() : memref<64x128xf16, #hivm.address_space<cbuf>>"
+        },
+        {
+          "line": 17,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+        },
+        {
+          "line": 34,
+          "old_shape": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+        }
+      ]
+    },
+    "%k_l1_ping": {
+      "symbol": "%k_l1_ping",
+      "target_shape": [
+        64,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 12,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "%k_l1_ping = memref.alloc() : memref<96x128xf16, #hivm.address_space<cbuf>>"
+        },
+        {
+          "line": 30,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+        }
+      ]
+    },
+    "%k_l1_pong": {
+      "symbol": "%k_l1_pong",
+      "target_shape": [
+        64,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 13,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "%k_l1_pong = memref.alloc() : memref<96x128xf16, #hivm.address_space<cbuf>>"
+        },
+        {
+          "line": 32,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+        }
+      ]
+    },
+    "%v_l1": {
+      "symbol": "%v_l1",
+      "target_shape": [
+        64,
+        128
+      ],
+      "occurrences": [
+        {
+          "line": 14,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "%v_l1 = memref.alloc() : memref<96x128xf16, #hivm.address_space<cbuf>>"
+        },
+        {
+          "line": 31,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+        },
+        {
+          "line": 40,
+          "old_shape": [
+            96,
+            128
+          ],
+          "dtype": "f16",
+          "space": "cbuf",
+          "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+        }
+      ]
+    },
+    "%s_l0c": {
+      "symbol": "%s_l0c",
+      "target_shape": [
+        32,
+        64
+      ],
+      "occurrences": [
+        {
+          "line": 15,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f32",
+          "space": "cc",
+          "text": "%s_l0c = memref.alloc() : memref<64x96xf32, #hivm.address_space<cc>>"
+        },
+        {
+          "line": 34,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f32",
+          "space": "cc",
+          "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+        },
+        {
+          "line": 35,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f32",
+          "space": "cc",
+          "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+        },
+        {
+          "line": 41,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f32",
+          "space": "cc",
+          "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+        },
+        {
+          "line": 42,
+          "old_shape": [
+            64,
+            96
+          ],
+          "dtype": "f32",
+          "space": "cc",
+          "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+        }
+      ]
+    }
+  },
+  "mutation_performed": true,
+  "rewritten_occurrence_count": 73,
+  "mutations": [
+    {
+      "symbol": "%q_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 3
+    },
+    {
+      "symbol": "%acc_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 4
+    },
+    {
+      "symbol": "%s_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 5
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 6
+    },
+    {
+      "symbol": "%m_ub",
+      "old_shape": [
+        64,
+        1
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 7
+    },
+    {
+      "symbol": "%l_ub",
+      "old_shape": [
+        64,
+        1
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 8
+    },
+    {
+      "symbol": "%k_ub",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 9
+    },
+    {
+      "symbol": "%v_ub",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 10
+    },
+    {
+      "symbol": "%q_l1",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 11
+    },
+    {
+      "symbol": "%k_l1_ping",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 12
+    },
+    {
+      "symbol": "%k_l1_pong",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 13
+    },
+    {
+      "symbol": "%v_l1",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 14
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 15
+    },
+    {
+      "symbol": "%q_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 16
+    },
+    {
+      "symbol": "%q_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 17
+    },
+    {
+      "symbol": "%q_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 17
+    },
+    {
+      "symbol": "%k_ub",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 28
+    },
+    {
+      "symbol": "%v_ub",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 29
+    },
+    {
+      "symbol": "%k_l1_ping",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 30
+    },
+    {
+      "symbol": "%k_l1_ping",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 30
+    },
+    {
+      "symbol": "%v_l1",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 31
+    },
+    {
+      "symbol": "%v_l1",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 31
+    },
+    {
+      "symbol": "%k_l1_pong",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 32
+    },
+    {
+      "symbol": "%k_l1_ping",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 34
+    },
+    {
+      "symbol": "%k_l1_ping",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 34
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 34
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 34
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 34
+    },
+    {
+      "symbol": "%q_l1",
+      "old_shape": [
+        32,
+        64
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 34
+    },
+    {
+      "symbol": "%q_l1",
+      "old_shape": [
+        32,
+        64
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 34
+    },
+    {
+      "symbol": "%q_l1",
+      "old_shape": [
+        32,
+        64
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 34
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 35
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 35
+    },
+    {
+      "symbol": "%m_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 36
+    },
+    {
+      "symbol": "%m_ub",
+      "old_shape": [
+        64,
+        1
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 36
+    },
+    {
+      "symbol": "%s_ub",
+      "old_shape": [
+        32,
+        1
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 36
+    },
+    {
+      "symbol": "%s_ub",
+      "old_shape": [
+        32,
+        1
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 36
+    },
+    {
+      "symbol": "%m_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 37
+    },
+    {
+      "symbol": "%m_ub",
+      "old_shape": [
+        64,
+        1
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 37
+    },
+    {
+      "symbol": "%m_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 37
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        32,
+        1
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 37
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        32,
+        1
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 37
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        32,
+        1
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 37
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 38
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 38
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 39
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        1
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 39
+    },
+    {
+      "symbol": "%l_ub",
+      "old_shape": [
+        32,
+        64
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 39
+    },
+    {
+      "symbol": "%l_ub",
+      "old_shape": [
+        32,
+        64
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 39
+    },
+    {
+      "symbol": "%v_l1",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 40
+    },
+    {
+      "symbol": "%v_l1",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 40
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 40
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 40
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 41
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        96,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 41
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 41
+    },
+    {
+      "symbol": "%v_l1",
+      "old_shape": [
+        32,
+        64
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 41
+    },
+    {
+      "symbol": "%v_l1",
+      "old_shape": [
+        32,
+        64
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 41
+    },
+    {
+      "symbol": "%v_l1",
+      "old_shape": [
+        32,
+        64
+      ],
+      "new_shape": [
+        64,
+        128
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 41
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 41
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cbuf",
+      "dtype": "f16",
+      "line": 41
+    },
+    {
+      "symbol": "%p_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 41
+    },
+    {
+      "symbol": "%acc_ub",
+      "old_shape": [
+        64,
+        96
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 42
+    },
+    {
+      "symbol": "%acc_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 42
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        32,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "cc",
+      "dtype": "f32",
+      "line": 42
+    },
+    {
+      "symbol": "%s_l0c",
+      "old_shape": [
+        32,
+        128
+      ],
+      "new_shape": [
+        32,
+        64
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 42
+    },
+    {
+      "symbol": "%acc_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 49
+    },
+    {
+      "symbol": "%acc_ub",
+      "old_shape": [
+        64,
+        1
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 49
+    },
+    {
+      "symbol": "%acc_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 49
+    },
+    {
+      "symbol": "%l_ub",
+      "old_shape": [
+        32,
+        128
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 49
+    },
+    {
+      "symbol": "%l_ub",
+      "old_shape": [
+        32,
+        128
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 49
+    },
+    {
+      "symbol": "%l_ub",
+      "old_shape": [
+        32,
+        128
+      ],
+      "new_shape": [
+        32,
+        1
+      ],
+      "space": "ub",
+      "dtype": "f32",
+      "line": 49
+    },
+    {
+      "symbol": "%q_ub",
+      "old_shape": [
+        64,
+        128
+      ],
+      "new_shape": [
+        32,
+        128
+      ],
+      "space": "ub",
+      "dtype": "f16",
+      "line": 50
+    }
+  ],
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "operation/type shape rewrite candidate only; loop/index/tail/reduction legality requires Linux MLIR/HIVM verifier before msprof"
+}

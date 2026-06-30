@@ -1,0 +1,2413 @@
+{
+  "schema_version": "hivm_v60_four_plan_operation_rewrite_summary_v1",
+  "version": "V6.4-four-plan-official-backend-final-sanitize",
+  "input_ir": "sample_input/fa_best.hivm.mlir",
+  "selected_plan": "artifacts/latest_smoke_run/selected_plan.json",
+  "optimized_ir": "artifacts/v64_check/optimized.four_plan_operation_rewrite.hivm.mlir",
+  "optimized_ir_with_coverage": "artifacts/v64_check/optimized.four_plan_operation_rewrite.with_coverage.hivm.mlir",
+  "rewrite_order": [
+    "TilingPlan",
+    "MultiBufferPlan",
+    "CVPipelinePlan",
+    "SyncPlan"
+  ],
+  "stage_mutation": {
+    "tiling": true,
+    "multibuffer": true,
+    "cvpipeline": true,
+    "sync": true
+  },
+  "stage_validation": {
+    "tiling": true,
+    "multibuffer": true,
+    "cvpipeline": true,
+    "sync": true
+  },
+  "four_plan_operation_rewrite_performed": true,
+  "portable_validation_passed": true,
+  "operation_parameter_coverage_rows": 79,
+  "all_controllable_parameters_have_operation_action_mvp": true,
+  "linux_compile_ready_claim": false,
+  "linux_precompile_audit_passed": true,
+  "v59_textual_legality_audit_passed": true,
+  "v59_syntax_hardened_ir": "artifacts/v64_check/optimized.four_plan_operation_rewrite.v59_syntax_hardened.hivm.mlir",
+  "v60_real_operation_materialized_ir": "artifacts/v64_check/optimized.four_plan_real_operation_materialized.hivm.mlir",
+  "v60_real_operation_materialization_performed": true,
+  "v60_marker_materialization_audit_passed": true,
+  "v60_semantic_marker_as_logic_count": 0,
+  "v62_official_backend_lowered_ir": "artifacts/v64_check/optimized.four_plan_official_backend_lowered.hivm.mlir",
+  "v62_official_backend_handoff_audit_passed": true,
+  "v62_official_backend_hard_blocker_count": 0,
+  "v62_official_backend_warning_count": 0,
+  "v63_official_backend_subview_lowered_ir": "artifacts/v64_check/optimized.four_plan_official_backend_subview_lowered.hivm.mlir",
+  "v63_official_compare_audit_passed": true,
+  "v63_official_compare_issue_count": 0,
+  "v63_subview_action_count": 4,
+  "v64_official_backend_sanitized_ir": "artifacts/v64_check/optimized.four_plan_official_backend_v64_sanitized.hivm.mlir",
+  "v64_manual_official_audit_passed": true,
+  "v64_manual_official_hard_blocker_count": 0,
+  "linux_precompile_blocker_count": 0,
+  "linux_precompile_audit": "artifacts/v64_check/v57_linux_precompile_audit.json",
+  "precompile_hardened_ir": "artifacts/v64_check/optimized.four_plan_operation_rewrite.precompile_hardened.hivm.mlir",
+  "recommended_linux_validation_ir": "artifacts/v64_check/optimized.four_plan_official_backend_v64_sanitized.hivm.mlir",
+  "linux_backend_validation_required": true,
+  "tiling_semantic_full_rewrite_performed": true,
+  "cvpipeline_semantic_schedule_performed": true,
+  "tiling_axis_binding": "artifacts/v64_check/stages/01_tiling_semantic_operation_rewrite/tiling_axis_binding.json",
+  "cvpipeline_stage_graph": "artifacts/v64_check/stages/03_cvpipeline_operation_rewrite/cvpipeline_stage_graph.json",
+  "claim_boundary": "V6.4 fixes V6.3 official-document blockers in portable IR: subview address-space preservation, GM/local load-store direction, Q/O tile-loop binding, and GM->CBUF copy lowering. Official Linux backend validation is still required before claiming compile/run/msprof readiness.",
+  "linux_validation_sequence": [
+    "parse baseline HIVM",
+    "parse optimized.four_plan_operation_rewrite.hivm.mlir",
+    "HivmOpsEditor roundtrip",
+    "MLIR/HIVM verifier",
+    "backend compile",
+    "correctness check baseline vs optimized",
+    "msprof baseline and optimized with repeated median latency/cycles"
+  ],
+  "stage_artifacts": {
+    "tiling_dir": "artifacts/v64_check/stages/01_tiling_semantic_operation_rewrite",
+    "multibuffer_dir": "artifacts/v64_check/stages/02_multibuffer_operation_rewrite",
+    "cvpipeline_dir": "artifacts/v64_check/stages/03_cvpipeline_operation_rewrite",
+    "sync_dir": "artifacts/v64_check/stages/04_sync_operation_rewrite",
+    "coverage": {
+      "schema_version": "hivm_v53_parameter_rewrite_coverage_summary_v1",
+      "version": "V5.3-four-plan-true-rewrite-with-parameter-coverage",
+      "parameter_count": 35,
+      "rewritten_back_to_ir_count": 35,
+      "not_rewritten_back_to_ir_count": 0,
+      "coverage_counts": {
+        "RESTRICTED_STRUCTURAL_REWRITE": 10,
+        "TRACE_METADATA_REWRITE": 25
+      },
+      "all_controllable_parameters_rewritten_back_to_ir": true,
+      "all_controllable_parameters_semantic_operation_rewrite": false,
+      "optimized_ir": "artifacts/v64_check/optimized.four_plan_operation_rewrite.with_coverage.hivm.mlir"
+    },
+    "v57_precompile_audit": {
+      "hardened_ir": "artifacts/v64_check/optimized.four_plan_operation_rewrite.precompile_hardened.hivm.mlir",
+      "deduplicate_alloc": {
+        "mutation_performed": true,
+        "removed_duplicate_allocs": [
+          {
+            "line": 21,
+            "value": "%acc_ub_mb1_ping",
+            "type": "memref<32x128xf32, #hivm.address_space<ub>"
+          }
+        ]
+      },
+      "constant_materialization": {
+        "mutation_performed": true,
+        "inserted_constants": {
+          "%cM": 64,
+          "%cN": 1024,
+          "%cK": 128,
+          "%c0": 0,
+          "%cE": 1024,
+          "%cB": 64,
+          "%c32": 32,
+          "%c128": 128,
+          "%c64": 64
+        },
+        "bounds": {
+          "M": 64,
+          "D": 128,
+          "N": 1024,
+          "K": 128
+        },
+        "note": "Portable textual constant materialization; replace with official HivmOpsEditor constants in production if needed."
+      },
+      "operand_type_harmonization": {
+        "mutation_performed": true,
+        "rewritten_operand_type_count": 10,
+        "rewrites": [
+          {
+            "line": 132,
+            "value": "%k_l1_ping",
+            "from_type": "memref<32x128xf16, #hivm.address_space<cbuf>",
+            "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+          },
+          {
+            "line": 132,
+            "value": "%s_l0c",
+            "from_type": "memref<32x128xf32, #hivm.address_space<cc>",
+            "to_type": "memref<32x64xf32, #hivm.address_space<cc>"
+          },
+          {
+            "line": 148,
+            "value": "%m_ub",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 153,
+            "value": "%m_ub",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 162,
+            "value": "%p_ub",
+            "from_type": "memref<32x1xf16, #hivm.address_space<ub>",
+            "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
+          },
+          {
+            "line": 167,
+            "value": "%v_l1",
+            "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
+            "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+          },
+          {
+            "line": 178,
+            "value": "%v_l1",
+            "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
+            "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+          },
+          {
+            "line": 188,
+            "value": "%acc_ub_mb1_ping",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 202,
+            "value": "%acc_ub_mb1_ping",
+            "from_type": "memref<32x1xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 202,
+            "value": "%acc_ub_mb1_ping",
+            "from_type": "memref<32x1xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+          }
+        ]
+      },
+      "precompile_audit": {
+        "schema_version": "hivm_v57_linux_precompile_audit_v1",
+        "version": "V5.7-linux-precompile-audit",
+        "passed_portable_precompile_audit": true,
+        "linux_compile_ready_claim": false,
+        "backend_validation_required": true,
+        "brace_balanced": true,
+        "marker_checks": {
+          "TilingPlan semantic operation rewrite": true,
+          "MultiBufferPlan true rewrite": true,
+          "CVPipelinePlan sync edge": true,
+          "SyncPlan operation rewrite": true
+        },
+        "duplicate_ssa_definition_count": 0,
+        "undefined_symbol_count": 0,
+        "memref_type_mismatch_count": 0,
+        "blockers": [],
+        "note": "If this audit passes, the candidate is only precompile-audit-clean. Linux MLIR/HIVM parse/verifier/backend compile/correctness/msprof are still mandatory."
+      },
+      "v59_hardening": {
+        "v59_syntax_hardened_ir": "artifacts/v64_check/optimized.four_plan_operation_rewrite.v59_syntax_hardened.hivm.mlir",
+        "memref_closure_repair": {
+          "schema_version": "hivm_v59_memref_closure_repair_report_v1",
+          "mutation_performed": true,
+          "repair_count": 8,
+          "repairs": [
+            {
+              "line": 132,
+              "before": "hivm.hir.mmad ins(%q_l1, %k_l1_ping  : memref<32x128xf16, #hivm.address_space<cbuf>, memref<64x128xf16, #hivm.address_space<cbuf>) outs(%s_l0c  : memref<32x64xf32, #hivm.address_space<cc>)",
+              "after": "hivm.hir.mmad ins(%q_l1, %k_l1_ping  : memref<32x128xf16, #hivm.address_space<cbuf>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c  : memref<32x64xf32, #hivm.address_space<cc>>)"
+            },
+            {
+              "line": 148,
+              "before": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub  : memref<32x1xf32, #hivm.address_space<ub>) {reduce_op=\"max\"}",
+              "after": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub  : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+            },
+            {
+              "line": 153,
+              "before": "hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>, memref<32x1xf32, #hivm.address_space<ub>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)",
+              "after": "hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)"
+            },
+            {
+              "line": 162,
+              "before": "hivm.hir.vreduce ins(%p_ub  : memref<32x64xf16, #hivm.address_space<ub>) outs(%l_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+              "after": "hivm.hir.vreduce ins(%p_ub  : memref<32x64xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+            },
+            {
+              "line": 167,
+              "before": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>)",
+              "after": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+            },
+            {
+              "line": 178,
+              "before": "hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>, memref<64x128xf16, #hivm.address_space<cbuf>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)",
+              "after": "hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)"
+            },
+            {
+              "line": 188,
+              "before": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%acc_ub_mb1_ping  : memref<32x128xf32, #hivm.address_space<ub>)",
+              "after": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%acc_ub_mb1_ping  : memref<32x128xf32, #hivm.address_space<ub>>)"
+            },
+            {
+              "line": 202,
+              "before": "hivm.hir.vdiv ins(%acc_ub_mb1_ping, %l_ub  : memref<32x128xf32, #hivm.address_space<ub>, memref<32x1xf32, #hivm.address_space<ub>) outs(%acc_ub_mb1_ping  : memref<32x128xf32, #hivm.address_space<ub>)",
+              "after": "hivm.hir.vdiv ins(%acc_ub_mb1_ping, %l_ub  : memref<32x128xf32, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%acc_ub_mb1_ping  : memref<32x128xf32, #hivm.address_space<ub>>)"
+            }
+          ]
+        },
+        "event_op_normalization": {
+          "schema_version": "hivm_v59_event_op_normalization_report_v1",
+          "mutation_performed": true,
+          "rewrite_count": 10,
+          "rewrites": [
+            {
+              "line": 73,
+              "from": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+              "to": "hivm.hir.set_flag {pipe=\"MTE2\", event=\"EVENT_ID_CVP_L2C_0\", producer_pipe=\"MTE2\", consumer_pipe=\"V\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 124,
+              "from": "hivm.hir.wait_flag[<PIPE_M>, <PIPE_M>, EVENT_ID0]",
+              "to": "hivm.hir.wait_flag {pipe=\"M\", event=\"EVENT_ID0\", producer_pipe=\"M\", consumer_pipe=\"M\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 130,
+              "from": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+              "to": "hivm.hir.wait_flag {pipe=\"V\", event=\"EVENT_ID_CVP_L2C_0\", producer_pipe=\"MTE2\", consumer_pipe=\"V\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 135,
+              "from": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+              "to": "hivm.hir.set_flag {pipe=\"V\", event=\"EVENT_ID_CVP_C2S_0\", producer_pipe=\"V\", consumer_pipe=\"MTE3\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 141,
+              "from": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+              "to": "hivm.hir.wait_flag {pipe=\"MTE3\", event=\"EVENT_ID_CVP_C2S_0\", producer_pipe=\"V\", consumer_pipe=\"MTE3\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 170,
+              "from": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+              "to": "hivm.hir.set_flag {pipe=\"MTE2\", event=\"EVENT_ID_CVP_L2C_1\", producer_pipe=\"MTE2\", consumer_pipe=\"V\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 176,
+              "from": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+              "to": "hivm.hir.wait_flag {pipe=\"V\", event=\"EVENT_ID_CVP_L2C_1\", producer_pipe=\"MTE2\", consumer_pipe=\"V\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 181,
+              "from": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+              "to": "hivm.hir.set_flag {pipe=\"V\", event=\"EVENT_ID_CVP_C2S_1\", producer_pipe=\"V\", consumer_pipe=\"MTE3\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 187,
+              "from": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+              "to": "hivm.hir.wait_flag {pipe=\"MTE3\", event=\"EVENT_ID_CVP_C2S_1\", producer_pipe=\"V\", consumer_pipe=\"MTE3\", hivm.v59_event_normalized=true}"
+            },
+            {
+              "line": 192,
+              "from": "hivm.hir.set_flag[<PIPE_FIX>, <PIPE_FIX>, EVENT_ID0]",
+              "to": "hivm.hir.set_flag {pipe=\"FIX\", event=\"EVENT_ID0\", producer_pipe=\"FIX\", consumer_pipe=\"FIX\", hivm.v59_event_normalized=true}"
+            }
+          ]
+        },
+        "textual_legality_audit": {
+          "schema_version": "hivm_v59_textual_legality_audit_v1",
+          "passed_v59_textual_legality_audit": true,
+          "malformed_memref_line_count": 0,
+          "bracket_event_line_count": 0,
+          "unlowered_code_placeholder_line_count": 0,
+          "blockers": [],
+          "linux_compile_ready_claim": false,
+          "backend_validation_required": true
+        }
+      }
+    },
+    "v58_tiling_semantic_full_rewrite": {
+      "schema_version": "hivm_v58_tiling_semantic_full_rewrite_report_v1",
+      "mutation_performed": true,
+      "axis_binding": {
+        "schema_version": "hivm_v58_tiling_axis_binding_v1",
+        "confidence": "HIGH",
+        "axes": {
+          "M": {
+            "symbol": "%m_outer",
+            "extent": 64,
+            "tile": 32,
+            "evidence": "%Q_gm dim0 / %O_gm dim0"
+          },
+          "N": {
+            "symbol": "%n_outer",
+            "extent": 1024,
+            "tile": 64,
+            "evidence": "%K_gm dim0 / %V_gm dim0 sequence axis"
+          },
+          "K": {
+            "symbol": "%k_outer",
+            "extent": 128,
+            "tile": 128,
+            "evidence": "%Q_gm dim1 / %K_gm dim1 reduction-head axis"
+          },
+          "D": {
+            "symbol": "%d_outer",
+            "extent": 128,
+            "tile": 128,
+            "evidence": "%V_gm dim1 / %O_gm dim1 value/output feature axis"
+          }
+        },
+        "tensor_roles": {
+          "Q": {
+            "name": "%Q_gm",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "space": "unknown",
+            "kind": "func_arg"
+          },
+          "K": {
+            "name": "%K_gm",
+            "dims": [
+              1024,
+              128
+            ],
+            "dtype": "f16",
+            "space": "unknown",
+            "kind": "func_arg"
+          },
+          "V": {
+            "name": "%V_gm",
+            "dims": [
+              1024,
+              128
+            ],
+            "dtype": "f16",
+            "space": "unknown",
+            "kind": "func_arg"
+          },
+          "O": {
+            "name": "%O_gm",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "space": "unknown",
+            "kind": "func_arg"
+          }
+        },
+        "blockers": [],
+        "complete_for_sample_fa_pattern": true
+      },
+      "selected_tiling": {
+        "tile_m": 32,
+        "tile_n": 64,
+        "tile_k": 128,
+        "loop_order": "outer_mkn",
+        "tail_strategy": "mask_or_pad",
+        "reduce_tile_policy": "half_k",
+        "layout_aware_tile": true
+      },
+      "actions": [
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 34,
+          "semantic": {
+            "op": "load",
+            "semantic_role": "Q_load_or_Q_stage",
+            "tile_offsets": [
+              "%m_outer",
+              "%k_outer"
+            ],
+            "tile_shape": [
+              32,
+              128
+            ],
+            "axis_map": [
+              "M",
+              "K"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 36,
+          "semantic": {
+            "op": "nd2nz",
+            "semantic_role": "layout_transform_tile",
+            "tile_offsets": [
+              "propagate_from_input"
+            ],
+            "tile_shape": [
+              "propagate_from_input"
+            ],
+            "axis_map": [
+              "layout-aware"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "bind_outer_tile_loops_to_axis_extents_and_tile_end_guards",
+          "line": 43
+        },
+        {
+          "parameter": "tail_strategy",
+          "operation_action": "materialize_tile_end_mask_or_pad_semantics",
+          "line": 43
+        },
+        {
+          "parameter": "reduce_tile_policy",
+          "operation_action": "materialize_partial_accumulator_semantics",
+          "line": 43
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 48,
+          "semantic": {
+            "op": "load",
+            "semantic_role": "K_load_or_K_stage",
+            "tile_offsets": [
+              "%n_outer",
+              "%k_outer"
+            ],
+            "tile_shape": [
+              64,
+              128
+            ],
+            "axis_map": [
+              "N",
+              "K"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 50,
+          "semantic": {
+            "op": "load",
+            "semantic_role": "V_load_or_V_stage",
+            "tile_offsets": [
+              "%n_outer",
+              "%d_outer"
+            ],
+            "tile_shape": [
+              64,
+              "D_tile"
+            ],
+            "axis_map": [
+              "N",
+              "D"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 52,
+          "semantic": {
+            "op": "nd2nz",
+            "semantic_role": "layout_transform_tile",
+            "tile_offsets": [
+              "propagate_from_input"
+            ],
+            "tile_shape": [
+              "propagate_from_input"
+            ],
+            "axis_map": [
+              "layout-aware"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 54,
+          "semantic": {
+            "op": "nd2nz",
+            "semantic_role": "layout_transform_tile",
+            "tile_offsets": [
+              "propagate_from_input"
+            ],
+            "tile_shape": [
+              "propagate_from_input"
+            ],
+            "axis_map": [
+              "layout-aware"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 56,
+          "semantic": {
+            "op": "copy",
+            "semantic_role": "K_load_or_K_stage",
+            "tile_offsets": [
+              "%n_outer",
+              "%k_outer"
+            ],
+            "tile_shape": [
+              64,
+              128
+            ],
+            "axis_map": [
+              "N",
+              "K"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 59,
+          "semantic": {
+            "op": "mmad",
+            "semantic_role": "QK_score_tile_compute",
+            "tile_offsets": [
+              "%m_outer",
+              "%n_outer",
+              "%k_outer"
+            ],
+            "tile_shape": [
+              32,
+              64,
+              128
+            ],
+            "axis_map": [
+              "M",
+              "N",
+              "K"
+            ],
+            "reduction": "partial_accumulate_over_K"
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 61,
+          "semantic": {
+            "op": "fixpipe",
+            "semantic_role": "vector_postprocess_tile_fixpipe",
+            "tile_offsets": [
+              "%m_outer",
+              "%n_outer"
+            ],
+            "tile_shape": [
+              32,
+              64
+            ],
+            "axis_map": [
+              "M",
+              "N"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 63,
+          "semantic": {
+            "op": "vreduce",
+            "semantic_role": "vector_postprocess_tile_vreduce",
+            "tile_offsets": [
+              "%m_outer",
+              "%n_outer"
+            ],
+            "tile_shape": [
+              32,
+              64
+            ],
+            "axis_map": [
+              "M",
+              "N"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 65,
+          "semantic": {
+            "op": "vsub",
+            "semantic_role": "vector_postprocess_tile_vsub",
+            "tile_offsets": [
+              "%m_outer",
+              "%n_outer"
+            ],
+            "tile_shape": [
+              32,
+              64
+            ],
+            "axis_map": [
+              "M",
+              "N"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 67,
+          "semantic": {
+            "op": "vexp",
+            "semantic_role": "vector_postprocess_tile_vexp",
+            "tile_offsets": [
+              "%m_outer",
+              "%n_outer"
+            ],
+            "tile_shape": [
+              32,
+              64
+            ],
+            "axis_map": [
+              "M",
+              "N"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 69,
+          "semantic": {
+            "op": "vreduce",
+            "semantic_role": "vector_postprocess_tile_vreduce",
+            "tile_offsets": [
+              "%m_outer",
+              "%n_outer"
+            ],
+            "tile_shape": [
+              32,
+              64
+            ],
+            "axis_map": [
+              "M",
+              "N"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 71,
+          "semantic": {
+            "op": "nd2nz",
+            "semantic_role": "layout_transform_tile",
+            "tile_offsets": [
+              "propagate_from_input"
+            ],
+            "tile_shape": [
+              "propagate_from_input"
+            ],
+            "axis_map": [
+              "layout-aware"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 73,
+          "semantic": {
+            "op": "mmad",
+            "semantic_role": "PV_output_tile_compute",
+            "tile_offsets": [
+              "%m_outer",
+              "%d_outer",
+              "%n_outer"
+            ],
+            "tile_shape": [
+              32,
+              "D_tile",
+              64
+            ],
+            "axis_map": [
+              "M",
+              "D",
+              "N"
+            ],
+            "reduction": "partial_accumulate_over_N"
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 75,
+          "semantic": {
+            "op": "fixpipe",
+            "semantic_role": "vector_postprocess_tile_fixpipe",
+            "tile_offsets": [
+              "%m_outer",
+              "%n_outer"
+            ],
+            "tile_shape": [
+              32,
+              64
+            ],
+            "axis_map": [
+              "M",
+              "N"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 83,
+          "semantic": {
+            "op": "vdiv",
+            "semantic_role": "vector_postprocess_tile_vdiv",
+            "tile_offsets": [
+              "%m_outer",
+              "%n_outer"
+            ],
+            "tile_shape": [
+              32,
+              64
+            ],
+            "axis_map": [
+              "M",
+              "N"
+            ]
+          }
+        },
+        {
+          "parameter": "tile_m/tile_n/tile_k",
+          "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+          "line": 85,
+          "semantic": {
+            "op": "store",
+            "semantic_role": "O_store_tile",
+            "tile_offsets": [
+              "%m_outer",
+              "%d_outer"
+            ],
+            "tile_shape": [
+              32,
+              "D_tile"
+            ],
+            "axis_map": [
+              "M",
+              "D"
+            ]
+          }
+        }
+      ],
+      "action_count": 21,
+      "blockers": [],
+      "complete_strategy_parameters_covered": true,
+      "linux_backend_validation_required": true,
+      "claim_boundary": "V5.8 binds tiling strategy to loop axes and per-operation tile slice/reduction semantics in the emitted candidate. Official Linux backend must still lower/verify these bindings into dialect-legal loop/index/slice operations."
+    },
+    "v58_cvpipeline_semantic_schedule": {
+      "schema_version": "hivm_v58_cvpipeline_semantic_schedule_report_v1",
+      "mutation_performed": true,
+      "selected_cvpipeline": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "stage_graph": {
+        "schema_version": "hivm_v58_cvpipeline_stage_graph_v1",
+        "stages": {
+          "load": [
+            {
+              "line": 66,
+              "op": "load",
+              "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub_mb0_ping : memref<32x128xf16, #hivm.address_space<ub>>)"
+            },
+            {
+              "line": 88,
+              "op": "load",
+              "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+            },
+            {
+              "line": 91,
+              "op": "load",
+              "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+            },
+            {
+              "line": 100,
+              "op": "copy",
+              "text": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+            }
+          ],
+          "layout": [
+            {
+              "line": 70,
+              "op": "nd2nz",
+              "text": "hivm.hir.nd2nz ins(%q_ub_mb0_ping : memref<32x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+            },
+            {
+              "line": 94,
+              "op": "nd2nz",
+              "text": "hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+            },
+            {
+              "line": 97,
+              "op": "nd2nz",
+              "text": "hivm.hir.nd2nz ins(%v_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+            },
+            {
+              "line": 115,
+              "op": "fixpipe",
+              "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>)"
+            },
+            {
+              "line": 136,
+              "op": "nd2nz",
+              "text": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x64xf16, #hivm.address_space<cbuf>>)"
+            },
+            {
+              "line": 152,
+              "op": "fixpipe",
+              "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%acc_ub_mb1_ping : memref<32x64xf32, #hivm.address_space<ub>>)"
+            }
+          ],
+          "compute": [
+            {
+              "line": 107,
+              "op": "mmad",
+              "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<32x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x128xf32, #hivm.address_s"
+            },
+            {
+              "line": 144,
+              "op": "mmad",
+              "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)"
+            }
+          ],
+          "vector": [
+            {
+              "line": 120,
+              "op": "vreduce",
+              "text": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x64xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+            },
+            {
+              "line": 124,
+              "op": "vsub",
+              "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space"
+            },
+            {
+              "line": 128,
+              "op": "vexp",
+              "text": "hivm.hir.vexp ins(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)"
+            },
+            {
+              "line": 131,
+              "op": "vreduce",
+              "text": "hivm.hir.vreduce ins(%p_ub : memref<32x1xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+            },
+            {
+              "line": 163,
+              "op": "vdiv",
+              "text": "hivm.hir.vdiv ins(%acc_ub_mb1_ping, %l_ub : memref<32x1xf32, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%acc_ub_mb1_ping : memref<32x1xf32, #hivm.add"
+            }
+          ],
+          "store": [
+            {
+              "line": 166,
+              "op": "store",
+              "text": "hivm.hir.store ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+            }
+          ],
+          "sync": [
+            {
+              "line": 62,
+              "op": "set_flag",
+              "text": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]"
+            },
+            {
+              "line": 101,
+              "op": "wait_flag",
+              "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+            },
+            {
+              "line": 106,
+              "op": "wait_flag",
+              "text": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]"
+            },
+            {
+              "line": 109,
+              "op": "set_flag",
+              "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]"
+            },
+            {
+              "line": 114,
+              "op": "wait_flag",
+              "text": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]"
+            },
+            {
+              "line": 138,
+              "op": "set_flag",
+              "text": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]"
+            },
+            {
+              "line": 143,
+              "op": "wait_flag",
+              "text": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]"
+            },
+            {
+              "line": 146,
+              "op": "set_flag",
+              "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]"
+            },
+            {
+              "line": 151,
+              "op": "wait_flag",
+              "text": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]"
+            },
+            {
+              "line": 154,
+              "op": "set_flag",
+              "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+            }
+          ]
+        },
+        "stage_counts": {
+          "load": 4,
+          "layout": 6,
+          "compute": 2,
+          "vector": 5,
+          "store": 1,
+          "sync": 10
+        },
+        "complete_minimal_pipeline_graph": true,
+        "blockers": []
+      },
+      "schedule": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none",
+        "prologue": [
+          "load tile[0]"
+        ],
+        "steady": [
+          "load tile[i+1]",
+          "compute/vector/store tile[i]"
+        ],
+        "epilogue": [
+          "drain final compute/vector/store"
+        ]
+      },
+      "actions": [
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 62,
+          "op": "set_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 66,
+          "op": "load",
+          "role": "producer_load_stage"
+        },
+        {
+          "parameter": "stage_num",
+          "operation_action": "materialize_stage_graph_and_prologue_steady_epilogue_schedule"
+        },
+        {
+          "parameter": "template",
+          "operation_action": "select_pipeline_schedule_template"
+        },
+        {
+          "parameter": "producer_consumer_distance",
+          "operation_action": "bind_tile_iteration_offset_between_producer_and_consumer",
+          "distance": 1
+        },
+        {
+          "parameter": "stage_buffer_policy",
+          "operation_action": "bind_pipeline_slots_to_multibuffer_policy",
+          "policy": "none"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 88,
+          "op": "load",
+          "role": "producer_load_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 91,
+          "op": "load",
+          "role": "producer_load_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 100,
+          "op": "copy",
+          "role": "producer_load_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 101,
+          "op": "wait_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 106,
+          "op": "wait_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 107,
+          "op": "mmad",
+          "role": "cube_compute_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 109,
+          "op": "set_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 114,
+          "op": "wait_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 120,
+          "op": "vreduce",
+          "role": "vector_postprocess_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 124,
+          "op": "vsub",
+          "role": "vector_postprocess_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 128,
+          "op": "vexp",
+          "role": "vector_postprocess_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 131,
+          "op": "vreduce",
+          "role": "vector_postprocess_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 138,
+          "op": "set_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 143,
+          "op": "wait_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 144,
+          "op": "mmad",
+          "role": "cube_compute_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 146,
+          "op": "set_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 151,
+          "op": "wait_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 154,
+          "op": "set_flag",
+          "role": "pipeline_sync_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 163,
+          "op": "vdiv",
+          "role": "vector_postprocess_stage"
+        },
+        {
+          "parameter": "template/stage_num/producer_consumer_distance",
+          "operation_action": "attach_stage_schedule_binding_to_operation",
+          "line": 166,
+          "op": "store",
+          "role": "consumer_store_stage"
+        }
+      ],
+      "action_count": 26,
+      "blockers": [],
+      "linux_backend_validation_required": true,
+      "claim_boundary": "V5.8 makes the pipeline schedule explicit and binds stages/offsets/slots in the candidate. Official backend must still lower into dialect-legal reordered loop bodies and verify dependencies."
+    },
+    "v60_real_operation_materialization": {
+      "v60_real_operation_materialized_ir": "artifacts/v64_check/optimized.four_plan_real_operation_materialized.hivm.mlir",
+      "real_operation_materialization": {
+        "schema_version": "hivm_v60_real_operation_materialization_report_v1",
+        "mutation_performed": true,
+        "materialized_action_count": 56,
+        "actions": [
+          {
+            "source_line": 72,
+            "target_line": 73,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "set_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 73,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "set_flag"
+          },
+          {
+            "source_line": 75,
+            "target_line": 78,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "load",
+            "role": "Q_load_or_Q_stage"
+          },
+          {
+            "source_line": 77,
+            "target_line": 78,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "load",
+            "role": "producer_load_stage",
+            "region": "producer_load_or_layout"
+          },
+          {
+            "source_line": 80,
+            "target_line": 82,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "nd2nz",
+            "role": "layout_transform_tile"
+          },
+          {
+            "line": 95,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_schedule_annotation",
+            "target": "%c0"
+          },
+          {
+            "line": 100,
+            "plan": "TilingPlan",
+            "materialized": "tail_strategy_guard_annotation",
+            "target": "%m_outer"
+          },
+          {
+            "line": 101,
+            "plan": "TilingPlan",
+            "materialized": "reduce_tile_policy_accumulator_guard",
+            "target": "%k_outer"
+          },
+          {
+            "line": 102,
+            "plan": "TilingPlan",
+            "materialized": "layout_aware_tile_legality_guard",
+            "target": "%m_outer"
+          },
+          {
+            "source_line": 105,
+            "target_line": 107,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "load",
+            "role": "K_load_or_K_stage"
+          },
+          {
+            "source_line": 106,
+            "target_line": 107,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "load",
+            "role": "producer_load_stage",
+            "region": "producer_load_or_layout"
+          },
+          {
+            "source_line": 109,
+            "target_line": 111,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "load",
+            "role": "V_load_or_V_stage"
+          },
+          {
+            "source_line": 110,
+            "target_line": 111,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "load",
+            "role": "producer_load_stage",
+            "region": "producer_load_or_layout"
+          },
+          {
+            "source_line": 113,
+            "target_line": 114,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "nd2nz",
+            "role": "layout_transform_tile"
+          },
+          {
+            "source_line": 116,
+            "target_line": 117,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "nd2nz",
+            "role": "layout_transform_tile"
+          },
+          {
+            "source_line": 119,
+            "target_line": 121,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "copy",
+            "role": "K_load_or_K_stage"
+          },
+          {
+            "source_line": 120,
+            "target_line": 121,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "copy",
+            "role": "producer_load_stage",
+            "region": "producer_load_or_layout"
+          },
+          {
+            "source_line": 122,
+            "target_line": 124,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "wait_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 124,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "wait_flag"
+          },
+          {
+            "source_line": 129,
+            "target_line": 130,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "wait_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 130,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "wait_flag"
+          },
+          {
+            "source_line": 126,
+            "target_line": 132,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "mmad",
+            "role": "QK_score_tile_compute"
+          },
+          {
+            "source_line": 127,
+            "target_line": 132,
+            "plan": "TilingPlan",
+            "materialized": "reduction_attrs_on_compute_op",
+            "op": "mmad"
+          },
+          {
+            "source_line": 131,
+            "target_line": 132,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "mmad",
+            "role": "cube_compute_stage",
+            "region": "steady_compute"
+          },
+          {
+            "source_line": 134,
+            "target_line": 135,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "set_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 135,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "set_flag"
+          },
+          {
+            "source_line": 140,
+            "target_line": 141,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "wait_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 141,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "wait_flag"
+          },
+          {
+            "source_line": 137,
+            "target_line": 142,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "fixpipe",
+            "role": "vector_postprocess_tile_fixpipe"
+          },
+          {
+            "source_line": 145,
+            "target_line": 148,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "vreduce",
+            "role": "vector_postprocess_tile_vreduce"
+          },
+          {
+            "source_line": 147,
+            "target_line": 148,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "vreduce",
+            "role": "vector_postprocess_stage",
+            "region": "vector_postprocess"
+          },
+          {
+            "source_line": 150,
+            "target_line": 153,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "vsub",
+            "role": "vector_postprocess_tile_vsub"
+          },
+          {
+            "source_line": 152,
+            "target_line": 153,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "vsub",
+            "role": "vector_postprocess_stage",
+            "region": "vector_postprocess"
+          },
+          {
+            "source_line": 155,
+            "target_line": 158,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "vexp",
+            "role": "vector_postprocess_tile_vexp"
+          },
+          {
+            "source_line": 157,
+            "target_line": 158,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "vexp",
+            "role": "vector_postprocess_stage",
+            "region": "vector_postprocess"
+          },
+          {
+            "source_line": 160,
+            "target_line": 162,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "vreduce",
+            "role": "vector_postprocess_tile_vreduce"
+          },
+          {
+            "source_line": 161,
+            "target_line": 162,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "vreduce",
+            "role": "vector_postprocess_stage",
+            "region": "vector_postprocess"
+          },
+          {
+            "source_line": 164,
+            "target_line": 167,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "nd2nz",
+            "role": "layout_transform_tile"
+          },
+          {
+            "source_line": 169,
+            "target_line": 170,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "set_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 170,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "set_flag"
+          },
+          {
+            "source_line": 175,
+            "target_line": 176,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "wait_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 176,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "wait_flag"
+          },
+          {
+            "source_line": 172,
+            "target_line": 178,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "mmad",
+            "role": "PV_output_tile_compute"
+          },
+          {
+            "source_line": 173,
+            "target_line": 178,
+            "plan": "TilingPlan",
+            "materialized": "reduction_attrs_on_compute_op",
+            "op": "mmad"
+          },
+          {
+            "source_line": 177,
+            "target_line": 178,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "mmad",
+            "role": "cube_compute_stage",
+            "region": "steady_compute"
+          },
+          {
+            "source_line": 180,
+            "target_line": 181,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "set_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 181,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "set_flag"
+          },
+          {
+            "source_line": 186,
+            "target_line": 187,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "wait_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 187,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "wait_flag"
+          },
+          {
+            "source_line": 183,
+            "target_line": 188,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "fixpipe",
+            "role": "vector_postprocess_tile_fixpipe"
+          },
+          {
+            "source_line": 190,
+            "target_line": 192,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "set_flag",
+            "role": "pipeline_sync_stage",
+            "region": "dependency_sync"
+          },
+          {
+            "target_line": 192,
+            "plan": "SyncPlan",
+            "materialized": "regenerated_dependency_attrs_on_event_op",
+            "op": "set_flag"
+          },
+          {
+            "source_line": 199,
+            "target_line": 202,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "vdiv",
+            "role": "vector_postprocess_tile_vdiv"
+          },
+          {
+            "source_line": 201,
+            "target_line": 202,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "vdiv",
+            "role": "vector_postprocess_stage",
+            "region": "vector_postprocess"
+          },
+          {
+            "source_line": 204,
+            "target_line": 206,
+            "plan": "TilingPlan",
+            "materialized": "tile_slice_attrs_on_hivm_op",
+            "op": "store",
+            "role": "O_store_tile"
+          },
+          {
+            "source_line": 205,
+            "target_line": 206,
+            "plan": "CVPipelinePlan",
+            "materialized": "pipeline_stage_attrs_on_hivm_op",
+            "op": "store",
+            "role": "consumer_store_stage",
+            "region": "consumer_store_or_fixpipe"
+          }
+        ],
+        "pending_unmaterialized": {
+          "tile": null,
+          "reduction": null,
+          "stage": null
+        },
+        "linux_backend_validation_required": true
+      },
+      "multibuffer_use_def_coverage": {
+        "schema_version": "hivm_v60_multibuffer_use_def_coverage_v1",
+        "buffer_count": 4,
+        "rows": [
+          {
+            "base_buffer": "%acc_ub",
+            "ping_slots": [
+              "%acc_ub_mb1_ping"
+            ],
+            "pong_slots": [
+              "%acc_ub_mb1_pong"
+            ],
+            "original_token_uses_after_rewrite": 0,
+            "ping_token_uses": 5,
+            "pong_token_uses": 2,
+            "has_ping_and_pong": true,
+            "unrewritten_use_risk": false
+          },
+          {
+            "base_buffer": "%p_ub",
+            "ping_slots": [
+              "%p_ub_mb3_ping"
+            ],
+            "pong_slots": [
+              "%p_ub_mb3_pong"
+            ],
+            "original_token_uses_after_rewrite": 4,
+            "ping_token_uses": 5,
+            "pong_token_uses": 2,
+            "has_ping_and_pong": true,
+            "unrewritten_use_risk": true
+          },
+          {
+            "base_buffer": "%q_ub",
+            "ping_slots": [
+              "%q_ub_mb0_ping"
+            ],
+            "pong_slots": [
+              "%q_ub_mb0_pong"
+            ],
+            "original_token_uses_after_rewrite": 2,
+            "ping_token_uses": 4,
+            "pong_token_uses": 2,
+            "has_ping_and_pong": true,
+            "unrewritten_use_risk": true
+          },
+          {
+            "base_buffer": "%s_ub",
+            "ping_slots": [
+              "%s_ub_mb2_ping"
+            ],
+            "pong_slots": [
+              "%s_ub_mb2_pong"
+            ],
+            "original_token_uses_after_rewrite": 2,
+            "ping_token_uses": 4,
+            "pong_token_uses": 2,
+            "has_ping_and_pong": true,
+            "unrewritten_use_risk": true
+          }
+        ],
+        "all_materialized_buffers_have_ping_pong": true,
+        "blockers": [],
+        "note": "original_token_uses_after_rewrite is conservative because some original buffers remain valid accumulators or non-bufferized ops; Linux use-def verifier is still required."
+      },
+      "semantic_marker_materialization_audit": {
+        "schema_version": "hivm_v60_semantic_marker_materialization_audit_v1",
+        "passed_v60_marker_materialization_audit": true,
+        "semantic_marker_as_logic_count": 0,
+        "required_v60_attrs": [
+          "hivm.v60_tiling_materialized",
+          "hivm.v60_reduction_materialized",
+          "hivm.v60_cvpipeline_materialized",
+          "hivm.v60_sync_dependency_regenerated",
+          "hivm.v60_tail_guard_materialized",
+          "hivm.v60_reduce_guard_materialized",
+          "hivm.v60_pipeline_schedule_materialized"
+        ],
+        "missing_required_v60_attrs": [],
+        "blockers": [],
+        "linux_compile_ready_claim": false,
+        "backend_validation_required": true
+      }
+    },
+    "v62_official_backend_lowering": {
+      "v62_official_backend_lowered_ir": "artifacts/v64_check/optimized.four_plan_official_backend_lowered.hivm.mlir",
+      "annotation_lowering": {
+        "schema_version": "hivm_v62_annotation_lowering_report_v1",
+        "mutation_performed": true,
+        "lowered_count": 8,
+        "stripped_loop_marker_count": 4,
+        "lowered": [
+          {
+            "annotation_line": 23,
+            "target": "%q_ub_mb0_ping",
+            "alloc_line": 22
+          },
+          {
+            "annotation_line": 26,
+            "target": "%q_ub_mb0_pong",
+            "alloc_line": 25
+          },
+          {
+            "annotation_line": 32,
+            "target": "%acc_ub_mb1_ping",
+            "alloc_line": 29
+          },
+          {
+            "annotation_line": 36,
+            "target": "%acc_ub_mb1_pong",
+            "alloc_line": 35
+          },
+          {
+            "annotation_line": 41,
+            "target": "%s_ub_mb2_ping",
+            "alloc_line": 40
+          },
+          {
+            "annotation_line": 44,
+            "target": "%s_ub_mb2_pong",
+            "alloc_line": 43
+          },
+          {
+            "annotation_line": 49,
+            "target": "%p_ub_mb3_ping",
+            "alloc_line": 48
+          },
+          {
+            "annotation_line": 52,
+            "target": "%p_ub_mb3_pong",
+            "alloc_line": 51
+          }
+        ],
+        "stripped": [
+          {
+            "annotation_line": 90,
+            "target": "%c0",
+            "reason": "loop_or_constant_marker_stripped_for_official_handoff"
+          },
+          {
+            "annotation_line": 91,
+            "target": "%m_outer",
+            "reason": "loop_or_constant_marker_stripped_for_official_handoff"
+          },
+          {
+            "annotation_line": 92,
+            "target": "%k_outer",
+            "reason": "loop_or_constant_marker_stripped_for_official_handoff"
+          },
+          {
+            "annotation_line": 93,
+            "target": "%m_outer",
+            "reason": "loop_or_constant_marker_stripped_for_official_handoff"
+          }
+        ]
+      },
+      "attr_literal_normalization": {
+        "schema_version": "hivm_v62_attr_literal_normalization_report_v1",
+        "mutation_performed": true,
+        "rewrite_count": 54,
+        "rewrites": [
+          {
+            "line": 67,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%k_outer']\"",
+            "after": "\"m_outer,k_outer\""
+          },
+          {
+            "line": 67,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 128]\"",
+            "after": "\"32x128\""
+          },
+          {
+            "line": 67,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'K']\"",
+            "after": "\"M,K\""
+          },
+          {
+            "line": 70,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['propagate_from_input']\"",
+            "after": "\"input\""
+          },
+          {
+            "line": 70,
+            "attr": "hivm.tile_shape",
+            "before": "\"['propagate_from_input']\"",
+            "after": "\"input\""
+          },
+          {
+            "line": 70,
+            "attr": "hivm.tile_axes",
+            "before": "\"['layout-aware']\"",
+            "after": "\"layout_aware\""
+          },
+          {
+            "line": 84,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%n_outer', '%k_outer']\"",
+            "after": "\"n_outer,k_outer\""
+          },
+          {
+            "line": 84,
+            "attr": "hivm.tile_shape",
+            "before": "\"[64, 128]\"",
+            "after": "\"64x128\""
+          },
+          {
+            "line": 84,
+            "attr": "hivm.tile_axes",
+            "before": "\"['N', 'K']\"",
+            "after": "\"N,K\""
+          },
+          {
+            "line": 86,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%n_outer', '%d_outer']\"",
+            "after": "\"n_outer,d_outer\""
+          },
+          {
+            "line": 86,
+            "attr": "hivm.tile_shape",
+            "before": "\"[64, 'D_tile']\"",
+            "after": "\"64x128\""
+          },
+          {
+            "line": 86,
+            "attr": "hivm.tile_axes",
+            "before": "\"['N', 'D']\"",
+            "after": "\"N,D\""
+          },
+          {
+            "line": 88,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['propagate_from_input']\"",
+            "after": "\"input\""
+          },
+          {
+            "line": 88,
+            "attr": "hivm.tile_shape",
+            "before": "\"['propagate_from_input']\"",
+            "after": "\"input\""
+          },
+          {
+            "line": 88,
+            "attr": "hivm.tile_axes",
+            "before": "\"['layout-aware']\"",
+            "after": "\"layout_aware\""
+          },
+          {
+            "line": 90,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['propagate_from_input']\"",
+            "after": "\"input\""
+          },
+          {
+            "line": 90,
+            "attr": "hivm.tile_shape",
+            "before": "\"['propagate_from_input']\"",
+            "after": "\"input\""
+          },
+          {
+            "line": 90,
+            "attr": "hivm.tile_axes",
+            "before": "\"['layout-aware']\"",
+            "after": "\"layout_aware\""
+          },
+          {
+            "line": 92,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%n_outer', '%k_outer']\"",
+            "after": "\"n_outer,k_outer\""
+          },
+          {
+            "line": 92,
+            "attr": "hivm.tile_shape",
+            "before": "\"[64, 128]\"",
+            "after": "\"64x128\""
+          },
+          {
+            "line": 92,
+            "attr": "hivm.tile_axes",
+            "before": "\"['N', 'K']\"",
+            "after": "\"N,K\""
+          },
+          {
+            "line": 98,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%n_outer', '%k_outer']\"",
+            "after": "\"m_outer,n_outer,k_outer\""
+          },
+          {
+            "line": 98,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 64, 128]\"",
+            "after": "\"32x64x128\""
+          },
+          {
+            "line": 98,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'N', 'K']\"",
+            "after": "\"M,N,K\""
+          },
+          {
+            "line": 105,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%n_outer']\"",
+            "after": "\"m_outer,n_outer\""
+          },
+          {
+            "line": 105,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 64]\"",
+            "after": "\"32x64\""
+          },
+          {
+            "line": 105,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'N']\"",
+            "after": "\"M,N\""
+          },
+          {
+            "line": 109,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%n_outer']\"",
+            "after": "\"m_outer,n_outer\""
+          },
+          {
+            "line": 109,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 64]\"",
+            "after": "\"32x64\""
+          },
+          {
+            "line": 109,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'N']\"",
+            "after": "\"M,N\""
+          },
+          {
+            "line": 112,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%n_outer']\"",
+            "after": "\"m_outer,n_outer\""
+          },
+          {
+            "line": 112,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 64]\"",
+            "after": "\"32x64\""
+          },
+          {
+            "line": 112,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'N']\"",
+            "after": "\"M,N\""
+          },
+          {
+            "line": 115,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%n_outer']\"",
+            "after": "\"m_outer,n_outer\""
+          },
+          {
+            "line": 115,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 64]\"",
+            "after": "\"32x64\""
+          },
+          {
+            "line": 115,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'N']\"",
+            "after": "\"M,N\""
+          },
+          {
+            "line": 117,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%n_outer']\"",
+            "after": "\"m_outer,n_outer\""
+          },
+          {
+            "line": 117,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 64]\"",
+            "after": "\"32x64\""
+          },
+          {
+            "line": 117,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'N']\"",
+            "after": "\"M,N\""
+          },
+          {
+            "line": 121,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['propagate_from_input']\"",
+            "after": "\"input\""
+          },
+          {
+            "line": 121,
+            "attr": "hivm.tile_shape",
+            "before": "\"['propagate_from_input']\"",
+            "after": "\"input\""
+          },
+          {
+            "line": 121,
+            "attr": "hivm.tile_axes",
+            "before": "\"['layout-aware']\"",
+            "after": "\"layout_aware\""
+          },
+          {
+            "line": 127,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%d_outer', '%n_outer']\"",
+            "after": "\"m_outer,d_outer,n_outer\""
+          },
+          {
+            "line": 127,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 'D_tile', 64]\"",
+            "after": "\"32x128x64\""
+          },
+          {
+            "line": 127,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'D', 'N']\"",
+            "after": "\"M,D,N\""
+          },
+          {
+            "line": 134,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%n_outer']\"",
+            "after": "\"m_outer,n_outer\""
+          },
+          {
+            "line": 134,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 64]\"",
+            "after": "\"32x64\""
+          },
+          {
+            "line": 134,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'N']\"",
+            "after": "\"M,N\""
+          },
+          {
+            "line": 145,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%n_outer']\"",
+            "after": "\"m_outer,n_outer\""
+          },
+          {
+            "line": 145,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 64]\"",
+            "after": "\"32x64\""
+          },
+          {
+            "line": 145,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'N']\"",
+            "after": "\"M,N\""
+          },
+          {
+            "line": 147,
+            "attr": "hivm.tile_offsets",
+            "before": "\"['%m_outer', '%d_outer']\"",
+            "after": "\"m_outer,d_outer\""
+          },
+          {
+            "line": 147,
+            "attr": "hivm.tile_shape",
+            "before": "\"[32, 'D_tile']\"",
+            "after": "\"32x128\""
+          },
+          {
+            "line": 147,
+            "attr": "hivm.tile_axes",
+            "before": "\"['M', 'D']\"",
+            "after": "\"M,D\""
+          }
+        ]
+      },
+      "strict_multibuffer_residual_use_rewrite": {
+        "schema_version": "hivm_v62_strict_multibuffer_residual_use_rewrite_report_v1",
+        "mutation_performed": true,
+        "rewrite_count": 5,
+        "rewrites": [
+          {
+            "line": 112,
+            "base": "%s_ub",
+            "replacement": "%s_ub_mb2_ping",
+            "before": "hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space",
+            "after": "hivm.hir.vsub ins(%s_ub_mb2_ping, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.addr"
+          },
+          {
+            "line": 117,
+            "base": "%p_ub",
+            "replacement": "%p_ub_mb3_ping",
+            "before": "hivm.hir.vreduce ins(%p_ub  : memref<32x64xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\", hivm.v60_real_operation_material",
+            "after": "hivm.hir.vreduce ins(%p_ub_mb3_ping  : memref<32x64xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\", hivm.v60_real_operation"
+          },
+          {
+            "line": 121,
+            "base": "%p_ub",
+            "replacement": "%p_ub_mb3_ping",
+            "before": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>>) {hivm.v60_real_operation_materialized=true, hivm",
+            "after": "hivm.hir.nd2nz ins(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>>) {hivm.v60_real_operation_materialized=t"
+          },
+          {
+            "line": 127,
+            "base": "%p_ub",
+            "replacement": "%p_ub_mb3_ping",
+            "before": "hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>",
+            "after": "hivm.hir.mmad ins(%p_ub_mb3_ping, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_"
+          },
+          {
+            "line": 147,
+            "base": "%q_ub",
+            "replacement": "%q_ub_mb0_ping",
+            "before": "hivm.hir.store ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {hivm.v60_real_operation_materialized=true, hivm.v",
+            "after": "hivm.hir.store ins(%q_ub_mb0_ping : memref<32x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {hivm.v60_real_operation_materialized=tru"
+          }
+        ]
+      },
+      "debug_comment_strip": {
+        "schema_version": "hivm_v62_debug_comment_strip_report_v1",
+        "mutation_performed": true,
+        "removed_count": 2,
+        "removed": [
+          {
+            "line": 19,
+            "text": "//   restricted=true operation_movement=false loop_skewing=false"
+          },
+          {
+            "line": 120,
+            "text": "//   restricted=true operation_movement=false loop_skewing=false"
+          }
+        ]
+      },
+      "official_backend_handoff_audit": {
+        "schema_version": "hivm_v62_official_backend_handoff_audit_v1",
+        "passed_v62_portable_official_handoff_audit": true,
+        "hard_blocker_count": 0,
+        "warning_count": 0,
+        "hard_blockers": [],
+        "warnings": [],
+        "linux_compile_ready_claim": false,
+        "backend_validation_required": true,
+        "claim_boundary": "V6.2 removes portable textual blockers. CVPipeline physical op movement still requires official backend verifier/lowering before any Linux compile/run claim."
+      }
+    },
+    "v63_official_backend_subview_lowering": {
+      "v63_official_backend_subview_lowered_ir": "artifacts/v64_check/optimized.four_plan_official_backend_subview_lowered.hivm.mlir",
+      "subview_lowering": {
+        "schema_version": "hivm_v63_subview_lowering_report_v1",
+        "mutation_performed": true,
+        "action_count": 4,
+        "actions": [
+          {
+            "line": 66,
+            "kind": "load_subview",
+            "source": "%Q_gm",
+            "tile": "%Q_gm_tile_v63_0",
+            "src_type": "memref<64x128xf16, #hivm.address_space<gm>>",
+            "tile_type": "memref<32x128xf16, #hivm.address_space<gm>>",
+            "local_type": "memref<32x128xf16, #hivm.address_space<ub>>",
+            "offsets": [
+              "%c0",
+              "%c0"
+            ],
+            "sizes": [
+              "32",
+              "128"
+            ]
+          },
+          {
+            "line": 83,
+            "kind": "load_subview",
+            "source": "%K_gm",
+            "tile": "%K_gm_tile_v63_1",
+            "src_type": "memref<1024x128xf16, #hivm.address_space<gm>>",
+            "tile_type": "memref<64x128xf16, #hivm.address_space<gm>>",
+            "local_type": "memref<64x128xf16, #hivm.address_space<ub>>",
+            "offsets": [
+              "%n_outer",
+              "%k_outer"
+            ],
+            "sizes": [
+              "64",
+              "128"
+            ]
+          },
+          {
+            "line": 85,
+            "kind": "load_subview",
+            "source": "%V_gm",
+            "tile": "%V_gm_tile_v63_2",
+            "src_type": "memref<1024x128xf16, #hivm.address_space<gm>>",
+            "tile_type": "memref<64x128xf16, #hivm.address_space<gm>>",
+            "local_type": "memref<64x128xf16, #hivm.address_space<ub>>",
+            "offsets": [
+              "%n_outer",
+              "%c0"
+            ],
+            "sizes": [
+              "64",
+              "128"
+            ]
+          },
+          {
+            "line": 145,
+            "kind": "store_subview",
+            "target": "%O_gm",
+            "tile": "%O_gm_tile_v63_3",
+            "dst_type": "memref<64x128xf16, #hivm.address_space<gm>>",
+            "tile_type": "memref<32x128xf16, #hivm.address_space<gm>>",
+            "local_type": "memref<32x128xf16, #hivm.address_space<ub>>",
+            "offsets": [
+              "%c0",
+              "%c0"
+            ],
+            "sizes": [
+              "32",
+              "128"
+            ]
+          }
+        ],
+        "note": "Offsets outside m/n/k tile-loop scope are conservatively lowered to %c0. Linux backend must still verify semantic correctness."
+      },
+      "private_attr_strip": {
+        "schema_version": "hivm_v63_private_attr_strip_report_v1",
+        "mutation_performed": true,
+        "removed_debug_comment_count": 77,
+        "attr_lines_changed": 36
+      },
+      "official_compare_audit": {
+        "schema_version": "hivm_v63_official_compare_audit_v1",
+        "issue_count": 0,
+        "counts_by_kind": {},
+        "passed_v63_portable_official_compare_audit": true,
+        "issues": [],
+        "claim_boundary": "Portable audit only. Official Ascend Linux parser/verifier/compiler is still required."
+      },
+      "backend_contract": {
+        "schema_version": "hivm_v63_backend_contract_v1",
+        "official_linux_backend_required_checks": [
+          "parse optimized.four_plan_official_backend_subview_lowered.hivm.mlir",
+          "verify memref.subview syntax and dominance of offsets",
+          "verify hivm.hir.load/store src/dst shape equality after subview lowering",
+          "run HIVM/MLIR verifier for all custom attrs left by official dialect",
+          "lower or invoke official CVPipeline pass for physical work-item movement",
+          "compile and run correctness before msprof"
+        ],
+        "cvpipeline_boundary": "V6.3 strips private schedule attrs from handoff IR and keeps schedule information in JSON contract; physical CVPipeline movement must be done by official pass or a registered backend lowering.",
+        "subview_lowering_note": "Offsets outside m/n/k tile-loop scope are conservatively lowered to %c0. Linux backend must still verify semantic correctness."
+      }
+    },
+    "v64_final_official_sanitize": {
+      "v64_official_backend_sanitized_ir": "artifacts/v64_check/optimized.four_plan_official_backend_v64_sanitized.hivm.mlir",
+      "v64_final_official_sanitize_report": {
+        "schema_version": "hivm_v64_final_official_sanitize_report_v1",
+        "input_ir": "artifacts/v64_check/optimized.four_plan_official_backend_subview_lowered.hivm.mlir",
+        "output_ir": "artifacts/v64_check/optimized.four_plan_official_backend_v64_sanitized.hivm.mlir",
+        "subview_address_space_fix": {
+          "schema_version": "hivm_v64_subview_address_space_fix_v1",
+          "mutation_performed": false,
+          "action_count": 0,
+          "actions": []
+        },
+        "subview_address_space_fix_after_q": {
+          "schema_version": "hivm_v64_subview_address_space_fix_v1",
+          "mutation_performed": false,
+          "action_count": 0,
+          "actions": []
+        },
+        "subview_address_space_fix_after_store": {
+          "schema_version": "hivm_v64_subview_address_space_fix_v1",
+          "mutation_performed": false,
+          "action_count": 0,
+          "actions": []
+        },
+        "tile_type_propagation": [
+          {
+            "schema_version": "hivm_v64_tile_type_propagation_v1",
+            "mutation_performed": false,
+            "action_count": 0,
+            "actions": []
+          },
+          {
+            "schema_version": "hivm_v64_tile_type_propagation_v1",
+            "mutation_performed": false,
+            "action_count": 0,
+            "actions": []
+          },
+          {
+            "schema_version": "hivm_v64_tile_type_propagation_v1",
+            "mutation_performed": false,
+            "action_count": 0,
+            "actions": []
+          }
+        ],
+        "q_load_relocation": {
+          "schema_version": "hivm_v64_q_load_relocation_v1",
+          "mutation_performed": true,
+          "old_span": [
+            34,
+            36
+          ],
+          "insert_after_pattern": "scf.for %n_outer",
+          "offsets": [
+            "%m_outer",
+            "%k_outer"
+          ]
+        },
+        "post_reduce_store_relocation": {
+          "schema_version": "hivm_v64_post_reduce_store_relocation_v1",
+          "mutation_performed": true,
+          "old_lines": [
+            70,
+            71,
+            72
+          ],
+          "insert_before": "end N-tile loop",
+          "store_offsets": [
+            "%m_outer",
+            "%c0"
+          ]
+        },
+        "gm_to_cbuf_copy_lowering": {
+          "schema_version": "hivm_v64_gm_to_cbuf_copy_lowering_v1",
+          "mutation_performed": true,
+          "action_count": 1,
+          "actions": [
+            {
+              "line": 47,
+              "kind": "gm_to_cbuf_copy_lowered_to_nd2nz",
+              "old": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+              "new": "hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%k_l1_pong : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+            }
+          ]
+        },
+        "comment_strip": {
+          "schema_version": "hivm_v64_comment_strip_v1",
+          "removed_comment_count": 6
+        },
+        "manual_official_audit": {
+          "schema_version": "hivm_v64_manual_official_audit_v1",
+          "issue_count": 0,
+          "hard_blocker_count": 0,
+          "counts_by_kind": {},
+          "passed_v64_portable_manual_official_audit": true,
+          "issues": [],
+          "claim_boundary": "Portable/static audit only. Official Ascend Linux parser/verifier/compiler remains the source of truth."
+        },
+        "claim_boundary": "V6.4 fixes the V6.3 portable official blockers; Linux backend validation is still required."
+      },
+      "v64_manual_official_audit": {
+        "schema_version": "hivm_v64_manual_official_audit_v1",
+        "issue_count": 0,
+        "hard_blocker_count": 0,
+        "counts_by_kind": {},
+        "passed_v64_portable_manual_official_audit": true,
+        "issues": [],
+        "claim_boundary": "Portable/static audit only. Official Ascend Linux parser/verifier/compiler remains the source of truth."
+      }
+    }
+  },
+  "v61_linux_handoff_created": true,
+  "v61_linux_handoff_manifest": "artifacts/v64_check/v61_linux_handoff_manifest.json",
+  "v61_linux_handoff_dir": "artifacts/v64_check/linux_handoff",
+  "v61_backend_patch_contract": "artifacts/v64_check/linux_handoff/backend_patch_contract.json",
+  "recommended_next_step": "Copy linux_handoff/ to Ascend Linux, fill backend_commands.json, run python3 run_linux_validation.py."
+}

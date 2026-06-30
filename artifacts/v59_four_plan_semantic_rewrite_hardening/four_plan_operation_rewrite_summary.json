@@ -120,21 +120,15 @@
           },
           {
             "line": 148,
-            "value": "%s_ub_mb2_ping",
-            "from_type": "memref<32x1xf16, #hivm.address_space<ub>",
-            "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
+            "value": "%m_ub",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
           },
           {
             "line": 153,
-            "value": "%s_ub",
-            "from_type": "memref<32x1xf16, #hivm.address_space<ub>",
-            "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
-          },
-          {
-            "line": 153,
-            "value": "%p_ub_mb3_ping",
-            "from_type": "memref<32x1xf16, #hivm.address_space<ub>",
-            "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
+            "value": "%m_ub",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
           },
           {
             "line": 162,
@@ -144,15 +138,21 @@
           },
           {
             "line": 167,
-            "value": "%v_l1",
-            "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
-            "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+            "value": "%p_ub",
+            "from_type": "memref<64x128xf16, #hivm.address_space<ub>",
+            "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
           },
           {
             "line": 178,
-            "value": "%v_l1",
-            "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
-            "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+            "value": "%p_ub",
+            "from_type": "memref<64x128xf16, #hivm.address_space<ub>",
+            "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
+          },
+          {
+            "line": 178,
+            "value": "%s_l0c",
+            "from_type": "memref<64x128xf32, #hivm.address_space<cc>",
+            "to_type": "memref<32x64xf32, #hivm.address_space<cc>"
           },
           {
             "line": 188,
@@ -207,13 +207,13 @@
             },
             {
               "line": 148,
-              "before": "hivm.hir.vreduce ins(%s_ub_mb2_ping  : memref<32x64xf16, #hivm.address_space<ub>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
-              "after": "hivm.hir.vreduce ins(%s_ub_mb2_ping  : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+              "before": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub  : memref<32x1xf32, #hivm.address_space<ub>) {reduce_op=\"max\"}",
+              "after": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub  : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
             },
             {
               "line": 153,
-              "before": "hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>, memref<32x1xf32, #hivm.address_space<ub>) outs(%p_ub_mb3_ping  : memref<32x64xf16, #hivm.address_space<ub>)",
-              "after": "hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping  : memref<32x64xf16, #hivm.address_space<ub>>)"
+              "before": "hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>, memref<32x1xf32, #hivm.address_space<ub>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)",
+              "after": "hivm.hir.vsub ins(%s_ub, %m_ub  : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)"
             },
             {
               "line": 162,
@@ -222,13 +222,13 @@
             },
             {
               "line": 167,
-              "before": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>)",
-              "after": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1  : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+              "before": "hivm.hir.nd2nz ins(%p_ub  : memref<32x64xf16, #hivm.address_space<ub>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+              "after": "hivm.hir.nd2nz ins(%p_ub  : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
             },
             {
               "line": 178,
-              "before": "hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>, memref<64x128xf16, #hivm.address_space<cbuf>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)",
-              "after": "hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)"
+              "before": "hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>, memref<64x128xf16, #hivm.address_space<cbuf>) outs(%s_l0c  : memref<32x64xf32, #hivm.address_space<cc>)",
+              "after": "hivm.hir.mmad ins(%p_ub, %v_l1  : memref<32x64xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c  : memref<32x64xf32, #hivm.address_space<cc>>)"
             },
             {
               "line": 188,
@@ -856,7 +856,7 @@
             {
               "line": 136,
               "op": "nd2nz",
-              "text": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x64xf16, #hivm.address_space<cbuf>>)"
+              "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
             },
             {
               "line": 152,
@@ -873,19 +873,19 @@
             {
               "line": 144,
               "op": "mmad",
-              "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)"
+              "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x128xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x128xf32, #hivm.address_space<cc"
             }
           ],
           "vector": [
             {
               "line": 120,
               "op": "vreduce",
-              "text": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x1xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+              "text": "hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x64xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
             },
             {
               "line": 124,
               "op": "vsub",
-              "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x1xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x1xf16, #hivm.address_space<ub"
+              "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space"
             },
             {
               "line": 128,

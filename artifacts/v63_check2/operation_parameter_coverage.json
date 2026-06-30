@@ -1,0 +1,934 @@
+{
+  "schema_version": "hivm_v56_operation_parameter_coverage_v1",
+  "rows": [
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m",
+      "selected_value": 32,
+      "operation_action": "insert_M_outer_tile_loop_and_bind_M_slice_guard",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_n",
+      "selected_value": 64,
+      "operation_action": "insert_N_outer_tile_loop_and_bind_N_slice_guard",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_k",
+      "selected_value": 128,
+      "operation_action": "insert_K_outer_tile_loop_and_reduction_tile_guard",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "loop_order",
+      "selected_value": "outer_mkn",
+      "operation_action": "materialize_outer_tile_loop_order",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tail_strategy",
+      "selected_value": "mask_or_pad",
+      "operation_action": "insert_tail_guard_request_at_tile_body",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "reduce_tile_policy",
+      "selected_value": "half_k",
+      "operation_action": "insert_reduction_accumulation_guard_request",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "layout_aware_tile",
+      "selected_value": true,
+      "operation_action": "insert_layout_legality_guard_request",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": {
+        "tile_m": 32,
+        "tile_n": 64,
+        "tile_k": 128,
+        "loop_order": "outer_mkn",
+        "tail_strategy": "mask_or_pad",
+        "reduce_tile_policy": "half_k",
+        "layout_aware_tile": true
+      },
+      "operation_action": "rewrite_local_memref_operation_type_shapes",
+      "coverage_level": "semantic_operation_mvp",
+      "rewritten_occurrence_count": 70,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 34,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 36,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "bind_outer_tile_loops_to_axis_extents_and_tile_end_guards",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 43,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tail_strategy",
+      "selected_value": null,
+      "operation_action": "materialize_tile_end_mask_or_pad_semantics",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 43,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "reduce_tile_policy",
+      "selected_value": null,
+      "operation_action": "materialize_partial_accumulator_semantics",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 43,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 48,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 50,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 52,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 54,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 56,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 59,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 61,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 63,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 65,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 67,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 69,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 71,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 73,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 75,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 83,
+      "backend_verified": false
+    },
+    {
+      "plan": "TilingPlan",
+      "parameter": "tile_m/tile_n/tile_k",
+      "selected_value": null,
+      "operation_action": "attach_tile_slice_binding_to_hivm_operation",
+      "coverage_level": "semantic_operation_v58_axis_slice_reduction_binding",
+      "line": 85,
+      "backend_verified": false
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "parameter": "double_buffer",
+      "selected_value": true,
+      "operation_action": "ping_pong_alloc_clone_and_producer_consumer_use_def_rewrite",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "parameter": "template",
+      "selected_value": "M1_input_double_buffer",
+      "operation_action": "ping_pong_alloc_clone_and_producer_consumer_use_def_rewrite",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "parameter": "input_buffer_multiplier",
+      "selected_value": 2,
+      "operation_action": "ping_pong_alloc_clone_and_producer_consumer_use_def_rewrite",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "parameter": "stage_buffer_multiplier",
+      "selected_value": 2,
+      "operation_action": "ping_pong_alloc_clone_and_producer_consumer_use_def_rewrite",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "parameter": "stage_buffer_policy",
+      "selected_value": "none",
+      "operation_action": "ping_pong_alloc_clone_and_producer_consumer_use_def_rewrite",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "parameter": "buffer_multipliers",
+      "selected_value": {
+        "k_l1": 1,
+        "q_l1": 1,
+        "q_ub": 1,
+        "v_l1": 1
+      },
+      "operation_action": "ping_pong_alloc_clone_and_producer_consumer_use_def_rewrite",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "parameter": "ub_multiplier",
+      "selected_value": 1,
+      "operation_action": "ping_pong_alloc_clone_and_producer_consumer_use_def_rewrite",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "parameter": "l1_multiplier",
+      "selected_value": 1,
+      "operation_action": "ping_pong_alloc_clone_and_producer_consumer_use_def_rewrite",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "stage_num",
+      "selected_value": 2,
+      "operation_action": "insert_stage_sync_edges_and_pipeline_slot_binding_plus_v58_schedule_binding",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template",
+      "selected_value": "P2_stage2_balanced",
+      "operation_action": "insert_stage_sync_edges_and_pipeline_slot_binding_plus_v58_schedule_binding",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "enable_mixed_cv",
+      "selected_value": false,
+      "operation_action": "insert_stage_sync_edges_and_pipeline_slot_binding_plus_v58_schedule_binding",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "tile_mix_cube_loop",
+      "selected_value": 1,
+      "operation_action": "insert_stage_sync_edges_and_pipeline_slot_binding_plus_v58_schedule_binding",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "tile_mix_vector_loop",
+      "selected_value": 1,
+      "operation_action": "insert_stage_sync_edges_and_pipeline_slot_binding_plus_v58_schedule_binding",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "auto_cv_balance",
+      "selected_value": true,
+      "operation_action": "insert_stage_sync_edges_and_pipeline_slot_binding_plus_v58_schedule_binding",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "producer_consumer_distance",
+      "selected_value": 1,
+      "operation_action": "insert_stage_sync_edges_and_pipeline_slot_binding_plus_v58_schedule_binding",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "stage_buffer_policy",
+      "selected_value": "none",
+      "operation_action": "insert_stage_sync_edges_and_pipeline_slot_binding_plus_v58_schedule_binding",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 62,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 66,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "stage_num",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "materialize_stage_graph_and_prologue_steady_epilogue_schedule",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": null,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "select_pipeline_schedule_template",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": null,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "bind_tile_iteration_offset_between_producer_and_consumer",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": null,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "stage_buffer_policy",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "bind_pipeline_slots_to_multibuffer_policy",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": null,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 88,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 91,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 100,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 101,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 106,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 107,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 109,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 114,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 120,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 124,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 128,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 131,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 138,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 143,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 144,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 146,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 151,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 154,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 163,
+      "backend_verified": false
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "parameter": "template/stage_num/producer_consumer_distance",
+      "selected_value": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "operation_action": "attach_stage_schedule_binding_to_operation",
+      "coverage_level": "semantic_operation_v58_schedule_binding",
+      "line": 166,
+      "backend_verified": false
+    },
+    {
+      "plan": "SyncPlan",
+      "parameter": "policy",
+      "selected_value": "graph_sync_solver",
+      "operation_action": "rewrite_sync_event_wait_set_operations_and_event_policy",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "SyncPlan",
+      "parameter": "template",
+      "selected_value": "Y3_event_reuse",
+      "operation_action": "rewrite_sync_event_wait_set_operations_and_event_policy",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "SyncPlan",
+      "parameter": "barrier_level",
+      "selected_value": "low",
+      "operation_action": "rewrite_sync_event_wait_set_operations_and_event_policy",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "SyncPlan",
+      "parameter": "event_reuse",
+      "selected_value": true,
+      "operation_action": "rewrite_sync_event_wait_set_operations_and_event_policy",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "SyncPlan",
+      "parameter": "sync_granularity",
+      "selected_value": "stage",
+      "operation_action": "rewrite_sync_event_wait_set_operations_and_event_policy",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "SyncPlan",
+      "parameter": "event_id_policy",
+      "selected_value": "reuse",
+      "operation_action": "rewrite_sync_event_wait_set_operations_and_event_policy",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "SyncPlan",
+      "parameter": "sync_motion",
+      "selected_value": "local_move",
+      "operation_action": "rewrite_sync_event_wait_set_operations_and_event_policy",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    },
+    {
+      "plan": "SyncPlan",
+      "parameter": "remove_redundant_sync",
+      "selected_value": true,
+      "operation_action": "rewrite_sync_event_wait_set_operations_and_event_policy",
+      "coverage_level": "semantic_operation_mvp",
+      "backend_verified": false
+    }
+  ],
+  "row_count": 79,
+  "backend_verified": false
+}

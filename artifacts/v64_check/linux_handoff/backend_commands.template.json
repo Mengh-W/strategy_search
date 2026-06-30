@@ -1,0 +1,17 @@
+{
+  "_comment": "Fill these command templates on Ascend Linux. Placeholders: {ir}, {kind}, {out}, {root}. Empty means SKIPPED.",
+  "parse": "",
+  "roundtrip": "",
+  "verify": "",
+  "compile": "",
+  "run": "",
+  "msprof": "",
+  "_examples": {
+    "parse": "your_hivm_parser --input {ir} --out {out}/parsed.mlir",
+    "roundtrip": "your_hivm_ops_editor --roundtrip {ir} --out {out}/roundtrip.hivm.mlir",
+    "verify": "your_mlir_or_hivm_verify {ir}",
+    "compile": "your_hivm_compile {ir} -o {out}/{kind}_kernel",
+    "run": "your_kernel_runner --kernel {out}/{kind}_kernel --output {out}/output.bin",
+    "msprof": "msprof --output {out}/msprof --application='your_kernel_runner --kernel {out}/{kind}_kernel'"
+  }
+}

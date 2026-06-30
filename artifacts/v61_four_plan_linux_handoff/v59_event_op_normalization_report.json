@@ -1,0 +1,57 @@
+{
+  "schema_version": "hivm_v59_event_op_normalization_report_v1",
+  "mutation_performed": true,
+  "rewrite_count": 10,
+  "rewrites": [
+    {
+      "line": 73,
+      "from": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+      "to": "hivm.hir.set_flag {pipe=\"MTE2\", event=\"EVENT_ID_CVP_L2C_0\", producer_pipe=\"MTE2\", consumer_pipe=\"V\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 124,
+      "from": "hivm.hir.wait_flag[<PIPE_M>, <PIPE_M>, EVENT_ID0]",
+      "to": "hivm.hir.wait_flag {pipe=\"M\", event=\"EVENT_ID0\", producer_pipe=\"M\", consumer_pipe=\"M\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 130,
+      "from": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+      "to": "hivm.hir.wait_flag {pipe=\"V\", event=\"EVENT_ID_CVP_L2C_0\", producer_pipe=\"MTE2\", consumer_pipe=\"V\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 135,
+      "from": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+      "to": "hivm.hir.set_flag {pipe=\"V\", event=\"EVENT_ID_CVP_C2S_0\", producer_pipe=\"V\", consumer_pipe=\"MTE3\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 141,
+      "from": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+      "to": "hivm.hir.wait_flag {pipe=\"MTE3\", event=\"EVENT_ID_CVP_C2S_0\", producer_pipe=\"V\", consumer_pipe=\"MTE3\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 170,
+      "from": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+      "to": "hivm.hir.set_flag {pipe=\"MTE2\", event=\"EVENT_ID_CVP_L2C_1\", producer_pipe=\"MTE2\", consumer_pipe=\"V\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 176,
+      "from": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+      "to": "hivm.hir.wait_flag {pipe=\"V\", event=\"EVENT_ID_CVP_L2C_1\", producer_pipe=\"MTE2\", consumer_pipe=\"V\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 181,
+      "from": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+      "to": "hivm.hir.set_flag {pipe=\"V\", event=\"EVENT_ID_CVP_C2S_1\", producer_pipe=\"V\", consumer_pipe=\"MTE3\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 187,
+      "from": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+      "to": "hivm.hir.wait_flag {pipe=\"MTE3\", event=\"EVENT_ID_CVP_C2S_1\", producer_pipe=\"V\", consumer_pipe=\"MTE3\", hivm.v59_event_normalized=true}"
+    },
+    {
+      "line": 192,
+      "from": "hivm.hir.set_flag[<PIPE_FIX>, <PIPE_FIX>, EVENT_ID0]",
+      "to": "hivm.hir.set_flag {pipe=\"FIX\", event=\"EVENT_ID0\", producer_pipe=\"FIX\", consumer_pipe=\"FIX\", hivm.v59_event_normalized=true}"
+    }
+  ]
+}

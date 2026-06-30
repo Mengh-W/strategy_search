@@ -1,0 +1,453 @@
+{
+  "schema_version": "hivm_v60_real_operation_materialization_report_v1",
+  "mutation_performed": true,
+  "materialized_action_count": 56,
+  "actions": [
+    {
+      "source_line": 72,
+      "target_line": 73,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "set_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 73,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "set_flag"
+    },
+    {
+      "source_line": 75,
+      "target_line": 78,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "load",
+      "role": "Q_load_or_Q_stage"
+    },
+    {
+      "source_line": 77,
+      "target_line": 78,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "load",
+      "role": "producer_load_stage",
+      "region": "producer_load_or_layout"
+    },
+    {
+      "source_line": 80,
+      "target_line": 82,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "nd2nz",
+      "role": "layout_transform_tile"
+    },
+    {
+      "line": 95,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_schedule_annotation",
+      "target": "%c0"
+    },
+    {
+      "line": 100,
+      "plan": "TilingPlan",
+      "materialized": "tail_strategy_guard_annotation",
+      "target": "%m_outer"
+    },
+    {
+      "line": 101,
+      "plan": "TilingPlan",
+      "materialized": "reduce_tile_policy_accumulator_guard",
+      "target": "%k_outer"
+    },
+    {
+      "line": 102,
+      "plan": "TilingPlan",
+      "materialized": "layout_aware_tile_legality_guard",
+      "target": "%m_outer"
+    },
+    {
+      "source_line": 105,
+      "target_line": 107,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "load",
+      "role": "K_load_or_K_stage"
+    },
+    {
+      "source_line": 106,
+      "target_line": 107,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "load",
+      "role": "producer_load_stage",
+      "region": "producer_load_or_layout"
+    },
+    {
+      "source_line": 109,
+      "target_line": 111,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "load",
+      "role": "V_load_or_V_stage"
+    },
+    {
+      "source_line": 110,
+      "target_line": 111,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "load",
+      "role": "producer_load_stage",
+      "region": "producer_load_or_layout"
+    },
+    {
+      "source_line": 113,
+      "target_line": 114,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "nd2nz",
+      "role": "layout_transform_tile"
+    },
+    {
+      "source_line": 116,
+      "target_line": 117,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "nd2nz",
+      "role": "layout_transform_tile"
+    },
+    {
+      "source_line": 119,
+      "target_line": 121,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "copy",
+      "role": "K_load_or_K_stage"
+    },
+    {
+      "source_line": 120,
+      "target_line": 121,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "copy",
+      "role": "producer_load_stage",
+      "region": "producer_load_or_layout"
+    },
+    {
+      "source_line": 122,
+      "target_line": 124,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "wait_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 124,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "wait_flag"
+    },
+    {
+      "source_line": 129,
+      "target_line": 130,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "wait_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 130,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "wait_flag"
+    },
+    {
+      "source_line": 126,
+      "target_line": 132,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "mmad",
+      "role": "QK_score_tile_compute"
+    },
+    {
+      "source_line": 127,
+      "target_line": 132,
+      "plan": "TilingPlan",
+      "materialized": "reduction_attrs_on_compute_op",
+      "op": "mmad"
+    },
+    {
+      "source_line": 131,
+      "target_line": 132,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "mmad",
+      "role": "cube_compute_stage",
+      "region": "steady_compute"
+    },
+    {
+      "source_line": 134,
+      "target_line": 135,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "set_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 135,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "set_flag"
+    },
+    {
+      "source_line": 140,
+      "target_line": 141,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "wait_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 141,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "wait_flag"
+    },
+    {
+      "source_line": 137,
+      "target_line": 142,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "fixpipe",
+      "role": "vector_postprocess_tile_fixpipe"
+    },
+    {
+      "source_line": 145,
+      "target_line": 148,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "vreduce",
+      "role": "vector_postprocess_tile_vreduce"
+    },
+    {
+      "source_line": 147,
+      "target_line": 148,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "vreduce",
+      "role": "vector_postprocess_stage",
+      "region": "vector_postprocess"
+    },
+    {
+      "source_line": 150,
+      "target_line": 153,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "vsub",
+      "role": "vector_postprocess_tile_vsub"
+    },
+    {
+      "source_line": 152,
+      "target_line": 153,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "vsub",
+      "role": "vector_postprocess_stage",
+      "region": "vector_postprocess"
+    },
+    {
+      "source_line": 155,
+      "target_line": 158,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "vexp",
+      "role": "vector_postprocess_tile_vexp"
+    },
+    {
+      "source_line": 157,
+      "target_line": 158,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "vexp",
+      "role": "vector_postprocess_stage",
+      "region": "vector_postprocess"
+    },
+    {
+      "source_line": 160,
+      "target_line": 162,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "vreduce",
+      "role": "vector_postprocess_tile_vreduce"
+    },
+    {
+      "source_line": 161,
+      "target_line": 162,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "vreduce",
+      "role": "vector_postprocess_stage",
+      "region": "vector_postprocess"
+    },
+    {
+      "source_line": 164,
+      "target_line": 167,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "nd2nz",
+      "role": "layout_transform_tile"
+    },
+    {
+      "source_line": 169,
+      "target_line": 170,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "set_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 170,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "set_flag"
+    },
+    {
+      "source_line": 175,
+      "target_line": 176,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "wait_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 176,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "wait_flag"
+    },
+    {
+      "source_line": 172,
+      "target_line": 178,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "mmad",
+      "role": "PV_output_tile_compute"
+    },
+    {
+      "source_line": 173,
+      "target_line": 178,
+      "plan": "TilingPlan",
+      "materialized": "reduction_attrs_on_compute_op",
+      "op": "mmad"
+    },
+    {
+      "source_line": 177,
+      "target_line": 178,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "mmad",
+      "role": "cube_compute_stage",
+      "region": "steady_compute"
+    },
+    {
+      "source_line": 180,
+      "target_line": 181,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "set_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 181,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "set_flag"
+    },
+    {
+      "source_line": 186,
+      "target_line": 187,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "wait_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 187,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "wait_flag"
+    },
+    {
+      "source_line": 183,
+      "target_line": 188,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "fixpipe",
+      "role": "vector_postprocess_tile_fixpipe"
+    },
+    {
+      "source_line": 190,
+      "target_line": 192,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "set_flag",
+      "role": "pipeline_sync_stage",
+      "region": "dependency_sync"
+    },
+    {
+      "target_line": 192,
+      "plan": "SyncPlan",
+      "materialized": "regenerated_dependency_attrs_on_event_op",
+      "op": "set_flag"
+    },
+    {
+      "source_line": 199,
+      "target_line": 202,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "vdiv",
+      "role": "vector_postprocess_tile_vdiv"
+    },
+    {
+      "source_line": 201,
+      "target_line": 202,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "vdiv",
+      "role": "vector_postprocess_stage",
+      "region": "vector_postprocess"
+    },
+    {
+      "source_line": 204,
+      "target_line": 206,
+      "plan": "TilingPlan",
+      "materialized": "tile_slice_attrs_on_hivm_op",
+      "op": "store",
+      "role": "O_store_tile"
+    },
+    {
+      "source_line": 205,
+      "target_line": 206,
+      "plan": "CVPipelinePlan",
+      "materialized": "pipeline_stage_attrs_on_hivm_op",
+      "op": "store",
+      "role": "consumer_store_stage",
+      "region": "consumer_store_or_fixpipe"
+    }
+  ],
+  "pending_unmaterialized": {
+    "tile": null,
+    "reduction": null,
+    "stage": null
+  },
+  "linux_backend_validation_required": true
+}

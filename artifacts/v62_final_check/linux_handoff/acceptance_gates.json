@@ -1,0 +1,50 @@
+{
+  "schema_version": "hivm_v61_acceptance_gates_v1",
+  "gates_before_perf_claim": [
+    {
+      "name": "baseline_parse",
+      "required": true
+    },
+    {
+      "name": "optimized_parse",
+      "required": true
+    },
+    {
+      "name": "baseline_roundtrip",
+      "required": true
+    },
+    {
+      "name": "optimized_roundtrip",
+      "required": true
+    },
+    {
+      "name": "baseline_verify",
+      "required": true
+    },
+    {
+      "name": "optimized_verify",
+      "required": true
+    },
+    {
+      "name": "baseline_compile",
+      "required": true
+    },
+    {
+      "name": "optimized_compile",
+      "required": true
+    },
+    {
+      "name": "correctness_baseline_vs_optimized",
+      "required": true
+    },
+    {
+      "name": "baseline_msprof",
+      "required": true
+    },
+    {
+      "name": "optimized_msprof",
+      "required": true
+    }
+  ],
+  "claim_rule": "Do not claim speedup until all required gates pass and repeated msprof medians are compared."
+}

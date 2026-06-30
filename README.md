@@ -1,6 +1,15 @@
+# V6.4 update: official backend final sanitize
+
+V6.4 fixes the V6.3 official-document blockers found by manual audit: memref.subview now preserves GM/CBUF/UB address space, hivm.hir.load/store use GM→local and local→GM direction after subview lowering, Q/O tile subviews are relocated into tile-loop scope where possible, GM→CBUF copy in the sample path is lowered to local nd2nz staging, and a stricter v64 manual official audit is emitted. Linux backend parse/verify/compile remains required before claiming runnable performance.
+
 # HIVM Strategy Search Demo V5.3.1 — Backend-Contract-Ready Pre-Linux Edition
 
-当前版本：`V5.9-four-plan-semantic-rewrite-syntax-schedule-hardening`。
+当前版本：`V6.1-four-plan-linux-handoff-real-backend-validation`。
+
+
+> **V6.0 update:** 当前发布包在 V5.9 syntax/schedule hardening 基础上，新增 real operation materialization：将 V5.8/V5.9 中仍依赖注释表达的 `tile-slice binding`、`reduction binding`、`CVPipeline stage binding` 等语义，搬到 HIVM op 属性或 `annotation.mark` operation 上；新增 `v60_semantic_marker_materialization_audit.json`，检查核心策略语义是否仍只靠 comment/marker 承担。推荐 Linux 验证文件变为 `optimized.four_plan_real_operation_materialized.hivm.mlir`。仍然不能 claim 已通过真实 Linux compile/run/msprof。
+
+> **V6.1 update:** 当前发布包在 V6.0 real operation materialization 基础上，新增 `linux_handoff/` 真机验证交付目录：自动打包 baseline/optimized HIVM、selected plan、backend command templates、acceptance gates、backend patch contract、Linux validation runner 与 msprof comparison collector。目标是让 optimized HIVM 可以被复制到 Ascend Linux 环境后，按同一套脚本执行 parse / roundtrip / verify / compile / run / msprof。V6.1 仍不 claim 已通过 Linux backend；它把项目从“本地 materialized candidate”推进到“可落地执行真实 backend 验证”的 handoff 阶段。
 
 
 > **V5.9 update:** 当前发布包在 V5.8 的 TilingPlan / CVPipelinePlan semantic rewrite 基础上，新增 syntax/schedule hardening：修正 FA-like M/N/K 常量推断、修复 nested memref 闭合、归一化 event operation，并输出 `optimized.four_plan_operation_rewrite.v59_syntax_hardened.hivm.mlir` 作为优先 Linux backend 验证文件。仍然不能 claim 已通过真实 Linux compile/run/msprof。
@@ -22,6 +31,27 @@
   -> 用 fake backend 验证 contract / dry-run / roundtrip / acceptance 流程
   -> 等待真实 Linux + vTriton / BiShengIR / CANN 环境接棒验证
 ```
+
+### V6.0 real operation materialization 入口
+
+```bash
+bash scripts/run_v60_four_plan_real_operation_materialization.sh \
+  sample_input/fa_best.hivm.mlir \
+  artifacts/latest_smoke_run/selected_plan.json \
+  artifacts/v60_four_plan_real_operation_materialization
+```
+
+核心输出：
+
+```text
+artifacts/v60_four_plan_real_operation_materialization/
+  optimized.four_plan_real_operation_materialized.hivm.mlir
+  v60_real_operation_materialization_report.json
+  v60_multibuffer_use_def_coverage.json
+  v60_semantic_marker_materialization_audit.json
+```
+
+V6.0 的新增验收点是：`semantic_marker_as_logic_count = 0`，即 Tiling/CVPipeline/Sync 的核心策略语义不能只停留在注释里，必须落到 HIVM op 属性或 annotation operation。
 
 ---
 
@@ -584,3 +614,77 @@ artifacts/v58_tiling_cvpipeline_semantic_rewrite/stages/03_cvpipeline_operation_
 ```
 
 边界：V5.8 仍不宣称已经 Linux backend 编译通过。它生成的是更完整的 semantic operation rewrite candidate，必须在 Ascend Linux 上继续跑 parse / roundtrip / verifier / compile / correctness / msprof。
+
+### V6.1 Linux handoff 入口
+
+```bash
+bash scripts/run_v61_four_plan_linux_handoff.sh \
+  sample_input/fa_best.hivm.mlir \
+  artifacts/latest_smoke_run/selected_plan.json \
+  artifacts/v61_four_plan_linux_handoff
+```
+
+生成后重点查看：
+
+```text
+artifacts/v61_four_plan_linux_handoff/linux_handoff/README_LINUX_HANDOFF_CN.md
+artifacts/v61_four_plan_linux_handoff/linux_handoff/backend_commands.json
+artifacts/v61_four_plan_linux_handoff/linux_handoff/run_linux_validation.py
+artifacts/v61_four_plan_linux_handoff/linux_handoff/backend_patch_contract.json
+```
+
+把 `linux_handoff/` 复制到 Ascend Linux 后，填写 `backend_commands.json`，再运行：
+
+```bash
+python3 run_linux_validation.py
+```
+
+只有 baseline 和 optimized 都通过 parse / roundtrip / verify / compile / run，并完成 msprof 对比后，才能正式 claim 性能提升。
+
+## V6.2 official-backend lowering hardening
+
+V6.2 adds a final portable lowering stage before Linux handoff.  It targets the obvious blockers found in V6.1 optimized HIVM review:
+
+- `annotation.mark` is lowered into `memref.alloc` attributes or stripped when it only marks loop/constant guards.
+- Python-list-like generated attributes are normalized, e.g. `hivm.tile_offsets="m_outer,k_outer"` and `hivm.tile_shape="32x128"`.
+- `D_tile` / `propagate_from_input` placeholders are materialized or removed from code paths.
+- MultiBuffer residual base uses in `hivm.hir.*` operations are rewritten toward the selected ping slot when a ping/pong materialization exists.
+- `v62_official_backend_handoff_audit.json` reports remaining portable blockers.  A clean audit still does not claim Linux compile readiness; it only means the generated IR has fewer obvious textual blockers before the official Ascend Linux parser/verifier/compiler flow.
+
+Recommended Linux handoff input after V6.2:
+
+```text
+artifacts/<run>/linux_handoff/inputs/optimized.hivm.mlir
+```
+
+This file is copied from:
+
+```text
+artifacts/<run>/optimized.four_plan_official_backend_lowered.hivm.mlir
+```
+
+## V6.3: official-backend subview lowering hardening
+
+V6.3 further hardens the four-plan rewritten HIVM candidate for official Linux backend handoff:
+
+- materializes `memref.subview` before mismatched `hivm.hir.load` / `hivm.hir.store` operands, so GM source/target tiles have the same shape as local buffers;
+- strips generated private `hivm.v5*` / `hivm.v6*` / tile / pipeline debug attributes from the final handoff IR;
+- keeps CVPipeline physical scheduling as an explicit backend-contract item instead of pretending that string attributes alone change execution order;
+- emits `v63_official_compare_audit.json` and `v63_backend_contract.json`.
+
+Run:
+
+```bash
+bash scripts/run_v63_four_plan_official_backend_subview_lowering.sh \
+  sample_input/fa_best.hivm.mlir \
+  artifacts/latest_smoke_run/selected_plan.json \
+  artifacts/v63_four_plan_official_backend_subview_lowering
+```
+
+Preferred Linux handoff input:
+
+```text
+artifacts/v63_four_plan_official_backend_subview_lowering/linux_handoff/inputs/optimized.hivm.mlir
+```
+
+Boundary: V6.3 removes portable official-style blockers found in V6.2, but still requires the real Ascend Linux HIVM/MLIR parser, verifier, backend compiler, correctness check, and msprof run before claiming performance improvement.

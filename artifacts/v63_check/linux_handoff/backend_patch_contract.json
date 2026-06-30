@@ -1,0 +1,32 @@
+{
+  "schema_version": "hivm_v61_backend_patch_contract_v1",
+  "baseline_ir": "inputs/baseline.hivm.mlir",
+  "optimized_ir": "inputs/optimized.hivm.mlir",
+  "selected_plan": "inputs/selected_plan.json",
+  "must_validate": {
+    "TilingPlan": [
+      "tile_m/tile_n/tile_k are reflected in loop bounds/steps or backend-recognized tile attrs",
+      "M/N/K axis binding is accepted by backend",
+      "load/store slices and compute tile shapes are consistent",
+      "tail_strategy is lowered to valid mask/pad/divisible-fast-path behavior",
+      "reduce_tile_policy preserves partial accumulation semantics"
+    ],
+    "MultiBufferPlan": [
+      "ping/pong allocs are legal in UB/L1",
+      "producer/consumer use-def replacement is complete",
+      "buffer lifetime and capacity are safe"
+    ],
+    "CVPipelinePlan": [
+      "stage graph is accepted",
+      "prologue/steady/epilogue schedule or equivalent backend attrs are legal",
+      "producer_consumer_distance is reflected in tile-index dependency",
+      "stage_buffer_policy is consistent with MultiBufferPlan slots"
+    ],
+    "SyncPlan": [
+      "set_flag/wait_flag event ids are legal",
+      "no wait-before-set or event reuse conflict",
+      "new schedule dependency graph is synchronized"
+    ]
+  },
+  "portable_claim": "V6.1 creates a runnable Linux handoff directory. Official backend tools decide pass/fail."
+}

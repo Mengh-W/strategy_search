@@ -1,0 +1,11 @@
+{
+  "schema_version": "hivm_v62_official_backend_handoff_audit_v1",
+  "passed_v62_portable_official_handoff_audit": true,
+  "hard_blocker_count": 0,
+  "warning_count": 0,
+  "hard_blockers": [],
+  "warnings": [],
+  "linux_compile_ready_claim": false,
+  "backend_validation_required": true,
+  "claim_boundary": "V6.2 removes portable textual blockers. CVPipeline physical op movement still requires official backend verifier/lowering before any Linux compile/run claim."
+}

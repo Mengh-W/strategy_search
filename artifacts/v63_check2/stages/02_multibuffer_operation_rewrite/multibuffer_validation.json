@@ -1,0 +1,49 @@
+{
+  "schema_version": "hivm_multibuffer_restricted_true_validation_v1",
+  "version": "V5.0-multibuffer-restricted-true-rewrite",
+  "passed": true,
+  "checks": [
+    {
+      "name": "mutation_performed",
+      "passed": true,
+      "details": {
+        "rewritten_action_count": 4
+      }
+    },
+    {
+      "name": "replacement_map_non_empty",
+      "passed": true,
+      "details": {
+        "replacement_count": 8
+      }
+    },
+    {
+      "name": "ping_pong_slots_defined",
+      "passed": true,
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "name": "ping_slot_used_by_stage",
+      "passed": true,
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "name": "fallback_original_buffer_preserved",
+      "passed": true,
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "name": "rewrite_markers_present",
+      "passed": true,
+      "details": {}
+    }
+  ],
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "portable structural validation only; no MLIR verifier was run"
+}

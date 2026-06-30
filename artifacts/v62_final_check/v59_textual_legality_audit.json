@@ -1,0 +1,10 @@
+{
+  "schema_version": "hivm_v59_textual_legality_audit_v1",
+  "passed_v59_textual_legality_audit": true,
+  "malformed_memref_line_count": 0,
+  "bracket_event_line_count": 0,
+  "unlowered_code_placeholder_line_count": 0,
+  "blockers": [],
+  "linux_compile_ready_claim": false,
+  "backend_validation_required": true
+}

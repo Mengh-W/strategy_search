@@ -1,6 +1,6 @@
 {
   "package": "HIVM_strategy_search_demo_V5.3.1_backend_contract_ready_prelinux_lf_hygiene",
-  "version": "V5.3.1-backend-contract-ready-prelinux-lf-hygiene",
+  "version": "V6.1-four-plan-linux-handoff-real-backend-validation",
   "status": "ready_for_linux_real_backend_handoff_after_lf_hygiene_and_local_fake_backend_ci",
   "changes": [
     "Run live optimizer defect tests in batches for all 14 synthetic defect cases.",
@@ -80,5 +80,13 @@
     "live_search_tests": "opt-in via RUN_DEFECT_LIVE=1",
     "detailed_test_report": "docs/test_report/01_defect_hivm_cost_model_test_report_CN.md",
     "live_search_batched_result": "14 live defect cases passed in four batches"
-  }
+  },
+  "generated_at": "2026-06-29",
+  "key_added": [
+    "linux_handoff_v61.py",
+    "scripts/run_v61_four_plan_linux_handoff.sh",
+    "docs/backend/18_v61_linux_handoff_and_backend_validation_CN.md"
+  ],
+  "linux_handoff_created": true,
+  "linux_backend_validation_required": true
 }

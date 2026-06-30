@@ -1,0 +1,43 @@
+{
+  "schema_version": "hivm_cvpipeline_restricted_true_validation_v1",
+  "version": "V5.1-cvpipeline-restricted-true-rewrite",
+  "passed": true,
+  "checks": [
+    {
+      "name": "mutation_performed",
+      "passed": true,
+      "details": {
+        "rewritten_action_count": 2
+      }
+    },
+    {
+      "name": "pipeline_events_inserted",
+      "passed": true,
+      "details": {
+        "missing_events": []
+      }
+    },
+    {
+      "name": "load_compute_and_compute_store_edges_present",
+      "passed": true,
+      "details": {
+        "sync_edge_markers": 4,
+        "wait_edge_markers": 4
+      }
+    },
+    {
+      "name": "pipeline_group_markers_present",
+      "passed": true,
+      "details": {}
+    },
+    {
+      "name": "slot_binding_optional_and_reported",
+      "passed": true,
+      "details": {
+        "replacement_count": 2
+      }
+    }
+  ],
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "portable structural validation only; no MLIR verifier/DES/msprof was run"
+}

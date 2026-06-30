@@ -1,0 +1,21 @@
+{
+  "mutation_performed": true,
+  "inserted_constants": {
+    "%cM": 64,
+    "%cN": 1024,
+    "%cK": 128,
+    "%c0": 0,
+    "%cE": 1024,
+    "%cB": 64,
+    "%c32": 32,
+    "%c128": 128,
+    "%c64": 64
+  },
+  "bounds": {
+    "M": 64,
+    "D": 128,
+    "N": 1024,
+    "K": 128
+  },
+  "note": "Portable textual constant materialization; replace with official HivmOpsEditor constants in production if needed."
+}

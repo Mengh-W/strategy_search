@@ -1,0 +1,74 @@
+{
+  "schema_version": "hivm_v58_tiling_axis_binding_v1",
+  "confidence": "HIGH",
+  "axes": {
+    "M": {
+      "symbol": "%m_outer",
+      "extent": 64,
+      "tile": 32,
+      "evidence": "%Q_gm dim0 / %O_gm dim0"
+    },
+    "N": {
+      "symbol": "%n_outer",
+      "extent": 1024,
+      "tile": 64,
+      "evidence": "%K_gm dim0 / %V_gm dim0 sequence axis"
+    },
+    "K": {
+      "symbol": "%k_outer",
+      "extent": 128,
+      "tile": 128,
+      "evidence": "%Q_gm dim1 / %K_gm dim1 reduction-head axis"
+    },
+    "D": {
+      "symbol": "%d_outer",
+      "extent": 128,
+      "tile": 128,
+      "evidence": "%V_gm dim1 / %O_gm dim1 value/output feature axis"
+    }
+  },
+  "tensor_roles": {
+    "Q": {
+      "name": "%Q_gm",
+      "dims": [
+        64,
+        128
+      ],
+      "dtype": "f16",
+      "space": "unknown",
+      "kind": "func_arg"
+    },
+    "K": {
+      "name": "%K_gm",
+      "dims": [
+        1024,
+        128
+      ],
+      "dtype": "f16",
+      "space": "unknown",
+      "kind": "func_arg"
+    },
+    "V": {
+      "name": "%V_gm",
+      "dims": [
+        1024,
+        128
+      ],
+      "dtype": "f16",
+      "space": "unknown",
+      "kind": "func_arg"
+    },
+    "O": {
+      "name": "%O_gm",
+      "dims": [
+        64,
+        128
+      ],
+      "dtype": "f16",
+      "space": "unknown",
+      "kind": "func_arg"
+    }
+  },
+  "blockers": [],
+  "complete_for_sample_fa_pattern": true
+}

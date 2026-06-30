@@ -1,0 +1,9 @@
+{
+  "schema_version": "hivm_v64_manual_official_audit_v1",
+  "issue_count": 0,
+  "hard_blocker_count": 0,
+  "counts_by_kind": {},
+  "passed_v64_portable_manual_official_audit": true,
+  "issues": [],
+  "claim_boundary": "Portable/static audit only. Official Ascend Linux parser/verifier/compiler remains the source of truth."
+}

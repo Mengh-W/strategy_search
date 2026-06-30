@@ -86,7 +86,7 @@ module {
             // HIVM V5.5 TilingPlan shape rewrite on line 30: %k_l1_ping [96, 128] -> [64, 128]
             // HIVM V5.8 tile-slice binding: role=layout_transform_tile offsets=['propagate_from_input'] shape=['propagate_from_input'] axes=['layout-aware']
             hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>)
-            // HIVM V5.5 TilingPlan shape rewrite on line 31: %v_l1 [96, 128] -> [64, 128]
+            // HIVM V5.5 TilingPlan shape rewrite on line 31: %v_ub [96, 128] -> [64, 128]
             // HIVM V5.8 tile-slice binding: role=layout_transform_tile offsets=['propagate_from_input'] shape=['propagate_from_input'] axes=['layout-aware']
             hivm.hir.nd2nz ins(%v_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)
             // HIVM V5.5 TilingPlan shape rewrite on line 32: %k_l1_pong [96, 128] -> [64, 128]
@@ -101,14 +101,14 @@ module {
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_fixpipe offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.0 MultiBufferPlan use replacement: producer %s_ub -> %s_ub_mb2_ping (multibuffer_true_rewrite_action_0002)
             hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>)
-            // HIVM V5.5 TilingPlan shape rewrite on line 36: %s_ub [64, 96] -> [32, 64]
+            // HIVM V5.5 TilingPlan shape rewrite on line 36: %m_ub [64, 96] -> [32, 1]
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_vreduce offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.0 MultiBufferPlan use replacement: consumer %s_ub -> %s_ub_mb2_ping (multibuffer_true_rewrite_action_0002)
-            hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x1xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op="max"}
-            // HIVM V5.5 TilingPlan shape rewrite on line 37: %s_ub [64, 96] -> [32, 64]
+            hivm.hir.vreduce ins(%s_ub_mb2_ping : memref<32x64xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x64xf32, #hivm.address_space<ub>>) {reduce_op="max"}
+            // HIVM V5.5 TilingPlan shape rewrite on line 37: %p_ub [64, 96] -> [32, 64]
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_vsub offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.0 MultiBufferPlan use replacement: producer %p_ub -> %p_ub_mb3_ping (multibuffer_true_rewrite_action_0003)
-            hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x1xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x1xf16, #hivm.address_space<ub>>)
+            hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf32, #hivm.address_space<ub>>) outs(%p_ub_mb3_ping : memref<32x64xf16, #hivm.address_space<ub>>)
             // HIVM V5.5 TilingPlan shape rewrite on line 38: %p_ub [64, 96] -> [32, 64]
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_vexp offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.0 MultiBufferPlan use replacement: consumer %p_ub -> %p_ub_mb3_ping (multibuffer_true_rewrite_action_0003)
@@ -116,13 +116,13 @@ module {
             // HIVM V5.5 TilingPlan shape rewrite on line 39: %l_ub [64, 96] -> [32, 1]
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_vreduce offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             hivm.hir.vreduce ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x64xf32, #hivm.address_space<ub>>) {reduce_op="sum"}
-            // HIVM V5.5 TilingPlan shape rewrite on line 40: %v_l1 [64, 96] -> [64, 128]
+            // HIVM V5.5 TilingPlan shape rewrite on line 40: %p_ub [64, 96] -> [32, 64]
             // HIVM V5.8 tile-slice binding: role=layout_transform_tile offsets=['propagate_from_input'] shape=['propagate_from_input'] axes=['layout-aware']
-            hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x64xf16, #hivm.address_space<cbuf>>)
+            hivm.hir.nd2nz ins(%p_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)
             // HIVM V5.5 TilingPlan shape rewrite on line 41: %s_l0c [64, 96] -> [32, 64]
             // HIVM V5.8 tile-slice binding: role=PV_output_tile_compute offsets=['%m_outer', '%d_outer', '%n_outer'] shape=[32, 'D_tile', 64] axes=['M', 'D', 'N']
             // HIVM V5.8 reduction binding: partial_accumulate_over_N policy=half_k init/update/final-store guarded by outer tile indices
-            hivm.hir.mmad ins(%p_ub, %v_l1 : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)
+            hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x128xf16, #hivm.address_space<ub>>, memref<64x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x128xf32, #hivm.address_space<cc>>)
             // HIVM V5.5 TilingPlan shape rewrite on line 42: %acc_ub [64, 96] -> [32, 128]
             // HIVM V5.8 tile-slice binding: role=vector_postprocess_tile_fixpipe offsets=['%m_outer', '%n_outer'] shape=[32, 64] axes=['M', 'N']
             // HIVM V5.0 MultiBufferPlan use replacement: producer %acc_ub -> %acc_ub_mb1_ping (multibuffer_true_rewrite_action_0001)

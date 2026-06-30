@@ -1,0 +1,13 @@
+{
+  "schema_version": "hivm_v63_backend_contract_v1",
+  "official_linux_backend_required_checks": [
+    "parse optimized.four_plan_official_backend_subview_lowered.hivm.mlir",
+    "verify memref.subview syntax and dominance of offsets",
+    "verify hivm.hir.load/store src/dst shape equality after subview lowering",
+    "run HIVM/MLIR verifier for all custom attrs left by official dialect",
+    "lower or invoke official CVPipeline pass for physical work-item movement",
+    "compile and run correctness before msprof"
+  ],
+  "cvpipeline_boundary": "V6.3 strips private schedule attrs from handoff IR and keeps schedule information in JSON contract; physical CVPipeline movement must be done by official pass or a registered backend lowering.",
+  "subview_lowering_note": "Offsets outside m/n/k tile-loop scope are conservatively lowered to %c0. Linux backend must still verify semantic correctness."
+}

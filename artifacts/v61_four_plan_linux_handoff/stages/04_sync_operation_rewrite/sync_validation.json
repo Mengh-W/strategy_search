@@ -1,0 +1,19 @@
+{
+  "schema_version": "hivm_v55_sync_event_true_validation_v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "mutation_performed",
+      "passed": true
+    },
+    {
+      "name": "flag_count_preserved_or_increased",
+      "passed": true
+    },
+    {
+      "name": "normalized_marker_present",
+      "passed": true
+    }
+  ],
+  "production_rewrite_claim_allowed": false
+}

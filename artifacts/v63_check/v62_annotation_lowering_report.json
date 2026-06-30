@@ -1,0 +1,70 @@
+{
+  "schema_version": "hivm_v62_annotation_lowering_report_v1",
+  "mutation_performed": true,
+  "lowered_count": 8,
+  "stripped_loop_marker_count": 4,
+  "lowered": [
+    {
+      "annotation_line": 23,
+      "target": "%q_ub_mb0_ping",
+      "alloc_line": 22
+    },
+    {
+      "annotation_line": 26,
+      "target": "%q_ub_mb0_pong",
+      "alloc_line": 25
+    },
+    {
+      "annotation_line": 32,
+      "target": "%acc_ub_mb1_ping",
+      "alloc_line": 29
+    },
+    {
+      "annotation_line": 36,
+      "target": "%acc_ub_mb1_pong",
+      "alloc_line": 35
+    },
+    {
+      "annotation_line": 41,
+      "target": "%s_ub_mb2_ping",
+      "alloc_line": 40
+    },
+    {
+      "annotation_line": 44,
+      "target": "%s_ub_mb2_pong",
+      "alloc_line": 43
+    },
+    {
+      "annotation_line": 49,
+      "target": "%p_ub_mb3_ping",
+      "alloc_line": 48
+    },
+    {
+      "annotation_line": 52,
+      "target": "%p_ub_mb3_pong",
+      "alloc_line": 51
+    }
+  ],
+  "stripped": [
+    {
+      "annotation_line": 90,
+      "target": "%c0",
+      "reason": "loop_or_constant_marker_stripped_for_official_handoff"
+    },
+    {
+      "annotation_line": 91,
+      "target": "%m_outer",
+      "reason": "loop_or_constant_marker_stripped_for_official_handoff"
+    },
+    {
+      "annotation_line": 92,
+      "target": "%k_outer",
+      "reason": "loop_or_constant_marker_stripped_for_official_handoff"
+    },
+    {
+      "annotation_line": 93,
+      "target": "%m_outer",
+      "reason": "loop_or_constant_marker_stripped_for_official_handoff"
+    }
+  ]
+}

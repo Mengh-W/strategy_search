@@ -32,8 +32,13 @@ from strategy_search.parameter_rewrite_coverage import write_parameter_coverage_
 from strategy_search.operation_rewrite.linux_precompile_audit import write_v57_precompile_audit_outputs
 from strategy_search.operation_rewrite.tiling_semantic_full_rewrite_v58 import apply_tiling_semantic_full_rewrite
 from strategy_search.operation_rewrite.cvpipeline_semantic_schedule_v58 import apply_cvpipeline_semantic_schedule_rewrite
+from strategy_search.operation_rewrite.real_operation_materialization_v60 import write_v60_real_operation_materialization_outputs
+from strategy_search.operation_rewrite.linux_handoff_v61 import create_v61_linux_handoff
+from strategy_search.operation_rewrite.official_backend_lowering_v62 import write_v62_official_backend_lowering_outputs
+from strategy_search.operation_rewrite.official_backend_subview_lowering_v63 import write_v63_official_backend_subview_lowering_outputs
+from strategy_search.operation_rewrite.official_backend_final_sanitize_v64 import write_v64_final_official_sanitize_outputs
 
-VERSION = "V5.9-four-plan-semantic-rewrite-syntax-schedule-hardening"
+VERSION = "V6.4-four-plan-official-backend-final-sanitize"
 
 _FOR_RE = re.compile(r"^(?P<indent>\s*)scf\.for\s+(?P<ivar>%[A-Za-z0-9_.$-]+)\s*=\s*(?P<body>.*\{.*)$")
 _HIVM_OP_RE = re.compile(r"hivm\.hir\.(?P<op>[A-Za-z0-9_]+)")
@@ -282,6 +287,17 @@ def run_four_plan_operation_rewrite(
     final_ir = output_dir / "optimized.four_plan_operation_rewrite.hivm.mlir"
     final_ir.write_text(sync_text, encoding="utf-8")
     v57_audit_outputs = write_v57_precompile_audit_outputs(final_ir, output_dir)
+    v59_ir_for_v60 = ((v57_audit_outputs.get("v59_hardening") or {}).get("v59_syntax_hardened_ir")) or v57_audit_outputs.get("hardened_ir") or str(final_ir)
+    v60_outputs = write_v60_real_operation_materialization_outputs(v59_ir_for_v60, output_dir)
+    # V6.2: lower custom annotations/string placeholders and remove portable blockers.
+    v62_outputs = write_v62_official_backend_lowering_outputs(v60_outputs.get("v60_real_operation_materialized_ir") or v59_ir_for_v60, output_dir)
+    # V6.3: materialize official-style memref.subview for mismatched load/store
+    # operands, strip generated private attrs/comments, and create a stricter
+    # official-compare audit for Linux backend handoff.
+    v63_outputs = write_v63_official_backend_subview_lowering_outputs(v62_outputs.get("v62_official_backend_lowered_ir") or v60_outputs.get("v60_real_operation_materialized_ir") or v59_ir_for_v60, output_dir)
+    # V6.4: fix V6.3 official-document blockers: subview address spaces,
+    # load/store GM/local direction, Q/O tile-loop binding, and GM->CBUF copy.
+    v64_outputs = write_v64_final_official_sanitize_outputs(v63_outputs.get("v63_official_backend_subview_lowered_ir") or v62_outputs.get("v62_official_backend_lowered_ir") or v60_outputs.get("v60_real_operation_materialized_ir") or v59_ir_for_v60, output_dir)
     # Metadata coverage block remains useful, but the core output is already operation-mutated.
     final_with_coverage = output_dir / "optimized.four_plan_operation_rewrite.with_coverage.hivm.mlir"
     coverage_out = write_parameter_coverage_outputs(selected_plan_path, final_ir, final_with_coverage, output_dir)
@@ -311,7 +327,7 @@ def run_four_plan_operation_rewrite(
         "sync": bool(sync_validation.get("passed")),
     }
     summary = {
-        "schema_version": "hivm_v59_four_plan_operation_rewrite_summary_v1",
+        "schema_version": "hivm_v60_four_plan_operation_rewrite_summary_v1",
         "version": VERSION,
         "input_ir": str(ir_path),
         "selected_plan": str(selected_plan_path),
@@ -328,16 +344,31 @@ def run_four_plan_operation_rewrite(
         "linux_precompile_audit_passed": bool((v57_audit_outputs.get("precompile_audit") or {}).get("passed_portable_precompile_audit")),
         "v59_textual_legality_audit_passed": bool((((v57_audit_outputs.get("v59_hardening") or {}).get("textual_legality_audit") or {}).get("passed_v59_textual_legality_audit"))),
         "v59_syntax_hardened_ir": ((v57_audit_outputs.get("v59_hardening") or {}).get("v59_syntax_hardened_ir")),
-        "linux_precompile_blocker_count": len((v57_audit_outputs.get("precompile_audit") or {}).get("blockers") or []),
+        "v60_real_operation_materialized_ir": v60_outputs.get("v60_real_operation_materialized_ir"),
+        "v60_real_operation_materialization_performed": bool((v60_outputs.get("real_operation_materialization") or {}).get("mutation_performed")),
+        "v60_marker_materialization_audit_passed": bool((v60_outputs.get("semantic_marker_materialization_audit") or {}).get("passed_v60_marker_materialization_audit")),
+        "v60_semantic_marker_as_logic_count": int((v60_outputs.get("semantic_marker_materialization_audit") or {}).get("semantic_marker_as_logic_count") or 0),
+        "v62_official_backend_lowered_ir": v62_outputs.get("v62_official_backend_lowered_ir"),
+        "v62_official_backend_handoff_audit_passed": bool((v62_outputs.get("official_backend_handoff_audit") or {}).get("passed_v62_portable_official_handoff_audit")),
+        "v62_official_backend_hard_blocker_count": int((v62_outputs.get("official_backend_handoff_audit") or {}).get("hard_blocker_count") or 0),
+        "v62_official_backend_warning_count": int((v62_outputs.get("official_backend_handoff_audit") or {}).get("warning_count") or 0),
+        "v63_official_backend_subview_lowered_ir": v63_outputs.get("v63_official_backend_subview_lowered_ir"),
+        "v63_official_compare_audit_passed": bool((v63_outputs.get("official_compare_audit") or {}).get("passed_v63_portable_official_compare_audit")),
+        "v63_official_compare_issue_count": int((v63_outputs.get("official_compare_audit") or {}).get("issue_count") or 0),
+        "v63_subview_action_count": int((v63_outputs.get("subview_lowering") or {}).get("action_count") or 0),
+        "v64_official_backend_sanitized_ir": v64_outputs.get("v64_official_backend_sanitized_ir"),
+        "v64_manual_official_audit_passed": bool((v64_outputs.get("v64_manual_official_audit") or {}).get("passed_v64_portable_manual_official_audit")),
+        "v64_manual_official_hard_blocker_count": int((v64_outputs.get("v64_manual_official_audit") or {}).get("hard_blocker_count") or 0),
+        "linux_precompile_blocker_count": len((v57_audit_outputs.get("precompile_audit") or {}).get("blockers") or []) + len((v60_outputs.get("semantic_marker_materialization_audit") or {}).get("blockers") or []) + int((v62_outputs.get("official_backend_handoff_audit") or {}).get("hard_blocker_count") or 0) + int((v64_outputs.get("v64_manual_official_audit") or {}).get("hard_blocker_count") or 0),
         "linux_precompile_audit": str(output_dir / "v57_linux_precompile_audit.json"),
         "precompile_hardened_ir": v57_audit_outputs.get("hardened_ir"),
-        "recommended_linux_validation_ir": ((v57_audit_outputs.get("v59_hardening") or {}).get("v59_syntax_hardened_ir")) or v57_audit_outputs.get("hardened_ir"),
+        "recommended_linux_validation_ir": v64_outputs.get("v64_official_backend_sanitized_ir") or v63_outputs.get("v63_official_backend_subview_lowered_ir") or v62_outputs.get("v62_official_backend_lowered_ir") or v60_outputs.get("v60_real_operation_materialized_ir") or ((v57_audit_outputs.get("v59_hardening") or {}).get("v59_syntax_hardened_ir")) or v57_audit_outputs.get("hardened_ir"),
         "linux_backend_validation_required": True,
         "tiling_semantic_full_rewrite_performed": bool(tiling_full_report.get("mutation_performed")),
         "cvpipeline_semantic_schedule_performed": bool(cv_semantic_report.get("mutation_performed")),
         "tiling_axis_binding": str(tiling_dir / "tiling_axis_binding.json"),
         "cvpipeline_stage_graph": str(cv_dir / "cvpipeline_stage_graph.json"),
-        "claim_boundary": "V5.9 keeps the V5.8 Tiling/CVPipeline semantic rewrite and adds syntax/schedule hardening for Linux handoff: corrected FA-like M/N/K constant inference, nested memref closure repair, and event-op normalization. Official Linux backend validation is still required before claiming compile/run/msprof readiness.",
+        "claim_boundary": "V6.4 fixes V6.3 official-document blockers in portable IR: subview address-space preservation, GM/local load-store direction, Q/O tile-loop binding, and GM->CBUF copy lowering. Official Linux backend validation is still required before claiming compile/run/msprof readiness.",
         "linux_validation_sequence": [
             "parse baseline HIVM",
             "parse optimized.four_plan_operation_rewrite.hivm.mlir",
@@ -356,7 +387,24 @@ def run_four_plan_operation_rewrite(
             "v57_precompile_audit": v57_audit_outputs,
             "v58_tiling_semantic_full_rewrite": tiling_full_report,
             "v58_cvpipeline_semantic_schedule": cv_semantic_report,
+            "v60_real_operation_materialization": v60_outputs,
+            "v62_official_backend_lowering": v62_outputs,
+            "v63_official_backend_subview_lowering": v63_outputs,
+            "v64_final_official_sanitize": v64_outputs,
         },
     }
+    # V6.1: create a self-contained Linux handoff bundle for real backend validation.
+    v61_manifest = create_v61_linux_handoff(
+        baseline_ir=ir_path,
+        optimized_ir=Path(summary.get("recommended_linux_validation_ir") or summary.get("v62_official_backend_lowered_ir") or summary.get("v60_real_operation_materialized_ir") or final_ir),
+        selected_plan=selected_plan_path,
+        output_dir=output_dir,
+        rewrite_summary=summary,
+    )
+    summary["v61_linux_handoff_created"] = True
+    summary["v61_linux_handoff_manifest"] = str(output_dir / "v61_linux_handoff_manifest.json")
+    summary["v61_linux_handoff_dir"] = v61_manifest.get("handoff_dir")
+    summary["v61_backend_patch_contract"] = v61_manifest.get("backend_patch_contract")
+    summary["recommended_next_step"] = v61_manifest.get("next_action")
     _write_json(output_dir / "four_plan_operation_rewrite_summary.json", summary)
     return summary
