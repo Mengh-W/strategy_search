@@ -1,0 +1,18 @@
+{
+  "schema_version": "hivm_four_plan_rewrite_controller_summary_v1",
+  "version": "V4.11-unified-four-plan-rewrite-controller",
+  "input_ir": "sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+  "selected_plan": "artifacts/latest_smoke_run/selected_plan.json",
+  "overall_decision": "PORTABLE_SYNC_REWRITE_PLUS_MULTI_PLAN_SCAFFOLD_READY",
+  "sync_rewritten_action_count": 74,
+  "sync_portable_rewrite_passed": true,
+  "multibuffer_ready_count": 20,
+  "cvpipeline_window_count": 50,
+  "cvpipeline_ready_count": 36,
+  "tiling_readiness": "READY_FOR_TILING_PLAN_SCAFFOLD",
+  "hivmopseditor_migration_queue_count": 4,
+  "semantic_mutation_count": 1,
+  "planned_only_count": 4,
+  "production_rewrite_claim_allowed": false,
+  "controller_report": "artifacts/v412_controller_acceptance_report/controller_run/four_plan_rewrite_controller_report.json"
+}

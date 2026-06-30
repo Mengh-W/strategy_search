@@ -1,0 +1,43 @@
+{
+  "enabled": true,
+  "source": "/mnt/data/hivm_calib_work/split/e2e_split_qkv/output/op_summary.csv",
+  "selected_op_type": "split_qkv_rmsnorm_mrope_kernel",
+  "selected_op_name": "split_qkv_rmsnorm_mrope_kernel",
+  "task_duration_us": 2433.789,
+  "cycles_per_us": 1850.0,
+  "measured_total_cycles": 4502509.65,
+  "aicore_time_us": 0.0,
+  "aiv_time_us": 747824.823,
+  "aic_total_cycles": 0.0,
+  "aiv_total_cycles": 24678219174.0,
+  "block_num": 0.0,
+  "mix_block_num": 0.0,
+  "cube_utilization_pct": 0.0,
+  "aic_ratios": {
+    "mac": 0.0,
+    "scalar": 0.0,
+    "mte1": 0.0,
+    "mte2": 0.0,
+    "fixpipe": 0.0
+  },
+  "aiv_ratios": {
+    "vector": 0.105,
+    "scalar": 0.137,
+    "mte2": 0.249,
+    "mte3": 0.02
+  },
+  "component_time_us": {
+    "compute_mac": 0.0,
+    "memory_mte_fixpipe_sum": 201032.228,
+    "vector": 78171.143,
+    "scalar_control_max_side": 102803.297
+  },
+  "component_ratios_vs_wall": {
+    "compute": 0.0,
+    "memory": 0.26882261970595217,
+    "vector": 0.10453135626924756,
+    "scalar_control": 0.13746975740600684
+  },
+  "dominant_runtime_signal": "memory",
+  "target_note": "measured_total_cycles = Task Duration(us) * cycles_per_us; aic/aiv_total_cycles are kept as diagnostic resource counters, not summed."
+}

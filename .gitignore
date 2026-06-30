@@ -1,1 +1,21 @@
-profiles/raw/ 
+# Python/cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Build/output artifacts
+build*/
+output*/
+outputs/
+demo_out/
+phase*_out/
+
+# Logs
+*.log
+
+# Large raw profiles, keep intentionally only when needed
+profiles/raw/
+# Local agent / scratch work directories
+.omc/
+**/.omc/

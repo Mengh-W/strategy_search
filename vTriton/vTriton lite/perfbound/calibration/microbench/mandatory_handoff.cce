@@ -1,0 +1,17 @@
+/*
+ * Mandatory Cube to Vector Handoff Microbenchmark
+ *
+ * Runs Cube work on AIC, synchronizes with AIV in the same mixed kernel, then
+ * runs Vector work that consumes the GM result.
+ */
+#include "vt_microbench_common.h"
+
+static constexpr int __enable_feature_for_compile_default = KERNEL_TYPE_MIX_AIC_1_1;
+
+extern "C" __global__ __aicore__ void mandatory_handoff(GM_ADDR a, GM_ADDR b, GM_ADDR c, uint32_t K)
+{
+    KERNEL_TASK_TYPE_DEFAULT(KERNEL_TYPE_MIX_AIC_1_1);
+    VTCalib::MandatoryHandoffKernel op;
+    op.Init(a, b, c, K);
+    op.Process();
+}

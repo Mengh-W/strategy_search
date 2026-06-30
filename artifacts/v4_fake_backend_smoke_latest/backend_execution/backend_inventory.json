@@ -1,0 +1,248 @@
+{
+  "schema_version": "fake_hivm_operation_inventory_v1",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "op_count": 24,
+  "operations": [
+    {
+      "op_id": 0,
+      "operation_name": "hivm.strategy.source",
+      "source_line": 17,
+      "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+      "operand_count": 0,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 1,
+      "operation_name": "func.func",
+      "source_line": 18,
+      "text_preview": "func.func @fa_bad(",
+      "operand_count": 0,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 2,
+      "operation_name": "hivm.strategy.strategy_id",
+      "source_line": 22,
+      "text_preview": "%O_gm : memref<64x128xf16, #hivm.address_space<gm>>) attributes {hivm.strategy.strategy_id = \"candidate_01681\", hivm.strategy.model_version = \"V3.3-artifact-kernel-profile\", hivm.strategy.tile_m = 32 : i64, hivm.strategy.tile_n = 64 : i64, ",
+      "operand_count": 1,
+      "result_count": 1,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 3,
+      "operation_name": "scf.for",
+      "source_line": 42,
+      "text_preview": "scf.for %j = %c0 to %c1024 step %c32 {   // @trip=32",
+      "operand_count": 4,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 4,
+      "operation_name": "hivm.hir.load",
+      "source_line": 43,
+      "text_preview": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 5,
+      "operation_name": "hivm.hir.nd2nz",
+      "source_line": 44,
+      "text_preview": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 6,
+      "operation_name": "hivm.hir.load",
+      "source_line": 46,
+      "text_preview": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 7,
+      "operation_name": "hivm.hir.load",
+      "source_line": 47,
+      "text_preview": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 8,
+      "operation_name": "hivm.hir.nd2nz",
+      "source_line": 48,
+      "text_preview": "hivm.hir.nd2nz ins(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%k_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 9,
+      "operation_name": "hivm.hir.nd2nz",
+      "source_line": 49,
+      "text_preview": "hivm.hir.nd2nz ins(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 10,
+      "operation_name": "hivm.hir.barrier",
+      "source_line": 53,
+      "text_preview": "hivm.hir.barrier {mode = \"ALL\"}",
+      "operand_count": 0,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 11,
+      "operation_name": "hivm.hir.mmad",
+      "source_line": 55,
+      "text_preview": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, ",
+      "operand_count": 3,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 12,
+      "operation_name": "hivm.hir.fixpipe",
+      "source_line": 56,
+      "text_preview": "hivm.hir.fixpipe {hivm.cv.pipeline_hint = true, hivm.cv.role = \"fixpipe\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 :",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 13,
+      "operation_name": "hivm.hir.vreduce",
+      "source_line": 57,
+      "text_preview": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : ",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 14,
+      "operation_name": "hivm.hir.vsub",
+      "source_line": 58,
+      "text_preview": "hivm.hir.vsub {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64",
+      "operand_count": 3,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 15,
+      "operation_name": "hivm.hir.vexp",
+      "source_line": 59,
+      "text_preview": "hivm.hir.vexp {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 16,
+      "operation_name": "hivm.hir.vreduce",
+      "source_line": 60,
+      "text_preview": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : ",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 17,
+      "operation_name": "hivm.hir.mmad",
+      "source_line": 63,
+      "text_preview": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, ",
+      "operand_count": 3,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 18,
+      "operation_name": "hivm.hir.fixpipe",
+      "source_line": 64,
+      "text_preview": "hivm.hir.fixpipe {hivm.cv.pipeline_hint = true, hivm.cv.role = \"fixpipe\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 :",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 19,
+      "operation_name": "hivm.hir.barrier",
+      "source_line": 68,
+      "text_preview": "hivm.hir.barrier {mode = \"ALL\"}",
+      "operand_count": 0,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 20,
+      "operation_name": "hivm.hir.vdiv",
+      "source_line": 71,
+      "text_preview": "hivm.hir.vdiv {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64",
+      "operand_count": 3,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 21,
+      "operation_name": "hivm.hir.cast",
+      "source_line": 72,
+      "text_preview": "hivm.hir.cast {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 22,
+      "operation_name": "hivm.hir.store",
+      "source_line": 73,
+      "text_preview": "hivm.hir.store ins(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 23,
+      "operation_name": "return",
+      "source_line": 74,
+      "text_preview": "return",
+      "operand_count": 0,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    }
+  ]
+}

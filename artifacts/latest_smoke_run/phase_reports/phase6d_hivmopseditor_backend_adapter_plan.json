@@ -1,0 +1,22 @@
+{
+  "schema_version": "hivm_phase6d_hivmopseditor_backend_adapter_plan_v1",
+  "phase": "Phase-6D",
+  "build_location": "<vTriton>/tools/hivm-operation-backend/",
+  "requires": [
+    "vTriton source tree",
+    "TRITONSIM_HAS_BISHENGIR_HIVM enabled if HIVM dialect is external",
+    "MLIR/LLVM build targets used by vTriton",
+    "AscendModelTransforms and AscendModelIR libraries"
+  ],
+  "modes": [
+    "--print-capabilities",
+    "--inventory",
+    "--roundtrip",
+    "--verify-only",
+    "--dry-run",
+    "--mutate --mutation-kind gm_roundtrip_deletion --max-gm-pairs N"
+  ],
+  "disabled_modes": [
+    "--mutate --mutation-kind q_load_hoist"
+  ]
+}

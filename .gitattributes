@@ -1,0 +1,28 @@
+# Keep source and shell files Linux-friendly across Windows/WSL/Linux checkouts.
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.txt text eol=lf
+*.mlir text eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+# vTriton/BiShengIR/CANN-adjacent source and fixture files used on Linux.
+*.cpp text eol=lf
+*.cc text eol=lf
+*.cxx text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+*.hpp text eol=lf
+*.hh text eol=lf
+*.td text eol=lf
+*.cce text eol=lf
+*.ttir text eol=lf
+*.patch text eol=lf
+*.csv text eol=lf
+*.cmake text eol=lf
+CMakeLists.txt text eol=lf

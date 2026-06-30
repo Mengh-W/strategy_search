@@ -1,0 +1,28 @@
+{
+  "schema_version": "hivm_v55_sync_event_true_rewrite_report_v1",
+  "version": "V5.5-sync-event-operation-normalization-rewrite",
+  "mutation_kind": "sync_flag_attribute_to_bracket_operation_rewrite",
+  "mutation_performed": true,
+  "rewritten_action_count": 2,
+  "mutations": [
+    {
+      "line": 76,
+      "kind": "wait_flag",
+      "old": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+      "new": "hivm.hir.wait_flag[<PIPE_M>, <PIPE_M>, EVENT_ID0]",
+      "pipe": "PIPE_M",
+      "event": "EVENT_ID0"
+    },
+    {
+      "line": 115,
+      "kind": "set_flag",
+      "old": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+      "new": "hivm.hir.set_flag[<PIPE_FIX>, <PIPE_FIX>, EVENT_ID0]",
+      "pipe": "PIPE_FIX",
+      "event": "EVENT_ID0"
+    }
+  ],
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "syntax-level SyncPlan flag operation normalization; Linux backend must verify official HIVM op syntax and event liveness"
+}

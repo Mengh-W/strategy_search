@@ -1,0 +1,55 @@
+{
+  "schema_version": "hivm_sync_backend_dryrun_analysis_v1",
+  "contract_schema_version": "hivm_sync_precision_contract_v1",
+  "dry_run_schema_version": "fake_hivm_dry_run_report_v2",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "action_count_contract": 1,
+  "action_count_dry_run": 1,
+  "decision_counts": {
+    "FAKE_BACKEND_CHECK_ONLY": 1
+  },
+  "overall_decision": "WAIT_FOR_REAL_BACKEND",
+  "actions": [
+    {
+      "action_id": "sync_check_event_EVENT_ID0",
+      "mutation_kind": "validate_existing_event_pair_liveness",
+      "mode": "verify_or_dry_run_only",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "required_checks": [
+        "operation_found",
+        "located",
+        "backend_parsed_event_operands",
+        "event_pairs_reported",
+        "event_liveness_passed",
+        "no_deadlock_or_conflict_reported"
+      ],
+      "passed_checks": [
+        "operation_found",
+        "located",
+        "event_pairs_reported"
+      ],
+      "missing_checks": [],
+      "failed_checks": [
+        "backend_parsed_event_operands",
+        "event_liveness_passed",
+        "no_deadlock_or_conflict_reported"
+      ],
+      "blockers": [
+        "fake_backend_cannot_prove_event_liveness",
+        "fake_backend_cannot_prove_deadlock_freedom",
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "decision": "FAKE_BACKEND_CHECK_ONLY",
+      "reason": "fake backend can locate textual anchors only; not valid for production sync rewrite",
+      "mutation_allowed_by_contract": false
+    }
+  ],
+  "notes": [
+    "SyncPlan V4.1 remains dry-run/check-only; it does not authorize mutation.",
+    "Existing event validation and barrier-to-event planning require real parser/event-liveness/deadlock proofs.",
+    "Fake backend output is useful only for CLI/report plumbing."
+  ]
+}

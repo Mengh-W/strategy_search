@@ -1,0 +1,11 @@
+{
+  "schema_version": "hivm_phase6c_leadership_summary_v1",
+  "title": "Phase 6C：受限正例上的真正 IR 改写",
+  "one_sentence": "这一版终于不只是 dry-run：系统会在明确标记的受限样例上真正生成改写后的 HIVM IR 文件，但仍不把它包装成生产级 MLIR 后端。",
+  "what_changed": [
+    "Q-load hoist 受限正例：可以把 loop 内的 Q load + nd2nz 移到 loop 外。",
+    "GM round-trip 受限正例：可以删除一个被证明为局部冗余的 store/reload pair。",
+    "真实复杂 kernel 仍然锁住，不会用这个受限 rewriter 乱改。"
+  ],
+  "important_boundary": "这是 restricted true rewrite，不是 full compiler lowering；它证明项目具备真实改写链路，但生产级复杂改写仍需 HivmOpsEditor/MLIR 后端。"
+}

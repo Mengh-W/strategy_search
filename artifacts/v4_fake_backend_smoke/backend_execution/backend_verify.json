@@ -1,0 +1,9 @@
+{
+  "schema_version": "fake_hivm_verifier_report_v1",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "input": "artifacts/v4_fake_backend_smoke/backend_execution/roundtrip.hivm.mlir",
+  "passed": true,
+  "errors": [],
+  "status": "passed_fake_verify"
+}

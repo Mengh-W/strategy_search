@@ -1,0 +1,13 @@
+/*
+ * MTE L1 to L0A Bandwidth Microbenchmark
+ */
+#include "vt_microbench_common.h"
+
+extern "C" __global__ __aicore__ void mte_l1_to_l0a(
+    GM_ADDR src, GM_ADDR dst, uint32_t startIter, uint32_t iterCount)
+{
+    KERNEL_TASK_TYPE_DEFAULT(KERNEL_TYPE_AIC_ONLY);
+    VTCalib::MteCubePathKernel op;
+    op.Init(src, dst, startIter, iterCount);
+    op.L1ToL0A();
+}

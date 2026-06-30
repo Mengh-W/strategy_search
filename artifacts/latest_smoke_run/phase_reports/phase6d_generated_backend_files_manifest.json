@@ -1,0 +1,24 @@
+{
+  "schema_version": "hivm_phase6d_generated_backend_files_manifest_v1",
+  "phase": "Phase-6D",
+  "files": [
+    {
+      "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/CMakeLists.txt",
+      "size_bytes": 1036
+    },
+    {
+      "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/README.md",
+      "size_bytes": 1560
+    },
+    {
+      "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/hivm_operation_backend.cpp",
+      "size_bytes": 10615
+    },
+    {
+      "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/vtriton_integration_patch.diff",
+      "size_bytes": 1042
+    }
+  ],
+  "install_script": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/scripts/phase6d_install_backend_adapter.sh",
+  "intended_vtriton_location": "<vTriton>/tools/hivm-operation-backend/"
+}

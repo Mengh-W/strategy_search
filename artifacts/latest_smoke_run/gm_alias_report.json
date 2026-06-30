@@ -1,0 +1,81 @@
+{
+  "schema_version": "hivm_gm_alias_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase3b_buffer_liveness",
+  "gm_buffer_count": 4,
+  "gm_access_count": 4,
+  "gm_access_counts_by_var": {
+    "%K_gm": 1,
+    "%O_gm": 1,
+    "%Q_gm": 1,
+    "%V_gm": 1
+  },
+  "gm_roundtrip_candidate_count": 0,
+  "gm_roundtrip_candidates": [],
+  "ambiguities": [
+    {
+      "gm_var": "%O_gm",
+      "reason": "GM output/boundary buffer is observable; deletion requires stronger proof"
+    }
+  ],
+  "deletion_unlocked": false,
+  "required_next_gates": [
+    "same-GM-base plus same static offset/slice proof",
+    "MemorySSA-like reaching-definition proof",
+    "no intervening unknown GM side effect",
+    "observable output/boundary check"
+  ],
+  "gm_accesses": [
+    {
+      "op_id": 0,
+      "line": 43,
+      "op_name": "hivm.hir.load",
+      "role": "load",
+      "gm_var": "%Q_gm",
+      "access": "read",
+      "parent_loop": {
+        "line": 42,
+        "induction": "%j",
+        "depth": 2
+      },
+      "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "op_id": 2,
+      "line": 46,
+      "op_name": "hivm.hir.load",
+      "role": "load",
+      "gm_var": "%K_gm",
+      "access": "read",
+      "parent_loop": {
+        "line": 42,
+        "induction": "%j",
+        "depth": 2
+      },
+      "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "op_id": 3,
+      "line": 47,
+      "op_name": "hivm.hir.load",
+      "role": "load",
+      "gm_var": "%V_gm",
+      "access": "read",
+      "parent_loop": {
+        "line": 42,
+        "induction": "%j",
+        "depth": 2
+      },
+      "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "op_id": 18,
+      "line": 73,
+      "op_name": "hivm.hir.store",
+      "role": "store",
+      "gm_var": "%O_gm",
+      "access": "write",
+      "parent_loop": null,
+      "text": "hivm.hir.store ins(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+    }
+  ]
+}

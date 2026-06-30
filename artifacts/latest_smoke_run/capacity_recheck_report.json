@@ -1,0 +1,26 @@
+{
+  "policy": "conservative_sum_of_static_local_allocations",
+  "default_limits_source": "Ascend 910B defaults from project hardware config; target backend should override with exact hardware JSON",
+  "peak_by_space": {
+    "l0c": {
+      "conservative_peak_bytes": 8192,
+      "default_limit_bytes": 262144,
+      "within_default_limit": true,
+      "utilization": 0.03125
+    },
+    "l1": {
+      "conservative_peak_bytes": 32768,
+      "default_limit_bytes": 1048576,
+      "within_default_limit": true,
+      "utilization": 0.03125
+    },
+    "ub": {
+      "conservative_peak_bytes": 98816,
+      "default_limit_bytes": 262144,
+      "within_default_limit": true,
+      "utilization": 0.376953
+    }
+  },
+  "unknown_size_buffers": [],
+  "passed_conservative_capacity_recheck": true
+}

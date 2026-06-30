@@ -1,0 +1,2058 @@
+{
+  "schema_version": "hivm_multibuffer_mutation_plan_v1",
+  "overall_decision": "MULTIBUFFER_REWRITE_PLAN_READY_NOT_MUTATED",
+  "action_count": 50,
+  "actions": [
+    {
+      "action_id": "multibuffer_plan_action_0000",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%313",
+        "line": 1265,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x32xf32, #hivm.address_space<ub>>",
+        "text": "%313 = hivm.hir.pointer_cast(%c98688_i64) : memref<64x32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0001",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%89",
+        "line": 778,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<1024xf16, #hivm.address_space<ub>>",
+        "text": "%89 = hivm.hir.pointer_cast(%c58336_i64) : memref<1024xf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0002",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%236",
+        "line": 904,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xi32, #hivm.address_space<ub>>",
+        "text": "%236 = hivm.hir.pointer_cast(%c256_i64) : memref<32xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0003",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%37",
+        "line": 659,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%37 = hivm.hir.pointer_cast(%c57600_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0004",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%130",
+        "line": 1687,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<16xf32, #hivm.address_space<ub>>",
+        "text": "%130 = hivm.hir.pointer_cast(%c123520_i64) : memref<16xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0005",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%12",
+        "line": 619,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x32xf32, #hivm.address_space<ub>>",
+        "text": "%12 = hivm.hir.pointer_cast(%c140288_i64) : memref<64x32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0006",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%73",
+        "line": 716,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xbf16, #hivm.address_space<ub>>",
+        "text": "%73 = hivm.hir.pointer_cast(%c256_i64) : memref<64x64xbf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0007",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%269",
+        "line": 1022,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32x32xbf16, #hivm.address_space<ub>>",
+        "text": "%269 = hivm.hir.pointer_cast(%c37248_i64) : memref<32x32xbf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0008",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%272",
+        "line": 1061,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32x32xbf16, #hivm.address_space<ub>>",
+        "text": "%272 = hivm.hir.pointer_cast(%c39296_i64) : memref<32x32xbf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0009",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%276",
+        "line": 1093,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x32xbf16, #hivm.address_space<ub>>",
+        "text": "%276 = hivm.hir.pointer_cast(%c119168_i64) : memref<64x32xbf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0010",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%129",
+        "line": 1685,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xf32, #hivm.address_space<ub>>",
+        "text": "%129 = hivm.hir.pointer_cast(%c41216_i64) : memref<64x64xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0011",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%29",
+        "line": 642,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%29 = hivm.hir.pointer_cast(%c148480_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0012",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%31",
+        "line": 647,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%31 = hivm.hir.pointer_cast(%c148736_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0013",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%32",
+        "line": 650,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xi1, #hivm.address_space<ub>>",
+        "text": "%32 = hivm.hir.pointer_cast(%c148736_i64) : memref<64xi1, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0014",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%38",
+        "line": 661,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xi1, #hivm.address_space<ub>>",
+        "text": "%38 = hivm.hir.pointer_cast(%c57600_i64) : memref<64xi1, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0015",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%56",
+        "line": 681,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%56 = hivm.hir.pointer_cast(%c57856_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0016",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%57",
+        "line": 683,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xi1, #hivm.address_space<ub>>",
+        "text": "%57 = hivm.hir.pointer_cast(%c57856_i64) : memref<64xi1, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0017",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%58",
+        "line": 686,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xi1, #hivm.address_space<ub>>",
+        "text": "%58 = hivm.hir.pointer_cast(%c57856_i64) : memref<64xi1, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0018",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%81",
+        "line": 766,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xi32, #hivm.address_space<ub>>",
+        "text": "%81 = hivm.hir.pointer_cast(%c148992_i64) : memref<32xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0019",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%237",
+        "line": 907,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xi32, #hivm.address_space<ub>>",
+        "text": "%237 = hivm.hir.pointer_cast(%c384_i64) : memref<32xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0020",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%238",
+        "line": 910,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xi1, #hivm.address_space<ub>>",
+        "text": "%238 = hivm.hir.pointer_cast(%c384_i64) : memref<32xi1, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0021",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%239",
+        "line": 913,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xi1, #hivm.address_space<ub>>",
+        "text": "%239 = hivm.hir.pointer_cast(%c384_i64) : memref<32xi1, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0022",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%240",
+        "line": 916,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xi32, #hivm.address_space<ub>>",
+        "text": "%240 = hivm.hir.pointer_cast(%c512_i64) : memref<32xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0023",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%241",
+        "line": 918,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xi1, #hivm.address_space<ub>>",
+        "text": "%241 = hivm.hir.pointer_cast(%c512_i64) : memref<32xi1, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0024",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%242",
+        "line": 921,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xi1, #hivm.address_space<ub>>",
+        "text": "%242 = hivm.hir.pointer_cast(%c384_i64) : memref<32xi1, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0025",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%177",
+        "line": 1348,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xf32, #hivm.address_space<ub>>",
+        "text": "%177 = hivm.hir.pointer_cast(%c61824_i64) : memref<32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0026",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%178",
+        "line": 1350,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xf32, #hivm.address_space<ub>>",
+        "text": "%178 = hivm.hir.pointer_cast(%c61824_i64) : memref<32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0027",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%179",
+        "line": 1353,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xf32, #hivm.address_space<ub>>",
+        "text": "%179 = hivm.hir.pointer_cast(%c61824_i64) : memref<32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0028",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%204",
+        "line": 1470,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x32xf32, #hivm.address_space<ub>>",
+        "text": "%204 = hivm.hir.pointer_cast(%c106880_i64) : memref<64x32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0029",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%11",
+        "line": 617,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xf32, #hivm.address_space<ub>>",
+        "text": "%11 = hivm.hir.pointer_cast(%c140160_i64) : memref<32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0030",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%159",
+        "line": 863,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xf32, #hivm.address_space<ub>>",
+        "text": "%159 = hivm.hir.pointer_cast(%c20736_i64) : memref<32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0031",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%312",
+        "line": 1260,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x32xf32, #hivm.address_space<ub>>",
+        "text": "%312 = hivm.hir.pointer_cast(%c90496_i64) : memref<64x32xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0032",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%104",
+        "line": 1594,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xi32, #hivm.address_space<ub>>",
+        "text": "%104 = hivm.hir.pointer_cast(%c123520_i64) : memref<64x64xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0033",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%105",
+        "line": 1596,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xi32, #hivm.address_space<ub>>",
+        "text": "%105 = hivm.hir.pointer_cast(%c148992_i64) : memref<64x64xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0034",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%106",
+        "line": 1597,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<512xi32, #hivm.address_space<ub>>",
+        "text": "%106 = hivm.hir.pointer_cast(%c139904_i64) : memref<512xi32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0035",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%109",
+        "line": 1609,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xf16, #hivm.address_space<ub>>",
+        "text": "%109 = hivm.hir.pointer_cast(%c123520_i64) : memref<64xf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0036",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%110",
+        "line": 1610,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<48xf16, #hivm.address_space<ub>>",
+        "text": "%110 = hivm.hir.pointer_cast(%c123648_i64) : memref<48xf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0037",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%111",
+        "line": 1613,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xf16, #hivm.address_space<ub>>",
+        "text": "%111 = hivm.hir.pointer_cast(%c123648_i64) : memref<64x64xf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0038",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%120",
+        "line": 1646,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xf32, #hivm.address_space<ub>>",
+        "text": "%120 = hivm.hir.pointer_cast(%c131840_i64) : memref<64x64xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0039",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%123",
+        "line": 1655,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xbf16, #hivm.address_space<ub>>",
+        "text": "%123 = hivm.hir.pointer_cast(%c8448_i64) : memref<64x64xbf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0040",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%126",
+        "line": 1670,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xf32, #hivm.address_space<ub>>",
+        "text": "%126 = hivm.hir.pointer_cast(%c24832_i64) : memref<64x64xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0041",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%127",
+        "line": 1677,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xf32, #hivm.address_space<ub>>",
+        "text": "%127 = hivm.hir.pointer_cast(%c24832_i64) : memref<64x64xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0042",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%128",
+        "line": 1681,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xf32, #hivm.address_space<ub>>",
+        "text": "%128 = hivm.hir.pointer_cast(%c24832_i64) : memref<64x64xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0043",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%310",
+        "line": 1251,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x64xf32, #hivm.address_space<ub>>",
+        "text": "%310 = hivm.hir.pointer_cast(%c74112_i64) : memref<64x64xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0044",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%86",
+        "line": 772,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xf16, #hivm.address_space<ub>>",
+        "text": "%86 = hivm.hir.pointer_cast(%c58112_i64) : memref<64xf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0045",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%87",
+        "line": 773,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<48xf16, #hivm.address_space<ub>>",
+        "text": "%87 = hivm.hir.pointer_cast(%c58240_i64) : memref<48xf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0046",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%88",
+        "line": 777,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64x32xf16, #hivm.address_space<ub>>",
+        "text": "%88 = hivm.hir.pointer_cast(%c149120_i64) : memref<64x32xf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0047",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%93",
+        "line": 794,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<24xf32, #hivm.address_space<ub>>",
+        "text": "%93 = hivm.hir.pointer_cast(%c60384_i64) : memref<24xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0048",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%102",
+        "line": 806,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<64xf32, #hivm.address_space<ub>>",
+        "text": "%102 = hivm.hir.pointer_cast(%c123264_i64) : memref<64xf32, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    },
+    {
+      "action_id": "multibuffer_plan_action_0049",
+      "mutation_kind": "double_buffer_candidate_plan",
+      "status": "PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "readiness": "READY_FOR_GUARDED_PLAN",
+      "target": {
+        "symbol": "%245",
+        "line": 928,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "address_space": "ub",
+        "type": "memref<32xf16, #hivm.address_space<ub>>",
+        "text": "%245 = hivm.hir.pointer_cast(%c640_i64) : memref<32xf16, #hivm.address_space<ub>>"
+      },
+      "proposed_rewrite_steps": [
+        "clone_or_create_ping_pong_buffer_slot_for_target_scope",
+        "rewrite producer stage to write slot[iteration % 2]",
+        "rewrite consumer stage to read slot[(iteration + required_lag) % 2]",
+        "insert_or_reuse SyncPlan event edges between producer/consumer stages",
+        "run real MLIR verifier and DES/trace validation before accepting"
+      ],
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "find_defining_operation_by_symbol_or_location",
+          "clone_pointer_cast_or_alloc_with_adjusted_offset",
+          "replace_uses_in_stage_region",
+          "insert_sync_edges_if_needed",
+          "exportToFile",
+          "mlir::verify"
+        ],
+        "current_status": "requires_real_operation_level_backend"
+      },
+      "blockers_before_real_mutation": [
+        "need_dominance_and_alias_analysis",
+        "need_loop_iteration_parity_expression",
+        "need_producer_consumer_stage_boundary",
+        "need_capacity_gate_for_extra_buffer_slot",
+        "need_real_verifier"
+      ]
+    }
+  ],
+  "production_rewrite_claim_allowed": false
+}

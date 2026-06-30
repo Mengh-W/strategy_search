@@ -1,0 +1,7 @@
+{
+  "schema_version": "hivm_sync_full_rewrite_candidate_report_v1",
+  "num_candidate_actions": 0,
+  "max_actions": 999999,
+  "allow_pipe_all": false,
+  "candidate_actions": []
+}

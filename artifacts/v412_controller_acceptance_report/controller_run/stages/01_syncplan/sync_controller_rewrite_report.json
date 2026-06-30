@@ -1,0 +1,909 @@
+{
+  "schema_version": "hivm_sync_rewrite_executor_v2",
+  "rewrite_kind": "portable_sync_pipe_barrier_to_set_wait_pair",
+  "contract_schema_version": "hivm_sync_precision_contract_v1",
+  "requested_action_count": 74,
+  "rewritten_action_count": 74,
+  "skipped_action_count": 0,
+  "rewritten_actions": [
+    {
+      "action_id": "sync_dryrun_barrier_001_line_301",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 301,
+      "original": "hivm.hir.pipe_barrier[<PIPE_MTE2>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_MTE2>, %hivm_sync_auto0]",
+        "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_MTE2>, %hivm_sync_auto0]"
+      ],
+      "event_id": "%hivm_sync_auto0",
+      "pipe": "PIPE_MTE2"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_003_line_361",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 361,
+      "original": "hivm.hir.pipe_barrier[<PIPE_MTE2>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_MTE2>, %hivm_sync_auto1]",
+        "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_MTE2>, %hivm_sync_auto1]"
+      ],
+      "event_id": "%hivm_sync_auto1",
+      "pipe": "PIPE_MTE2"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_006_line_645",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 645,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto2]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto2]"
+      ],
+      "event_id": "%hivm_sync_auto2",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_007_line_648",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 648,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto3]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto3]"
+      ],
+      "event_id": "%hivm_sync_auto3",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_008_line_651",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 651,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto4]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto4]"
+      ],
+      "event_id": "%hivm_sync_auto4",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_009_line_654",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 654,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto5]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto5]"
+      ],
+      "event_id": "%hivm_sync_auto5",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_010_line_662",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 662,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto6]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto6]"
+      ],
+      "event_id": "%hivm_sync_auto6",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_011_line_684",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 684,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto7]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto7]"
+      ],
+      "event_id": "%hivm_sync_auto7",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_012_line_687",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 687,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto8]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto8]"
+      ],
+      "event_id": "%hivm_sync_auto8",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_013_line_774",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 774,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto9]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto9]"
+      ],
+      "event_id": "%hivm_sync_auto9",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_014_line_779",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 779,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto10]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto10]"
+      ],
+      "event_id": "%hivm_sync_auto10",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_015_line_784",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 784,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto11]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto11]"
+      ],
+      "event_id": "%hivm_sync_auto11",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_016_line_788",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 788,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto12]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto12]"
+      ],
+      "event_id": "%hivm_sync_auto12",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_017_line_880",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 880,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto13]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto13]"
+      ],
+      "event_id": "%hivm_sync_auto13",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_018_line_905",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 905,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto14]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto14]"
+      ],
+      "event_id": "%hivm_sync_auto14",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_019_line_908",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 908,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto15]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto15]"
+      ],
+      "event_id": "%hivm_sync_auto15",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_020_line_911",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 911,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto16]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto16]"
+      ],
+      "event_id": "%hivm_sync_auto16",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_021_line_914",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 914,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto17]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto17]"
+      ],
+      "event_id": "%hivm_sync_auto17",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_022_line_919",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 919,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto18]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto18]"
+      ],
+      "event_id": "%hivm_sync_auto18",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_023_line_922",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 922,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto19]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto19]"
+      ],
+      "event_id": "%hivm_sync_auto19",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_024_line_930",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 930,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto20]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto20]"
+      ],
+      "event_id": "%hivm_sync_auto20",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_025_line_934",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 934,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto21]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto21]"
+      ],
+      "event_id": "%hivm_sync_auto21",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_026_line_939",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 939,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto22]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto22]"
+      ],
+      "event_id": "%hivm_sync_auto22",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_027_line_943",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 943,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto23]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto23]"
+      ],
+      "event_id": "%hivm_sync_auto23",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_028_line_947",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 947,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto24]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto24]"
+      ],
+      "event_id": "%hivm_sync_auto24",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_029_line_976",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 976,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto25]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto25]"
+      ],
+      "event_id": "%hivm_sync_auto25",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_030_line_1158",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1158,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto26]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto26]"
+      ],
+      "event_id": "%hivm_sync_auto26",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_031_line_1162",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1162,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto27]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto27]"
+      ],
+      "event_id": "%hivm_sync_auto27",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_032_line_1166",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1166,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto28]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto28]"
+      ],
+      "event_id": "%hivm_sync_auto28",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_033_line_1184",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1184,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto29]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto29]"
+      ],
+      "event_id": "%hivm_sync_auto29",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_034_line_1203",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1203,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto30]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto30]"
+      ],
+      "event_id": "%hivm_sync_auto30",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_035_line_1222",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1222,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto31]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto31]"
+      ],
+      "event_id": "%hivm_sync_auto31",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_038_line_1273",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1273,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto32]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto32]"
+      ],
+      "event_id": "%hivm_sync_auto32",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_039_line_1277",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1277,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto33]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto33]"
+      ],
+      "event_id": "%hivm_sync_auto33",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_040_line_1280",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1280,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto34]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto34]"
+      ],
+      "event_id": "%hivm_sync_auto34",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_041_line_1317",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1317,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto35]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto35]"
+      ],
+      "event_id": "%hivm_sync_auto35",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_042_line_1342",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1342,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto36]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto36]"
+      ],
+      "event_id": "%hivm_sync_auto36",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_043_line_1346",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1346,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto37]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto37]"
+      ],
+      "event_id": "%hivm_sync_auto37",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_044_line_1351",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1351,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto38]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto38]"
+      ],
+      "event_id": "%hivm_sync_auto38",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_045_line_1354",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1354,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto39]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto39]"
+      ],
+      "event_id": "%hivm_sync_auto39",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_046_line_1362",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1362,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto40]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto40]"
+      ],
+      "event_id": "%hivm_sync_auto40",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_047_line_1370",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1370,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto41]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto41]"
+      ],
+      "event_id": "%hivm_sync_auto41",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_048_line_1374",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1374,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto42]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto42]"
+      ],
+      "event_id": "%hivm_sync_auto42",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_049_line_1382",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1382,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto43]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto43]"
+      ],
+      "event_id": "%hivm_sync_auto43",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_050_line_1386",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1386,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto44]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto44]"
+      ],
+      "event_id": "%hivm_sync_auto44",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_051_line_1394",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1394,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto45]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto45]"
+      ],
+      "event_id": "%hivm_sync_auto45",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_052_line_1403",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1403,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto46]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto46]"
+      ],
+      "event_id": "%hivm_sync_auto46",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_053_line_1408",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1408,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto47]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto47]"
+      ],
+      "event_id": "%hivm_sync_auto47",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_054_line_1412",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1412,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto48]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto48]"
+      ],
+      "event_id": "%hivm_sync_auto48",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_055_line_1416",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1416,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto49]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto49]"
+      ],
+      "event_id": "%hivm_sync_auto49",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_056_line_1461",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1461,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto50]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto50]"
+      ],
+      "event_id": "%hivm_sync_auto50",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_057_line_1475",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1475,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto51]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto51]"
+      ],
+      "event_id": "%hivm_sync_auto51",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_058_line_1479",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1479,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto52]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto52]"
+      ],
+      "event_id": "%hivm_sync_auto52",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_059_line_1510",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1510,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto53]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto53]"
+      ],
+      "event_id": "%hivm_sync_auto53",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_060_line_1514",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1514,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto54]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto54]"
+      ],
+      "event_id": "%hivm_sync_auto54",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_061_line_1523",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1523,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto55]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto55]"
+      ],
+      "event_id": "%hivm_sync_auto55",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_062_line_1527",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1527,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto56]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto56]"
+      ],
+      "event_id": "%hivm_sync_auto56",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_063_line_1536",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1536,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto57]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto57]"
+      ],
+      "event_id": "%hivm_sync_auto57",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_064_line_1540",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1540,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto58]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto58]"
+      ],
+      "event_id": "%hivm_sync_auto58",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_065_line_1545",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1545,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto59]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto59]"
+      ],
+      "event_id": "%hivm_sync_auto59",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_066_line_1553",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1553,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto60]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto60]"
+      ],
+      "event_id": "%hivm_sync_auto60",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_067_line_1603",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1603,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto61]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto61]"
+      ],
+      "event_id": "%hivm_sync_auto61",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_068_line_1607",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1607,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto62]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto62]"
+      ],
+      "event_id": "%hivm_sync_auto62",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_069_line_1615",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1615,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto63]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto63]"
+      ],
+      "event_id": "%hivm_sync_auto63",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_070_line_1620",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1620,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto64]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto64]"
+      ],
+      "event_id": "%hivm_sync_auto64",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_071_line_1624",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1624,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto65]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto65]"
+      ],
+      "event_id": "%hivm_sync_auto65",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_072_line_1632",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1632,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto66]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto66]"
+      ],
+      "event_id": "%hivm_sync_auto66",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_073_line_1636",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1636,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto67]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto67]"
+      ],
+      "event_id": "%hivm_sync_auto67",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_074_line_1640",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1640,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto68]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto68]"
+      ],
+      "event_id": "%hivm_sync_auto68",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_075_line_1644",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1644,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto69]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto69]"
+      ],
+      "event_id": "%hivm_sync_auto69",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_076_line_1653",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1653,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto70]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto70]"
+      ],
+      "event_id": "%hivm_sync_auto70",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_077_line_1657",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1657,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto71]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto71]"
+      ],
+      "event_id": "%hivm_sync_auto71",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_078_line_1683",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1683,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto72]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto72]"
+      ],
+      "event_id": "%hivm_sync_auto72",
+      "pipe": "PIPE_V"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_079_line_1688",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 1688,
+      "original": "hivm.hir.pipe_barrier[<PIPE_V>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto73]",
+        "hivm.hir.wait_flag[<PIPE_V>, <PIPE_V>, %hivm_sync_auto73]"
+      ],
+      "event_id": "%hivm_sync_auto73",
+      "pipe": "PIPE_V"
+    }
+  ],
+  "skipped_actions": [],
+  "mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "requires_real_backend_followup": true,
+  "safety_boundary": [
+    "text-level restricted rewrite only; not MLIR Operation mutation",
+    "same-pipe set/wait pair is a conservative barrier-emulation anchor, not a proven optimization",
+    "supports multi-action rewriting under max_actions policy; each action remains independently traceable",
+    "PIPE_ALL is skipped by default",
+    "real HivmOpsEditor must reparse, roundtrip, verify, and run DES/trace before production claim"
+  ]
+}

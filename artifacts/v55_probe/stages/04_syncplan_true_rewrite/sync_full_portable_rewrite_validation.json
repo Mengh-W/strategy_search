@@ -1,0 +1,43 @@
+{
+  "schema_version": "hivm_sync_rewrite_validator_v1",
+  "validation_kind": "portable_restricted_sync_rewrite_structural_delta",
+  "before_counts": {
+    "pipe_barrier": 0,
+    "set_flag": 5,
+    "wait_flag": 5,
+    "line_count": 98
+  },
+  "after_counts": {
+    "pipe_barrier": 0,
+    "set_flag": 5,
+    "wait_flag": 5,
+    "line_count": 98
+  },
+  "before_non_comment_counts": {
+    "pipe_barrier": 0
+  },
+  "after_non_comment_counts": {
+    "pipe_barrier": 0
+  },
+  "delta_counts": {
+    "pipe_barrier": 0,
+    "set_flag": 0,
+    "wait_flag": 0,
+    "line_count": 0
+  },
+  "expected_rewrites": 0,
+  "generated_events": {},
+  "event_pair_errors": [],
+  "checks": {
+    "brace_balance_before_ok": true,
+    "brace_balance_after_ok": true,
+    "set_flag_increased_by_expected": true,
+    "wait_flag_increased_by_expected": true,
+    "line_count_increased_by_expected": true,
+    "generated_events_paired": true,
+    "non_comment_pipe_barrier_decreased_by_expected": true
+  },
+  "passed_portable_validation": true,
+  "production_rewrite_claim_allowed": false,
+  "requires_real_hivmopseditor_verify": true
+}

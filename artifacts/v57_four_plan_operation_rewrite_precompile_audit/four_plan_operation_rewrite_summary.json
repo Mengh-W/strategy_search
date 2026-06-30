@@ -1,0 +1,185 @@
+{
+  "schema_version": "hivm_v57_four_plan_operation_rewrite_summary_v1",
+  "version": "V5.7-four-plan-operation-rewrite-precompile-hardening",
+  "input_ir": "sample_input/fa_best.hivm.mlir",
+  "selected_plan": "artifacts/latest_smoke_run/selected_plan.json",
+  "optimized_ir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/optimized.four_plan_operation_rewrite.hivm.mlir",
+  "optimized_ir_with_coverage": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/optimized.four_plan_operation_rewrite.with_coverage.hivm.mlir",
+  "rewrite_order": [
+    "TilingPlan",
+    "MultiBufferPlan",
+    "CVPipelinePlan",
+    "SyncPlan"
+  ],
+  "stage_mutation": {
+    "tiling": true,
+    "multibuffer": true,
+    "cvpipeline": true,
+    "sync": true
+  },
+  "stage_validation": {
+    "tiling": true,
+    "multibuffer": true,
+    "cvpipeline": true,
+    "sync": true
+  },
+  "four_plan_operation_rewrite_performed": true,
+  "portable_validation_passed": true,
+  "operation_parameter_coverage_rows": 32,
+  "all_controllable_parameters_have_operation_action_mvp": true,
+  "linux_compile_ready_claim": false,
+  "linux_precompile_audit_passed": true,
+  "linux_precompile_blocker_count": 0,
+  "linux_precompile_audit": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/v57_linux_precompile_audit.json",
+  "precompile_hardened_ir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/optimized.four_plan_operation_rewrite.precompile_hardened.hivm.mlir",
+  "linux_backend_validation_required": true,
+  "claim_boundary": "V5.7 keeps the V5.6 four-plan operation-level MVP rewrite, then adds a conservative Linux precompile audit and constant-materialized hardened candidate. Passing this portable audit is not the same as Linux backend compile; failing it reports concrete blockers before handoff.",
+  "linux_validation_sequence": [
+    "parse baseline HIVM",
+    "parse optimized.four_plan_operation_rewrite.hivm.mlir",
+    "HivmOpsEditor roundtrip",
+    "MLIR/HIVM verifier",
+    "backend compile",
+    "correctness check baseline vs optimized",
+    "msprof baseline and optimized with repeated median latency/cycles"
+  ],
+  "stage_artifacts": {
+    "tiling_dir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/stages/01_tiling_semantic_operation_rewrite",
+    "multibuffer_dir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/stages/02_multibuffer_operation_rewrite",
+    "cvpipeline_dir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/stages/03_cvpipeline_operation_rewrite",
+    "sync_dir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/stages/04_sync_operation_rewrite",
+    "coverage": {
+      "schema_version": "hivm_v53_parameter_rewrite_coverage_summary_v1",
+      "version": "V5.3-four-plan-true-rewrite-with-parameter-coverage",
+      "parameter_count": 35,
+      "rewritten_back_to_ir_count": 35,
+      "not_rewritten_back_to_ir_count": 0,
+      "coverage_counts": {
+        "RESTRICTED_STRUCTURAL_REWRITE": 10,
+        "TRACE_METADATA_REWRITE": 25
+      },
+      "all_controllable_parameters_rewritten_back_to_ir": true,
+      "all_controllable_parameters_semantic_operation_rewrite": false,
+      "optimized_ir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/optimized.four_plan_operation_rewrite.with_coverage.hivm.mlir"
+    },
+    "v57_precompile_audit": {
+      "hardened_ir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/optimized.four_plan_operation_rewrite.precompile_hardened.hivm.mlir",
+      "deduplicate_alloc": {
+        "mutation_performed": true,
+        "removed_duplicate_allocs": [
+          {
+            "line": 21,
+            "value": "%acc_ub_mb1_ping",
+            "type": "memref<32x128xf32, #hivm.address_space<ub>"
+          }
+        ]
+      },
+      "constant_materialization": {
+        "mutation_performed": true,
+        "inserted_constants": {
+          "%cM": 64,
+          "%cN": 128,
+          "%cK": 1024,
+          "%c0": 0,
+          "%cE": 1024,
+          "%cB": 128,
+          "%c32": 32,
+          "%c128": 128,
+          "%c64": 64
+        },
+        "bounds": {
+          "M": 64,
+          "D": 128,
+          "K": 1024,
+          "N": 128
+        },
+        "note": "Portable textual constant materialization; replace with official HivmOpsEditor constants in production if needed."
+      },
+      "operand_type_harmonization": {
+        "mutation_performed": true,
+        "rewritten_operand_type_count": 10,
+        "rewrites": [
+          {
+            "line": 104,
+            "value": "%k_l1_ping",
+            "from_type": "memref<32x128xf16, #hivm.address_space<cbuf>",
+            "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+          },
+          {
+            "line": 104,
+            "value": "%s_l0c",
+            "from_type": "memref<32x128xf32, #hivm.address_space<cc>",
+            "to_type": "memref<32x64xf32, #hivm.address_space<cc>"
+          },
+          {
+            "line": 115,
+            "value": "%m_ub",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 118,
+            "value": "%m_ub",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 123,
+            "value": "%l_ub",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 127,
+            "value": "%v_l1",
+            "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
+            "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+          },
+          {
+            "line": 133,
+            "value": "%v_l1",
+            "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
+            "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+          },
+          {
+            "line": 140,
+            "value": "%acc_ub_mb1_ping",
+            "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 151,
+            "value": "%acc_ub_mb1_ping",
+            "from_type": "memref<32x1xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+          },
+          {
+            "line": 151,
+            "value": "%acc_ub_mb1_ping",
+            "from_type": "memref<32x1xf32, #hivm.address_space<ub>",
+            "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+          }
+        ]
+      },
+      "precompile_audit": {
+        "schema_version": "hivm_v57_linux_precompile_audit_v1",
+        "version": "V5.7-linux-precompile-audit",
+        "passed_portable_precompile_audit": true,
+        "linux_compile_ready_claim": false,
+        "backend_validation_required": true,
+        "brace_balanced": true,
+        "marker_checks": {
+          "TilingPlan semantic operation rewrite": true,
+          "MultiBufferPlan true rewrite": true,
+          "CVPipelinePlan sync edge": true,
+          "SyncPlan operation rewrite": true
+        },
+        "duplicate_ssa_definition_count": 0,
+        "undefined_symbol_count": 0,
+        "memref_type_mismatch_count": 0,
+        "blockers": [],
+        "note": "If this audit passes, the candidate is only precompile-audit-clean. Linux MLIR/HIVM parse/verifier/backend compile/correctness/msprof are still mandatory."
+      }
+    }
+  }
+}

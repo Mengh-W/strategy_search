@@ -1,0 +1,487 @@
+{
+  "schema_version": "hivm_multibuffer_true_rewrite_actions_v1",
+  "version": "V5.0-multibuffer-restricted-true-rewrite",
+  "action_count": 12,
+  "actions": [
+    {
+      "action_id": "multibuffer_true_rewrite_action_0000",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0003",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%29",
+        "line": 642,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%29 = hivm.hir.pointer_cast(%c148480_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%29",
+      "target_line": 642,
+      "producer_line": 643,
+      "consumer_line": 646,
+      "producer": {
+        "line": 643,
+        "op": "hivm.hir.varange",
+        "text": "hivm.hir.varange offset[%c0] strides[%c1] outs(%29 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 646,
+        "op": "hivm.hir.vadd",
+        "text": "hivm.hir.vadd ins(%29, %28 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%30 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%29_mb0_ping",
+        "pong": "%29_mb0_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0001",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0004",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%31",
+        "line": 647,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%31 = hivm.hir.pointer_cast(%c148736_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%31",
+      "target_line": 647,
+      "producer_line": 649,
+      "consumer_line": 652,
+      "producer": {
+        "line": 649,
+        "op": "hivm.hir.vmax",
+        "text": "hivm.hir.vmax ins(%30, %27 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%31 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 652,
+        "op": "hivm.hir.vcmp",
+        "text": "hivm.hir.vcmp ins(%31, %30 : memref<64xi32, #hivm.address_space<ub>>, memref<64xi32, #hivm.address_space<ub>>) outs(%32 : memref<64xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%31_mb1_ping",
+        "pong": "%31_mb1_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0002",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0002",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%37",
+        "line": 659,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%37 = hivm.hir.pointer_cast(%c57600_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%37",
+      "target_line": 659,
+      "producer_line": 660,
+      "consumer_line": 663,
+      "producer": {
+        "line": 660,
+        "op": "hivm.hir.vbrc",
+        "text": "hivm.hir.vbrc ins(%36 : i32) outs(%37 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 663,
+        "op": "hivm.hir.vcmp",
+        "text": "hivm.hir.vcmp ins(%30, %37 : memref<64xi32, #hivm.address_space<ub>>, memref<64xi32, #hivm.address_space<ub>>) outs(%38 : memref<64xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%37_mb2_ping",
+        "pong": "%37_mb2_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0003",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0007",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%56",
+        "line": 681,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%56 = hivm.hir.pointer_cast(%c57856_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%56",
+      "target_line": 681,
+      "producer_line": 682,
+      "consumer_line": 685,
+      "producer": {
+        "line": 682,
+        "op": "hivm.hir.vmax",
+        "text": "hivm.hir.vmax ins(%30, %c0_i32 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%56 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 685,
+        "op": "hivm.hir.vcmp",
+        "text": "hivm.hir.vcmp ins(%56, %30 : memref<64xi32, #hivm.address_space<ub>>, memref<64xi32, #hivm.address_space<ub>>) outs(%57 : memref<64xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%56_mb3_ping",
+        "pong": "%56_mb3_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0004",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0009",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%58",
+        "line": 686,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64xi1, #hivm.address_space<ub>>",
+        "text": "%58 = hivm.hir.pointer_cast(%c57856_i64) : memref<64xi1, #hivm.address_space<ub>>"
+      },
+      "symbol": "%58",
+      "target_line": 686,
+      "producer_line": 688,
+      "consumer_line": 775,
+      "producer": {
+        "line": 688,
+        "op": "hivm.hir.vand",
+        "text": "hivm.hir.vand ins(%33, %57 : memref<64xi1, #hivm.address_space<ub>>, memref<64xi1, #hivm.address_space<ub>>) outs(%58 : memref<64xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 775,
+        "op": "hivm.hir.vcast",
+        "text": "hivm.hir.vcast ins(%58 : memref<64xi1, #hivm.address_space<ub>>) outs(%86 : memref<64xf16, #hivm.address_space<ub>>) temp_buffer(%87 : memref<48xf16, #hivm.address_space<ub>>) round_mode = <trunc>",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%58_mb4_ping",
+        "pong": "%58_mb4_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0005",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0010",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%81",
+        "line": 766,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<32xi32, #hivm.address_space<ub>>",
+        "text": "%81 = hivm.hir.pointer_cast(%c148992_i64) : memref<32xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%81",
+      "target_line": 766,
+      "producer_line": 767,
+      "consumer_line": 906,
+      "producer": {
+        "line": 767,
+        "op": "hivm.hir.varange",
+        "text": "hivm.hir.varange offset[%c0] strides[%c1] outs(%81 : memref<32xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 906,
+        "op": "hivm.hir.vadd",
+        "text": "hivm.hir.vadd ins(%81, %235 : memref<32xi32, #hivm.address_space<ub>>, i32) outs(%236 : memref<32xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%81_mb5_ping",
+        "pong": "%81_mb5_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0006",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0011",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%237",
+        "line": 907,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<32xi32, #hivm.address_space<ub>>",
+        "text": "%237 = hivm.hir.pointer_cast(%c384_i64) : memref<32xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%237",
+      "target_line": 907,
+      "producer_line": 909,
+      "consumer_line": 912,
+      "producer": {
+        "line": 909,
+        "op": "hivm.hir.vmax",
+        "text": "hivm.hir.vmax ins(%236, %c128_i32 : memref<32xi32, #hivm.address_space<ub>>, i32) outs(%237 : memref<32xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 912,
+        "op": "hivm.hir.vcmp",
+        "text": "hivm.hir.vcmp ins(%237, %236 : memref<32xi32, #hivm.address_space<ub>>, memref<32xi32, #hivm.address_space<ub>>) outs(%238 : memref<32xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%237_mb6_ping",
+        "pong": "%237_mb6_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0007",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0013",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%239",
+        "line": 913,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<32xi1, #hivm.address_space<ub>>",
+        "text": "%239 = hivm.hir.pointer_cast(%c384_i64) : memref<32xi1, #hivm.address_space<ub>>"
+      },
+      "symbol": "%239",
+      "target_line": 913,
+      "producer_line": 915,
+      "consumer_line": 923,
+      "producer": {
+        "line": 915,
+        "op": "hivm.hir.vnot",
+        "text": "hivm.hir.vnot ins(%238 : memref<32xi1, #hivm.address_space<ub>>) outs(%239 : memref<32xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 923,
+        "op": "hivm.hir.vand",
+        "text": "hivm.hir.vand ins(%239, %241 : memref<32xi1, #hivm.address_space<ub>>, memref<32xi1, #hivm.address_space<ub>>) outs(%242 : memref<32xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%239_mb7_ping",
+        "pong": "%239_mb7_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0008",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0014",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%240",
+        "line": 916,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<32xi32, #hivm.address_space<ub>>",
+        "text": "%240 = hivm.hir.pointer_cast(%c512_i64) : memref<32xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%240",
+      "target_line": 916,
+      "producer_line": 917,
+      "consumer_line": 920,
+      "producer": {
+        "line": 917,
+        "op": "hivm.hir.vmax",
+        "text": "hivm.hir.vmax ins(%236, %c0_i32 : memref<32xi32, #hivm.address_space<ub>>, i32) outs(%240 : memref<32xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 920,
+        "op": "hivm.hir.vcmp",
+        "text": "hivm.hir.vcmp ins(%240, %236 : memref<32xi32, #hivm.address_space<ub>>, memref<32xi32, #hivm.address_space<ub>>) outs(%241 : memref<32xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%240_mb8_ping",
+        "pong": "%240_mb8_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0009",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0000",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%313",
+        "line": 1265,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64x32xf32, #hivm.address_space<ub>>",
+        "text": "%313 = hivm.hir.pointer_cast(%c98688_i64) : memref<64x32xf32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%313",
+      "target_line": 1265,
+      "producer_line": 1108,
+      "consumer_line": 1107,
+      "producer": {
+        "line": 1108,
+        "op": "memref.store",
+        "text": "memref.store %313, %276[%arg39, %arg40] : memref<64x32xbf16, #hivm.address_space<ub>>",
+        "symbol_context": "ambiguous"
+      },
+      "consumer": {
+        "line": 1107,
+        "op": "memref.load",
+        "text": "%313 = memref.load %reinterpret_cast_168[%c0] : memref<1xbf16, strided<[1], offset: ?>, #hivm.address_space<gm>>",
+        "symbol_context": "read_like_load_source"
+      },
+      "slot_symbols": {
+        "ping": "%313_mb9_ping",
+        "pong": "%313_mb9_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0010",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0017",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%177",
+        "line": 1348,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<32xf32, #hivm.address_space<ub>>",
+        "text": "%177 = hivm.hir.pointer_cast(%c61824_i64) : memref<32xf32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%177",
+      "target_line": 1348,
+      "producer_line": 1349,
+      "consumer_line": 1352,
+      "producer": {
+        "line": 1349,
+        "op": "hivm.hir.vmul",
+        "text": "hivm.hir.vmul ins(%164, %cst_2 : memref<32xf32, #hivm.address_space<ub>>, f32) outs(%177 : memref<32xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 1352,
+        "op": "hivm.hir.vexp",
+        "text": "hivm.hir.vexp ins(%177 : memref<32xf32, #hivm.address_space<ub>>) outs(%178 : memref<32xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%177_mb10_ping",
+        "pong": "%177_mb10_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0011",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0019",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%179",
+        "line": 1353,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<32xf32, #hivm.address_space<ub>>",
+        "text": "%179 = hivm.hir.pointer_cast(%c61824_i64) : memref<32xf32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%179",
+      "target_line": 1353,
+      "producer_line": 1355,
+      "consumer_line": 1515,
+      "producer": {
+        "line": 1355,
+        "op": "hivm.hir.vmul",
+        "text": "hivm.hir.vmul ins(%172#0, %178 : memref<32xf32, #hivm.address_space<ub>>, memref<32xf32, #hivm.address_space<ub>>) outs(%179 : memref<32xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 1515,
+        "op": "hivm.hir.vadd",
+        "text": "hivm.hir.vadd ins(%179, %collapse_shape_105 : memref<32xf32, #hivm.address_space<ub>>, memref<32xf32, #hivm.address_space<ub>>) outs(%223 : memref<32xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%179_mb11_ping",
+        "pong": "%179_mb11_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    }
+  ]
+}

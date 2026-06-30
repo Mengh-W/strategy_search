@@ -1,0 +1,220 @@
+{
+  "schema_version": "fake_hivm_dry_run_report_v2",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "input": "artifacts/latest_smoke_run/optimized.structural.hivm.mlir",
+  "edit_script": "artifacts/v4_fake_backend_smoke_latest/backend_contract/sync_multibuffer_backend_contract.json",
+  "production_mutation": false,
+  "status": "dry_run_only_fake_backend_no_mutation",
+  "action_count": 9,
+  "located_action_count": 9,
+  "actions": [
+    {
+      "action_id": "sync_001_barrier_to_directional_event",
+      "candidate_id": null,
+      "target_line": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_001_clone_q_ub",
+      "candidate_id": null,
+      "target_line": 27,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_002_clone_p_ub",
+      "candidate_id": null,
+      "target_line": 30,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_003_clone_k_ub",
+      "candidate_id": null,
+      "target_line": 33,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_004_clone_v_ub",
+      "candidate_id": null,
+      "target_line": 34,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_005_clone_q_l1",
+      "candidate_id": null,
+      "target_line": 35,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_006_clone_k_l1",
+      "candidate_id": null,
+      "target_line": 36,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_007_clone_v_l1",
+      "candidate_id": null,
+      "target_line": 37,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_008_clone_acc_ub",
+      "candidate_id": null,
+      "target_line": 28,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "hivm.strategy.source",
+        "source_line": 17,
+        "text_preview": "module attributes {hivm.sync = \"graph_sync_solver\", hivm.strategy.source = \"auto_strategy_search_v3\", hivm.strategy.version = \"V3.3.1-step2-safe-structural\"} {",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    }
+  ]
+}

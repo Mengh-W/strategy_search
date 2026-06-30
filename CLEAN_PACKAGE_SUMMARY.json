@@ -1,0 +1,84 @@
+{
+  "package": "HIVM_strategy_search_demo_V5.3.1_backend_contract_ready_prelinux_lf_hygiene",
+  "version": "V5.3.1-backend-contract-ready-prelinux-lf-hygiene",
+  "status": "ready_for_linux_real_backend_handoff_after_lf_hygiene_and_local_fake_backend_ci",
+  "changes": [
+    "Run live optimizer defect tests in batches for all 14 synthetic defect cases.",
+    "Add docs/test_report/01_defect_hivm_cost_model_test_report_CN.md with detailed live-run defect HIVM cost-model validation report.",
+    "Add docs/core/06_extended_defect_cost_model_validation_CN.md with cost-model direction validation results for the new defect cases.",
+    "Add 5 extended synthetic defect HIVM/NPUIR cases (J/K/L/M/O) and extend defect regression from 9 to 14 cases.",
+    "Remove local .omc scratch directories from release packages and ignore them in Git.",
+    "Extend .gitattributes LF rules to vTriton/BiShengIR-adjacent source and fixture file types.",
+    "Exclude vTriton snapshots from default pytest collection via pytest.ini.",
+    "Make scripts/run_pre_linux_ci.sh support --run while retaining default checklist mode.",
+    "Add scripts/run_multibuffer_ci.sh as an explicit MultiBuffer restricted rewrite gate.",
+    "Synchronize README/docs displayed version with VERSION file.",
+    "Add scripts/run_phase5b_roundtrip_ci.sh and split Phase-5B from backend_fake_ci for more stable Windows/WSL pre-Linux handoff.",
+    "Add .gitattributes to enforce LF for source/shell/doc/MLIR files and CRLF for Windows command files.",
+    "Normalize CRLF line endings in strategy_search/hivm_ops_editor.py, strategy_search/hivm_parser.py, and strategy_search/hivm_backend.py.",
+    "Normalize release-package source/script/doc/MLIR text files to LF for Linux handoff hygiene.",
+    "Fix scripts/run_v531_fast_ci.sh comments to match the actual fast CI test subset.",
+    "Rewrite README.md for the latest backend-contract-ready pre-Linux state.",
+    "Rewrite docs/00_DOCUMENTATION_INDEX_CN.md with updated reading order and terminology.",
+    "Rewrite docs/core/33_technical_report_optimization_CN.md for the current search/cost-model/boundary/handoff design.",
+    "Rewrite docs/core/34_technical_report_rewrite_CN.md for restricted rewrite, backend contract, fake backend, and real-backend boundaries.",
+    "Add docs/core/38_pre_linux_completion_and_handoff_CN.md as the Linux handoff checklist.",
+    "Add scripts/run_backend_fake_ci.sh for backend contract / fake backend acceptance tests.",
+    "Add scripts/run_pre_linux_ci.sh as a checklist launcher and scripts/run_phase6_positive_ci.sh for Phase-6 positive-case tests.",
+    "Add scripts/clean_release_package.sh for cache/debug-file cleanup before packaging.",
+    "Clarify backend contract docs: fake backend success is not production rewrite proof.",
+    "Remove root-level temporary debug scripts and Python cache files from the release package."
+  ],
+  "validated_commands": [
+    "bash scripts/run_v531_fast_ci.sh",
+    "bash scripts/run_backend_fake_ci.sh",
+    "bash scripts/run_phase6_positive_ci.sh",
+    "bash scripts/run_multibuffer_ci.sh",
+    "bash scripts/run_phase5b_roundtrip_ci.sh",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 pytest -q tests/test_defect_injection_cases.py -m regression",
+    "RUN_DEFECT_LIVE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q -m slow tests/test_defect_injection_cases.py -k 'defect_A_small_tile_f32_barrier or defect_B_large_tile_ub_overflow or defect_C_barrier_heavy_sync_stall or defect_D_no_overlap_good_tile'",
+    "RUN_DEFECT_LIVE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q -m slow tests/test_defect_injection_cases.py -k 'defect_E_small_tile_many_sync_f32_redundantQ or defect_F_large_tile_overflow_sync_pressure or defect_G_existing_pingpong_but_bad_sync_dtype'",
+    "RUN_DEFECT_LIVE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q -m slow tests/test_defect_injection_cases.py -k 'defect_H_event_sync_but_small_tile_no_overlap or defect_I_medium_tile_memory_pressure_vector_heavy or defect_J_tiny_tile_nested_barrier_f32 or defect_K_oversized_m128n192_f32_overflow'",
+    "RUN_DEFECT_LIVE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q -m slow tests/test_defect_injection_cases.py -k 'defect_L_good_tile_event_mismatch_vector_heavy or defect_M_tail_unfriendly_n176_no_overlap or defect_O_pingpong_but_many_barriers_extra_buffers'"
+  ],
+  "known_limits": [
+    "No real BiShengIR parser validation has been run in this environment.",
+    "No real MLIR verifier validation has been run in this environment.",
+    "No real HivmOpsEditor operation-level roundtrip has been run in this environment.",
+    "No real vTriton DES/trace validation has been run in this environment.",
+    "No CANN/msprof/Ascend hardware profile has been run in this environment.",
+    "Fake backend CI proves only CLI/contract/report plumbing, not production rewrite legality."
+  ],
+  "line_ending_hygiene": {
+    "gitattributes_added": true,
+    "source_text_files_lf_normalized": true,
+    "cmd_bat_files_intentionally_crlf": true,
+    "crlf_source_files_remaining": 0,
+    "review_source": "Trae Linux pre-handoff audit follow-up",
+    "gitattributes_extended_for_vtriton_text_fixtures": true
+  },
+  "pre_linux_local_ci_commands": [
+    "bash scripts/run_v531_fast_ci.sh",
+    "bash scripts/run_phase5b_roundtrip_ci.sh",
+    "bash scripts/run_backend_fake_ci.sh",
+    "bash scripts/run_phase6_positive_ci.sh",
+    "bash scripts/run_multibuffer_ci.sh"
+  ],
+  "local_scratch_dirs_removed": [
+    "**/.omc"
+  ],
+  "defect_regression": {
+    "synthetic_defect_cases_total": 14,
+    "new_cases": [
+      "defect_J_tiny_tile_nested_barrier_f32",
+      "defect_K_oversized_m128n192_f32_overflow",
+      "defect_L_good_tile_event_mismatch_vector_heavy",
+      "defect_M_tail_unfriendly_n176_no_overlap",
+      "defect_O_pingpong_but_many_barriers_extra_buffers"
+    ],
+    "lightweight_regression_result": "28 passed, 14 skipped",
+    "live_search_tests": "opt-in via RUN_DEFECT_LIVE=1",
+    "detailed_test_report": "docs/test_report/01_defect_hivm_cost_model_test_report_CN.md",
+    "live_search_batched_result": "14 live defect cases passed in four batches"
+  }
+}

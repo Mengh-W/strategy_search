@@ -1,0 +1,66 @@
+{
+  "schema_version": "hivm_phase6f_backend_acceptance_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase6f_backend_acceptance_closure",
+  "phase": "Phase-6F",
+  "phase6f_status": "phase6f_waiting_for_compiled_real_backend_acceptance",
+  "plain_language_summary": "Phase 6F accepts a compiled real HivmOpsEditor/MLIR backend only if it proves identity, supports required modes, and passes inventory/roundtrip/verify smoke tests on a fixture. Without that, restricted Python true rewrites remain separate prototypes and production complex mutation stays locked.",
+  "backend_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null,
+    "supports_print_capabilities": false,
+    "reason": "operation_backend_binary_not_configured_or_not_found"
+  },
+  "identity_flags": {
+    "capabilities_json_ok": false,
+    "declares_real_mlir_backend": false,
+    "declares_hivmopseditor_or_operation_walk": false,
+    "not_fake_backend": false
+  },
+  "required_mode_flags": {
+    "inventory": false,
+    "roundtrip": false,
+    "verify_only": false,
+    "dry_run": false,
+    "mutate_gm_roundtrip_deletion": false
+  },
+  "tritonsim_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null
+  },
+  "fixture_count": 0,
+  "eligible_fixture_count": 0,
+  "fixtures": [],
+  "smoke_dir": "/mnt/data/hivm_work/smoke_out/phase6f_backend_smoke",
+  "smoke_results": [],
+  "passed_smoke_count": 0,
+  "accepted_backend_for_restricted_mutation_trials": false,
+  "production_mutation_allowed": false,
+  "des_trace_deferred_without_real_tritonsim": true,
+  "blocker_count": 13,
+  "blockers": [
+    "compiled_hivm_operation_backend_binary_not_provided",
+    "backend_capability_handshake_not_passed",
+    "identity_check_failed_capabilities_json_ok",
+    "identity_check_failed_declares_real_mlir_backend",
+    "identity_check_failed_declares_hivmopseditor_or_operation_walk",
+    "identity_check_failed_not_fake_backend",
+    "required_mode_missing_inventory",
+    "required_mode_missing_roundtrip",
+    "required_mode_missing_verify_only",
+    "required_mode_missing_dry_run",
+    "required_mode_missing_mutate_gm_roundtrip_deletion",
+    "no_eligible_hivm_or_npuir_fixture_for_backend_acceptance",
+    "real_tritonsim_hivm_not_available_des_trace_deferred"
+  ],
+  "acceptance_rule": {
+    "must_provide_compiled_backend_binary": true,
+    "must_pass_print_capabilities": true,
+    "must_declare_real_mlir_or_hivmopseditor_identity": true,
+    "must_support_inventory_roundtrip_verify_dry_run_and_limited_gm_mutation": true,
+    "must_pass_basic_inventory_roundtrip_verify_on_fixture": true,
+    "q_load_hoist_still_requires_dominance_region_motion_algorithm": true,
+    "msprof_not_required_for_phase6f": true
+  }
+}

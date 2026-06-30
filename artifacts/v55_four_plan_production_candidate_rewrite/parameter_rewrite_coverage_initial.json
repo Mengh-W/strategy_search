@@ -1,0 +1,424 @@
+{
+  "schema_version": "hivm_v531_parameter_rewrite_coverage_v2",
+  "version": "V5.3-four-plan-true-rewrite-with-parameter-coverage",
+  "parameter_count": 35,
+  "rewritten_back_to_ir_count": 35,
+  "not_rewritten_back_to_ir_count": 0,
+  "coverage_counts": {
+    "RESTRICTED_STRUCTURAL_REWRITE": 10,
+    "TRACE_METADATA_REWRITE": 25
+  },
+  "coverage_counts_by_plan": {
+    "tiling_plan": {
+      "RESTRICTED_STRUCTURAL_REWRITE": 3,
+      "TRACE_METADATA_REWRITE": 5
+    },
+    "multibuffer_plan": {
+      "RESTRICTED_STRUCTURAL_REWRITE": 2,
+      "TRACE_METADATA_REWRITE": 8
+    },
+    "cv_pipeline_plan": {
+      "TRACE_METADATA_REWRITE": 6,
+      "RESTRICTED_STRUCTURAL_REWRITE": 2
+    },
+    "sync_plan": {
+      "RESTRICTED_STRUCTURAL_REWRITE": 3,
+      "TRACE_METADATA_REWRITE": 6
+    }
+  },
+  "all_controllable_parameters_rewritten_back_to_ir": true,
+  "all_controllable_parameters_semantic_operation_rewrite": false,
+  "important_boundary": "V5.3.1 embeds every controllable parameter back into IR metadata and applies restricted structural portable rewrites for supported parameters; zero parameters are claimed as production MLIR Operation rewrites until HivmOpsEditor/MLIR verifier/DES/msprof pass.",
+  "evidence_only_parameters": [
+    {
+      "plan": "tiling_plan",
+      "parameter": "generic_logical_axes_evidence",
+      "value": {
+        "primary_tile_candidate": {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 128
+        },
+        "candidate_tiles_from_cube_ops": [
+          {
+            "tile_m": 64,
+            "tile_n": 32,
+            "tile_k": 128
+          },
+          {
+            "tile_m": 64,
+            "tile_n": 32,
+            "tile_k": 32
+          }
+        ],
+        "conventional_tensor_signature": {
+          "detected": true,
+          "Q_gm": [
+            64,
+            128
+          ],
+          "K_gm": [
+            1024,
+            128
+          ],
+          "V_gm": [
+            1024,
+            128
+          ],
+          "O_gm": [
+            64,
+            128
+          ],
+          "note": "name-based conventional tensor signature; used as evidence only, not a hard-coded kernel family"
+        }
+      },
+      "coverage_level": "EVIDENCE_ONLY",
+      "rewrite_consumer": "selected_plan_metadata_block",
+      "rewritten_back_to_ir": false,
+      "production_verified": false
+    }
+  ],
+  "parameters": [
+    {
+      "plan": "tiling_plan",
+      "parameter": "tile_m",
+      "value": 32,
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "tiling_metadata_constants",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "tiling_plan",
+      "parameter": "tile_n",
+      "value": 64,
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "tiling_metadata_constants",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "tiling_plan",
+      "parameter": "tile_k",
+      "value": 128,
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "tiling_metadata_constants",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "tiling_plan",
+      "parameter": "logical_axes",
+      "value": [
+        "axis_m",
+        "axis_n",
+        "axis_k"
+      ],
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "selected_plan_metadata_block",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "tiling_plan",
+      "parameter": "loop_order",
+      "value": "outer_mkn",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "tiling_metadata_annotation",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "tiling_plan",
+      "parameter": "tail_strategy",
+      "value": "mask_or_pad",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "tiling_metadata_annotation",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "tiling_plan",
+      "parameter": "reduce_tile_policy",
+      "value": "half_k",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "tiling_metadata_annotation",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "tiling_plan",
+      "parameter": "layout_aware_tile",
+      "value": true,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "selected_plan_metadata_block",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "double_buffer",
+      "value": true,
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "ping_pong_slot_insertion",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "template",
+      "value": "M1_input_double_buffer",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "selected_plan_metadata_block",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "input_buffer_multiplier",
+      "value": 2,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "ping_pong_slot_selection_or_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "stage_buffer_multiplier",
+      "value": 2,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "ping_pong_slot_selection_or_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "ub_multiplier",
+      "value": 1,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "scope_specific_multibuffer_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "l1_multiplier",
+      "value": 1,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "scope_specific_multibuffer_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "stage_buffer_policy",
+      "value": "none",
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "producer_consumer_replacement_policy",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "buffer_multipliers",
+      "value": {
+        "k_l1": 1,
+        "q_l1": 1,
+        "q_ub": 1,
+        "v_l1": 1
+      },
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "per_scope_buffer_multiplier_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "buffer_multiplier_domain",
+      "value": {
+        "q_l1": [
+          1,
+          2
+        ],
+        "q_ub": [
+          1,
+          2
+        ],
+        "v_l1": [
+          1,
+          2
+        ],
+        "k_l1": [
+          1,
+          2
+        ]
+      },
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "allowed_multiplier_domain_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "multibuffer_plan",
+      "parameter": "detected_ping_pong_multibuffer",
+      "value": false,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "existing_pingpong_evidence_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "cv_pipeline_plan",
+      "parameter": "stage_num",
+      "value": 2,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "pipeline_group_and_sync_edge_count_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "cv_pipeline_plan",
+      "parameter": "template",
+      "value": "P2_stage2_balanced",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "selected_plan_metadata_block",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "cv_pipeline_plan",
+      "parameter": "enable_mixed_cv",
+      "value": false,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "mixed_cv_pipeline_policy_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "cv_pipeline_plan",
+      "parameter": "tile_mix_cube_loop",
+      "value": 1,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "pipeline_window_selection_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "cv_pipeline_plan",
+      "parameter": "tile_mix_vector_loop",
+      "value": 1,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "pipeline_window_selection_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "cv_pipeline_plan",
+      "parameter": "auto_cv_balance",
+      "value": true,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "pipeline_window_selection_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "cv_pipeline_plan",
+      "parameter": "producer_consumer_distance",
+      "value": 1,
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "load_compute_store_sync_edge_policy",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "cv_pipeline_plan",
+      "parameter": "stage_buffer_policy",
+      "value": "none",
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "pipeline_buffer_binding_policy",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "policy",
+      "value": "graph_sync_solver",
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "barrier_to_event_pair_rewrite_policy",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "template",
+      "value": "Y3_event_reuse",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "selected_plan_metadata_block",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "barrier_level",
+      "value": "low",
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "barrier_candidate_selection_policy",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "event_reuse",
+      "value": true,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "event_id_allocation_policy",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "sync_granularity",
+      "value": "stage",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "sync_candidate_granularity_policy",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "event_id_policy",
+      "value": "reuse",
+      "coverage_level": "RESTRICTED_STRUCTURAL_REWRITE",
+      "rewrite_consumer": "generated_event_id_policy",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "sync_motion",
+      "value": "local_move",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "sync_motion_guard_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "remove_redundant_sync",
+      "value": true,
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "sync_cleanup_guard_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    },
+    {
+      "plan": "sync_plan",
+      "parameter": "sync_style_from_ir",
+      "value": "barrier",
+      "coverage_level": "TRACE_METADATA_REWRITE",
+      "rewrite_consumer": "existing_sync_style_evidence_metadata",
+      "rewritten_back_to_ir": true,
+      "production_verified": false
+    }
+  ]
+}

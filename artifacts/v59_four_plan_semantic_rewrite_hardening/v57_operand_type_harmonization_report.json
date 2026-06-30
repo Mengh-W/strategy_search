@@ -1,0 +1,72 @@
+{
+  "mutation_performed": true,
+  "rewritten_operand_type_count": 11,
+  "rewrites": [
+    {
+      "line": 132,
+      "value": "%k_l1_ping",
+      "from_type": "memref<32x128xf16, #hivm.address_space<cbuf>",
+      "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+    },
+    {
+      "line": 132,
+      "value": "%s_l0c",
+      "from_type": "memref<32x128xf32, #hivm.address_space<cc>",
+      "to_type": "memref<32x64xf32, #hivm.address_space<cc>"
+    },
+    {
+      "line": 148,
+      "value": "%s_ub_mb2_ping",
+      "from_type": "memref<32x1xf16, #hivm.address_space<ub>",
+      "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
+    },
+    {
+      "line": 153,
+      "value": "%s_ub",
+      "from_type": "memref<32x1xf16, #hivm.address_space<ub>",
+      "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
+    },
+    {
+      "line": 153,
+      "value": "%p_ub_mb3_ping",
+      "from_type": "memref<32x1xf16, #hivm.address_space<ub>",
+      "to_type": "memref<32x64xf16, #hivm.address_space<ub>"
+    },
+    {
+      "line": 162,
+      "value": "%l_ub",
+      "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+    },
+    {
+      "line": 167,
+      "value": "%v_l1",
+      "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
+      "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+    },
+    {
+      "line": 178,
+      "value": "%v_l1",
+      "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
+      "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+    },
+    {
+      "line": 188,
+      "value": "%acc_ub_mb1_ping",
+      "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+    },
+    {
+      "line": 202,
+      "value": "%acc_ub_mb1_ping",
+      "from_type": "memref<32x1xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+    },
+    {
+      "line": 202,
+      "value": "%acc_ub_mb1_ping",
+      "from_type": "memref<32x1xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+    }
+  ]
+}

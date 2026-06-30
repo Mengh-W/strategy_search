@@ -1,0 +1,16 @@
+{
+  "schema_version": "hivm_sync_portable_rewrite_closure_summary_v1",
+  "version": "V4.5-syncplan-portable-rewrite-closure",
+  "input_ir": "sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+  "selected_plan": "artifacts/latest_smoke_run/selected_plan.json",
+  "contract": "artifacts/v45_sync_portable_rewrite/sync_precision_contract/sync_precision_contract.json",
+  "optimized_ir": "artifacts/v45_sync_portable_rewrite/optimized.sync_portable_rewritten.hivm.mlir",
+  "rewrite_report": "artifacts/v45_sync_portable_rewrite/sync_portable_rewrite_report.json",
+  "validation_report": "artifacts/v45_sync_portable_rewrite/sync_portable_rewrite_validation.json",
+  "contract_overall_decision": "READY_FOR_PRECISE_BACKEND_DRY_RUN_BARRIER_ACTIONS",
+  "mutation_performed": true,
+  "rewritten_action_count": 1,
+  "passed_portable_validation": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "portable restricted text-level SyncPlan rewrite; real HivmOpsEditor verify/DES/msprof still required"
+}

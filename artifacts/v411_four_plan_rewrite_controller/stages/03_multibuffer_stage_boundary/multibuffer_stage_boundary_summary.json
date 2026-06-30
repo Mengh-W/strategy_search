@@ -1,0 +1,30 @@
+{
+  "version": "V4.9-multibuffer-stage-boundary-analysis",
+  "schema_version": "hivm_multibuffer_stage_boundary_summary_v1",
+  "input_ir": "/mnt/data/HIVM_strategy_search_demo_V4.11/sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+  "input_anchor_count": 273,
+  "readiness_counts": {
+    "BLOCKED": 44,
+    "REVIEW_REQUIRED": 133,
+    "LOW_PRIORITY": 16,
+    "READY_FOR_GUARDED_PLAN": 80
+  },
+  "analyzed_candidate_count": 80,
+  "stage_boundary_status_counts": {
+    "READY_FOR_PINGPONG_PLAN": 20,
+    "BLOCKED": 60
+  },
+  "risk_counts": {
+    "LOW": 20,
+    "BLOCKED": 60
+  },
+  "scope_counts": {
+    "UB": 80
+  },
+  "selected_for_stage_plan_count": 20,
+  "stage_mutation_plan_action_count": 20,
+  "annotation_performed": true,
+  "semantic_mutation_performed": false,
+  "production_rewrite_claim_allowed": false,
+  "next_step": "CVPipelinePlan staged planner or guarded HivmOpsEditor multibuffer mutation after real verifier is available"
+}

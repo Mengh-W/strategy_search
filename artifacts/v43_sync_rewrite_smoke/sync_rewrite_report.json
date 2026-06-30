@@ -1,0 +1,32 @@
+{
+  "schema_version": "hivm_sync_rewrite_executor_v1",
+  "rewrite_kind": "restricted_text_sync_pipe_barrier_to_set_wait_pair",
+  "contract_schema_version": "hivm_sync_precision_contract_v1",
+  "requested_action_count": 1,
+  "rewritten_action_count": 1,
+  "skipped_action_count": 0,
+  "rewritten_actions": [
+    {
+      "action_id": "sync_dryrun_barrier_001_line_301",
+      "mutation_kind": "barrier_to_directional_event_pair",
+      "line": 301,
+      "original": "hivm.hir.pipe_barrier[<PIPE_MTE2>]",
+      "replacement": [
+        "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_MTE2>, %hivm_sync_auto0]",
+        "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_MTE2>, %hivm_sync_auto0]"
+      ],
+      "event_id": "%hivm_sync_auto0",
+      "pipe": "PIPE_MTE2"
+    }
+  ],
+  "skipped_actions": [],
+  "mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "requires_real_backend_followup": true,
+  "safety_boundary": [
+    "text-level restricted rewrite only; not MLIR Operation mutation",
+    "same-pipe set/wait pair is a conservative barrier-emulation anchor, not a proven optimization",
+    "PIPE_ALL is skipped by default",
+    "real HivmOpsEditor must reparse, roundtrip, verify, and run DES/trace before production claim"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "hivm_v56_four_plan_operation_rewrite_summary_v1",
+  "version": "V5.6-four-plan-semantic-operation-rewrite-mvp",
+  "input_ir": "sample_input/fa_best.hivm.mlir",
+  "selected_plan": "artifacts/latest_smoke_run/selected_plan.json",
+  "optimized_ir": "artifacts/v56_four_plan_operation_rewrite_test/optimized.four_plan_operation_rewrite.hivm.mlir",
+  "optimized_ir_with_coverage": "artifacts/v56_four_plan_operation_rewrite_test/optimized.four_plan_operation_rewrite.with_coverage.hivm.mlir",
+  "rewrite_order": [
+    "TilingPlan",
+    "MultiBufferPlan",
+    "CVPipelinePlan",
+    "SyncPlan"
+  ],
+  "stage_mutation": {
+    "tiling": true,
+    "multibuffer": true,
+    "cvpipeline": true,
+    "sync": true
+  },
+  "stage_validation": {
+    "tiling": true,
+    "multibuffer": false,
+    "cvpipeline": false,
+    "sync": true
+  },
+  "four_plan_operation_rewrite_performed": true,
+  "portable_validation_passed": false,
+  "operation_parameter_coverage_rows": 32,
+  "all_controllable_parameters_have_operation_action_mvp": true,
+  "linux_compile_ready_claim": false,
+  "linux_backend_validation_required": true,
+  "claim_boundary": "V5.6 maps four searched plans to semantic operation-level HIVM mutations for supported patterns. It produces optimized HIVM candidates and parameter-to-operation action coverage, but Linux MLIR/HIVM parse, verifier, backend compile, correctness and msprof remain mandatory before claiming production performance improvement.",
+  "linux_validation_sequence": [
+    "parse baseline HIVM",
+    "parse optimized.four_plan_operation_rewrite.hivm.mlir",
+    "HivmOpsEditor roundtrip",
+    "MLIR/HIVM verifier",
+    "backend compile",
+    "correctness check baseline vs optimized",
+    "msprof baseline and optimized with repeated median latency/cycles"
+  ],
+  "stage_artifacts": {
+    "tiling_dir": "artifacts/v56_four_plan_operation_rewrite_test/stages/01_tiling_semantic_operation_rewrite",
+    "multibuffer_dir": "artifacts/v56_four_plan_operation_rewrite_test/stages/02_multibuffer_operation_rewrite",
+    "cvpipeline_dir": "artifacts/v56_four_plan_operation_rewrite_test/stages/03_cvpipeline_operation_rewrite",
+    "sync_dir": "artifacts/v56_four_plan_operation_rewrite_test/stages/04_sync_operation_rewrite",
+    "coverage": {
+      "schema_version": "hivm_v53_parameter_rewrite_coverage_summary_v1",
+      "version": "V5.3-four-plan-true-rewrite-with-parameter-coverage",
+      "parameter_count": 35,
+      "rewritten_back_to_ir_count": 35,
+      "not_rewritten_back_to_ir_count": 0,
+      "coverage_counts": {
+        "RESTRICTED_STRUCTURAL_REWRITE": 10,
+        "TRACE_METADATA_REWRITE": 25
+      },
+      "all_controllable_parameters_rewritten_back_to_ir": true,
+      "all_controllable_parameters_semantic_operation_rewrite": false,
+      "optimized_ir": "artifacts/v56_four_plan_operation_rewrite_test/optimized.four_plan_operation_rewrite.with_coverage.hivm.mlir"
+    }
+  }
+}

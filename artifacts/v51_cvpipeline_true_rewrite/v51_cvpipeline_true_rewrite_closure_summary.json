@@ -1,0 +1,12 @@
+{
+  "schema_version": "hivm_v51_cvpipeline_true_rewrite_closure_summary_v1",
+  "version": "V5.1-cvpipeline-restricted-true-rewrite",
+  "multibuffer_mutation_performed": true,
+  "multibuffer_rewritten_action_count": 3,
+  "cvpipeline_mutation_performed": true,
+  "cvpipeline_rewritten_action_count": 2,
+  "cvpipeline_passed_portable_validation": true,
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "V5.1 portable restricted true rewrite; real HivmOpsEditor verifier/DES/msprof still required"
+}

@@ -1,0 +1,24 @@
+{
+  "version": "V4.8-multibuffer-rewrite-readiness",
+  "schema_version": "hivm_multibuffer_rewrite_readiness_summary_v1",
+  "input_ir": "sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+  "anchor_count": 273,
+  "readiness_counts": {
+    "BLOCKED": 44,
+    "REVIEW_REQUIRED": 133,
+    "LOW_PRIORITY": 16,
+    "READY_FOR_GUARDED_PLAN": 80
+  },
+  "scope_counts": {
+    "GM": 43,
+    "L1_CBUF": 38,
+    "L0C": 18,
+    "UB": 174
+  },
+  "selected_candidate_count": 50,
+  "mutation_plan_action_count": 50,
+  "annotation_performed": true,
+  "semantic_mutation_performed": false,
+  "production_rewrite_claim_allowed": false,
+  "next_step": "operation-level double-buffer mutation requires real verifier/dominance/alias/stage-boundary analysis"
+}

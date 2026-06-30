@@ -1,0 +1,12 @@
+{
+  "schema_version": "hivm_guarded_mutation_selector_v1",
+  "selected": false,
+  "selected_action_id": null,
+  "reason": "no action passed real-backend dry-run proofs and guarded mutation filters",
+  "single_action_contract": null,
+  "eligible_action_count": 0,
+  "blocked_summary": {
+    "VERIFY_ONLY_NOT_MUTATION": 1,
+    "BLOCKED_FAKE_BACKEND": 8
+  }
+}

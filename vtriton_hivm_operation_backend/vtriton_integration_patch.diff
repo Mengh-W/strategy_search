@@ -1,0 +1,22 @@
+diff --git a/tools/CMakeLists.txt b/tools/CMakeLists.txt
+--- a/tools/CMakeLists.txt
++++ b/tools/CMakeLists.txt
+@@
+ #===----------------------------------------------------------------------===//
+ # hivm-crud - HIVM CRUD Tool (Create/Read/Update/Delete HIVM ops via C++ API)
+ #===----------------------------------------------------------------------===//
+@@
+ endif()
++
++#===----------------------------------------------------------------------===//
++# hivm-operation-backend - Strategy-search HIVM Operation backend adapter
++#===----------------------------------------------------------------------===//
++
++if(TRITONSIM_HAS_BISHENGIR_HIVM AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/hivm-operation-backend/CMakeLists.txt")
++  add_subdirectory(hivm-operation-backend)
++  list(APPEND _installed_tools hivm-operation-backend)
++endif()
+ 
+ #===----------------------------------------------------------------------===//
+ # ascend-tiling-opt - Tiling Optimization Tool
+ #===----------------------------------------------------------------------===//

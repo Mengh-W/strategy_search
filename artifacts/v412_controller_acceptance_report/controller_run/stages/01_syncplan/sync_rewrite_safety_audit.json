@@ -1,0 +1,3622 @@
+{
+  "schema_version": "hivm_sync_rewrite_audit_v1",
+  "audit_kind": "portable_syncplan_rewrite_safety_audit",
+  "production_rewrite_claim_allowed": false,
+  "audit_decision": "PORTABLE_REWRITE_AUDITED_NOT_PRODUCTION",
+  "claim_boundary": "text-level portable rewrite audit only; real HivmOpsEditor parse/verify/DES/msprof still required",
+  "before_sync_counts": {
+    "pipe_barrier": 80,
+    "set_flag": 116,
+    "wait_flag": 110,
+    "sync_block": 96
+  },
+  "after_sync_counts": {
+    "pipe_barrier": 6,
+    "set_flag": 190,
+    "wait_flag": 184,
+    "sync_block": 96
+  },
+  "before_sync_by_pipe": {
+    "SYNC_BLOCK": {
+      "sync_block": 96
+    },
+    "PIPE_MTE1": {
+      "set_flag": 9,
+      "wait_flag": 1
+    },
+    "PIPE_FIX": {
+      "set_flag": 15,
+      "wait_flag": 9
+    },
+    "PIPE_MTE2": {
+      "wait_flag": 38,
+      "set_flag": 23,
+      "pipe_barrier": 2
+    },
+    "PIPE_M": {
+      "wait_flag": 14,
+      "set_flag": 9
+    },
+    "PIPE_ALL": {
+      "pipe_barrier": 6
+    },
+    "PIPE_V": {
+      "pipe_barrier": 72,
+      "set_flag": 37,
+      "wait_flag": 26
+    },
+    "PIPE_MTE3": {
+      "wait_flag": 12,
+      "set_flag": 20
+    },
+    "PIPE_S": {
+      "wait_flag": 10,
+      "set_flag": 3
+    }
+  },
+  "after_sync_by_pipe": {
+    "SYNC_BLOCK": {
+      "sync_block": 96
+    },
+    "PIPE_MTE1": {
+      "set_flag": 9,
+      "wait_flag": 1
+    },
+    "PIPE_FIX": {
+      "set_flag": 15,
+      "wait_flag": 9
+    },
+    "PIPE_MTE2": {
+      "wait_flag": 40,
+      "set_flag": 25
+    },
+    "PIPE_M": {
+      "wait_flag": 14,
+      "set_flag": 9
+    },
+    "PIPE_ALL": {
+      "pipe_barrier": 6
+    },
+    "PIPE_V": {
+      "set_flag": 109,
+      "wait_flag": 98
+    },
+    "PIPE_MTE3": {
+      "wait_flag": 12,
+      "set_flag": 20
+    },
+    "PIPE_S": {
+      "wait_flag": 10,
+      "set_flag": 3
+    }
+  },
+  "structural_delta": {
+    "pipe_barrier_delta": -74,
+    "set_flag_delta": 74,
+    "wait_flag_delta": 74,
+    "sync_block_delta": 0,
+    "expected_set_wait_delta_from_rewrite": 74,
+    "delta_matches_rewrite_count": true
+  },
+  "event_naming": {
+    "generated_event_count": 74,
+    "unique_generated_event_count": 74,
+    "all_generated_events_unique": true,
+    "generated_events_preview": [
+      "%hivm_sync_auto0",
+      "%hivm_sync_auto1",
+      "%hivm_sync_auto10",
+      "%hivm_sync_auto11",
+      "%hivm_sync_auto12",
+      "%hivm_sync_auto13",
+      "%hivm_sync_auto14",
+      "%hivm_sync_auto15",
+      "%hivm_sync_auto16",
+      "%hivm_sync_auto17",
+      "%hivm_sync_auto18",
+      "%hivm_sync_auto19",
+      "%hivm_sync_auto2",
+      "%hivm_sync_auto20",
+      "%hivm_sync_auto21",
+      "%hivm_sync_auto22",
+      "%hivm_sync_auto23",
+      "%hivm_sync_auto24",
+      "%hivm_sync_auto25",
+      "%hivm_sync_auto26",
+      "%hivm_sync_auto27",
+      "%hivm_sync_auto28",
+      "%hivm_sync_auto29",
+      "%hivm_sync_auto3",
+      "%hivm_sync_auto30",
+      "%hivm_sync_auto31",
+      "%hivm_sync_auto32",
+      "%hivm_sync_auto33",
+      "%hivm_sync_auto34",
+      "%hivm_sync_auto35",
+      "%hivm_sync_auto36",
+      "%hivm_sync_auto37",
+      "%hivm_sync_auto38",
+      "%hivm_sync_auto39",
+      "%hivm_sync_auto4",
+      "%hivm_sync_auto40",
+      "%hivm_sync_auto41",
+      "%hivm_sync_auto42",
+      "%hivm_sync_auto43",
+      "%hivm_sync_auto44",
+      "%hivm_sync_auto45",
+      "%hivm_sync_auto46",
+      "%hivm_sync_auto47",
+      "%hivm_sync_auto48",
+      "%hivm_sync_auto49",
+      "%hivm_sync_auto5",
+      "%hivm_sync_auto50",
+      "%hivm_sync_auto51",
+      "%hivm_sync_auto52",
+      "%hivm_sync_auto53"
+    ]
+  },
+  "risk_counts": {
+    "MEDIUM": 73,
+    "BLOCKED": 6,
+    "LOW": 1
+  },
+  "batch_warnings": [
+    "large_batch_rewrite_requires_real_backend_regression_before_claim",
+    "some_contract_barrier_actions_are_blocked_and_must_not_be_mutated"
+  ],
+  "candidate_action_count": 80,
+  "rewritten_action_count": 74,
+  "skipped_action_count": 0,
+  "action_audit": [
+    {
+      "action_id": "sync_dryrun_barrier_001_line_301",
+      "line": 301,
+      "pipe": "PIPE_MTE2",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [
+        "memory_transfer_pipe_barrier_candidate"
+      ],
+      "warnings": [
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 299,
+          "text": "hivm.hir.sync_block_wait[<CUBE>, <PIPE_MTE3>, <PIPE_S>] flag = 1"
+        },
+        {
+          "line": 301,
+          "text": "hivm.hir.pipe_barrier[<PIPE_MTE2>]"
+        },
+        {
+          "line": 303,
+          "text": "hivm.hir.sync_block_set[<CUBE>, <PIPE_MTE2>, <PIPE_S>] flag = 9"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_002_line_343",
+      "line": 343,
+      "pipe": "PIPE_ALL",
+      "risk_level": "BLOCKED",
+      "risk_reasons": [],
+      "warnings": [
+        "non_standard_or_less_common_pipe_review_required",
+        "nearby_sync_ops_within_two_lines",
+        "not_rewritten_in_current_run"
+      ],
+      "blockers": [
+        "pipe_all_requires_global_dependency_proof"
+      ],
+      "nearby_sync_context": [
+        {
+          "line": 342,
+          "text": "hivm.hir.sync_block_set[<CUBE>, <PIPE_FIX>, <PIPE_S>] flag = 0"
+        },
+        {
+          "line": 343,
+          "text": "hivm.hir.pipe_barrier[<PIPE_ALL>]"
+        },
+        {
+          "line": 344,
+          "text": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_MTE1>, <EVENT_ID0>]"
+        }
+      ],
+      "rewrite_status": "not_rewritten",
+      "portable_rewrite_rule": "blocked",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_003_line_361",
+      "line": 361,
+      "pipe": "PIPE_MTE2",
+      "risk_level": "LOW",
+      "risk_reasons": [
+        "memory_transfer_pipe_barrier_candidate"
+      ],
+      "warnings": [],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 361,
+          "text": "hivm.hir.pipe_barrier[<PIPE_MTE2>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_004_line_383",
+      "line": 383,
+      "pipe": "PIPE_ALL",
+      "risk_level": "BLOCKED",
+      "risk_reasons": [],
+      "warnings": [
+        "non_standard_or_less_common_pipe_review_required",
+        "nearby_sync_ops_within_two_lines",
+        "not_rewritten_in_current_run"
+      ],
+      "blockers": [
+        "pipe_all_requires_global_dependency_proof"
+      ],
+      "nearby_sync_context": [
+        {
+          "line": 381,
+          "text": "hivm.hir.set_flag[<PIPE_M>, <PIPE_FIX>, <EVENT_ID0>]"
+        },
+        {
+          "line": 383,
+          "text": "hivm.hir.pipe_barrier[<PIPE_ALL>]"
+        },
+        {
+          "line": 384,
+          "text": "hivm.hir.sync_block_wait[<CUBE>, <PIPE_S>, <PIPE_S>] flag = 15"
+        },
+        {
+          "line": 385,
+          "text": "hivm.hir.sync_block_set[<CUBE>, <PIPE_S>, <PIPE_S>] flag = 14"
+        }
+      ],
+      "rewrite_status": "not_rewritten",
+      "portable_rewrite_rule": "blocked",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_005_line_483",
+      "line": 483,
+      "pipe": "PIPE_ALL",
+      "risk_level": "BLOCKED",
+      "risk_reasons": [],
+      "warnings": [
+        "non_standard_or_less_common_pipe_review_required",
+        "nearby_sync_ops_within_two_lines",
+        "not_rewritten_in_current_run"
+      ],
+      "blockers": [
+        "pipe_all_requires_global_dependency_proof"
+      ],
+      "nearby_sync_context": [
+        {
+          "line": 482,
+          "text": "hivm.hir.sync_block_set[<CUBE>, <PIPE_FIX>, <PIPE_S>] flag = 0"
+        },
+        {
+          "line": 483,
+          "text": "hivm.hir.pipe_barrier[<PIPE_ALL>]"
+        }
+      ],
+      "rewrite_status": "not_rewritten",
+      "portable_rewrite_rule": "blocked",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_006_line_645",
+      "line": 645,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 645,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_007_line_648",
+      "line": 648,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 648,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_008_line_651",
+      "line": 651,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 651,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_009_line_654",
+      "line": 654,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 654,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_010_line_662",
+      "line": 662,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 662,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_011_line_684",
+      "line": 684,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 684,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_012_line_687",
+      "line": 687,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 687,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_013_line_774",
+      "line": 774,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 774,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_014_line_779",
+      "line": 779,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 779,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_015_line_784",
+      "line": 784,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 784,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_016_line_788",
+      "line": 788,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 788,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_017_line_880",
+      "line": 880,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 879,
+          "text": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]"
+        },
+        {
+          "line": 880,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 882,
+          "text": "hivm.hir.sync_block_set[<VECTOR>, <PIPE_MTE2>, <PIPE_S>] flag = 10"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_018_line_905",
+      "line": 905,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 905,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_019_line_908",
+      "line": 908,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 908,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_020_line_911",
+      "line": 911,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 911,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_021_line_914",
+      "line": 914,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 914,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_022_line_919",
+      "line": 919,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 919,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_023_line_922",
+      "line": 922,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 922,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_024_line_930",
+      "line": 930,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 930,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_025_line_934",
+      "line": 934,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 934,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_026_line_939",
+      "line": 939,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 939,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_027_line_943",
+      "line": 943,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 943,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_028_line_947",
+      "line": 947,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 947,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_029_line_976",
+      "line": 976,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 974,
+          "text": "hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_V>, <EVENT_ID1>]"
+        },
+        {
+          "line": 975,
+          "text": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, <EVENT_ID0>]"
+        },
+        {
+          "line": 976,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 978,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, <EVENT_ID0>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_030_line_1158",
+      "line": 1158,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1158,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_031_line_1162",
+      "line": 1162,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1162,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_032_line_1166",
+      "line": 1166,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1166,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_033_line_1184",
+      "line": 1184,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1184,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 1186,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID3>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_034_line_1203",
+      "line": 1203,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1203,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 1205,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID4>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_035_line_1222",
+      "line": 1222,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1222,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 1224,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID5>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_036_line_1225",
+      "line": 1225,
+      "pipe": "PIPE_ALL",
+      "risk_level": "BLOCKED",
+      "risk_reasons": [],
+      "warnings": [
+        "non_standard_or_less_common_pipe_review_required",
+        "nearby_sync_ops_within_two_lines",
+        "consecutive_or_dense_pipe_barrier_region",
+        "not_rewritten_in_current_run"
+      ],
+      "blockers": [
+        "pipe_all_requires_global_dependency_proof"
+      ],
+      "nearby_sync_context": [
+        {
+          "line": 1224,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID5>]"
+        },
+        {
+          "line": 1225,
+          "text": "hivm.hir.pipe_barrier[<PIPE_ALL>]"
+        },
+        {
+          "line": 1226,
+          "text": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID6>]"
+        }
+      ],
+      "rewrite_status": "not_rewritten",
+      "portable_rewrite_rule": "blocked",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_037_line_1256",
+      "line": 1256,
+      "pipe": "PIPE_ALL",
+      "risk_level": "BLOCKED",
+      "risk_reasons": [],
+      "warnings": [
+        "non_standard_or_less_common_pipe_review_required",
+        "nearby_sync_ops_within_two_lines",
+        "not_rewritten_in_current_run"
+      ],
+      "blockers": [
+        "pipe_all_requires_global_dependency_proof"
+      ],
+      "nearby_sync_context": [
+        {
+          "line": 1256,
+          "text": "hivm.hir.pipe_barrier[<PIPE_ALL>]"
+        },
+        {
+          "line": 1257,
+          "text": "hivm.hir.sync_block_set[<VECTOR>, <PIPE_S>, <PIPE_S>] flag = 15"
+        },
+        {
+          "line": 1258,
+          "text": "hivm.hir.sync_block_wait[<VECTOR>, <PIPE_S>, <PIPE_S>] flag = 14"
+        }
+      ],
+      "rewrite_status": "not_rewritten",
+      "portable_rewrite_rule": "blocked",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_038_line_1273",
+      "line": 1273,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1273,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_039_line_1277",
+      "line": 1277,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1277,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_040_line_1280",
+      "line": 1280,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1280,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_041_line_1317",
+      "line": 1317,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1315,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID6>]"
+        },
+        {
+          "line": 1317,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_042_line_1342",
+      "line": 1342,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1342,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_043_line_1346",
+      "line": 1346,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1346,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_044_line_1351",
+      "line": 1351,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1351,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_045_line_1354",
+      "line": 1354,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "consecutive_or_dense_pipe_barrier_region"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1354,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_046_line_1362",
+      "line": 1362,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1362,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_047_line_1370",
+      "line": 1370,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1370,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_048_line_1374",
+      "line": 1374,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1374,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_049_line_1382",
+      "line": 1382,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1382,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_050_line_1386",
+      "line": 1386,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1386,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_051_line_1394",
+      "line": 1394,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1394,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_052_line_1403",
+      "line": 1403,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1403,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 1405,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE2>, <EVENT_ID0>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_053_line_1408",
+      "line": 1408,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1408,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_054_line_1412",
+      "line": 1412,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1412,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_055_line_1416",
+      "line": 1416,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1416,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 1418,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, <EVENT_ID0>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_056_line_1461",
+      "line": 1461,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1461,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_057_line_1475",
+      "line": 1475,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1475,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_058_line_1479",
+      "line": 1479,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1479,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_059_line_1510",
+      "line": 1510,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1510,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_060_line_1514",
+      "line": 1514,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1514,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_061_line_1523",
+      "line": 1523,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1523,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_062_line_1527",
+      "line": 1527,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1527,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_063_line_1536",
+      "line": 1536,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1536,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_064_line_1540",
+      "line": 1540,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1540,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_065_line_1545",
+      "line": 1545,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1545,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_066_line_1553",
+      "line": 1553,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1553,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 1555,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, <EVENT_ID0>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_067_line_1603",
+      "line": 1603,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1603,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_068_line_1607",
+      "line": 1607,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1607,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_069_line_1615",
+      "line": 1615,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1615,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_070_line_1620",
+      "line": 1620,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1620,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_071_line_1624",
+      "line": 1624,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1624,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_072_line_1632",
+      "line": 1632,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1632,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_073_line_1636",
+      "line": 1636,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1636,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_074_line_1640",
+      "line": 1640,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1640,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_075_line_1644",
+      "line": 1644,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1644,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_076_line_1653",
+      "line": 1653,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1652,
+          "text": "hivm.hir.wait_flag[<PIPE_MTE3>, <PIPE_V>, <EVENT_ID0>]"
+        },
+        {
+          "line": 1653,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_077_line_1657",
+      "line": 1657,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1657,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 1659,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, <EVENT_ID0>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_078_line_1683",
+      "line": 1683,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1683,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_079_line_1688",
+      "line": 1688,
+      "pipe": "PIPE_V",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "warnings": [
+        "vector_pipe_barrier_candidate_requires_compute_dependency_review",
+        "nearby_sync_ops_within_two_lines"
+      ],
+      "blockers": [],
+      "nearby_sync_context": [
+        {
+          "line": 1688,
+          "text": "hivm.hir.pipe_barrier[<PIPE_V>]"
+        },
+        {
+          "line": 1690,
+          "text": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, <EVENT_ID0>]"
+        }
+      ],
+      "rewrite_status": "rewritten",
+      "portable_rewrite_rule": "pipe_barrier_to_same_pipe_set_wait_pair",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    },
+    {
+      "action_id": "sync_dryrun_barrier_080_line_1712",
+      "line": 1712,
+      "pipe": "PIPE_ALL",
+      "risk_level": "BLOCKED",
+      "risk_reasons": [],
+      "warnings": [
+        "non_standard_or_less_common_pipe_review_required",
+        "not_rewritten_in_current_run"
+      ],
+      "blockers": [
+        "pipe_all_requires_global_dependency_proof"
+      ],
+      "nearby_sync_context": [
+        {
+          "line": 1712,
+          "text": "hivm.hir.pipe_barrier[<PIPE_ALL>]"
+        }
+      ],
+      "rewrite_status": "not_rewritten",
+      "portable_rewrite_rule": "blocked",
+      "hivmopseditor_migration": {
+        "target_lookup": "Operation line/source-location + op kind hivm.hir.pipe_barrier",
+        "api_sequence": [
+          "editor.addSetFlagWaitFlagBefore(target, setPipe, waitPipe, eventAttr)",
+          "editor.deleteOp(target)",
+          "editor.exportToFile(outputPath)",
+          "mlir::verify(*module)"
+        ],
+        "must_be_verified_by_real_backend": true
+      }
+    }
+  ],
+  "hivmopseditor_migration_action_list": [
+    {
+      "action_id": "sync_dryrun_barrier_001_line_301",
+      "line": 301,
+      "pipe": "PIPE_MTE2",
+      "event_id": "%hivm_sync_auto0",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_003_line_361",
+      "line": 361,
+      "pipe": "PIPE_MTE2",
+      "event_id": "%hivm_sync_auto1",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_006_line_645",
+      "line": 645,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto2",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_007_line_648",
+      "line": 648,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto3",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_008_line_651",
+      "line": 651,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto4",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_009_line_654",
+      "line": 654,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto5",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_010_line_662",
+      "line": 662,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto6",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_011_line_684",
+      "line": 684,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto7",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_012_line_687",
+      "line": 687,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto8",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_013_line_774",
+      "line": 774,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto9",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_014_line_779",
+      "line": 779,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto10",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_015_line_784",
+      "line": 784,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto11",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_016_line_788",
+      "line": 788,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto12",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_017_line_880",
+      "line": 880,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto13",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_018_line_905",
+      "line": 905,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto14",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_019_line_908",
+      "line": 908,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto15",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_020_line_911",
+      "line": 911,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto16",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_021_line_914",
+      "line": 914,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto17",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_022_line_919",
+      "line": 919,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto18",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_023_line_922",
+      "line": 922,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto19",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_024_line_930",
+      "line": 930,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto20",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_025_line_934",
+      "line": 934,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto21",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_026_line_939",
+      "line": 939,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto22",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_027_line_943",
+      "line": 943,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto23",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_028_line_947",
+      "line": 947,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto24",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_029_line_976",
+      "line": 976,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto25",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_030_line_1158",
+      "line": 1158,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto26",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_031_line_1162",
+      "line": 1162,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto27",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_032_line_1166",
+      "line": 1166,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto28",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_033_line_1184",
+      "line": 1184,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto29",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_034_line_1203",
+      "line": 1203,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto30",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_035_line_1222",
+      "line": 1222,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto31",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_038_line_1273",
+      "line": 1273,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto32",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_039_line_1277",
+      "line": 1277,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto33",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_040_line_1280",
+      "line": 1280,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto34",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_041_line_1317",
+      "line": 1317,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto35",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_042_line_1342",
+      "line": 1342,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto36",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_043_line_1346",
+      "line": 1346,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto37",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_044_line_1351",
+      "line": 1351,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto38",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_045_line_1354",
+      "line": 1354,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto39",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_046_line_1362",
+      "line": 1362,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto40",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_047_line_1370",
+      "line": 1370,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto41",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_048_line_1374",
+      "line": 1374,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto42",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_049_line_1382",
+      "line": 1382,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto43",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_050_line_1386",
+      "line": 1386,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto44",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_051_line_1394",
+      "line": 1394,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto45",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_052_line_1403",
+      "line": 1403,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto46",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_053_line_1408",
+      "line": 1408,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto47",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_054_line_1412",
+      "line": 1412,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto48",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_055_line_1416",
+      "line": 1416,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto49",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_056_line_1461",
+      "line": 1461,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto50",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_057_line_1475",
+      "line": 1475,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto51",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_058_line_1479",
+      "line": 1479,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto52",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_059_line_1510",
+      "line": 1510,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto53",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_060_line_1514",
+      "line": 1514,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto54",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_061_line_1523",
+      "line": 1523,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto55",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_062_line_1527",
+      "line": 1527,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto56",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_063_line_1536",
+      "line": 1536,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto57",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_064_line_1540",
+      "line": 1540,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto58",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_065_line_1545",
+      "line": 1545,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto59",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_066_line_1553",
+      "line": 1553,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto60",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_067_line_1603",
+      "line": 1603,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto61",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_068_line_1607",
+      "line": 1607,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto62",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_069_line_1615",
+      "line": 1615,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto63",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_070_line_1620",
+      "line": 1620,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto64",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_071_line_1624",
+      "line": 1624,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto65",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_072_line_1632",
+      "line": 1632,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto66",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_073_line_1636",
+      "line": 1636,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto67",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_074_line_1640",
+      "line": 1640,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto68",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_075_line_1644",
+      "line": 1644,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto69",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_076_line_1653",
+      "line": 1653,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto70",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_077_line_1657",
+      "line": 1657,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto71",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_078_line_1683",
+      "line": 1683,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto72",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    },
+    {
+      "action_id": "sync_dryrun_barrier_079_line_1688",
+      "line": 1688,
+      "pipe": "PIPE_V",
+      "event_id": "%hivm_sync_auto73",
+      "operation_level_target": "hivm.hir.pipe_barrier",
+      "hivmopseditor_api_sequence": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ]
+    }
+  ],
+  "audit_passed_portable_level": true,
+  "validation_passed_portable_level": true,
+  "liveness_after_passed_portable_level": true
+}

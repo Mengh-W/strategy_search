@@ -1,0 +1,15 @@
+{
+  "schema_version": "hivm_event_liveness_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase3a_dependency_foundation",
+  "event_count": 0,
+  "safe_pair_count": 0,
+  "unpaired_wait_count": 0,
+  "overlap_or_redefinition_count": 0,
+  "passed_local_event_liveness": true,
+  "events": [],
+  "warnings": [],
+  "limitations": [
+    "Dominance and loop-carried event semantics require target MLIR/vTriton verification.",
+    "This report is a local line-order liveness approximation, not a deadlock proof."
+  ]
+}

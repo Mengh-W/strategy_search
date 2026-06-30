@@ -1,0 +1,54 @@
+{
+  "schema_version": "hivm_phase6b_positive_case_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase6b_vtriton_positive_fixture_harness",
+  "phase": "Phase-6B",
+  "phase6b_status": "positive_case_harness_ready_but_waiting_for_real_backend_or_fixture",
+  "official_alignment": {
+    "vtriton_public_repo": "https://github.com/shane-kshongmo/vTriton",
+    "uses_vtriton_documented_hivm_analysis_entry": "tritonsim-hivm --npuir-file <file> --des-graph-file <json> --perfetto-trace-file <json>",
+    "uses_hivm_crud_design_reference": "tools/hivm-crud/hivm-crud.cpp wraps HivmOpsEditor; upper-level C++ should call HivmOpsEditor directly.",
+    "no_text_region_motion": true,
+    "fake_backend_results_rejected_for_production_mutation": true
+  },
+  "backend_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null,
+    "supports_print_capabilities": false,
+    "reason": "operation_backend_binary_not_configured_or_not_found"
+  },
+  "real_backend_connected": false,
+  "tritonsim_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null
+  },
+  "source_root_probe": {
+    "provided": false,
+    "path": null,
+    "exists": false,
+    "looks_like_vtriton_repo": false,
+    "reason": "vtriton_source_root_not_provided"
+  },
+  "fixture_count": 0,
+  "candidate_fixture_count": 0,
+  "fixtures": [],
+  "validation_script": "/mnt/data/hivm_work/smoke_out/phase6b_real_backend_validation_commands.sh",
+  "accepted_for_phase6_positive_case_execution": false,
+  "production_mutation_allowed": false,
+  "blocker_count": 5,
+  "blockers": [
+    "no_phase6_positive_fixtures_provided",
+    "no_restricted_positive_fixture_identified_by_static_triage",
+    "real_hivmopseditor_or_mlir_operation_backend_not_connected",
+    "real_tritonsim_hivm_not_connected",
+    "vtriton_source_root_missing_or_not_recognized"
+  ],
+  "what_user_provided": [],
+  "what_is_still_needed": [
+    "A real HivmOpsEditor/MLIR Operation backend binary, not fake_hivm_operation_backend.py.",
+    "A built tritonsim-hivm binary from vTriton build/bin.",
+    "A local vTriton source/build directory if backend compilation is expected in this project environment.",
+    "At least one restricted positive fixture with a provable Q-load-in-loop or exact same-offset GM round-trip. Current static triage only suggests candidates; final proof must come from real backend/verifier/DES trace."
+  ]
+}

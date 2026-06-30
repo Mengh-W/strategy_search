@@ -1,0 +1,65 @@
+{
+  "schema_version": "tiling_operation_readiness_summary_v1",
+  "overall_status": "READY_FOR_LINUX_BACKEND_ANCHOR_DRY_RUN",
+  "selected_knobs": {
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "logical_axes": [
+      "axis_m",
+      "axis_n",
+      "axis_k"
+    ],
+    "generic_logical_axes_evidence": {
+      "primary_tile_candidate": {
+        "tile_m": 64,
+        "tile_n": 32,
+        "tile_k": 128
+      },
+      "candidate_tiles_from_cube_ops": [
+        {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 128
+        },
+        {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 32
+        }
+      ],
+      "conventional_tensor_signature": {
+        "detected": true,
+        "Q_gm": [
+          64,
+          128
+        ],
+        "K_gm": [
+          1024,
+          128
+        ],
+        "V_gm": [
+          1024,
+          128
+        ],
+        "O_gm": [
+          64,
+          128
+        ],
+        "note": "name-based conventional tensor signature; used as evidence only, not a hard-coded kernel family"
+      }
+    },
+    "loop_order": "outer_mkn",
+    "tail_strategy": "mask_or_pad",
+    "reduce_tile_policy": "half_k",
+    "layout_aware_tile": true
+  },
+  "parameter_count": 7,
+  "ready_for_linux_dry_run_count": 7,
+  "loop_anchor_count": 1,
+  "compute_anchor_count": 7,
+  "load_anchor_count": 3,
+  "store_anchor_count": 1,
+  "axis_evidence_confidence": "MEDIUM",
+  "production_rewrite_claim_allowed": false
+}

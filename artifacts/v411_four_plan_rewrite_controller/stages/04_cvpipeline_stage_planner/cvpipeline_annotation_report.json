@@ -1,0 +1,7 @@
+{
+  "schema_version": "hivm_cvpipeline_annotation_v1",
+  "annotation_performed": true,
+  "inserted_annotation_count": 20,
+  "semantic_mutation_performed": false,
+  "claim_boundary": "CVPipeline comments only; original operations are not moved"
+}

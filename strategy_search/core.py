@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import csv
 import itertools
 import json
 import math
@@ -3524,7 +3525,11 @@ def build_four_plan_bundle(c: StrategyConfig, kf: KernelFeatures, hw: Dict[str, 
     else:
         cv_template_overhead = float((cv_cfg.get("template_overhead") or {}).get("default", 0.020))
     tile_mix_balance_penalty = float(cv_cfg.get("tile_mix_balance_alpha", 0.04)) * abs(int(c.tile_mix_cube_loop) - int(c.tile_mix_vector_loop))
-    if c.cv_pipeline_template != "P_PREFILL_LARGE_SBS_REUSE":
+    if c.cv_pipeline_template == "P_PREFILL_LARGE_SBS_REUSE":
+        # Prefill-A5 evidence: cube-heavy/vector-light 4:1 mix is a deliberate reuse schedule,
+        # not an arbitrary imbalance. It should not receive the generic tile-mix penalty.
+        tile_mix_balance_penalty = -float(cv_cfg.get("prefill_reuse_tile_mix_reward", 0.0))
+    else:
         cv_overlap *= max(float(cv_cfg.get("tile_mix_overlap_floor", 0.75)), 1.0 - tile_mix_balance_penalty)
     producer_consumer_distance_penalty = float(cv_cfg.get("producer_consumer_distance_alpha", 0.025)) * max(0, int(c.producer_consumer_distance) - 1)
     # 更远的 producer-consumer distance 可提供调度自由度，但也会增加 drain/stall；这里作为轻量折减。
@@ -4108,6 +4113,52 @@ def pressure_adjust_overlap(load_overlap: float, store_overlap: float, cv_overla
     factor = max(0.70, 1.0 - slope * max(0.0, u - th) / max(1e-6, 1.0 - th))
     return load_overlap * factor, store_overlap * factor, cv_overlap * factor, float(factor)
 
+def plan_level_calibration_multiplier(c: StrategyConfig, hw: Dict[str, Any]) -> Tuple[float, Dict[str, Any]]:
+    """Apply optional weak plan-level calibration priors.
+
+    These priors are intentionally separated from hardware constants. They encode
+    observed task-level gains from multi-stage benchmark labels such as Prefill-A5.
+    They should be used only when the corresponding config explicitly enables them.
+    """
+    cal = hw.get("calibration", {}).get("cost_model_calibration", {})
+    priors = cal.get("plan_level_latency_priors", {}) if isinstance(cal, dict) else {}
+    if not isinstance(priors, dict) or not priors.get("enabled", False):
+        return 1.0, {"enabled": False, "multiplier": 1.0, "applied": []}
+    applied: List[Dict[str, Any]] = []
+    mult = 1.0
+
+    def apply(name: str, factor: float, reason: str) -> None:
+        nonlocal mult
+        f = float(factor)
+        if f > 0 and math.isfinite(f):
+            mult *= f
+            applied.append({"name": name, "latency_multiplier": f, "reason": reason})
+
+    if c.cv_pipeline_stage > 1 and not bool(c.enable_mixed_cv):
+        apply(
+            "mixed_cv_disabled",
+            float(priors.get("mixed_cv_disabled_latency_multiplier", 1.0)),
+            "Prefill-A5 S2->S3: disabling mixed C/V was a tiny measured speedup, not a full CV-pipeline removal.",
+        )
+    if c.cv_pipeline_stage > 1 and bool(c.auto_cv_balance):
+        apply(
+            "auto_cv_balance",
+            float(priors.get("auto_cv_balance_latency_multiplier", 1.0)),
+            "Prefill-A5 S4->S5: auto C/V balance gives a small measured gain.",
+        )
+    if (
+        c.cv_pipeline_stage > 1
+        and int(c.tile_mix_cube_loop) == int(priors.get("prefill_tile_mix_cube_loop", 4))
+        and int(c.tile_mix_vector_loop) == int(priors.get("prefill_tile_mix_vector_loop", 1))
+    ):
+        apply(
+            "prefill_tile_mix_cube4_vec1",
+            float(priors.get("prefill_tile_mix_cube4_vec1_latency_multiplier", 1.0)),
+            "Prefill-A5 S5->S6: cube-heavy/vector-light tile mix is a reuse-friendly schedule for this workload.",
+        )
+    return float(mult), {"enabled": True, "multiplier": float(mult), "applied": applied}
+
+
 def estimate_cost(c: StrategyConfig, kf: KernelFeatures, hw: Dict[str, Any], max_live: Dict[str, int], search: Dict[str, Any]) -> Dict[str, float]:
     """完整 analytical cost model：汇总 pipe 时间、overlap、penalty、安全系数和 breakdown。"""
     c = _strategy_template_fields(c)
@@ -4228,7 +4279,9 @@ def estimate_cost(c: StrategyConfig, kf: KernelFeatures, hw: Dict[str, Any], max
     effective_parallelism = max(1.0, active_blocks * tail_efficiency)
 
     parallelized_tile_cycles = n_tiles * steady_tile_time / effective_parallelism
-    total_cycles = parallelized_tile_cycles + sync_cost + pressure_penalty + shape_penalty + legality_risk_penalty
+    total_cycles_before_plan_calibration = parallelized_tile_cycles + sync_cost + pressure_penalty + shape_penalty + legality_risk_penalty
+    plan_calibration_multiplier, plan_calibration_detail = plan_level_calibration_multiplier(c, hw)
+    total_cycles = total_cycles_before_plan_calibration * plan_calibration_multiplier
     risk_assessment = compute_risk_assessment(c, plans, max_live, hw, search)
     overlap_savings = {
         "load_overlap_saving": float(load_time * load_overlap_ratio),
@@ -4308,6 +4361,9 @@ def estimate_cost(c: StrategyConfig, kf: KernelFeatures, hw: Dict[str, Any], max
         "pressure_penalty_detail": pressure_detail,
         "shape_penalty_detail": shape_penalty_detail,
         "legality_risk_penalty": float(legality_risk_penalty),
+        "total_cycles_before_plan_calibration": float(total_cycles_before_plan_calibration),
+        "plan_calibration_multiplier": float(plan_calibration_multiplier),
+        "plan_calibration_detail": plan_calibration_detail,
         "sync_unknown_penalty": float(sync_unknown_penalty),
         "event_reuse_penalty": float(event_reuse_penalty),
         "cv_estimated_penalty": float(cv_estimated_penalty),
@@ -4341,6 +4397,9 @@ def estimate_cost(c: StrategyConfig, kf: KernelFeatures, hw: Dict[str, Any], max
             "parallelized_tile_cycles": float(parallelized_tile_cycles),
             "sync_cost": float(sync_cost),
             "legality_risk_penalty": float(legality_risk_penalty),
+            "total_cycles_before_plan_calibration": float(total_cycles_before_plan_calibration),
+            "plan_calibration_multiplier": float(plan_calibration_multiplier),
+            "plan_calibration_detail": plan_calibration_detail,
             "sync_unknown_penalty": float(sync_unknown_penalty),
             "event_reuse_penalty": float(event_reuse_penalty),
             "cv_estimated_penalty": float(cv_estimated_penalty),
@@ -4572,6 +4631,209 @@ def _write_des_calibration_sidecars(out: Path, summaries: List[Any], calibration
             write_des_profile_summary(summaries[0], out / "des_profile_summary.json")
     write_json(out / "cost_calibration_report.json", calibration or {"enabled": False, "reason": "DES calibration disabled or unavailable"})
 
+
+def _read_msprof_op_summary(path: str, hw: Dict[str, Any], op_name_filter: Optional[str] = None) -> Dict[str, Any]:
+    """读取 msprof op_summary CSV，抽取一个主 kernel 的实测墙钟 target 和 pipe 信号。
+
+    注意：aic_total_cycles / aiv_total_cycles 是资源累计计数，不能直接相加当作
+    cost model 的总 cycles。这里统一使用 Task Duration(us) * cycles_per_us 作为
+    端到端墙钟意义上的 measured_total_cycles。
+    """
+    p = Path(path)
+    if not p.exists():
+        return {"enabled": False, "reason": f"msprof op summary not found: {path}"}
+    with p.open("r", encoding="utf-8-sig", newline="") as f:
+        rows = list(csv.DictReader(f))
+    if not rows:
+        return {"enabled": False, "reason": f"empty msprof op summary: {path}"}
+
+    candidates = rows
+    if op_name_filter:
+        key = str(op_name_filter).lower()
+        filt = [r for r in rows if key in str(r.get("OP Type") or r.get("Op Name") or "").lower()]
+        if filt:
+            candidates = filt
+    # 默认选择 Task Duration 最大的 op；对这类 profile，一般就是真正的 fused 主 kernel。
+    row = max(candidates, key=lambda r: _num(r.get("Task Duration(us)"), 0.0))
+    cycles_per_us = float((hw.get("clock") or {}).get("cycles_per_us") or (hw.get("calibration") or {}).get("cycles_per_us") or 1850.0)
+    task_us = _num(row.get("Task Duration(us)"), 0.0)
+    measured_total_cycles = task_us * cycles_per_us
+
+    aicore_us = _num(row.get("aicore_time(us)"), 0.0)
+    aiv_us = _num(row.get("aiv_time(us)"), 0.0)
+    wall_like_us = max(task_us, aicore_us, aiv_us, 1.0)
+    memory_us = (
+        _num(row.get("aic_mte1_time(us)"), 0.0)
+        + _num(row.get("aic_mte2_time(us)"), 0.0)
+        + _num(row.get("aic_fixpipe_time(us)"), 0.0)
+        + _num(row.get("aiv_mte2_time(us)"), 0.0)
+        + _num(row.get("aiv_mte3_time(us)"), 0.0)
+    )
+    compute_us = _num(row.get("aic_mac_time(us)"), 0.0)
+    vector_us = _num(row.get("aiv_vec_time(us)"), 0.0)
+    scalar_us = max(_num(row.get("aic_scalar_time(us)"), 0.0), _num(row.get("aiv_scalar_time(us)"), 0.0))
+
+    component_ratios = {
+        "compute": min(1.0, compute_us / wall_like_us),
+        "memory": min(1.0, memory_us / wall_like_us),
+        "vector": min(1.0, vector_us / wall_like_us),
+        "scalar_control": min(1.0, scalar_us / wall_like_us),
+    }
+    dominant = max(component_ratios.items(), key=lambda kv: kv[1])[0]
+
+    return {
+        "enabled": True,
+        "source": str(p),
+        "selected_op_type": row.get("OP Type"),
+        "selected_op_name": row.get("Op Name"),
+        "task_duration_us": float(task_us),
+        "cycles_per_us": float(cycles_per_us),
+        "measured_total_cycles": float(measured_total_cycles),
+        "aicore_time_us": float(aicore_us),
+        "aiv_time_us": float(aiv_us),
+        "aic_total_cycles": _num(row.get("aic_total_cycles"), 0.0),
+        "aiv_total_cycles": _num(row.get("aiv_total_cycles"), 0.0),
+        "block_num": _num(row.get("Block Num"), 0.0),
+        "mix_block_num": _num(row.get("Mix Block Num"), 0.0),
+        "cube_utilization_pct": _num(row.get("cube_utilization(%)"), 0.0),
+        "aic_ratios": {
+            "mac": _num(row.get("aic_mac_ratio"), 0.0),
+            "scalar": _num(row.get("aic_scalar_ratio"), 0.0),
+            "mte1": _num(row.get("aic_mte1_ratio"), 0.0),
+            "mte2": _num(row.get("aic_mte2_ratio"), 0.0),
+            "fixpipe": _num(row.get("aic_fixpipe_ratio"), 0.0),
+        },
+        "aiv_ratios": {
+            "vector": _num(row.get("aiv_vec_ratio"), 0.0),
+            "scalar": _num(row.get("aiv_scalar_ratio"), 0.0),
+            "mte2": _num(row.get("aiv_mte2_ratio"), 0.0),
+            "mte3": _num(row.get("aiv_mte3_ratio"), 0.0),
+        },
+        "component_time_us": {
+            "compute_mac": float(compute_us),
+            "memory_mte_fixpipe_sum": float(memory_us),
+            "vector": float(vector_us),
+            "scalar_control_max_side": float(scalar_us),
+        },
+        "component_ratios_vs_wall": component_ratios,
+        "dominant_runtime_signal": dominant,
+        "target_note": "measured_total_cycles = Task Duration(us) * cycles_per_us; aic/aiv_total_cycles are kept as diagnostic resource counters, not summed.",
+    }
+
+
+def _apply_msprof_component_prior(kernel_profile: Dict[str, Any], msprof: Dict[str, Any]) -> Dict[str, Any]:
+    """用单条 msprof 记录修正 kernel profile 的分项 cycle correction。
+
+    这一步只改变 component correction，不做全局尺度拟合；全局尺度在
+    _build_msprof_absolute_calibration 中单独处理，避免把两类校准混在一起。
+    """
+    if not (isinstance(kernel_profile, dict) and kernel_profile.get("enabled") and isinstance(msprof, dict) and msprof.get("enabled")):
+        return kernel_profile
+    kp = copy.deepcopy(kernel_profile)
+    weights = kp.setdefault("weights", {})
+    aiv = msprof.get("aiv_ratios", {}) if isinstance(msprof.get("aiv_ratios", {}), dict) else {}
+    aic = msprof.get("aic_ratios", {}) if isinstance(msprof.get("aic_ratios", {}), dict) else {}
+    comp = msprof.get("component_ratios_vs_wall", {}) if isinstance(msprof.get("component_ratios_vs_wall", {}), dict) else {}
+    scalar_signal = max(float(aiv.get("scalar", 0.0) or 0.0), float(comp.get("scalar_control", 0.0) or 0.0))
+    memory_signal = max(float(comp.get("memory", 0.0) or 0.0), float(aic.get("mte1", 0.0) or 0.0) + float(aic.get("mte2", 0.0) or 0.0) + float(aiv.get("mte2", 0.0) or 0.0) + float(aiv.get("mte3", 0.0) or 0.0))
+    vector_signal = max(float(comp.get("vector", 0.0) or 0.0), float(aiv.get("vector", 0.0) or 0.0))
+    compute_signal = max(float(comp.get("compute", 0.0) or 0.0), float(aic.get("mac", 0.0) or 0.0))
+
+    # 单样本先做保守 component prior：scalar/control 明显加重；memory 中等；compute/vector 小幅。
+    learned = {
+        "compute_cycle_correction": max(0.90, min(1.35, 0.98 + 0.20 * compute_signal)),
+        "memory_cycle_correction": max(0.90, min(1.65, 1.00 + 0.60 * memory_signal)),
+        "vector_cycle_correction": max(0.90, min(1.45, 1.00 + 0.35 * vector_signal)),
+        "scalar_cycle_correction": max(1.00, min(2.40, 1.00 + 0.95 * scalar_signal)),
+        "sync_cycle_correction": max(1.00, min(2.10, 1.00 + 0.45 * scalar_signal + 0.20 * memory_signal)),
+        "overlap_confidence": max(0.60, min(1.00, 1.00 - 0.30 * scalar_signal - 0.10 * memory_signal)),
+        "cv_overlap_confidence": max(0.60, min(1.00, 1.00 - 0.25 * scalar_signal - 0.08 * memory_signal)),
+    }
+    before = {k: float(weights.get(k, 1.0) or 1.0) for k in learned}
+    for k, v in learned.items():
+        if "overlap" in k:
+            # overlap confidence 越小越保守，所以取更小值。
+            weights[k] = min(float(weights.get(k, 1.0) or 1.0), float(v))
+        else:
+            # cycle correction 越大越保守，所以取更大值。
+            weights[k] = max(float(weights.get(k, 1.0) or 1.0), float(v))
+
+    # 同步更新兼容旧字段。
+    alias = {
+        "compute_multiplier": "compute_cycle_correction",
+        "memory_multiplier": "memory_cycle_correction",
+        "vector_multiplier": "vector_cycle_correction",
+        "scalar_control_multiplier": "scalar_cycle_correction",
+        "sync_multiplier": "sync_cycle_correction",
+        "overlap_reward_scale": "overlap_confidence",
+        "cv_reward_scale": "cv_overlap_confidence",
+    }
+    for old, new in alias.items():
+        weights[old] = weights.get(new, weights.get(old, 1.0))
+    kp["weights"] = weights
+    kp["uses_profiling_target"] = True
+    kp["msprof_component_prior"] = {
+        "enabled": True,
+        "before": before,
+        "learned_from_msprof": learned,
+        "after": {k: float(weights.get(k, 1.0) or 1.0) for k in learned},
+        "dominant_runtime_signal": msprof.get("dominant_runtime_signal"),
+        "note": "Single-sample msprof component prior; it adjusts component cycle corrections but should not be treated as a trained ranking model.",
+    }
+    kp["note"] = str(kp.get("note", "")) + " msprof component prior applied."
+    return kp
+
+
+def _build_msprof_absolute_calibration(msprof: Dict[str, Any], current_predicted_cycles: float, mode: str = "component_plus_scale") -> Dict[str, Any]:
+    """用 current-IR 估计值和实测墙钟 cycles 建立单样本绝对尺度校准。"""
+    if not (isinstance(msprof, dict) and msprof.get("enabled")) or mode != "component_plus_scale":
+        return {"enabled": False, "mode": mode, "reason": "msprof absolute scale calibration disabled or unavailable"}
+    measured = float(msprof.get("measured_total_cycles", 0.0) or 0.0)
+    pred = max(1.0, float(current_predicted_cycles or 0.0))
+    raw_scale = measured / pred if measured > 0 else 1.0
+    # 单样本尺度可以很大，但仍做防爆保护；原始值保留在 raw_global_cycle_scale。
+    scale = max(0.001, min(1_000_000.0, raw_scale))
+    return {
+        "enabled": True,
+        "mode": mode,
+        "measured_total_cycles": measured,
+        "current_ir_predicted_cycles_before_scale": float(pred),
+        "raw_global_cycle_scale": float(raw_scale),
+        "global_cycle_scale": float(scale),
+        "selected_op_type": msprof.get("selected_op_type"),
+        "task_duration_us": msprof.get("task_duration_us"),
+        "note": "Single-kernel absolute calibration: all predicted_cycles are multiplied by the same global_cycle_scale, so candidate ranking is not changed. Use multiple profiled strategies to train ranking calibration.",
+    }
+
+
+def _apply_msprof_absolute_calibration_to_cost(cost: Dict[str, Any], calibration: Dict[str, Any]) -> Dict[str, Any]:
+    """把单样本绝对尺度校准应用到 cost breakdown 中所有 cycle 量。"""
+    if not (isinstance(cost, dict) and isinstance(calibration, dict) and calibration.get("enabled")):
+        return cost
+    scale = float(calibration.get("global_cycle_scale", 1.0) or 1.0)
+    out = copy.deepcopy(cost)
+    cycle_keys = [
+        "predicted_cycles", "tau_load", "tau_store", "tau_cube", "tau_vector", "tau_fix",
+        "load_exposed", "store_exposed", "workspace_exposed", "cube_vector_time",
+        "steady_tile_time", "tile_time", "compute_time", "sync_cost",
+        "template_schedule_overhead", "scalar_control_time", "memory_pressure_penalty",
+        "shape_regularization_penalty", "legality_risk_penalty", "sync_unknown_penalty",
+        "event_reuse_penalty", "cv_estimated_penalty",
+    ]
+    for k in cycle_keys:
+        if k in out and isinstance(out.get(k), (int, float)):
+            out[k] = float(out[k]) * scale
+    if isinstance(out.get("cost_breakdown"), dict):
+        cb = copy.deepcopy(out["cost_breakdown"])
+        for k, v in list(cb.items()):
+            if isinstance(v, (int, float)) and ("cycle" in k or k in {"warmup_drain", "per_tile_load_exposed", "per_tile_store_exposed", "per_tile_workspace_exposed", "per_tile_cube_vector_pipeline", "per_tile_steady", "template_schedule_overhead", "scalar_control_time", "parallelized_tile_cycles", "sync_cost", "legality_risk_penalty", "memory_pressure_penalty", "shape_regularization_penalty"}):
+                cb[k] = float(v) * scale
+        out["cost_breakdown"] = cb
+    out["msprof_absolute_calibration"] = calibration
+    out["predicted_cycles_before_msprof_scale"] = float(cost.get("predicted_cycles", 0.0) or 0.0)
+    return out
+
+
 def run(args: argparse.Namespace) -> None:
     """执行完整寻优流程：解析输入、构建搜索空间、搜索候选、输出报告和 JSON。"""
     out = Path(args.output_dir)
@@ -4630,12 +4892,25 @@ def run(args: argparse.Namespace) -> None:
 
     search["artifact_profile"] = asdict(artifact_profile)
     # 基于 MLIR + 编译产物文件生成 kernel-specific cost profile。
-    # 它不读取 profiling target / DES makespan，只改变 analytical cost 的结构权重。
-    search["kernel_cost_profile"] = build_kernel_cost_profile(
+    # 默认不读取 profiling target / DES makespan，只改变 analytical cost 的结构权重。
+    kernel_cost_profile = build_kernel_cost_profile(
         kf,
         asdict(artifact_profile),
         enabled=kernel_profile_enabled(args),
     )
+    msprof_summary = {"enabled": False, "reason": "--msprof-op-summary not provided"}
+    msprof_mode = getattr(args, "msprof_calibration_mode", "off")
+    if getattr(args, "msprof_op_summary", None):
+        msprof_summary = _read_msprof_op_summary(
+            getattr(args, "msprof_op_summary"),
+            hw,
+            getattr(args, "msprof_op_name", None),
+        )
+        if msprof_mode in {"component_prior", "component_plus_scale"}:
+            kernel_cost_profile = _apply_msprof_component_prior(kernel_cost_profile, msprof_summary)
+    search["kernel_cost_profile"] = kernel_cost_profile
+    search["msprof_profile_summary"] = msprof_summary
+    search["msprof_calibration_mode"] = msprof_mode
     search["des_calibration_mode"] = getattr(args, "des_calibration_mode", "off")
     search["des_profile_summaries"] = [s.to_dict() if hasattr(s, "to_dict") else asdict(s) for s in des_calibration_summaries]
     search["cost_risk_mode"] = getattr(args, "cost_risk_mode", "conservative")
@@ -4647,6 +4922,7 @@ def run(args: argparse.Namespace) -> None:
     write_json(out / "effective_search_space.json", search)
     write_json(out / "artifact_profile.json", asdict(artifact_profile))
     write_json(out / "kernel_cost_profile.json", search.get("kernel_cost_profile", {"enabled": False}))
+    write_json(out / "msprof_profile_summary.json", search.get("msprof_profile_summary", {"enabled": False}))
     write_artifact_audits(out, asdict(artifact_profile), hw)
     write_json(out / "diagnosis_guidance_report.json", asdict(hints))
     write_json(out / "analysis_coverage_report.json", {
@@ -4728,6 +5004,20 @@ def run(args: argparse.Namespace) -> None:
     # 再用 single-trace prior 对 current 和所有候选做同一尺度校准，并重新排序。
     current_ir = build_current_ir_estimate(args.kernel, kf, hw, search)
     cost_calibration: Dict[str, Any] = {"enabled": False, "mode": getattr(args, "des_calibration_mode", "off")}
+    msprof_absolute_calibration = _build_msprof_absolute_calibration(
+        search.get("msprof_profile_summary", {}),
+        float(current_ir["cost"].get("predicted_cycles", 0.0)),
+        mode=getattr(args, "msprof_calibration_mode", "off"),
+    )
+    if msprof_absolute_calibration.get("enabled"):
+        current_ir["cost"] = _apply_msprof_absolute_calibration_to_cost(current_ir["cost"], msprof_absolute_calibration)
+        current_ir.setdefault("meta", {})["msprof_absolute_calibration"] = msprof_absolute_calibration
+        for item in legal:
+            item["cost"] = _apply_msprof_absolute_calibration_to_cost(item["cost"], msprof_absolute_calibration)
+        search["msprof_absolute_calibration"] = msprof_absolute_calibration
+    else:
+        search["msprof_absolute_calibration"] = msprof_absolute_calibration
+
     if getattr(args, "des_calibration_mode", "off") == "single_trace_prior" and des_calibration_summaries:
         cost_calibration = build_single_trace_calibration(
             des_calibration_summaries[0],
@@ -4796,6 +5086,9 @@ def run(args: argparse.Namespace) -> None:
         "cost_model_config": getattr(args, "cost_model_config", None),
         "des_calibration_mode": getattr(args, "des_calibration_mode", "off"),
         "des_cost_calibration": cost_calibration,
+        "msprof_calibration_mode": getattr(args, "msprof_calibration_mode", "off"),
+        "msprof_profile_summary": search.get("msprof_profile_summary", {"enabled": False}),
+        "msprof_absolute_calibration": search.get("msprof_absolute_calibration", {"enabled": False}),
         "kernel_cost_profile": search.get("kernel_cost_profile", {"enabled": False}),
         "des_profile_summaries": [x.to_dict() if hasattr(x, "to_dict") else asdict(x) for x in des_calibration_summaries],
         "external_analysis_sources": hints.source_files,
@@ -4831,6 +5124,11 @@ def run(args: argparse.Namespace) -> None:
     }
 
     _write_des_calibration_sidecars(out, des_calibration_summaries, cost_calibration)
+    write_json(out / "msprof_cost_calibration_report.json", {
+        "profile_summary": search.get("msprof_profile_summary", {"enabled": False}),
+        "component_prior": (search.get("kernel_cost_profile", {}) or {}).get("msprof_component_prior", {"enabled": False}),
+        "absolute_calibration": search.get("msprof_absolute_calibration", {"enabled": False}),
+    })
     write_json(out / "selected_strategy.json", selected)
     write_json(out / "cost_breakdown.json", {
         "selected_strategy_id": best["strategy"]["strategy_id"],
@@ -4886,6 +5184,9 @@ def main() -> None:
     ap.add_argument("--des-profile-summary", default=None, help="Deprecated alias for --artifact-des-summary.")
     ap.add_argument("--des-calibration-mode", choices=["off", "single_trace_prior"], default="off", help="Legacy/offline experiment only. Keep off for V3.3 online search. single_trace_prior uses DES makespan/global scale and is not the default artifact-kernel-profile model.")
     ap.add_argument("--des-calibration-overlap-extra", type=float, default=0.15, help="Legacy calibration option used only when --des-calibration-mode=single_trace_prior.")
+    ap.add_argument("--msprof-op-summary", default=None, help="Optional msprof op_summary CSV. Used as measured hardware evidence for component/absolute cost calibration.")
+    ap.add_argument("--msprof-op-name", default=None, help="Optional substring to select the profiled main kernel row from --msprof-op-summary. If omitted, the row with largest Task Duration(us) is used.")
+    ap.add_argument("--msprof-calibration-mode", choices=["off", "component_prior", "component_plus_scale"], default="off", help="off: ignore msprof; component_prior: adjust component correction factors; component_plus_scale: additionally scale predicted_cycles to the measured Task Duration target.")
     ap.add_argument("--desgraph", default=None, help="Deprecated alias for --artifact-des-graph; kept for backward compatibility.")
     ap.add_argument("--trace", default=None, help="Deprecated alias for --artifact-trace; kept for backward compatibility.")
     ap.add_argument("--source", default=None, help="Deprecated and ignored. Python/Triton source is not parsed as structured input.")
@@ -4895,9 +5196,22 @@ def main() -> None:
 
     ap.add_argument("--vtriton-bindings", default=None, help="Optional vTriton tritonsim_hivm_bindings.jsonl sidecar(s), comma-separated. Recorded into candidate bundle.")
     ap.add_argument("--vtriton-compile-commands", default=None, help="Optional vTriton tritonsim_hivm_compile_commands.jsonl sidecar(s), comma-separated. Recorded into candidate bundle.")
-    ap.add_argument("--enable-ir-rewrite", action="store_true", help="Emit V3.0 strategy-to-HIVM rewrite outputs: annotated IR, optional safe structural IR, pass config, edit script, vTriton bundle.")
-    ap.add_argument("--rewrite-mode", choices=["annotation", "safe_structural", "both"], default="annotation", help="annotation: only strategy attrs; safe_structural: also conservative sync/buffer attr rewrite; both: emit both files.")
-    ap.add_argument("--rewrite-safety", choices=["conservative", "aggressive"], default="conservative", help="conservative: do not delete sync ops; aggressive: may remove obvious pipe_barrier lines under GSS, still requires vTriton verification.")
+    ap.add_argument("--enable-ir-rewrite", action="store_true", help="Emit strategy-to-HIVM rewrite outputs: annotated IR, safe structural hint IR, pass config, edit script, and vTriton bundle.")
+    ap.add_argument("--rewrite-mode", choices=["annotation", "safe_structural", "both"], default="annotation", help="annotation: only strategy attrs; safe_structural: also safe buffer/tile/CVPipeline hint rewrite; both: emit both files.")
+    ap.add_argument("--rewrite-safety", choices=["conservative", "balanced", "aggressive"], default="conservative", help="Step-2 safety. conservative: only explicit per-buffer nbuf>=2 hints; balanced: also allow q/k/v stream-like UB/L1 name heuristic; aggressive: broader eligible UB/L1 hinting. No mode deletes or moves sync ops in Step-2.")
+    ap.add_argument("--enable-structural-rewrite", action="store_true", help="Step-3/Phase-2A: emit structural edit script and optimized.structural.hivm.mlir using an operation-level rewrite backend boundary.")
+    ap.add_argument("--structural-rewrite-safety", choices=["conservative", "balanced", "aggressive"], default="balanced", help="Structural rewrite safety. balanced applies limited barrier replacement, CV sync insertion, and simple invariant Q-load hoisting when anchors are explicit.")
+    ap.add_argument("--structural-rewrite-backend", choices=["auto", "python", "vtriton", "dry_run"], default="auto", help="auto: prefer vTriton strategy rewriter if available, then hivm-crud, else Python fallback; python: force fallback; vtriton: require external backend; dry_run: emit schema/edit script without mutating IR.")
+    ap.add_argument("--vtriton-strategy-rewriter", default=None, help="Optional path/name of the vTriton-compatible hivm-strategy-rewrite binary that consumes structural_edit_script.json.")
+    ap.add_argument("--vtriton-hivm-crud", default=None, help="Optional path/name of an external vTriton hivm-crud binary. This is a compatibility bridge; it may not consume structural_edit_script.json.")
+    ap.add_argument("--vtriton-crud-mode", choices=["read", "add", "delete", "modify", "roundtrip"], default="roundtrip", help="Mode to use if --vtriton-hivm-crud is selected.")
+    ap.add_argument("--vtriton-remove-gm-trips", type=int, default=0, help="Optional --remove-gm-trips N forwarded to external vTriton hivm-crud.")
+    ap.add_argument("--run-vtriton-validation", action="store_true", help="After structural rewrite, optionally call tritonsim-hivm on input and optimized IR and capture stdout/stderr.")
+    ap.add_argument("--tritonsim-hivm", default=None, help="Optional path/name of tritonsim-hivm used by --run-vtriton-validation.")
+    ap.add_argument("--hivm-operation-backend", default=None, help="Phase-5/6 optional path/name of a future HivmOpsEditor/MLIR Operation-level backend. Used for capability probing/gates only; no production mutation is enabled unless a real backend proves all required evidence.")
+    ap.add_argument("--vtriton-source-root", default=None, help="Phase-6A optional path to vTriton or internal HivmOpsEditor source tree. Used to verify that a real Operation-level backend integration context is available.")
+    ap.add_argument("--phase6-positive-fixtures", default=None, help="Phase-6B optional comma-separated HIVM/NPUIR fixture files for real positive-case validation triage, e.g. kernel.npuir.mlir,fa_best.hivm.mlir.")
+    ap.add_argument("--mlir-opt", default=None, help="Phase-5/6 optional path/name of mlir-opt or a compatible verifier runner. Recorded as verifier/readiness evidence only; HIVM dialect support is still required.")
     ap.add_argument("--output-dir", required=True, help="Directory to write selected_strategy/search_report outputs")
     args = ap.parse_args()
     run(args)

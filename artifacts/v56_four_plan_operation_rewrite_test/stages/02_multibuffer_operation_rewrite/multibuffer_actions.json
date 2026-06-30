@@ -1,0 +1,164 @@
+{
+  "actions": [
+    {
+      "action_id": "multibuffer_true_rewrite_action_0000",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0000",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%q_ub",
+        "line": 8,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x128xf16, #hivm.address_space<ub>",
+        "text": "%q_ub = memref.alloc() : memref<32x128xf16, #hivm.address_space<ub>"
+      },
+      "symbol": "%q_ub",
+      "target_line": 8,
+      "producer_line": 34,
+      "consumer_line": 36,
+      "producer": {
+        "line": 34,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<32x128xf16, #hivm.address_space<ub>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 36,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>) outs(%q_l1 : memref<32x128xf16, #hivm.address_space<cbuf>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%q_ub_mb0_ping",
+        "pong": "%q_ub_mb0_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0001",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0002",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%s_ub",
+        "line": 12,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x64xf16, #hivm.address_space<ub>",
+        "text": "%s_ub = memref.alloc() : memref<32x64xf16, #hivm.address_space<ub>"
+      },
+      "symbol": "%s_ub",
+      "target_line": 12,
+      "producer_line": 61,
+      "consumer_line": 63,
+      "producer": {
+        "line": 61,
+        "op": "hivm.hir.fixpipe",
+        "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>) outs(%s_ub : memref<32x64xf16, #hivm.address_space<ub>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 63,
+        "op": "hivm.hir.vreduce",
+        "text": "hivm.hir.vreduce ins(%s_ub : memref<32x1xf16, #hivm.address_space<ub>) {reduce_op=\"max\"}",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%s_ub_mb1_ping",
+        "pong": "%s_ub_mb1_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0002",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0001",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%p_ub",
+        "line": 14,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x64xf16, #hivm.address_space<ub>",
+        "text": "%p_ub = memref.alloc() : memref<32x64xf16, #hivm.address_space<ub>"
+      },
+      "symbol": "%p_ub",
+      "target_line": 14,
+      "producer_line": 65,
+      "consumer_line": 67,
+      "producer": {
+        "line": 65,
+        "op": "hivm.hir.vsub",
+        "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x1xf16, #hivm.address_space<ub>) outs(%p_ub : memref<32x64xf16, #hivm.address_space<ub>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 67,
+        "op": "hivm.hir.vexp",
+        "text": "hivm.hir.vexp ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>) outs(%p_ub : memref<32x64xf16, #hivm.address_space<ub>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%p_ub_mb2_ping",
+        "pong": "%p_ub_mb2_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0003",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0003",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%k_ub",
+        "line": 20,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<64x128xf16, #hivm.address_space<ub>",
+        "text": "%k_ub = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>"
+      },
+      "symbol": "%k_ub",
+      "target_line": 20,
+      "producer_line": 48,
+      "consumer_line": 52,
+      "producer": {
+        "line": 48,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<64x128xf16, #hivm.address_space<ub>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 52,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>) outs(%k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%k_ub_mb3_ping",
+        "pong": "%k_ub_mb3_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    }
+  ]
+}

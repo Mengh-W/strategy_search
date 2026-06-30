@@ -1,0 +1,9 @@
+{
+  "schema_version": "hivm_sync_precision_contract_summary_v1",
+  "contract": "artifacts/v42_sync_fake_backend_dryrun/sync_precision_contract/sync_precision_contract.json",
+  "overall_decision": "READY_FOR_PRECISE_BACKEND_DRY_RUN_CHECKS_ONLY",
+  "num_actions": 1,
+  "num_events": 2,
+  "num_barriers": 0,
+  "num_sync_blocks": 0
+}

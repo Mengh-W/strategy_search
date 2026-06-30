@@ -1,0 +1,101 @@
+{
+  "schema_version": "hivm_phase6a_real_backend_integration_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase6a_real_backend_integration_readiness",
+  "phase": "Phase-6A",
+  "phase6a_status": "waiting_for_real_operation_backend_inputs",
+  "plain_language_summary": "Phase 6A checks whether the project has a real MLIR/HivmOpsEditor Operation backend. Without that backend and real tritonsim-hivm, complex mutations remain locked even though earlier contracts and fake-backend tests are ready.",
+  "backend_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null,
+    "supports_print_capabilities": false,
+    "reason": "operation_backend_binary_not_configured_or_not_found"
+  },
+  "source_root_probe": {
+    "provided": false,
+    "path": null,
+    "exists": false,
+    "looks_like_vtriton_repo": false,
+    "reason": "vtriton_source_root_not_provided"
+  },
+  "tritonsim_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null
+  },
+  "mlir_opt_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null
+  },
+  "identity_flags": {
+    "declares_real_mlir_backend": false,
+    "declares_hivmopseditor_or_operation_walk": false,
+    "declares_not_fake": false
+  },
+  "mode_flags": {
+    "inventory": false,
+    "roundtrip": false,
+    "verify_only": false,
+    "dry_run": false,
+    "mutate_q_load_hoist": false,
+    "mutate_gm_roundtrip_deletion": false
+  },
+  "accepted_for_phase6_positive_case": false,
+  "production_mutation_allowed": false,
+  "blocker_count": 12,
+  "blockers": [
+    "real_operation_backend_binary_missing",
+    "backend_capability_handshake_missing",
+    "backend_does_not_declare_real_mlir_backend",
+    "backend_does_not_declare_hivmopseditor_or_operation_walk",
+    "backend_mode_missing_inventory",
+    "backend_mode_missing_roundtrip",
+    "backend_mode_missing_verify_only",
+    "backend_mode_missing_dry_run",
+    "backend_mode_missing_mutate_q_load_hoist",
+    "backend_mode_missing_mutate_gm_roundtrip_deletion",
+    "vtriton_source_root_missing_or_not_recognized",
+    "real_tritonsim_hivm_binary_missing"
+  ],
+  "required_inputs": {
+    "must_provide_for_real_phase6_positive_case": [
+      {
+        "item": "vTriton source tree or internal HivmOpsEditor source tree",
+        "why": "Needed to build/verify a real Operation-level backend instead of text scanner or fake fixture.",
+        "cli": "--vtriton-source-root /path/to/vTriton"
+      },
+      {
+        "item": "built HIVM Operation backend binary",
+        "why": "Must support --print-capabilities, --inventory, --roundtrip, --verify-only, --dry-run, and guarded --mutate modes.",
+        "cli": "--hivm-operation-backend /path/to/hivm-operation-backend"
+      },
+      {
+        "item": "built tritonsim-hivm binary",
+        "why": "Needed for real DES/trace validation after mutation.",
+        "cli": "--tritonsim-hivm /path/to/tritonsim-hivm --run-vtriton-validation"
+      },
+      {
+        "item": "one positive restricted HIVM fixture",
+        "why": "Needed to prove one Q-load hoist or GM-deletion mutation end-to-end with verifier and DES/trace.",
+        "example": "simple attention-like or matmul-like .hivm.mlir with explicit Q load in KV loop or same-offset GM round-trip."
+      },
+      {
+        "item": "expected parser/dialect version notes",
+        "why": "Needed to diagnose MLIR dialect mismatch rather than treating parser failure as optimizer failure."
+      }
+    ],
+    "optional_but_useful": [
+      "compile_commands.json or build directory for the backend",
+      "real hardware run script and msprof command if Phase 6D/Phase 7 proceeds",
+      "known-good original/optimized DES graph and Perfetto trace examples"
+    ]
+  },
+  "acceptance_rule": {
+    "all_identity_flags_required": true,
+    "all_mode_flags_required": true,
+    "source_root_required": true,
+    "real_tritonsim_required_before_claiming_DES_trace_validation": true,
+    "fake_or_fixture_backend_rejected": true
+  }
+}

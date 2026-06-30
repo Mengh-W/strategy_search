@@ -1,0 +1,2992 @@
+{
+  "schema_version": "four_plan_rewrite_readiness_v1",
+  "producer": "strategy_search.rewrite_readiness",
+  "meaning": "This is not a new IR and it does not mutate HIVM. It is the checklist/mutation-plan layer between selected_plan.json and HivmOpsEditor.",
+  "input_summary": {
+    "num_hivm_ops": 20,
+    "num_buffers": 13,
+    "num_loops": 1,
+    "op_counts": {
+      "hivm.hir.load": 3,
+      "hivm.hir.nd2nz": 4,
+      "hivm.hir.copy": 1,
+      "hivm.hir.wait_flag": 1,
+      "hivm.hir.mmad": 2,
+      "hivm.hir.fixpipe": 2,
+      "hivm.hir.vreduce": 2,
+      "hivm.hir.vsub": 1,
+      "hivm.hir.vexp": 1,
+      "hivm.hir.set_flag": 1,
+      "hivm.hir.vdiv": 1,
+      "hivm.hir.store": 1
+    },
+    "role_counts": {
+      "gm_to_local_load": 3,
+      "cv_load_stage": 3,
+      "multibuffer_candidate": 3,
+      "layout_transform": 4,
+      "cv_transform_stage": 4,
+      "local_copy": 1,
+      "possible_stage_buffer_copy": 1,
+      "sync_wait": 1,
+      "cube_compute_stage": 2,
+      "fixpipe_stage": 2,
+      "cv_boundary_candidate": 2,
+      "vector_compute_stage": 5,
+      "sync_set": 1,
+      "local_to_gm_store": 1,
+      "cv_store_stage": 1,
+      "gm_roundtrip_candidate": 1
+    },
+    "by_category": {
+      "data_move": 5,
+      "layout": 4,
+      "cube_compute": 2,
+      "vector_compute": 5,
+      "sync": 2,
+      "loops": 1,
+      "buffers": 13
+    },
+    "buffer_spaces": {
+      "ub": 8,
+      "cbuf": 4,
+      "cc": 1
+    },
+    "unknown_hivm_ops": []
+  },
+  "readiness_order": [
+    "SyncPlan",
+    "MultiBufferPlan",
+    "CVPipelinePlan",
+    "TilingPlan"
+  ],
+  "reports": {
+    "sync_plan_readiness": {
+      "plan": "SyncPlan",
+      "purpose": "把粗粒度 barrier/pipe barrier 转成更细粒度的 set_flag/wait_flag，或者删除冗余同步。",
+      "selected_knobs": {
+        "policy": "graph_sync_solver",
+        "template": "Y3_event_reuse",
+        "barrier_level": "low",
+        "event_reuse": true,
+        "sync_granularity": "stage",
+        "event_id_policy": "reuse",
+        "sync_motion": "local_move",
+        "remove_redundant_sync": true,
+        "sync_style_from_ir": "barrier"
+      },
+      "anchors": {
+        "sync_ops": [
+          {
+            "line": 24,
+            "op": "hivm.hir.wait_flag",
+            "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_wait"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": [
+              "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+            ]
+          },
+          {
+            "line": 34,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": [
+              "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+            ]
+          }
+        ],
+        "barrier_like_ops": [],
+        "existing_event_ops": [
+          {
+            "line": 24,
+            "op": "hivm.hir.wait_flag",
+            "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_wait"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": [
+              "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+            ]
+          },
+          {
+            "line": 34,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": [
+              "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+            ]
+          }
+        ],
+        "possible_producer_ops": [
+          {
+            "line": 16,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%Q_gm"
+            ],
+            "outputs": [
+              "%q_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 17,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%q_ub"
+            ],
+            "outputs": [
+              "%q_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 19,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%K_gm"
+            ],
+            "outputs": [
+              "%k_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 20,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%V_gm"
+            ],
+            "outputs": [
+              "%v_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 21,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%k_ub"
+            ],
+            "outputs": [
+              "%k_l1_ping"
+            ],
+            "notes": []
+          },
+          {
+            "line": 22,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%v_ub"
+            ],
+            "outputs": [
+              "%v_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 23,
+            "op": "hivm.hir.copy",
+            "text": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_copy",
+              "possible_stage_buffer_copy"
+            ],
+            "inputs": [
+              "%K_gm"
+            ],
+            "outputs": [
+              "%k_l1_pong"
+            ],
+            "notes": []
+          },
+          {
+            "line": 25,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%q_l1",
+              "%k_l1_ping"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 31,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%v_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 32,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub",
+              "%v_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          }
+        ],
+        "possible_consumer_ops": [
+          {
+            "line": 25,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%q_l1",
+              "%k_l1_ping"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 27,
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%s_ub"
+            ],
+            "outputs": [
+              "%m_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 28,
+            "op": "hivm.hir.vsub",
+            "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%s_ub",
+              "%m_ub"
+            ],
+            "outputs": [
+              "%p_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 29,
+            "op": "hivm.hir.vexp",
+            "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%p_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 30,
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%l_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 32,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub",
+              "%v_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 36,
+            "op": "hivm.hir.vdiv",
+            "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%acc_ub",
+              "%l_ub"
+            ],
+            "outputs": [
+              "%acc_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 37,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%q_ub"
+            ],
+            "outputs": [
+              "%O_gm"
+            ],
+            "notes": []
+          }
+        ]
+      },
+      "backend_mutation_request_template": {
+        "mutation_kind": "sync_barrier_to_directional_event_or_sync_cleanup",
+        "input_policy": "graph_sync_solver",
+        "event_id_policy": "reuse",
+        "sync_motion": "local_move",
+        "remove_redundant_sync": true,
+        "must_use_backend_to_print_event_ops": true
+      },
+      "must_prove_before_mutate": [
+        "producer_consumer_pair_proven_by_backend_or_DES_graph",
+        "fresh_or_non_overlapping_event_id",
+        "no_wait_before_set_deadlock",
+        "no_cross_iteration_dependency_removed",
+        "roundtrip_and_verify_pass"
+      ],
+      "blocked_or_missing": [],
+      "status": "READY_FOR_BACKEND_DRY_RUN"
+    },
+    "multibuffer_plan_readiness": {
+      "plan": "MultiBufferPlan",
+      "purpose": "把 nbuf/double_buffer 从 hint 变成真实 buffer slot clone 与 operand 替换。",
+      "selected_knobs": {
+        "double_buffer": true,
+        "template": "M1_input_double_buffer",
+        "input_buffer_multiplier": 2,
+        "stage_buffer_multiplier": 2,
+        "ub_multiplier": 1,
+        "l1_multiplier": 1,
+        "stage_buffer_policy": "none",
+        "buffer_multipliers": {
+          "k_l1": 1,
+          "q_l1": 1,
+          "q_ub": 1,
+          "v_l1": 1
+        },
+        "buffer_multiplier_domain": {
+          "q_l1": [
+            1,
+            2
+          ],
+          "q_ub": [
+            1,
+            2
+          ],
+          "v_l1": [
+            1,
+            2
+          ],
+          "k_l1": [
+            1,
+            2
+          ]
+        },
+        "detected_ping_pong_multibuffer": false
+      },
+      "anchors": {
+        "candidate_buffers": [
+          {
+            "buffer": {
+              "line": 12,
+              "name": "%k_l1_ping",
+              "space": "cbuf",
+              "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+              "text": "%k_l1_ping = memref.alloc() : memref<96x128xf16, #hivm.address_space<cbuf>>"
+            },
+            "candidate_score": 3,
+            "producer_ops": [
+              {
+                "line": 21,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 25,
+                "op": "hivm.hir.mmad",
+                "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%k_l1_ping",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 13,
+              "name": "%k_l1_pong",
+              "space": "cbuf",
+              "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+              "text": "%k_l1_pong = memref.alloc() : memref<96x128xf16, #hivm.address_space<cbuf>>"
+            },
+            "candidate_score": 3,
+            "producer_ops": [
+              {
+                "line": 23,
+                "op": "hivm.hir.copy",
+                "text": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "consumer_ops": [],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%k_l1_pong",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 3,
+              "name": "%q_ub",
+              "space": "ub",
+              "type_text": "memref<64x128xf16, #hivm.address_space<ub>>",
+              "text": "%q_ub = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 16,
+                "op": "hivm.hir.load",
+                "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 17,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+              },
+              {
+                "line": 37,
+                "op": "hivm.hir.store",
+                "text": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%q_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 6,
+              "name": "%p_ub",
+              "space": "ub",
+              "type_text": "memref<64x96xf16, #hivm.address_space<ub>>",
+              "text": "%p_ub = memref.alloc() : memref<64x96xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 28,
+                "op": "hivm.hir.vsub",
+                "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+              },
+              {
+                "line": 29,
+                "op": "hivm.hir.vexp",
+                "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 29,
+                "op": "hivm.hir.vexp",
+                "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+              },
+              {
+                "line": 30,
+                "op": "hivm.hir.vreduce",
+                "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+              },
+              {
+                "line": 31,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+              },
+              {
+                "line": 32,
+                "op": "hivm.hir.mmad",
+                "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%p_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 9,
+              "name": "%k_ub",
+              "space": "ub",
+              "type_text": "memref<96x128xf16, #hivm.address_space<ub>>",
+              "text": "%k_ub = memref.alloc() : memref<96x128xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 19,
+                "op": "hivm.hir.load",
+                "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 21,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%k_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 10,
+              "name": "%v_ub",
+              "space": "ub",
+              "type_text": "memref<96x128xf16, #hivm.address_space<ub>>",
+              "text": "%v_ub = memref.alloc() : memref<96x128xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 20,
+                "op": "hivm.hir.load",
+                "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 22,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%v_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 11,
+              "name": "%q_l1",
+              "space": "cbuf",
+              "type_text": "memref<64x128xf16, #hivm.address_space<cbuf>>",
+              "text": "%q_l1 = memref.alloc() : memref<64x128xf16, #hivm.address_space<cbuf>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 17,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 25,
+                "op": "hivm.hir.mmad",
+                "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%q_l1",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 14,
+              "name": "%v_l1",
+              "space": "cbuf",
+              "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+              "text": "%v_l1 = memref.alloc() : memref<96x128xf16, #hivm.address_space<cbuf>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 22,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+              },
+              {
+                "line": 31,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 32,
+                "op": "hivm.hir.mmad",
+                "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%v_l1",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 4,
+              "name": "%acc_ub",
+              "space": "ub",
+              "type_text": "memref<64x128xf32, #hivm.address_space<ub>>",
+              "text": "%acc_ub = memref.alloc() : memref<64x128xf32, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 33,
+                "op": "hivm.hir.fixpipe",
+                "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+              },
+              {
+                "line": 36,
+                "op": "hivm.hir.vdiv",
+                "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 36,
+                "op": "hivm.hir.vdiv",
+                "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%acc_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 5,
+              "name": "%s_ub",
+              "space": "ub",
+              "type_text": "memref<64x96xf16, #hivm.address_space<ub>>",
+              "text": "%s_ub = memref.alloc() : memref<64x96xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 26,
+                "op": "hivm.hir.fixpipe",
+                "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 27,
+                "op": "hivm.hir.vreduce",
+                "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+              },
+              {
+                "line": 28,
+                "op": "hivm.hir.vsub",
+                "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%s_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 7,
+              "name": "%m_ub",
+              "space": "ub",
+              "type_text": "memref<64x1xf32, #hivm.address_space<ub>>",
+              "text": "%m_ub = memref.alloc() : memref<64x1xf32, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 27,
+                "op": "hivm.hir.vreduce",
+                "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 28,
+                "op": "hivm.hir.vsub",
+                "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%m_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 8,
+              "name": "%l_ub",
+              "space": "ub",
+              "type_text": "memref<64x1xf32, #hivm.address_space<ub>>",
+              "text": "%l_ub = memref.alloc() : memref<64x1xf32, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 30,
+                "op": "hivm.hir.vreduce",
+                "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 36,
+                "op": "hivm.hir.vdiv",
+                "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%l_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          }
+        ],
+        "num_local_buffers": 13
+      },
+      "backend_mutation_request_template": {
+        "mutation_kind": "clone_local_buffers_and_replace_uses",
+        "requires_iteration_or_stage_policy": true,
+        "requires_capacity_recheck": true,
+        "requires_backend_use_def_resolution": true
+      },
+      "must_prove_before_mutate": [
+        "all_uses_resolved_by_MLIR_use_def",
+        "target_buffer_does_not_escape_to_unknown_side_effect_op",
+        "capacity_recheck_passes_after_extra_slots",
+        "buffer_liveness_no_overwrite",
+        "roundtrip_and_verify_pass"
+      ],
+      "blocked_or_missing": [],
+      "status": "READY_FOR_BACKEND_DRY_RUN"
+    },
+    "cv_pipeline_plan_readiness": {
+      "plan": "CVPipelinePlan",
+      "purpose": "把 load/transform/compute/store 拆成流水 stage；真实 overlap 依赖 MultiBuffer ping-pong 与 SyncPlan event。",
+      "selected_knobs": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "anchors": {
+        "stage_sequence_by_line": [
+          {
+            "line": 16,
+            "stage": "load",
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 17,
+            "stage": "transform_or_copy",
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+          },
+          {
+            "line": 19,
+            "stage": "load",
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 20,
+            "stage": "load",
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 21,
+            "stage": "transform_or_copy",
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+          },
+          {
+            "line": 22,
+            "stage": "transform_or_copy",
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+          },
+          {
+            "line": 23,
+            "stage": "transform_or_copy",
+            "op": "hivm.hir.copy",
+            "text": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+          },
+          {
+            "line": 24,
+            "stage": "sync",
+            "op": "hivm.hir.wait_flag",
+            "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+          },
+          {
+            "line": 25,
+            "stage": "cube_compute",
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+          },
+          {
+            "line": 26,
+            "stage": "fixpipe",
+            "op": "hivm.hir.fixpipe",
+            "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 27,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+          },
+          {
+            "line": 28,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vsub",
+            "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 29,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vexp",
+            "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 30,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+          },
+          {
+            "line": 31,
+            "stage": "transform_or_copy",
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)"
+          },
+          {
+            "line": 32,
+            "stage": "cube_compute",
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)"
+          },
+          {
+            "line": 33,
+            "stage": "fixpipe",
+            "op": "hivm.hir.fixpipe",
+            "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 34,
+            "stage": "sync",
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+          },
+          {
+            "line": 36,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vdiv",
+            "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 37,
+            "stage": "store",
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+          }
+        ],
+        "load_ops": [
+          {
+            "line": 16,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%Q_gm"
+            ],
+            "outputs": [
+              "%q_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 19,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%K_gm"
+            ],
+            "outputs": [
+              "%k_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 20,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%V_gm"
+            ],
+            "outputs": [
+              "%v_ub"
+            ],
+            "notes": []
+          }
+        ],
+        "layout_ops": [
+          {
+            "line": 17,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%q_ub"
+            ],
+            "outputs": [
+              "%q_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 21,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%k_ub"
+            ],
+            "outputs": [
+              "%k_l1_ping"
+            ],
+            "notes": []
+          },
+          {
+            "line": 22,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%v_ub"
+            ],
+            "outputs": [
+              "%v_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 31,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%v_l1"
+            ],
+            "notes": []
+          }
+        ],
+        "copy_ops": [
+          {
+            "line": 23,
+            "op": "hivm.hir.copy",
+            "text": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_copy",
+              "possible_stage_buffer_copy"
+            ],
+            "inputs": [
+              "%K_gm"
+            ],
+            "outputs": [
+              "%k_l1_pong"
+            ],
+            "notes": []
+          }
+        ],
+        "cube_ops": [
+          {
+            "line": 25,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%q_l1",
+              "%k_l1_ping"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 32,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub",
+              "%v_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          }
+        ],
+        "vector_ops": [
+          {
+            "line": 27,
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%s_ub"
+            ],
+            "outputs": [
+              "%m_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 28,
+            "op": "hivm.hir.vsub",
+            "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%s_ub",
+              "%m_ub"
+            ],
+            "outputs": [
+              "%p_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 29,
+            "op": "hivm.hir.vexp",
+            "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%p_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 30,
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%l_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 36,
+            "op": "hivm.hir.vdiv",
+            "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%acc_ub",
+              "%l_ub"
+            ],
+            "outputs": [
+              "%acc_ub"
+            ],
+            "notes": []
+          }
+        ],
+        "fixpipe_ops": [
+          {
+            "line": 26,
+            "op": "hivm.hir.fixpipe",
+            "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "fixpipe_stage",
+              "cv_boundary_candidate"
+            ],
+            "inputs": [
+              "%s_l0c"
+            ],
+            "outputs": [
+              "%s_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 33,
+            "op": "hivm.hir.fixpipe",
+            "text": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "fixpipe_stage",
+              "cv_boundary_candidate"
+            ],
+            "inputs": [
+              "%s_l0c"
+            ],
+            "outputs": [
+              "%acc_ub"
+            ],
+            "notes": []
+          }
+        ],
+        "store_ops": [
+          {
+            "line": 37,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%q_ub"
+            ],
+            "outputs": [
+              "%O_gm"
+            ],
+            "notes": []
+          }
+        ],
+        "sync_ops": [
+          {
+            "line": 24,
+            "op": "hivm.hir.wait_flag",
+            "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_wait"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": [
+              "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+            ]
+          },
+          {
+            "line": 34,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": [
+              "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+            ]
+          }
+        ]
+      },
+      "backend_mutation_request_template": {
+        "mutation_kind": "cv_pipeline_stage_reorder",
+        "requested_stage_num": 2,
+        "producer_consumer_distance": 1,
+        "requires_multibuffer_pingpong": true,
+        "requires_syncplan_events": true
+      },
+      "must_prove_before_mutate": [
+        "stage_dependency_is_linear_or_backend_can_schedule",
+        "no_cross_tile_reduction_or_side_effect_blocks_reorder",
+        "pingpong_buffer_available_for_prefetch_or_overlap",
+        "prologue_steady_state_epilogue_constructed",
+        "DES_or_trace_shows_expected_overlap_before_claiming_pipeline_success"
+      ],
+      "blocked_or_missing": [],
+      "status": "READY_FOR_BACKEND_DRY_RUN"
+    },
+    "tiling_plan_readiness": {
+      "plan": "TilingPlan",
+      "purpose": "把 tile_m/tile_n/tile_k 从策略参数推进到 Linux backend 可检查的 loop split、index remap、load/store slice、tail mask dry-run 计划。",
+      "selected_knobs": {
+        "tile_m": 32,
+        "tile_n": 64,
+        "tile_k": 128,
+        "logical_axes": [
+          "axis_m",
+          "axis_n",
+          "axis_k"
+        ],
+        "generic_logical_axes_evidence": {
+          "primary_tile_candidate": {
+            "tile_m": 64,
+            "tile_n": 32,
+            "tile_k": 128
+          },
+          "candidate_tiles_from_cube_ops": [
+            {
+              "tile_m": 64,
+              "tile_n": 32,
+              "tile_k": 128
+            },
+            {
+              "tile_m": 64,
+              "tile_n": 32,
+              "tile_k": 32
+            }
+          ],
+          "conventional_tensor_signature": {
+            "detected": true,
+            "Q_gm": [
+              64,
+              128
+            ],
+            "K_gm": [
+              1024,
+              128
+            ],
+            "V_gm": [
+              1024,
+              128
+            ],
+            "O_gm": [
+              64,
+              128
+            ],
+            "note": "name-based conventional tensor signature; used as evidence only, not a hard-coded kernel family"
+          }
+        },
+        "loop_order": "outer_mkn",
+        "tail_strategy": "mask_or_pad",
+        "reduce_tile_policy": "half_k",
+        "layout_aware_tile": true
+      },
+      "anchors": {
+        "loop_ops": [
+          {
+            "line": 18,
+            "text": "scf.for %j = %c0 to %cE step %cB {   // @trip=10",
+            "kind": "scf.for"
+          }
+        ],
+        "cube_compute_ops": [
+          {
+            "line": 25,
+            "op": "hivm.hir.mmad",
+            "kind": "cube_compute",
+            "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+            "inputs": [
+              {
+                "value": "%q_l1",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "cbuf"
+              },
+              {
+                "value": "%k_l1_ping",
+                "shape": [
+                  96,
+                  128
+                ],
+                "space": "cbuf"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%s_l0c",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "cc"
+              }
+            ]
+          },
+          {
+            "line": 32,
+            "op": "hivm.hir.mmad",
+            "kind": "cube_compute",
+            "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+            "inputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              },
+              {
+                "value": "%v_l1",
+                "shape": [
+                  96,
+                  128
+                ],
+                "space": "cbuf"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%s_l0c",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "cc"
+              }
+            ]
+          }
+        ],
+        "vector_compute_ops": [
+          {
+            "line": 27,
+            "op": "hivm.hir.vreduce",
+            "kind": "vector_compute",
+            "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+            "inputs": [
+              {
+                "value": "%s_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%m_ub",
+                "shape": [
+                  64,
+                  1
+                ],
+                "space": "ub"
+              }
+            ]
+          },
+          {
+            "line": 28,
+            "op": "hivm.hir.vsub",
+            "kind": "vector_compute",
+            "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+            "inputs": [
+              {
+                "value": "%s_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              },
+              {
+                "value": "%m_ub",
+                "shape": [
+                  64,
+                  1
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ]
+          },
+          {
+            "line": 29,
+            "op": "hivm.hir.vexp",
+            "kind": "vector_compute",
+            "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+            "inputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ]
+          },
+          {
+            "line": 30,
+            "op": "hivm.hir.vreduce",
+            "kind": "vector_compute",
+            "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+            "inputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%l_ub",
+                "shape": [
+                  64,
+                  1
+                ],
+                "space": "ub"
+              }
+            ]
+          },
+          {
+            "line": 36,
+            "op": "hivm.hir.vdiv",
+            "kind": "vector_compute",
+            "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+            "inputs": [
+              {
+                "value": "%acc_ub",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "ub"
+              },
+              {
+                "value": "%l_ub",
+                "shape": [
+                  64,
+                  1
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%acc_ub",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "ub"
+              }
+            ]
+          }
+        ],
+        "load_ops": [
+          {
+            "line": 16,
+            "op": "hivm.hir.load",
+            "kind": "data_movement",
+            "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+            "inputs": [
+              {
+                "value": "%Q_gm",
+                "shape": [],
+                "space": "unknown_or_func_arg"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%q_ub",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "ub"
+              }
+            ]
+          },
+          {
+            "line": 19,
+            "op": "hivm.hir.load",
+            "kind": "data_movement",
+            "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+            "inputs": [
+              {
+                "value": "%K_gm",
+                "shape": [],
+                "space": "unknown_or_func_arg"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%k_ub",
+                "shape": [
+                  96,
+                  128
+                ],
+                "space": "ub"
+              }
+            ]
+          },
+          {
+            "line": 20,
+            "op": "hivm.hir.load",
+            "kind": "data_movement",
+            "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+            "inputs": [
+              {
+                "value": "%V_gm",
+                "shape": [],
+                "space": "unknown_or_func_arg"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%v_ub",
+                "shape": [
+                  96,
+                  128
+                ],
+                "space": "ub"
+              }
+            ]
+          }
+        ],
+        "store_ops": [
+          {
+            "line": 37,
+            "op": "hivm.hir.store",
+            "kind": "data_movement",
+            "text": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+            "inputs": [
+              {
+                "value": "%q_ub",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%O_gm",
+                "shape": [],
+                "space": "unknown_or_func_arg"
+              }
+            ]
+          }
+        ],
+        "candidate_buffers": [
+          {
+            "name": "%q_ub",
+            "line": 3,
+            "space": "ub",
+            "shape": [
+              64,
+              128
+            ],
+            "type_text": "memref<64x128xf16, #hivm.address_space<ub>>"
+          },
+          {
+            "name": "%acc_ub",
+            "line": 4,
+            "space": "ub",
+            "shape": [
+              64,
+              128
+            ],
+            "type_text": "memref<64x128xf32, #hivm.address_space<ub>>"
+          },
+          {
+            "name": "%s_ub",
+            "line": 5,
+            "space": "ub",
+            "shape": [
+              64,
+              96
+            ],
+            "type_text": "memref<64x96xf16, #hivm.address_space<ub>>"
+          },
+          {
+            "name": "%p_ub",
+            "line": 6,
+            "space": "ub",
+            "shape": [
+              64,
+              96
+            ],
+            "type_text": "memref<64x96xf16, #hivm.address_space<ub>>"
+          },
+          {
+            "name": "%m_ub",
+            "line": 7,
+            "space": "ub",
+            "shape": [
+              64,
+              1
+            ],
+            "type_text": "memref<64x1xf32, #hivm.address_space<ub>>"
+          },
+          {
+            "name": "%l_ub",
+            "line": 8,
+            "space": "ub",
+            "shape": [
+              64,
+              1
+            ],
+            "type_text": "memref<64x1xf32, #hivm.address_space<ub>>"
+          },
+          {
+            "name": "%k_ub",
+            "line": 9,
+            "space": "ub",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<ub>>"
+          },
+          {
+            "name": "%v_ub",
+            "line": 10,
+            "space": "ub",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<ub>>"
+          },
+          {
+            "name": "%q_l1",
+            "line": 11,
+            "space": "cbuf",
+            "shape": [
+              64,
+              128
+            ],
+            "type_text": "memref<64x128xf16, #hivm.address_space<cbuf>>"
+          },
+          {
+            "name": "%k_l1_ping",
+            "line": 12,
+            "space": "cbuf",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>"
+          },
+          {
+            "name": "%k_l1_pong",
+            "line": 13,
+            "space": "cbuf",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>"
+          },
+          {
+            "name": "%v_l1",
+            "line": 14,
+            "space": "cbuf",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>"
+          },
+          {
+            "name": "%s_l0c",
+            "line": 15,
+            "space": "cc",
+            "shape": [
+              64,
+              96
+            ],
+            "type_text": "memref<64x96xf32, #hivm.address_space<cc>>"
+          }
+        ]
+      },
+      "axis_evidence": {
+        "axis_evidence_version": "tiling_axis_evidence_v1",
+        "confidence": "MEDIUM",
+        "evidence_buffers": [
+          {
+            "buffer": "%q_ub",
+            "line": 3,
+            "space": "ub",
+            "shape": [
+              64,
+              128
+            ],
+            "type_text": "memref<64x128xf16, #hivm.address_space<ub>>",
+            "name_based_axis_roles": [
+              "m_axis_candidate_from_first_dim",
+              "k_or_d_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": true,
+              "dim_matches_tile_k": true
+            }
+          },
+          {
+            "buffer": "%acc_ub",
+            "line": 4,
+            "space": "ub",
+            "shape": [
+              64,
+              128
+            ],
+            "type_text": "memref<64x128xf32, #hivm.address_space<ub>>",
+            "name_based_axis_roles": [
+              "m_axis_candidate_from_first_dim",
+              "k_or_d_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": true,
+              "dim_matches_tile_k": true
+            }
+          },
+          {
+            "buffer": "%s_ub",
+            "line": 5,
+            "space": "ub",
+            "shape": [
+              64,
+              96
+            ],
+            "type_text": "memref<64x96xf16, #hivm.address_space<ub>>",
+            "name_based_axis_roles": [
+              "m_axis_candidate_from_first_dim",
+              "n_tile_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": true,
+              "dim_matches_tile_k": false
+            }
+          },
+          {
+            "buffer": "%p_ub",
+            "line": 6,
+            "space": "ub",
+            "shape": [
+              64,
+              96
+            ],
+            "type_text": "memref<64x96xf16, #hivm.address_space<ub>>",
+            "name_based_axis_roles": [
+              "m_axis_candidate_from_first_dim",
+              "n_tile_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": true,
+              "dim_matches_tile_k": false
+            }
+          },
+          {
+            "buffer": "%m_ub",
+            "line": 7,
+            "space": "ub",
+            "shape": [
+              64,
+              1
+            ],
+            "type_text": "memref<64x1xf32, #hivm.address_space<ub>>",
+            "name_based_axis_roles": [],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": true,
+              "dim_matches_tile_k": false
+            }
+          },
+          {
+            "buffer": "%l_ub",
+            "line": 8,
+            "space": "ub",
+            "shape": [
+              64,
+              1
+            ],
+            "type_text": "memref<64x1xf32, #hivm.address_space<ub>>",
+            "name_based_axis_roles": [],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": true,
+              "dim_matches_tile_k": false
+            }
+          },
+          {
+            "buffer": "%k_ub",
+            "line": 9,
+            "space": "ub",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<ub>>",
+            "name_based_axis_roles": [
+              "n_or_sequence_axis_candidate_from_first_dim",
+              "k_or_d_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": false,
+              "dim_matches_tile_k": true
+            }
+          },
+          {
+            "buffer": "%v_ub",
+            "line": 10,
+            "space": "ub",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<ub>>",
+            "name_based_axis_roles": [
+              "n_or_sequence_axis_candidate_from_first_dim",
+              "k_or_d_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": false,
+              "dim_matches_tile_k": true
+            }
+          },
+          {
+            "buffer": "%q_l1",
+            "line": 11,
+            "space": "cbuf",
+            "shape": [
+              64,
+              128
+            ],
+            "type_text": "memref<64x128xf16, #hivm.address_space<cbuf>>",
+            "name_based_axis_roles": [
+              "m_axis_candidate_from_first_dim",
+              "k_or_d_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": true,
+              "dim_matches_tile_k": true
+            }
+          },
+          {
+            "buffer": "%k_l1_ping",
+            "line": 12,
+            "space": "cbuf",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+            "name_based_axis_roles": [
+              "n_or_sequence_axis_candidate_from_first_dim",
+              "k_or_d_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": false,
+              "dim_matches_tile_k": true
+            }
+          },
+          {
+            "buffer": "%k_l1_pong",
+            "line": 13,
+            "space": "cbuf",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+            "name_based_axis_roles": [
+              "n_or_sequence_axis_candidate_from_first_dim",
+              "k_or_d_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": false,
+              "dim_matches_tile_k": true
+            }
+          },
+          {
+            "buffer": "%v_l1",
+            "line": 14,
+            "space": "cbuf",
+            "shape": [
+              96,
+              128
+            ],
+            "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+            "name_based_axis_roles": [
+              "n_or_sequence_axis_candidate_from_first_dim",
+              "k_or_d_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": false,
+              "dim_matches_tile_k": true
+            }
+          },
+          {
+            "buffer": "%s_l0c",
+            "line": 15,
+            "space": "cc",
+            "shape": [
+              64,
+              96
+            ],
+            "type_text": "memref<64x96xf32, #hivm.address_space<cc>>",
+            "name_based_axis_roles": [
+              "m_axis_candidate_from_first_dim",
+              "n_tile_axis_candidate_from_second_dim"
+            ],
+            "selected_tile_dim_matches": {
+              "dim_matches_tile_m": false,
+              "dim_matches_tile_n": true,
+              "dim_matches_tile_k": false
+            }
+          }
+        ],
+        "conventional_tensor_groups": {
+          "q_like_buffers": [
+            {
+              "buffer": "%q_ub",
+              "line": 3,
+              "space": "ub",
+              "shape": [
+                64,
+                128
+              ],
+              "type_text": "memref<64x128xf16, #hivm.address_space<ub>>",
+              "name_based_axis_roles": [
+                "m_axis_candidate_from_first_dim",
+                "k_or_d_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": true,
+                "dim_matches_tile_k": true
+              }
+            },
+            {
+              "buffer": "%q_l1",
+              "line": 11,
+              "space": "cbuf",
+              "shape": [
+                64,
+                128
+              ],
+              "type_text": "memref<64x128xf16, #hivm.address_space<cbuf>>",
+              "name_based_axis_roles": [
+                "m_axis_candidate_from_first_dim",
+                "k_or_d_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": true,
+                "dim_matches_tile_k": true
+              }
+            }
+          ],
+          "k_like_buffers": [
+            {
+              "buffer": "%k_ub",
+              "line": 9,
+              "space": "ub",
+              "shape": [
+                96,
+                128
+              ],
+              "type_text": "memref<96x128xf16, #hivm.address_space<ub>>",
+              "name_based_axis_roles": [
+                "n_or_sequence_axis_candidate_from_first_dim",
+                "k_or_d_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": false,
+                "dim_matches_tile_k": true
+              }
+            },
+            {
+              "buffer": "%k_l1_ping",
+              "line": 12,
+              "space": "cbuf",
+              "shape": [
+                96,
+                128
+              ],
+              "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+              "name_based_axis_roles": [
+                "n_or_sequence_axis_candidate_from_first_dim",
+                "k_or_d_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": false,
+                "dim_matches_tile_k": true
+              }
+            },
+            {
+              "buffer": "%k_l1_pong",
+              "line": 13,
+              "space": "cbuf",
+              "shape": [
+                96,
+                128
+              ],
+              "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+              "name_based_axis_roles": [
+                "n_or_sequence_axis_candidate_from_first_dim",
+                "k_or_d_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": false,
+                "dim_matches_tile_k": true
+              }
+            }
+          ],
+          "v_like_buffers": [
+            {
+              "buffer": "%v_ub",
+              "line": 10,
+              "space": "ub",
+              "shape": [
+                96,
+                128
+              ],
+              "type_text": "memref<96x128xf16, #hivm.address_space<ub>>",
+              "name_based_axis_roles": [
+                "n_or_sequence_axis_candidate_from_first_dim",
+                "k_or_d_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": false,
+                "dim_matches_tile_k": true
+              }
+            },
+            {
+              "buffer": "%v_l1",
+              "line": 14,
+              "space": "cbuf",
+              "shape": [
+                96,
+                128
+              ],
+              "type_text": "memref<96x128xf16, #hivm.address_space<cbuf>>",
+              "name_based_axis_roles": [
+                "n_or_sequence_axis_candidate_from_first_dim",
+                "k_or_d_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": false,
+                "dim_matches_tile_k": true
+              }
+            }
+          ],
+          "score_or_prob_buffers": [
+            {
+              "buffer": "%s_ub",
+              "line": 5,
+              "space": "ub",
+              "shape": [
+                64,
+                96
+              ],
+              "type_text": "memref<64x96xf16, #hivm.address_space<ub>>",
+              "name_based_axis_roles": [
+                "m_axis_candidate_from_first_dim",
+                "n_tile_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": true,
+                "dim_matches_tile_k": false
+              }
+            },
+            {
+              "buffer": "%p_ub",
+              "line": 6,
+              "space": "ub",
+              "shape": [
+                64,
+                96
+              ],
+              "type_text": "memref<64x96xf16, #hivm.address_space<ub>>",
+              "name_based_axis_roles": [
+                "m_axis_candidate_from_first_dim",
+                "n_tile_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": true,
+                "dim_matches_tile_k": false
+              }
+            },
+            {
+              "buffer": "%s_l0c",
+              "line": 15,
+              "space": "cc",
+              "shape": [
+                64,
+                96
+              ],
+              "type_text": "memref<64x96xf32, #hivm.address_space<cc>>",
+              "name_based_axis_roles": [
+                "m_axis_candidate_from_first_dim",
+                "n_tile_axis_candidate_from_second_dim"
+              ],
+              "selected_tile_dim_matches": {
+                "dim_matches_tile_m": false,
+                "dim_matches_tile_n": true,
+                "dim_matches_tile_k": false
+              }
+            }
+          ]
+        },
+        "notes": [
+          "name/shape evidence only; backend must confirm exact indexing maps and logical axes",
+          "axis evidence is sufficient for Linux anchor validation, not sufficient for production loop rewrite"
+        ]
+      },
+      "backend_mutation_request_template": {
+        "mutation_kind": "tiling_loop_index_slice_tailmask_rewrite_dry_run",
+        "tile_m": 32,
+        "tile_n": 64,
+        "tile_k": 128,
+        "loop_order": "outer_mkn",
+        "tail_strategy": "mask_or_pad",
+        "reduce_tile_policy": "half_k",
+        "layout_aware_tile": true,
+        "python_mutation_enabled": false,
+        "linux_backend_prevalidation_enabled": true
+      },
+      "dry_run_operation_plan": {
+        "dry_run_plan_version": "tiling_operation_dry_run_plan_v1",
+        "status": "READY_FOR_LINUX_BACKEND_ANCHOR_DRY_RUN",
+        "selected_tiles": {
+          "tile_m": 32,
+          "tile_n": 64,
+          "tile_k": 128
+        },
+        "requested_loop_order": "outer_mkn",
+        "requested_tail_strategy": "mask_or_pad",
+        "requested_reduce_tile_policy": "half_k",
+        "problem_totals_from_evidence": {
+          "m_total": 64,
+          "n_total": 96,
+          "k_total": 128
+        },
+        "loop_split_requests": [
+          {
+            "axis": "m",
+            "tile": 32,
+            "total_evidence": 64,
+            "tail_relation": {
+              "known": true,
+              "total": 64,
+              "tile": 32,
+              "num_full_tiles": 2,
+              "tail": 0,
+              "needs_tail_guard": false
+            }
+          },
+          {
+            "axis": "n",
+            "tile": 64,
+            "total_evidence": 96,
+            "tail_relation": {
+              "known": true,
+              "total": 96,
+              "tile": 64,
+              "num_full_tiles": 1,
+              "tail": 32,
+              "needs_tail_guard": true
+            }
+          },
+          {
+            "axis": "k",
+            "tile": 128,
+            "total_evidence": 128,
+            "tail_relation": {
+              "known": true,
+              "total": 128,
+              "tile": 128,
+              "num_full_tiles": 1,
+              "tail": 0,
+              "needs_tail_guard": false
+            },
+            "is_reduction_axis_candidate": true
+          }
+        ],
+        "slice_rewrite_requests": [
+          {
+            "request_kind": "load_slice",
+            "op_line": 16,
+            "op": "hivm.hir.load",
+            "inputs": [
+              {
+                "value": "%Q_gm",
+                "shape": [],
+                "space": "unknown_or_func_arg"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%q_ub",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "ub"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "load_slice",
+            "op_line": 19,
+            "op": "hivm.hir.load",
+            "inputs": [
+              {
+                "value": "%K_gm",
+                "shape": [],
+                "space": "unknown_or_func_arg"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%k_ub",
+                "shape": [
+                  96,
+                  128
+                ],
+                "space": "ub"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "load_slice",
+            "op_line": 20,
+            "op": "hivm.hir.load",
+            "inputs": [
+              {
+                "value": "%V_gm",
+                "shape": [],
+                "space": "unknown_or_func_arg"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%v_ub",
+                "shape": [
+                  96,
+                  128
+                ],
+                "space": "ub"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "store_slice",
+            "op_line": 37,
+            "op": "hivm.hir.store",
+            "inputs": [
+              {
+                "value": "%q_ub",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%O_gm",
+                "shape": [],
+                "space": "unknown_or_func_arg"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "compute_tile",
+            "op_line": 25,
+            "op": "hivm.hir.mmad",
+            "inputs": [
+              {
+                "value": "%q_l1",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "cbuf"
+              },
+              {
+                "value": "%k_l1_ping",
+                "shape": [
+                  96,
+                  128
+                ],
+                "space": "cbuf"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%s_l0c",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "cc"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "compute_tile",
+            "op_line": 32,
+            "op": "hivm.hir.mmad",
+            "inputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              },
+              {
+                "value": "%v_l1",
+                "shape": [
+                  96,
+                  128
+                ],
+                "space": "cbuf"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%s_l0c",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "cc"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "vector_tile",
+            "op_line": 27,
+            "op": "hivm.hir.vreduce",
+            "inputs": [
+              {
+                "value": "%s_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%m_ub",
+                "shape": [
+                  64,
+                  1
+                ],
+                "space": "ub"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "vector_tile",
+            "op_line": 28,
+            "op": "hivm.hir.vsub",
+            "inputs": [
+              {
+                "value": "%s_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              },
+              {
+                "value": "%m_ub",
+                "shape": [
+                  64,
+                  1
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "vector_tile",
+            "op_line": 29,
+            "op": "hivm.hir.vexp",
+            "inputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "vector_tile",
+            "op_line": 30,
+            "op": "hivm.hir.vreduce",
+            "inputs": [
+              {
+                "value": "%p_ub",
+                "shape": [
+                  64,
+                  96
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%l_ub",
+                "shape": [
+                  64,
+                  1
+                ],
+                "space": "ub"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          },
+          {
+            "request_kind": "vector_tile",
+            "op_line": 36,
+            "op": "hivm.hir.vdiv",
+            "inputs": [
+              {
+                "value": "%acc_ub",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "ub"
+              },
+              {
+                "value": "%l_ub",
+                "shape": [
+                  64,
+                  1
+                ],
+                "space": "ub"
+              }
+            ],
+            "outputs": [
+              {
+                "value": "%acc_ub",
+                "shape": [
+                  64,
+                  128
+                ],
+                "space": "ub"
+              }
+            ],
+            "requires_backend_indexing_map": true
+          }
+        ],
+        "tail_guard_requests": [
+          {
+            "axis": "n",
+            "tile": 64,
+            "total_evidence": 96,
+            "tail_relation": {
+              "known": true,
+              "total": 96,
+              "tile": 64,
+              "num_full_tiles": 1,
+              "tail": 32,
+              "needs_tail_guard": true
+            }
+          }
+        ],
+        "reduction_requests": [
+          {
+            "axis": "k",
+            "policy": "half_k",
+            "must_prove": [
+              "partial_accumulator_initialization_is_preserved",
+              "partial_accumulator_update_order_is_preserved",
+              "final_store_occurs_after_all_k_tiles"
+            ]
+          }
+        ],
+        "blockers_or_backend_required": [],
+        "mutation_disabled_in_python": true,
+        "backend_mutation_kind": "tiling_loop_index_slice_tailmask_rewrite_dry_run"
+      },
+      "parameter_readiness": [
+        {
+          "parameter": "tile_m",
+          "selected_value": 32,
+          "present_in_selected_plan": true,
+          "readiness_level": "LEVEL_2_DRY_RUN_OPERATION_PLAN",
+          "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+          "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+          "meaning": "loop split on M + load/store/compute slice request"
+        },
+        {
+          "parameter": "tile_n",
+          "selected_value": 64,
+          "present_in_selected_plan": true,
+          "readiness_level": "LEVEL_2_DRY_RUN_OPERATION_PLAN",
+          "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+          "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+          "meaning": "loop split on N + load/store/compute slice request"
+        },
+        {
+          "parameter": "tile_k",
+          "selected_value": 128,
+          "present_in_selected_plan": true,
+          "readiness_level": "LEVEL_2_DRY_RUN_OPERATION_PLAN",
+          "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+          "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+          "meaning": "reduction-loop split + partial accumulation proof request"
+        },
+        {
+          "parameter": "loop_order",
+          "selected_value": "outer_mkn",
+          "present_in_selected_plan": true,
+          "readiness_level": "LEVEL_1_BACKEND_ANCHOR_VALIDATION",
+          "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+          "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+          "meaning": "loop permutation legality check; mutation deferred"
+        },
+        {
+          "parameter": "tail_strategy",
+          "selected_value": "mask_or_pad",
+          "present_in_selected_plan": true,
+          "readiness_level": "LEVEL_1_BACKEND_ANCHOR_VALIDATION",
+          "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+          "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+          "meaning": "tail guard/mask semantics check; mutation deferred"
+        },
+        {
+          "parameter": "reduce_tile_policy",
+          "selected_value": "half_k",
+          "present_in_selected_plan": true,
+          "readiness_level": "LEVEL_1_BACKEND_ANCHOR_VALIDATION",
+          "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+          "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+          "meaning": "reduction accumulation policy check; mutation deferred"
+        },
+        {
+          "parameter": "layout_aware_tile",
+          "selected_value": true,
+          "present_in_selected_plan": true,
+          "readiness_level": "LEVEL_1_BACKEND_ANCHOR_VALIDATION",
+          "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+          "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+          "meaning": "layout-sensitive tile-shape proof; mutation deferred"
+        }
+      ],
+      "must_prove_before_mutate": [
+        "MLIR parser can resolve the recorded loop/compute/load/store anchors",
+        "backend can map logical M/N/K axes to actual induction variables and indexing maps",
+        "backend can materialize loop split without changing tensor semantics",
+        "backend can rewrite load/store slices and compute shapes consistently",
+        "tail mask or padding semantics are explicit and verified",
+        "reduction partial accumulation is preserved for tile_k changes",
+        "roundtrip + verifier pass after a guarded single-parameter mutation"
+      ],
+      "linux_validation_commands": [
+        "python tools/build_four_plan_rewrite_readiness.py --ir <input.hivm.mlir> --selected-plan <selected_plan.json> --output-dir artifacts/latest_rewrite_readiness",
+        "python tools/run_tiling_operation_readiness.py --ir <input.hivm.mlir> --selected-plan <selected_plan.json> --output-dir artifacts/latest_tiling_operation_readiness",
+        "# then on Linux backend: run inventory/roundtrip/verify before enabling any loop/index mutation"
+      ],
+      "blocked_or_missing": [
+        "production_loop_index_slice_tailmask_mutation_still_backend_required"
+      ],
+      "status": "READY_FOR_LINUX_BACKEND_ANCHOR_DRY_RUN",
+      "production_rewrite_claim_allowed": false,
+      "claim_boundary": "ready for Linux backend anchor/dry-run validation; not a Python production operation rewrite"
+    }
+  },
+  "recommended_next_backend_milestone": {
+    "name": "SyncPlan + MultiBufferPlan backend dry-run",
+    "why": "SyncPlan is the safest first true rewrite; MultiBuffer buffer clone is the necessary foundation for CVPipeline overlap.",
+    "requires_user_run": false,
+    "requires_user_run_when": "Only when compiling/running real vTriton/HivmOpsEditor backend."
+  }
+}

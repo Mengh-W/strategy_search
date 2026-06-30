@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "name": "cost_model_prefill_a5_plan_calibrated",
+    "purpose": "Plan-level calibration using Prefill-A5 S0-S6 evidence, restricted to the current four-plan parameter space.",
+    "notes": "This config does not claim component-level msprof calibration. It only applies weak latency multipliers for plan-level events observed in Prefill-A5: mixed_cv disabled, auto_cv_balance, and prefill tile_mix 4:1. IR rewrite/code motion stages are intentionally excluded."
+  },
+  "cost_model_safety": {
+    "enabled": true,
+    "overlap_pressure_threshold": 0.72,
+    "overlap_pressure_slope": 0.45
+  },
+  "cost_model_risk_modes": {
+    "conservative": {
+      "cv_estimated_overlap_multiplier": 0.65,
+      "cv_estimated_penalty_ratio": 0.08,
+      "sync_unknown_penalty_per_op": 28.0,
+      "sync_unknown_penalty_ratio": 0.35,
+      "event_reuse_penalty_per_op": 6.0,
+      "risk_score_bias": 0.0
+    }
+  },
+  "cost_model_strategy_effects": {
+    "cv_pipeline": {
+      "prefill_reuse_tile_mix_reward": 0.0,
+      "template_overhead": {
+        "P_PREFILL_LARGE_SBS_REUSE": 0.020
+      }
+    }
+  },
+  "cost_model_calibration": {
+    "plan_level_latency_priors": {
+      "enabled": true,
+      "source": "profiles/prefill_a5/prefill_a5_stage_labels.json",
+      "scope": "current four-plan parameters only; excludes dtype/workspace, SSA reuse, hoist, compiler code motion",
+      "mixed_cv_disabled_latency_multiplier": 0.9956382001836548,
+      "auto_cv_balance_latency_multiplier": 0.9862608290638108,
+      "prefill_tile_mix_cube_loop": 4,
+      "prefill_tile_mix_vector_loop": 1,
+      "prefill_tile_mix_cube4_vec1_latency_multiplier": 0.9622195985832349
+    }
+  }
+}

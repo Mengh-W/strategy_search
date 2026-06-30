@@ -1,0 +1,37 @@
+{
+  "schema_version": "hivm_tiling_restricted_metadata_validation_v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "mutation_performed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tile_m_metadata_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tile_n_metadata_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tile_k_metadata_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "loop_index_not_rewritten",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_ir_preserved_as_superset",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "production_rewrite_claim_allowed": false
+}

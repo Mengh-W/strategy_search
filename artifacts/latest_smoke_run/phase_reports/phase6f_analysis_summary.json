@@ -1,0 +1,25 @@
+{
+  "schema_version": "hivm_phase6f_analysis_summary_v1",
+  "phase": "Phase-6F",
+  "status": "phase6f_waiting_for_compiled_real_backend_acceptance",
+  "accepted_backend_for_restricted_mutation_trials": false,
+  "passed_smoke_count": 0,
+  "production_mutation_allowed": false,
+  "blocker_count": 13,
+  "blockers": [
+    "compiled_hivm_operation_backend_binary_not_provided",
+    "backend_capability_handshake_not_passed",
+    "identity_check_failed_capabilities_json_ok",
+    "identity_check_failed_declares_real_mlir_backend",
+    "identity_check_failed_declares_hivmopseditor_or_operation_walk",
+    "identity_check_failed_not_fake_backend",
+    "required_mode_missing_inventory",
+    "required_mode_missing_roundtrip",
+    "required_mode_missing_verify_only",
+    "required_mode_missing_dry_run",
+    "required_mode_missing_mutate_gm_roundtrip_deletion",
+    "no_eligible_hivm_or_npuir_fixture_for_backend_acceptance",
+    "real_tritonsim_hivm_not_available_des_trace_deferred"
+  ],
+  "leadership_summary": "Phase 6F implements the compiled-backend acceptance gate. The project can now distinguish restricted Python true rewrites, generated vTriton adapter source, and an actually compiled real HivmOpsEditor backend. Without a compiled backend binary passing smoke tests, broad production mutation remains locked."
+}

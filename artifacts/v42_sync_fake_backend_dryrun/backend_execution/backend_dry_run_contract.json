@@ -1,0 +1,50 @@
+{
+  "schema_version": "fake_hivm_dry_run_report_v2",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "input": "sample_input/fa_best.hivm.mlir",
+  "edit_script": "artifacts/v42_sync_fake_backend_dryrun/sync_precision_contract/sync_precision_contract.json",
+  "production_mutation": false,
+  "status": "dry_run_only_fake_backend_no_mutation",
+  "action_count": 1,
+  "located_action_count": 1,
+  "actions": [
+    {
+      "action_id": "sync_check_event_EVENT_ID0",
+      "candidate_id": null,
+      "target_line": 34,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 19,
+        "operation_name": "hivm.hir.set_flag",
+        "source_line": 34,
+        "text_preview": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+        "operand_count": 0,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "checks": {
+        "backend_parsed_event_operands": false,
+        "event_pairs_reported": true,
+        "event_liveness_passed": false,
+        "no_deadlock_or_conflict_reported": false,
+        "target_barrier_located_by_backend": true,
+        "producer_consumer_pair_reported": false,
+        "fresh_or_safe_reused_event_reported": false,
+        "backend_can_print_official_set_wait_ops": false,
+        "event_liveness_passes_after_dry_run_plan": false,
+        "backend_reports_sync_block_mode_and_scope": false
+      },
+      "blockers": [
+        "fake_backend_cannot_prove_event_liveness",
+        "fake_backend_cannot_prove_deadlock_freedom",
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    }
+  ]
+}

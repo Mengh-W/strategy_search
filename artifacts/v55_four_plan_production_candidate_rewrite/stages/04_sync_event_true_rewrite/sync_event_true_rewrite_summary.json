@@ -1,0 +1,12 @@
+{
+  "schema_version": "hivm_v55_sync_event_true_summary_v1",
+  "version": "V5.5-sync-event-operation-normalization-rewrite",
+  "input_ir": "artifacts/v55_four_plan_production_candidate_rewrite/stages/03_cvpipeline_true_rewrite/optimized.cvpipeline_rewritten.hivm.mlir",
+  "optimized_ir": "artifacts/v55_four_plan_production_candidate_rewrite/stages/04_sync_event_true_rewrite/optimized.sync_event_rewritten.hivm.mlir",
+  "mutation_performed": true,
+  "rewritten_action_count": 2,
+  "passed_portable_validation": true,
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "syntax-level SyncPlan flag operation normalization; Linux backend must verify official HIVM op syntax and event liveness"
+}

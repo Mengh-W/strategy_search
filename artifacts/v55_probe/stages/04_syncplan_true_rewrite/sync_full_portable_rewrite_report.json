@@ -1,0 +1,21 @@
+{
+  "schema_version": "hivm_sync_rewrite_executor_v2",
+  "rewrite_kind": "portable_sync_pipe_barrier_to_set_wait_pair",
+  "contract_schema_version": "hivm_sync_precision_contract_v1",
+  "requested_action_count": 0,
+  "rewritten_action_count": 0,
+  "skipped_action_count": 0,
+  "rewritten_actions": [],
+  "skipped_actions": [],
+  "mutation_performed": false,
+  "production_rewrite_claim_allowed": false,
+  "requires_real_backend_followup": true,
+  "safety_boundary": [
+    "text-level restricted rewrite only; not MLIR Operation mutation",
+    "same-pipe set/wait pair is a conservative barrier-emulation anchor, not a proven optimization",
+    "event id is emitted as an EVENT_ID-style bracket attribute rather than an undefined SSA value",
+    "supports multi-action rewriting under max_actions policy; each action remains independently traceable",
+    "PIPE_ALL is skipped by default",
+    "real HivmOpsEditor must reparse, roundtrip, verify, and run DES/trace before production claim"
+  ]
+}

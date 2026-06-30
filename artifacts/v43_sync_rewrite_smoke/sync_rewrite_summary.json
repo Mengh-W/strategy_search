@@ -1,0 +1,10 @@
+{
+  "schema_version": "hivm_sync_rewrite_cli_summary_v1",
+  "contract": "artifacts/v43_sync_rewrite_smoke/sync_precision_contract/sync_precision_contract.json",
+  "output_ir": "artifacts/v43_sync_rewrite_smoke/optimized.sync_rewritten.hivm.mlir",
+  "report": "artifacts/v43_sync_rewrite_smoke/sync_rewrite_report.json",
+  "contract_overall_decision": "READY_FOR_PRECISE_BACKEND_DRY_RUN_BARRIER_ACTIONS",
+  "mutation_performed": true,
+  "rewritten_action_count": 1,
+  "production_rewrite_claim_allowed": false
+}

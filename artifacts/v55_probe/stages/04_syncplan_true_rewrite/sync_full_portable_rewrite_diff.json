@@ -1,0 +1,8 @@
+{
+  "schema_version": "hivm_sync_rewrite_diff_v1",
+  "diff_kind": "portable_sync_rewrite_unified_diff",
+  "num_diff_lines": 0,
+  "num_sync_related_diff_lines": 0,
+  "unified_diff": [],
+  "sync_related_diff": []
+}

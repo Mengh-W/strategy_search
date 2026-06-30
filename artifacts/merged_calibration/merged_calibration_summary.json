@@ -1,0 +1,47 @@
+{
+  "merged_config": "configs/cost_model_e2e_prefill_merged.json",
+  "calibration_sources": {
+    "e2e_component_prior": [
+      "split_qkv_rmsnorm_mrope_kernel memory-heavy",
+      "chunk_kda_bwd_kernel_wy_dqkg_fused_opt_v2 scalar-control/sync-heavy"
+    ],
+    "plan_level_prior": "Prefill-A5 S0-S6 plan-level transitions"
+  },
+  "validation": {
+    "prefill_a5_plan_only": {
+      "num_supported_transitions": 4,
+      "direction_hits": 4,
+      "direction_hit_rate": 1.0,
+      "mean_absolute_gain_error": 0.012579839782402569,
+      "mean_abs_log_gain_error": 0.010155583067475028,
+      "verdict": "good: current four-plan cost model captures most plan-level directions on this benchmark"
+    },
+    "split_qkv": {
+      "best_strategy_id": "candidate_00005",
+      "best_predicted_cycles": 171931.79312442214,
+      "layer1_kept": 37,
+      "layer3_candidates": 3384,
+      "legal_candidates": 3384,
+      "relaxed_candidates": 0,
+      "dominant_runtime_signal": "memory"
+    },
+    "chunk_light": {
+      "best_strategy_id": "candidate_00241",
+      "best_predicted_cycles": 19678.942055181917,
+      "layer1_kept": 34,
+      "layer3_candidates": 3264,
+      "legal_candidates": 3264,
+      "relaxed_candidates": 144,
+      "dominant_runtime_signal": "scalar_control"
+    }
+  },
+  "recommended_usage": {
+    "normal": "--cost-model-config configs/cost_model_e2e_prefill_merged.json --msprof-calibration-mode component_prior",
+    "absolute_scale_report": "--msprof-calibration-mode component_plus_scale"
+  },
+  "limitations": [
+    "weak calibration, not full true-hardware ranking training",
+    "Prefill-A5 priors are most reliable for prefill/attention-like kernels",
+    "production rewrite still requires real BiShengIR/MLIR/HivmOpsEditor/msprof validation"
+  ]
+}

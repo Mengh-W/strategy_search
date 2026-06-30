@@ -1,0 +1,16 @@
+/*
+ * Cube Peak BF16 Microbenchmark
+ *
+ * 910B BF16 uses the same Cube tile geometry as FP16. The AscendC base kernel
+ * emits the same Cube Mmad path; dtype-specific accounting is handled by the
+ * calibration extractor and benchmark metadata.
+ */
+#include "vt_microbench_common.h"
+
+extern "C" __global__ __aicore__ void cube_peak_bf16(GM_ADDR a, GM_ADDR b, GM_ADDR c)
+{
+    KERNEL_TASK_TYPE_DEFAULT(KERNEL_TYPE_AIC_ONLY);
+    VTCalib::CubePeakFp16Kernel op;
+    op.Init(a, b, c);
+    op.Process();
+}

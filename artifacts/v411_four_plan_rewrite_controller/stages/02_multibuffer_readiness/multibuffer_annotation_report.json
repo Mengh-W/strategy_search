@@ -1,0 +1,7 @@
+{
+  "schema_version": "hivm_multibuffer_portable_annotation_v1",
+  "annotation_performed": true,
+  "inserted_annotation_count": 20,
+  "semantic_mutation_performed": false,
+  "claim_boundary": "comments only; original IR operations are not changed"
+}

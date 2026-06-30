@@ -1,0 +1,12 @@
+{
+  "schema_version": "hivm_v55_tiling_operation_true_summary_v1",
+  "version": "V5.5-tiling-operation-production-candidate-rewrite",
+  "input_ir": "sample_input/fa_best.hivm.mlir",
+  "optimized_ir": "artifacts/v55_four_plan_production_candidate_rewrite/stages/01_tiling_operation_rewrite/optimized.tiling_operation_rewritten.hivm.mlir",
+  "mutation_performed": true,
+  "rewritten_occurrence_count": 58,
+  "passed_portable_validation": true,
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "operation/type shape rewrite candidate only; loop/index/tail/reduction legality requires Linux MLIR/HIVM verifier before msprof"
+}

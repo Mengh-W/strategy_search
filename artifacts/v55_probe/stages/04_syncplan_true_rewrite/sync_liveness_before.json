@@ -1,0 +1,86 @@
+{
+  "schema_version": "hivm_sync_liveness_report_v1",
+  "report_kind": "portable_textual_sync_event_liveness",
+  "num_sync_ops": 10,
+  "num_events": 5,
+  "num_pipe_barrier": 0,
+  "num_sync_block": 0,
+  "event_reports": [
+    {
+      "event_id": "EVENT_ID0",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        91
+      ],
+      "wait_lines": [
+        60
+      ]
+    },
+    {
+      "event_id": "EVENT_ID_CVP_C2S_0",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        65
+      ],
+      "wait_lines": [
+        68
+      ]
+    },
+    {
+      "event_id": "EVENT_ID_CVP_C2S_1",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        85
+      ],
+      "wait_lines": [
+        88
+      ]
+    },
+    {
+      "event_id": "EVENT_ID_CVP_L2C_0",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        49
+      ],
+      "wait_lines": [
+        62
+      ]
+    },
+    {
+      "event_id": "EVENT_ID_CVP_L2C_1",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        80
+      ],
+      "wait_lines": [
+        82
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "event_id": "EVENT_ID0",
+      "reason": "wait_before_set_text_order",
+      "set_lines": [
+        91
+      ],
+      "wait_lines": [
+        60
+      ]
+    }
+  ],
+  "blockers": [],
+  "passed_portable_liveness": true,
+  "production_rewrite_claim_allowed": false,
+  "requires_real_scheduler_or_des_liveness": true
+}

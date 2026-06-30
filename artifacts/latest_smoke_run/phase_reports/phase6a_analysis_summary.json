@@ -1,0 +1,31 @@
+{
+  "schema_version": "hivm_phase6a_analysis_summary_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase6a_real_backend_integration_readiness",
+  "phase": "Phase-6A",
+  "status": "waiting_for_real_operation_backend_inputs",
+  "accepted_for_phase6_positive_case": false,
+  "production_mutation_allowed": false,
+  "blocker_count": 12,
+  "blockers": [
+    "real_operation_backend_binary_missing",
+    "backend_capability_handshake_missing",
+    "backend_does_not_declare_real_mlir_backend",
+    "backend_does_not_declare_hivmopseditor_or_operation_walk",
+    "backend_mode_missing_inventory",
+    "backend_mode_missing_roundtrip",
+    "backend_mode_missing_verify_only",
+    "backend_mode_missing_dry_run",
+    "backend_mode_missing_mutate_q_load_hoist",
+    "backend_mode_missing_mutate_gm_roundtrip_deletion",
+    "vtriton_source_root_missing_or_not_recognized",
+    "real_tritonsim_hivm_binary_missing"
+  ],
+  "need_user_inputs": [
+    "vTriton source tree or internal HivmOpsEditor source tree",
+    "built HIVM Operation backend binary",
+    "built tritonsim-hivm binary",
+    "one positive restricted HIVM fixture",
+    "expected parser/dialect version notes"
+  ],
+  "leadership_summary": "Phase 6A has prepared the real-backend integration checklist. To make substantive progress beyond gates/contracts, we now need the actual vTriton/HivmOpsEditor backend binary, source/build context, tritonsim-hivm, and a restricted positive HIVM fixture."
+}

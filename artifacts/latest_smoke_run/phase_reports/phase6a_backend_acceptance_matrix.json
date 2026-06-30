@@ -1,0 +1,65 @@
+{
+  "schema_version": "hivm_phase6a_backend_acceptance_matrix_v1",
+  "phase": "Phase-6A",
+  "checks": [
+    {
+      "check": "backend capability handshake",
+      "passed": false
+    },
+    {
+      "check": "declares real MLIR backend",
+      "passed": false
+    },
+    {
+      "check": "declares HivmOpsEditor or MLIR Operation walk",
+      "passed": false
+    },
+    {
+      "check": "supports inventory",
+      "passed": false
+    },
+    {
+      "check": "supports roundtrip",
+      "passed": false
+    },
+    {
+      "check": "supports verify-only",
+      "passed": false
+    },
+    {
+      "check": "supports dry-run",
+      "passed": false
+    },
+    {
+      "check": "supports Q-load mutation",
+      "passed": false
+    },
+    {
+      "check": "supports GM-deletion mutation",
+      "passed": false
+    },
+    {
+      "check": "vTriton/source root recognized",
+      "passed": false
+    },
+    {
+      "check": "real tritonsim-hivm available",
+      "passed": false
+    }
+  ],
+  "accepted_for_phase6_positive_case": false,
+  "blockers": [
+    "real_operation_backend_binary_missing",
+    "backend_capability_handshake_missing",
+    "backend_does_not_declare_real_mlir_backend",
+    "backend_does_not_declare_hivmopseditor_or_operation_walk",
+    "backend_mode_missing_inventory",
+    "backend_mode_missing_roundtrip",
+    "backend_mode_missing_verify_only",
+    "backend_mode_missing_dry_run",
+    "backend_mode_missing_mutate_q_load_hoist",
+    "backend_mode_missing_mutate_gm_roundtrip_deletion",
+    "vtriton_source_root_missing_or_not_recognized",
+    "real_tritonsim_hivm_binary_missing"
+  ]
+}

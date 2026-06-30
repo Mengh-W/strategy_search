@@ -1,0 +1,118 @@
+{
+  "schema_version": "hivm_v55_four_plan_production_candidate_summary_v1",
+  "version": "V5.5-four-plan-production-candidate-rewrite",
+  "input_ir": "sample_input/fa_best.hivm.mlir",
+  "selected_plan": "artifacts/latest_smoke_run/selected_plan.json",
+  "optimized_ir": "artifacts/v55_four_plan_production_candidate_rewrite/optimized.four_plan_production_candidate.hivm.mlir",
+  "four_plan_rewrite_order": [
+    "tiling_operation_shape",
+    "multibuffer_pingpong",
+    "cvpipeline_sync_edges",
+    "sync_event_normalization",
+    "parameter_metadata_coverage"
+  ],
+  "stage_mutation": {
+    "tiling": true,
+    "multibuffer": true,
+    "cvpipeline": true,
+    "sync": true
+  },
+  "stage_validation": {
+    "tiling": true,
+    "multibuffer": true,
+    "cvpipeline": true,
+    "sync": true
+  },
+  "stage_summaries": {
+    "tiling": {
+      "schema_version": "hivm_v55_tiling_operation_true_summary_v1",
+      "version": "V5.5-tiling-operation-production-candidate-rewrite",
+      "input_ir": "sample_input/fa_best.hivm.mlir",
+      "optimized_ir": "artifacts/v55_four_plan_production_candidate_rewrite/stages/01_tiling_operation_rewrite/optimized.tiling_operation_rewritten.hivm.mlir",
+      "mutation_performed": true,
+      "rewritten_occurrence_count": 58,
+      "passed_portable_validation": true,
+      "semantic_mutation_performed": true,
+      "production_rewrite_claim_allowed": false,
+      "claim_boundary": "operation/type shape rewrite candidate only; loop/index/tail/reduction legality requires Linux MLIR/HIVM verifier before msprof"
+    },
+    "multibuffer": {
+      "schema_version": "hivm_multibuffer_true_rewrite_summary_v1",
+      "version": "V5.0-multibuffer-restricted-true-rewrite",
+      "input_ir": "artifacts/v55_four_plan_production_candidate_rewrite/stages/01_tiling_operation_rewrite/optimized.tiling_operation_rewritten.hivm.mlir",
+      "stage_candidate_count": 13,
+      "stage_ready_count": 8,
+      "true_rewrite_action_count": 3,
+      "mutation_performed": true,
+      "rewritten_action_count": 3,
+      "replacement_count": 6,
+      "num_multibuffer_related_diff_lines": 30,
+      "passed_portable_validation": true,
+      "semantic_mutation_performed": true,
+      "production_rewrite_claim_allowed": false,
+      "claim_boundary": "portable restricted additive text-level MultiBufferPlan rewrite; real HivmOpsEditor verifier/DES/msprof still required"
+    },
+    "cvpipeline": {
+      "schema_version": "hivm_cvpipeline_true_rewrite_summary_v1",
+      "version": "V5.1-cvpipeline-restricted-true-rewrite",
+      "input_ir": "artifacts/v55_four_plan_production_candidate_rewrite/stages/02_multibuffer_true_rewrite/optimized.multibuffer_rewritten.hivm.mlir",
+      "pipeline_window_count": 4,
+      "pipeline_window_status_counts": {
+        "READY_FOR_CVPIPELINE_PLAN": 3,
+        "REVIEW_REQUIRED": 1
+      },
+      "stage_plan_action_count": 4,
+      "true_rewrite_action_count": 2,
+      "mutation_performed": true,
+      "rewritten_action_count": 2,
+      "replacement_count": 2,
+      "num_cvpipeline_related_diff_lines": 24,
+      "passed_portable_validation": true,
+      "semantic_mutation_performed": true,
+      "production_rewrite_claim_allowed": false,
+      "claim_boundary": "portable restricted text-level CVPipelinePlan rewrite; inserts official-style EVENT_ID sync edges and optional slot binding but does not move operations or perform loop skewing"
+    },
+    "sync": {
+      "schema_version": "hivm_v55_sync_event_true_summary_v1",
+      "version": "V5.5-sync-event-operation-normalization-rewrite",
+      "input_ir": "artifacts/v55_four_plan_production_candidate_rewrite/stages/03_cvpipeline_true_rewrite/optimized.cvpipeline_rewritten.hivm.mlir",
+      "optimized_ir": "artifacts/v55_four_plan_production_candidate_rewrite/stages/04_sync_event_true_rewrite/optimized.sync_event_rewritten.hivm.mlir",
+      "mutation_performed": true,
+      "rewritten_action_count": 2,
+      "passed_portable_validation": true,
+      "semantic_mutation_performed": true,
+      "production_rewrite_claim_allowed": false,
+      "claim_boundary": "syntax-level SyncPlan flag operation normalization; Linux backend must verify official HIVM op syntax and event liveness"
+    },
+    "parameter_coverage": {
+      "schema_version": "hivm_v53_parameter_rewrite_coverage_summary_v1",
+      "version": "V5.3-four-plan-true-rewrite-with-parameter-coverage",
+      "parameter_count": 35,
+      "rewritten_back_to_ir_count": 35,
+      "not_rewritten_back_to_ir_count": 0,
+      "coverage_counts": {
+        "RESTRICTED_STRUCTURAL_REWRITE": 10,
+        "TRACE_METADATA_REWRITE": 25
+      },
+      "all_controllable_parameters_rewritten_back_to_ir": true,
+      "all_controllable_parameters_semantic_operation_rewrite": false,
+      "optimized_ir": "artifacts/v55_four_plan_production_candidate_rewrite/optimized.four_plan_production_candidate.hivm.mlir"
+    }
+  },
+  "four_plan_operation_mutation_performed": true,
+  "all_portable_validations_passed": true,
+  "all_controllable_parameters_rewritten_back_to_ir": true,
+  "all_controllable_parameters_semantic_operation_rewrite": false,
+  "linux_msprof_ready": false,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "four-plan visible operation/text mutation candidate. It produces an optimized HIVM candidate file, but Linux MLIR/HIVM parse/verify/backend compile/result-correctness/msprof must pass before claiming real performance improvement.",
+  "required_linux_validation_sequence": [
+    "hivm-opt/MLIR parse optimized.four_plan_production_candidate.hivm.mlir",
+    "HivmOpsEditor roundtrip + verifier",
+    "backend compile to executable/kernel artifact",
+    "functional correctness check against original output",
+    "msprof baseline original.hivm.mlir",
+    "msprof optimized optimized.four_plan_production_candidate.hivm.mlir",
+    "compare median latency/cycles over repeated runs"
+  ]
+}

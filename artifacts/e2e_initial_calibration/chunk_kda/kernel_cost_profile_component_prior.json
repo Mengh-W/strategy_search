@@ -1,0 +1,383 @@
+{
+  "enabled": true,
+  "source": "mlir_only",
+  "uses_profiling_target": true,
+  "kernel_type": "sync_heavy",
+  "dominant_component": "sync",
+  "ratios": {
+    "compute": 0.027251626464931112,
+    "memory": 0.18258087275508858,
+    "vector": 0.13518710770376308,
+    "scalar": 0.3073298538387906,
+    "sync": 0.34765053923742656
+  },
+  "static_ratios": {
+    "compute": 0.027251626464931112,
+    "memory": 0.18258087275508858,
+    "vector": 0.13518710770376308,
+    "scalar": 0.3073298538387906,
+    "sync": 0.34765053923742656
+  },
+  "product_ratios": {},
+  "weights": {
+    "compute_cycle_correction": 1.0592701951757917,
+    "memory_cycle_correction": 1.2335138452938152,
+    "vector_cycle_correction": 1.0455383102592741,
+    "scalar_cycle_correction": 1.8018,
+    "sync_cycle_correction": 1.4530029583518125,
+    "small_tile_fragmentation_correction": 1.27180295,
+    "memory_path_cycle_correction": 1.1037821934095242,
+    "alignment_cycle_correction": 1.0396769166666666,
+    "workspace_pressure_correction": 1.2179800995088719,
+    "overlap_confidence": 0.7385272990880146,
+    "cv_overlap_confidence": 0.7823818392704117,
+    "cv_pattern_opportunity_correction": 0.9715,
+    "compute_multiplier": 1.0592701951757917,
+    "memory_multiplier": 1.2335138452938152,
+    "vector_multiplier": 1.0455383102592741,
+    "scalar_control_multiplier": 1.8018,
+    "sync_multiplier": 1.4530029583518125,
+    "small_tile_scalar_penalty_scale": 1.27180295,
+    "memory_path_multiplier": 1.1037821934095242,
+    "alignment_penalty_scale": 1.0396769166666666,
+    "buffer_pressure_scale": 1.2179800995088719,
+    "overlap_reward_scale": 0.7385272990880146,
+    "cv_reward_scale": 0.7823818392704117,
+    "cube_reward_scale": 1.0,
+    "cv_pattern_opportunity_scale": 0.9715,
+    "loop_weighted_scalar_multiplier": 1.27180295
+  },
+  "raw_features": {
+    "compute_score": 257.625,
+    "memory_score": 1726.04,
+    "vector_score": 1278.0,
+    "scalar_score": 2905.3625,
+    "sync_score": 3286.5366874999995,
+    "scalar_family_counts": {
+      "arith_scalar": 75,
+      "index_cast": 64,
+      "reinterpret_cast": 31,
+      "pointer_cast": 183,
+      "apply": 40,
+      "scalar_load": 28,
+      "scf_for": 10,
+      "scf_if": 34,
+      "get_block_idx": 2,
+      "set_mask_norm": 2,
+      "set_ffts_base_addr": 2
+    },
+    "trace_scalar_hint": 0.0,
+    "trace_sync_hint": 0.0,
+    "product_pipe_fraction": {},
+    "product_critical_pipe": null,
+    "advanced_mlir_features": {
+      "loop_weighted": {
+        "max_loop_depth": 28,
+        "flat_counts_by_component": {
+          "compute": 9,
+          "memory": 40,
+          "vector": 120,
+          "scalar": 699,
+          "sync": 404
+        },
+        "loop_weighted_counts_by_component": {
+          "compute": 38.25,
+          "memory": 170.0,
+          "vector": 510.0,
+          "scalar": 2981.75,
+          "sync": 1710.5
+        },
+        "inner_loop_counts_by_component": {
+          "compute": 9,
+          "memory": 40,
+          "vector": 120,
+          "scalar": 655,
+          "sync": 402
+        },
+        "loop_weighted_ratios": {
+          "compute": 0.00707,
+          "memory": 0.03142,
+          "vector": 0.094261,
+          "scalar": 0.551104,
+          "sync": 0.316145
+        },
+        "inner_loop_sync_count": 402,
+        "inner_loop_scalar_count": 655
+      },
+      "memory_path": {
+        "path_counts": {
+          "gm->l1": 17,
+          "l1->l0c": 9,
+          "l0c->gm": 9,
+          "ub->gm": 16,
+          "ub->ub": 8,
+          "gm->ub": 8
+        },
+        "path_bytes": {
+          "gm->l1": 88064,
+          "l1->l0c": 0,
+          "l0c->gm": 98304,
+          "ub->gm": 79872,
+          "ub->ub": 49664,
+          "gm->ub": 90112
+        },
+        "op_bytes": {
+          "copy": 49664,
+          "nd2nz": 88064,
+          "fixpipe": 98304,
+          "load_store": 178176
+        },
+        "total_path_bytes": 406016,
+        "gm_related_bytes": 356352,
+        "l0_l1_related_bytes": 186368
+      },
+      "buffer_lifetime": {
+        "by_space": {
+          "l1": {
+            "count": 38,
+            "bytes": 192512,
+            "span_sum": 22353,
+            "byte_span_sum": 105105408,
+            "max_span": 1491,
+            "avg_span": 588.2368421052631
+          },
+          "l0c": {
+            "count": 18,
+            "bytes": 212992,
+            "span_sum": 8024,
+            "byte_span_sum": 84361216,
+            "max_span": 1399,
+            "avg_span": 445.77777777777777
+          },
+          "ub": {
+            "count": 312,
+            "bytes": 1886592,
+            "span_sum": 29297,
+            "byte_span_sum": 144088832,
+            "max_span": 1104,
+            "avg_span": 93.90064102564102
+          }
+        },
+        "top_double_buffer_candidates": [
+          {
+            "name": "10",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 1104,
+            "double_buffer_benefit_proxy": 19.854
+          },
+          {
+            "name": "collapse_shape",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 1101,
+            "double_buffer_benefit_proxy": 19.8463
+          },
+          {
+            "name": "51",
+            "space": "l1",
+            "size_bytes": 8192,
+            "live_span": 1234,
+            "double_buffer_benefit_proxy": 15.6417
+          },
+          {
+            "name": "12",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 1091,
+            "double_buffer_benefit_proxy": 15.3713
+          },
+          {
+            "name": "collapse_shape_4",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 1080,
+            "double_buffer_benefit_proxy": 15.349
+          },
+          {
+            "name": "collapse_shape_52",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 996,
+            "double_buffer_benefit_proxy": 15.1713
+          },
+          {
+            "name": "collapse_shape_52",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 982,
+            "double_buffer_benefit_proxy": 15.1402
+          },
+          {
+            "name": "collapse_shape_52",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 974,
+            "double_buffer_benefit_proxy": 15.1223
+          },
+          {
+            "name": "collapse_shape_52",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 966,
+            "double_buffer_benefit_proxy": 15.1042
+          },
+          {
+            "name": "collapse_shape_52",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 958,
+            "double_buffer_benefit_proxy": 15.0859
+          },
+          {
+            "name": "48",
+            "space": "l1",
+            "size_bytes": 8192,
+            "live_span": 786,
+            "double_buffer_benefit_proxy": 14.6516
+          },
+          {
+            "name": "collapse_shape_127",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 654,
+            "double_buffer_benefit_proxy": 14.2482
+          },
+          {
+            "name": "40",
+            "space": "l1",
+            "size_bytes": 8192,
+            "live_span": 536,
+            "double_buffer_benefit_proxy": 13.8117
+          },
+          {
+            "name": "42",
+            "space": "l1",
+            "size_bytes": 8192,
+            "live_span": 533,
+            "double_buffer_benefit_proxy": 13.7994
+          },
+          {
+            "name": "44",
+            "space": "l1",
+            "size_bytes": 8192,
+            "live_span": 531,
+            "double_buffer_benefit_proxy": 13.7912
+          },
+          {
+            "name": "46",
+            "space": "l1",
+            "size_bytes": 8192,
+            "live_span": 527,
+            "double_buffer_benefit_proxy": 13.7746
+          },
+          {
+            "name": "156",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 523,
+            "double_buffer_benefit_proxy": 13.7579
+          },
+          {
+            "name": "201",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 120,
+            "double_buffer_benefit_proxy": 13.5875
+          },
+          {
+            "name": "cast",
+            "space": "l1",
+            "size_bytes": 8192,
+            "live_span": 349,
+            "double_buffer_benefit_proxy": 12.8712
+          },
+          {
+            "name": "cast_10",
+            "space": "l1",
+            "size_bytes": 8192,
+            "live_span": 330,
+            "double_buffer_benefit_proxy": 12.7486
+          }
+        ],
+        "num_candidate_buffers": 20
+      },
+      "sync_criticality": {
+        "sync_counts": {
+          "set_flag": 116,
+          "wait_flag": 110,
+          "pipe_barrier": 80,
+          "sync_block_set": 48,
+          "sync_block_wait": 48
+        },
+        "total_sync_ops": 402,
+        "inner_loop_sync_count": 402,
+        "event_pair_count": 0,
+        "missing_set_or_wait_pairs": 0,
+        "cross_pipe_event_pairs": 0,
+        "sync_criticality_proxy": 0.45
+      },
+      "alignment_tail": {
+        "dim_total": 539,
+        "dim_not_multiple_of_16": 55,
+        "dim_misalignment_ratio": 0.102041,
+        "mask_or_tail_ops": 17,
+        "storage_aligned_annotations": 2,
+        "offset_count": 0,
+        "offset_not_32B_aligned": 0,
+        "offset_misalignment_ratio": 0.0
+      },
+      "sequence_patterns": {
+        "patterns": {
+          "copy_nd2nz_mmad": 0,
+          "mmad_fixpipe_vector": 0,
+          "vector_to_store": 7,
+          "sync_dense_pair": 13
+        },
+        "cv_pipeline_opportunity_proxy": 0.05,
+        "op_sequence_len": 2214
+      }
+    },
+    "feature_strengths": {
+      "sync_criticality": 0.45,
+      "loop_scalar_ratio": 0.551104,
+      "memory_path_strength": 0.5189109670476216,
+      "buffer_pressure_strength": 0.7266003316962393,
+      "alignment_penalty_strength": 0.15870766666666666,
+      "cv_pipeline_opportunity_proxy": 0.05
+    }
+  },
+  "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score. msprof component prior applied.",
+  "msprof_component_prior": {
+    "enabled": true,
+    "before": {
+      "compute_cycle_correction": 1.0592701951757917,
+      "memory_cycle_correction": 1.2335138452938152,
+      "vector_cycle_correction": 1.0455383102592741,
+      "scalar_cycle_correction": 1.476339481146851,
+      "sync_cycle_correction": 1.4530029583518125,
+      "overlap_confidence": 0.9205690314209337,
+      "cv_overlap_confidence": 0.9181529667709256
+    },
+    "learned_from_msprof": {
+      "compute_cycle_correction": 0.9812,
+      "memory_cycle_correction": 1.0496362054719124,
+      "vector_cycle_correction": 1.01575,
+      "scalar_cycle_correction": 1.8018,
+      "sync_cycle_correction": 1.3963454018239707,
+      "overlap_confidence": 0.7385272990880146,
+      "cv_overlap_confidence": 0.7823818392704117
+    },
+    "after": {
+      "compute_cycle_correction": 1.0592701951757917,
+      "memory_cycle_correction": 1.2335138452938152,
+      "vector_cycle_correction": 1.0455383102592741,
+      "scalar_cycle_correction": 1.8018,
+      "sync_cycle_correction": 1.4530029583518125,
+      "overlap_confidence": 0.7385272990880146,
+      "cv_overlap_confidence": 0.7823818392704117
+    },
+    "dominant_runtime_signal": "scalar_control",
+    "note": "Single-sample msprof component prior; it adjusts component cycle corrections but should not be treated as a trained ranking model."
+  }
+}

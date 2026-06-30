@@ -1,0 +1,88 @@
+{
+  "schema_version": "hivm_phase6e_vtriton_local_integration_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase6e_vtriton_build_integration_pack",
+  "phase": "Phase-6E",
+  "phase6e_status": "phase6e_integration_pack_ready_waiting_for_local_vtriton_build",
+  "plain_language_summary": "Phase 6E turns the source-aware adapter skeleton into a local vTriton integration/build pack. It can install the adapter into a real vTriton tree, patch tools/CMakeLists.txt, and generate build/smoke-test commands. It only accepts production mutation after a real compiled backend proves its HivmOpsEditor/MLIR identity and modes.",
+  "source_root_probe": {
+    "provided": false,
+    "path": null,
+    "exists": false,
+    "looks_like_vtriton_repo": false,
+    "reason": "vtriton_source_root_not_provided"
+  },
+  "adapter_files": [
+    {
+      "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/CMakeLists.txt",
+      "size_bytes": 1036
+    },
+    {
+      "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/README.md",
+      "size_bytes": 1560
+    },
+    {
+      "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/hivm_operation_backend.cpp",
+      "size_bytes": 10615
+    },
+    {
+      "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/vtriton_integration_patch.diff",
+      "size_bytes": 1042
+    }
+  ],
+  "vtriton_expected_locations": {
+    "tools_cmakelists": null,
+    "backend_dir_after_install": null
+  },
+  "scripts": {
+    "apply_patch_script": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/scripts/phase6e_apply_vtriton_backend_patch.py",
+    "build_script": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/scripts/phase6e_build_hivm_operation_backend.sh",
+    "smoke_script": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/scripts/phase6e_smoke_test_backend.sh",
+    "adapter_dir": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend"
+  },
+  "backend_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null,
+    "supports_print_capabilities": false,
+    "reason": "operation_backend_binary_not_configured_or_not_found"
+  },
+  "backend_is_real_hivmopseditor_mlir": false,
+  "backend_mode_flags": {
+    "inventory": false,
+    "roundtrip": false,
+    "verify_only": false,
+    "dry_run": false,
+    "mutate_gm_roundtrip_deletion": false,
+    "mutate_q_load_hoist": false
+  },
+  "tritonsim_probe": {
+    "available": false,
+    "requested_binary": null,
+    "resolved_binary": null
+  },
+  "ready_to_run_local_install_script": false,
+  "compiled_backend_accepted": false,
+  "des_trace_ready": false,
+  "production_mutation_allowed": false,
+  "blocker_count": 3,
+  "blockers": [
+    "vtriton_source_root_missing_or_not_recognized",
+    "compiled_hivm_operation_backend_binary_not_provided_yet",
+    "real_tritonsim_hivm_binary_not_provided_yet"
+  ],
+  "local_commands": {
+    "install_adapter": "python /mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/scripts/phase6e_apply_vtriton_backend_patch.py --vtriton-root /path/to/vTriton --adapter-dir /mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend --apply",
+    "configure_or_reconfigure": "cmake -S /path/to/vTriton -B /path/to/vTriton/build <your existing vTriton CMake options>",
+    "build_backend": "cmake --build /path/to/vTriton/build --target hivm-operation-backend -j$(nproc)",
+    "smoke_test": "bash /mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/scripts/phase6e_smoke_test_backend.sh /path/to/vTriton/build/bin/hivm-operation-backend sample_input/phase6_positive_fixtures/restricted_gm_roundtrip_positive.hivm.mlir"
+  },
+  "acceptance_rule": {
+    "must_build_inside_vtriton_or_equivalent_mlir_env": true,
+    "must_pass_print_capabilities": true,
+    "must_declare_is_real_mlir_backend": true,
+    "must_declare_uses_hivmopseditor_or_operation_walk": true,
+    "must_pass_inventory_roundtrip_verify_on_at_least_one_fixture_before_mutation": true,
+    "q_load_hoist_remains_disabled_until_dominance_region_motion_algorithm_exists": true,
+    "msprof_is_not_required_for_phase6e": true
+  }
+}

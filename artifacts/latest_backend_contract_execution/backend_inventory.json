@@ -1,0 +1,238 @@
+{
+  "schema_version": "fake_hivm_operation_inventory_v1",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "op_count": 23,
+  "operations": [
+    {
+      "op_id": 0,
+      "operation_name": "func.func",
+      "source_line": 2,
+      "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+      "operand_count": 4,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 1,
+      "operation_name": "hivm.hir.load",
+      "source_line": 16,
+      "text_preview": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 2,
+      "operation_name": "hivm.hir.nd2nz",
+      "source_line": 17,
+      "text_preview": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 3,
+      "operation_name": "scf.for",
+      "source_line": 18,
+      "text_preview": "scf.for %j = %c0 to %cE step %cB {   // @trip=10",
+      "operand_count": 4,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 4,
+      "operation_name": "hivm.hir.load",
+      "source_line": 19,
+      "text_preview": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 5,
+      "operation_name": "hivm.hir.load",
+      "source_line": 20,
+      "text_preview": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 6,
+      "operation_name": "hivm.hir.nd2nz",
+      "source_line": 21,
+      "text_preview": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 7,
+      "operation_name": "hivm.hir.nd2nz",
+      "source_line": 22,
+      "text_preview": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 8,
+      "operation_name": "hivm.hir.copy",
+      "source_line": 23,
+      "text_preview": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 9,
+      "operation_name": "hivm.hir.wait_flag",
+      "source_line": 24,
+      "text_preview": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+      "operand_count": 0,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 10,
+      "operation_name": "hivm.hir.mmad",
+      "source_line": 25,
+      "text_preview": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+      "operand_count": 3,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 11,
+      "operation_name": "hivm.hir.fixpipe",
+      "source_line": 26,
+      "text_preview": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 12,
+      "operation_name": "hivm.hir.vreduce",
+      "source_line": 27,
+      "text_preview": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 13,
+      "operation_name": "hivm.hir.vsub",
+      "source_line": 28,
+      "text_preview": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+      "operand_count": 3,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 14,
+      "operation_name": "hivm.hir.vexp",
+      "source_line": 29,
+      "text_preview": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 15,
+      "operation_name": "hivm.hir.vreduce",
+      "source_line": 30,
+      "text_preview": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 16,
+      "operation_name": "hivm.hir.nd2nz",
+      "source_line": 31,
+      "text_preview": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 17,
+      "operation_name": "hivm.hir.mmad",
+      "source_line": 32,
+      "text_preview": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+      "operand_count": 3,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 18,
+      "operation_name": "hivm.hir.fixpipe",
+      "source_line": 33,
+      "text_preview": "hivm.hir.fixpipe ins(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 19,
+      "operation_name": "hivm.hir.set_flag",
+      "source_line": 34,
+      "text_preview": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+      "operand_count": 0,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 20,
+      "operation_name": "hivm.hir.vdiv",
+      "source_line": 36,
+      "text_preview": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+      "operand_count": 3,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 21,
+      "operation_name": "hivm.hir.store",
+      "source_line": 37,
+      "text_preview": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+      "operand_count": 2,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    },
+    {
+      "op_id": 22,
+      "operation_name": "return",
+      "source_line": 38,
+      "text_preview": "return",
+      "operand_count": 0,
+      "result_count": 0,
+      "region_path": [],
+      "block_id": "fake_block_0"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "mutation_performed": true,
+  "removed_duplicate_allocs": [
+    {
+      "line": 21,
+      "value": "%acc_ub_mb1_ping",
+      "type": "memref<32x128xf32, #hivm.address_space<ub>"
+    }
+  ]
+}

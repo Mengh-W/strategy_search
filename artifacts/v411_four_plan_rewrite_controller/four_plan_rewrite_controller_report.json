@@ -1,0 +1,213 @@
+{
+  "schema_version": "hivm_four_plan_rewrite_controller_v1",
+  "version": "V4.11-unified-four-plan-rewrite-controller",
+  "input_ir": "/mnt/data/HIVM_strategy_search_demo_V4.11/sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+  "selected_plan": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/latest_smoke_run/selected_plan.json",
+  "overall_decision": "PORTABLE_SYNC_REWRITE_PLUS_MULTI_PLAN_SCAFFOLD_READY",
+  "claim_boundary": "Only SyncPlan has audited portable/text-level semantic rewrite. MultiBuffer/CVPipeline/Tiling are scaffold/readiness/planner stages until real HivmOpsEditor verifier is available.",
+  "semantic_mutation_count": 1,
+  "planned_only_count": 4,
+  "blocked_stage_count": 0,
+  "review_required_stage_count": 1,
+  "stage_summaries": {
+    "syncplan": {
+      "stage": "SyncPlan",
+      "stage_status": "PASSED",
+      "rewrite_level": "portable_text_level_audited",
+      "contract_overall_decision": "READY_FOR_PRECISE_BACKEND_DRY_RUN_BARRIER_ACTIONS",
+      "candidate_action_count": 74,
+      "mutation_performed": true,
+      "rewritten_action_count": 74,
+      "skipped_action_count": 0,
+      "passed_portable_validation": true,
+      "passed_portable_liveness_after": true,
+      "num_sync_related_diff_lines": 321,
+      "audit_decision": "PORTABLE_REWRITE_AUDITED_NOT_PRODUCTION",
+      "audit_risk_counts": {
+        "MEDIUM": 73,
+        "BLOCKED": 6,
+        "LOW": 1
+      },
+      "hivmopseditor_migration_action_count": 74,
+      "semantic_mutation_performed": true,
+      "production_rewrite_claim_allowed": false,
+      "artifacts": {
+        "contract": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_precision_contract/sync_precision_contract.json",
+        "candidate_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_full_rewrite_candidates.json",
+        "optimized_ir": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/optimized.sync_controller_rewritten.hivm.mlir",
+        "rewrite_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_controller_rewrite_report.json",
+        "validation_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_controller_rewrite_validation.json",
+        "diff_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_controller_rewrite_diff.json",
+        "audit_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_rewrite_safety_audit.json",
+        "before_liveness": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_liveness_before.json",
+        "after_liveness": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_liveness_after.json"
+      }
+    },
+    "multibuffer_readiness": {
+      "version": "V4.8-multibuffer-rewrite-readiness",
+      "schema_version": "hivm_multibuffer_rewrite_readiness_summary_v1",
+      "input_ir": "/mnt/data/HIVM_strategy_search_demo_V4.11/sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+      "anchor_count": 273,
+      "readiness_counts": {
+        "BLOCKED": 44,
+        "REVIEW_REQUIRED": 133,
+        "LOW_PRIORITY": 16,
+        "READY_FOR_GUARDED_PLAN": 80
+      },
+      "scope_counts": {
+        "GM": 43,
+        "L1_CBUF": 38,
+        "L0C": 18,
+        "UB": 174
+      },
+      "selected_candidate_count": 80,
+      "mutation_plan_action_count": 80,
+      "annotation_performed": true,
+      "semantic_mutation_performed": false,
+      "production_rewrite_claim_allowed": false,
+      "next_step": "operation-level double-buffer mutation requires real verifier/dominance/alias/stage-boundary analysis"
+    },
+    "multibuffer_stage_boundary": {
+      "version": "V4.9-multibuffer-stage-boundary-analysis",
+      "schema_version": "hivm_multibuffer_stage_boundary_summary_v1",
+      "input_ir": "/mnt/data/HIVM_strategy_search_demo_V4.11/sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+      "input_anchor_count": 273,
+      "readiness_counts": {
+        "BLOCKED": 44,
+        "REVIEW_REQUIRED": 133,
+        "LOW_PRIORITY": 16,
+        "READY_FOR_GUARDED_PLAN": 80
+      },
+      "analyzed_candidate_count": 80,
+      "stage_boundary_status_counts": {
+        "READY_FOR_PINGPONG_PLAN": 20,
+        "BLOCKED": 60
+      },
+      "risk_counts": {
+        "LOW": 20,
+        "BLOCKED": 60
+      },
+      "scope_counts": {
+        "UB": 80
+      },
+      "selected_for_stage_plan_count": 20,
+      "stage_mutation_plan_action_count": 20,
+      "annotation_performed": true,
+      "semantic_mutation_performed": false,
+      "production_rewrite_claim_allowed": false,
+      "next_step": "CVPipelinePlan staged planner or guarded HivmOpsEditor multibuffer mutation after real verifier is available",
+      "stage_report_path": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/03_multibuffer_stage_boundary/multibuffer_stage_boundary_report.json",
+      "stage_plan_path": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/03_multibuffer_stage_boundary/multibuffer_stage_mutation_plan.json"
+    },
+    "cvpipeline_stage_planner": {
+      "schema_version": "hivm_cvpipeline_stage_planner_summary_v1",
+      "version": "V4.10-cvpipeline-stage-rewrite-planner",
+      "input_ir": "/mnt/data/HIVM_strategy_search_demo_V4.11/sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+      "record_count": 1715,
+      "stage_counts": {
+        "non_op": 4,
+        "other": 396,
+        "compute": 543,
+        "other_hivm": 7,
+        "view": 273,
+        "load": 46,
+        "sync": 402,
+        "loop": 10,
+        "store": 34
+      },
+      "segment_count": 662,
+      "dependency_edge_count": 717,
+      "pipeline_window_count": 50,
+      "pipeline_window_status_counts": {
+        "READY_FOR_CVPIPELINE_PLAN": 36,
+        "REVIEW_REQUIRED": 14
+      },
+      "multibuffer_stage_ready_count": 20,
+      "cvpipeline_rewrite_plan_action_count": 50,
+      "annotation_performed": true,
+      "semantic_mutation_performed": false,
+      "production_rewrite_claim_allowed": false,
+      "next_step": "unified four-plan rewrite controller or CVPipeline dependency proof after real verifier is available",
+      "stage_report_path": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/04_cvpipeline_stage_planner/cvpipeline_stage_report.json",
+      "rewrite_plan_path": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/04_cvpipeline_stage_planner/cvpipeline_rewrite_plan.json"
+    },
+    "tiling_feasibility": {
+      "stage": "TilingPlan",
+      "stage_status": "REVIEW_REQUIRED",
+      "readiness": "READY_FOR_TILING_PLAN_SCAFFOLD",
+      "risk": "HIGH",
+      "loop_anchor_count": 10,
+      "tile_hint_count": 0,
+      "compute_anchor_count": 156,
+      "memory_anchor_count": 249,
+      "semantic_mutation_performed": false,
+      "production_rewrite_claim_allowed": false,
+      "artifacts": {
+        "tiling_feasibility_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/05_tiling_feasibility/tiling_rewrite_feasibility.json"
+      }
+    }
+  },
+  "hivmopseditor_migration_queue": [
+    {
+      "plan": "SyncPlan",
+      "priority": 1,
+      "operation_level_api": [
+        "addSetFlagWaitFlagBefore",
+        "deleteOp",
+        "exportToFile",
+        "verify"
+      ],
+      "action_count": 74,
+      "status": "portable_rewrite_available_waiting_for_real_verifier",
+      "source_artifact": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_rewrite_safety_audit.json"
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "priority": 2,
+      "operation_level_api": [
+        "clone/create buffer slot",
+        "rewrite producer uses",
+        "rewrite consumer uses",
+        "insert/reuse sync edge",
+        "verify"
+      ],
+      "action_count": 20,
+      "status": "planned_not_mutated_requires_dominance_alias_capacity_proof",
+      "source_artifact": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/03_multibuffer_stage_boundary/multibuffer_stage_mutation_plan.json"
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "priority": 3,
+      "operation_level_api": [
+        "split stage",
+        "move/clone ops across prologue/steady/epilogue",
+        "compose multibuffer slots",
+        "insert sync edges",
+        "verify"
+      ],
+      "action_count": 50,
+      "status": "planner_available_no_semantic_op_motion_yet",
+      "source_artifact": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/04_cvpipeline_stage_planner/cvpipeline_rewrite_plan.json"
+    },
+    {
+      "plan": "TilingPlan",
+      "priority": 4,
+      "operation_level_api": [
+        "split/rewrite loops",
+        "rewrite indices",
+        "tail mask/pad",
+        "verify"
+      ],
+      "action_count": null,
+      "status": "feasibility_only_high_risk",
+      "source_artifact": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/05_tiling_feasibility/tiling_rewrite_feasibility.json"
+    }
+  ],
+  "execution_order_policy": [
+    "1. Apply/prove SyncPlan event rewrite first because it provides explicit synchronization edges.",
+    "2. Use MultiBufferPlan readiness and stage-boundary evidence to select ping-pong candidates.",
+    "3. Use CVPipelinePlan windows only after buffer slots and sync edges are known.",
+    "4. Treat TilingPlan as high-risk until operation-level loop/index rewrite is available."
+  ],
+  "production_rewrite_claim_allowed": false
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "hivm_sync_backend_dryrun_analysis_outputs_v1",
+  "analysis": "artifacts/v42_sync_fake_backend_dryrun/sync_backend_dryrun_analysis/sync_backend_dryrun_analysis.json",
+  "overall_decision": "WAIT_FOR_REAL_BACKEND",
+  "is_real_mlir_backend": false,
+  "action_count_contract": 1,
+  "decision_counts": {
+    "FAKE_BACKEND_CHECK_ONLY": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "stage": "TilingPlan",
+  "stage_status": "REVIEW_REQUIRED",
+  "readiness": "READY_FOR_TILING_PLAN_SCAFFOLD",
+  "risk": "HIGH",
+  "loop_anchor_count": 10,
+  "tile_hint_count": 0,
+  "compute_anchor_count": 156,
+  "memory_anchor_count": 249,
+  "semantic_mutation_performed": false,
+  "production_rewrite_claim_allowed": false,
+  "artifacts": {
+    "tiling_feasibility_report": "artifacts/v412_controller_acceptance_report/controller_run/stages/05_tiling_feasibility/tiling_rewrite_feasibility.json"
+  }
+}

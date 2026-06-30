@@ -1,0 +1,36 @@
+{
+  "schema_version": "hivm_tiling_restricted_metadata_diff_v1",
+  "num_diff_lines": 18,
+  "num_tiling_related_diff_lines": 9,
+  "tiling_related_diff_preview": [
+    "+// HIVM V5.2 TilingPlan true rewrite begin: tiling_true_rewrite_action_0000",
+    "+%hivm_tile_m_v52 = arith.constant 32 : index",
+    "+%hivm_tile_n_v52 = arith.constant 64 : index",
+    "+%hivm_tile_k_v52 = arith.constant 128 : index",
+    "+annotation.mark %hivm_tile_m_v52 {hivm.tiling.axis = \"m\", hivm.tiling.value = 32, hivm.rewrite_action = \"tiling_true_rewrite_action_0000\"} : index",
+    "+annotation.mark %hivm_tile_n_v52 {hivm.tiling.axis = \"n\", hivm.tiling.value = 64, hivm.rewrite_action = \"tiling_true_rewrite_action_0000\"} : index",
+    "+annotation.mark %hivm_tile_k_v52 {hivm.tiling.axis = \"k\", hivm.tiling.value = 128, hivm.rewrite_action = \"tiling_true_rewrite_action_0000\"} : index",
+    "+// HIVM V5.2 TilingPlan metadata: loop_order=outer_mkn tail_strategy=mask_or_pad reduce_tile_policy=half_k",
+    "+// HIVM V5.2 TilingPlan true rewrite end: tiling_true_rewrite_action_0000"
+  ],
+  "diff_preview": [
+    "--- before_tiling_true_rewrite.mlir",
+    "+++ after_tiling_true_rewrite.mlir",
+    "@@ -1,5 +1,15 @@",
+    " module {",
+    "+// HIVM V5.2 TilingPlan true rewrite begin: tiling_true_rewrite_action_0000",
+    "+//   metadata-level rewrite only; loop/index/memref-shape mutation is intentionally disabled",
+    "+%hivm_tile_m_v52 = arith.constant 32 : index",
+    "+%hivm_tile_n_v52 = arith.constant 64 : index",
+    "+%hivm_tile_k_v52 = arith.constant 128 : index",
+    "+annotation.mark %hivm_tile_m_v52 {hivm.tiling.axis = \"m\", hivm.tiling.value = 32, hivm.rewrite_action = \"tiling_true_rewrite_action_0000\"} : index",
+    "+annotation.mark %hivm_tile_n_v52 {hivm.tiling.axis = \"n\", hivm.tiling.value = 64, hivm.rewrite_action = \"tiling_true_rewrite_action_0000\"} : index",
+    "+annotation.mark %hivm_tile_k_v52 {hivm.tiling.axis = \"k\", hivm.tiling.value = 128, hivm.rewrite_action = \"tiling_true_rewrite_action_0000\"} : index",
+    "+// HIVM V5.2 TilingPlan metadata: loop_order=outer_mkn tail_strategy=mask_or_pad reduce_tile_policy=half_k",
+    "+// HIVM V5.2 TilingPlan true rewrite end: tiling_true_rewrite_action_0000",
+    "   func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+    "     %q_ub = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>>",
+    "     %acc_ub = memref.alloc() : memref<64x128xf32, #hivm.address_space<ub>>",
+    "     %s_ub = memref.alloc() : memref<64x96xf16, #hivm.address_space<ub>>"
+  ]
+}

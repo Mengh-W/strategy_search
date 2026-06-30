@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Defect-injection regression tests for the nine synthetic HIVM/NPUIR cases.
+"""Defect-injection regression tests for the synthetic HIVM/NPUIR cases.
 
-The nine MLIR files in tests/defect_inputs/ are intentionally bad kernels.  The
+The MLIR files in tests/defect_inputs/ are intentionally bad kernels.  The
 checked behavior is demo-level and analytical: obvious low-quality directions
 (small tiles, UB overflow, excessive barriers, missing overlap, mixed memory
 pressure) should be reflected in parser/current-IR estimates, and the recorded
@@ -41,7 +41,7 @@ def _load_summary() -> list[dict]:
 @pytest.mark.regression
 @pytest.mark.parametrize("row", _load_summary(), ids=lambda r: r["case"])
 def test_defect_input_file_exists_and_parser_matches_recorded_current_ir(row: dict) -> None:
-    """The nine defect MLIR files are real test inputs and parser output matches the audit."""
+    """The defect MLIR files are real test inputs and parser output matches the audit."""
     kernel = DEFECT_DIR / f"{row['case']}.mlir"
     assert kernel.exists(), kernel
     text = kernel.read_text(encoding="utf-8")

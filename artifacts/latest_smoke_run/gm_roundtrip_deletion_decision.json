@@ -1,0 +1,11 @@
+{
+  "schema_version": "hivm_gm_roundtrip_deletion_decision_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase3c_gm_memoryssa_gate",
+  "candidate_count": 0,
+  "delete_allowed_count": 0,
+  "deferred_count": 0,
+  "deletion_unlocked": false,
+  "decisions": [],
+  "global_policy": "delete only if same-address/slice, MemorySSA, side-effect and observable-boundary gates all pass",
+  "current_phase_note": "Phase-3C introduces the decision gate. It does not force deletion when target offset/slice proof is missing."
+}

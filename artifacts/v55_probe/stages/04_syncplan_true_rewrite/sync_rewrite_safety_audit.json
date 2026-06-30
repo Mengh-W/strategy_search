@@ -1,0 +1,67 @@
+{
+  "schema_version": "hivm_sync_rewrite_audit_v1",
+  "audit_kind": "portable_syncplan_rewrite_safety_audit",
+  "production_rewrite_claim_allowed": false,
+  "audit_decision": "PORTABLE_REWRITE_AUDIT_FAILED_OR_INCOMPLETE",
+  "claim_boundary": "text-level portable rewrite audit only; real HivmOpsEditor parse/verify/DES/msprof still required",
+  "before_sync_counts": {
+    "pipe_barrier": 0,
+    "set_flag": 4,
+    "wait_flag": 4,
+    "sync_block": 0
+  },
+  "after_sync_counts": {
+    "pipe_barrier": 0,
+    "set_flag": 4,
+    "wait_flag": 4,
+    "sync_block": 0
+  },
+  "before_sync_by_pipe": {
+    "PIPE_MTE2": {
+      "set_flag": 2
+    },
+    "PIPE_V": {
+      "wait_flag": 2,
+      "set_flag": 2
+    },
+    "PIPE_MTE3": {
+      "wait_flag": 2
+    }
+  },
+  "after_sync_by_pipe": {
+    "PIPE_MTE2": {
+      "set_flag": 2
+    },
+    "PIPE_V": {
+      "wait_flag": 2,
+      "set_flag": 2
+    },
+    "PIPE_MTE3": {
+      "wait_flag": 2
+    }
+  },
+  "structural_delta": {
+    "pipe_barrier_delta": 0,
+    "set_flag_delta": 0,
+    "wait_flag_delta": 0,
+    "sync_block_delta": 0,
+    "expected_set_wait_delta_from_rewrite": 0,
+    "delta_matches_rewrite_count": true
+  },
+  "event_naming": {
+    "generated_event_count": 0,
+    "unique_generated_event_count": 0,
+    "all_generated_events_unique": true,
+    "generated_events_preview": []
+  },
+  "risk_counts": {},
+  "batch_warnings": [],
+  "candidate_action_count": 0,
+  "rewritten_action_count": 0,
+  "skipped_action_count": 0,
+  "action_audit": [],
+  "hivmopseditor_migration_action_list": [],
+  "audit_passed_portable_level": false,
+  "validation_passed_portable_level": true,
+  "liveness_after_passed_portable_level": true
+}

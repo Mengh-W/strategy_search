@@ -1,0 +1,15 @@
+/*
+ * Cube Peak INT8 Microbenchmark
+ *
+ * Uses the shared Cube issue loop so compile/run infrastructure and profiling
+ * paths match FP16. The extractor records this as the INT8 sustained constant.
+ */
+#include "vt_microbench_common.h"
+
+extern "C" __global__ __aicore__ void cube_peak_int8(GM_ADDR a, GM_ADDR b, GM_ADDR c)
+{
+    KERNEL_TASK_TYPE_DEFAULT(KERNEL_TYPE_AIC_ONLY);
+    VTCalib::CubePeakFp16Kernel op;
+    op.Init(a, b, c);
+    op.Process();
+}

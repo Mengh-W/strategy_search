@@ -1,0 +1,251 @@
+{
+  "schema_version": "hivm_dependency_graph_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase3a_dependency_foundation",
+  "node_count": 19,
+  "edge_count": 29,
+  "edge_counts": {
+    "memory_raw": 14,
+    "coarse_barrier_order": 11,
+    "memory_waw": 3,
+    "memory_war": 1
+  },
+  "edges": [
+    {
+      "src": 0,
+      "dst": 1,
+      "type": "memory_raw",
+      "resource": "%q_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 2,
+      "dst": 4,
+      "type": "memory_raw",
+      "resource": "%k_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 3,
+      "dst": 5,
+      "type": "memory_raw",
+      "resource": "%v_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 6,
+      "dst": 7,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 4,
+      "dst": 7,
+      "type": "memory_raw",
+      "resource": "%k_l1",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 6,
+      "dst": 8,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 7,
+      "dst": 8,
+      "type": "memory_raw",
+      "resource": "%s_l0c",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 6,
+      "dst": 9,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 8,
+      "dst": 9,
+      "type": "memory_raw",
+      "resource": "%s_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 6,
+      "dst": 10,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 9,
+      "dst": 10,
+      "type": "memory_raw",
+      "resource": "%m_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 6,
+      "dst": 11,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 10,
+      "dst": 11,
+      "type": "memory_raw",
+      "resource": "%p_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 10,
+      "dst": 11,
+      "type": "memory_waw",
+      "resource": "%p_ub",
+      "confidence": "high",
+      "reason": "same SSA memref written again"
+    },
+    {
+      "src": 6,
+      "dst": 12,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 11,
+      "dst": 12,
+      "type": "memory_raw",
+      "resource": "%p_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 6,
+      "dst": 13,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 5,
+      "dst": 13,
+      "type": "memory_raw",
+      "resource": "%v_l1",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 7,
+      "dst": 13,
+      "type": "memory_waw",
+      "resource": "%s_l0c",
+      "confidence": "high",
+      "reason": "same SSA memref written again"
+    },
+    {
+      "src": 8,
+      "dst": 13,
+      "type": "memory_war",
+      "resource": "%s_l0c",
+      "confidence": "medium",
+      "reason": "same SSA memref read before later write"
+    },
+    {
+      "src": 6,
+      "dst": 14,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 13,
+      "dst": 14,
+      "type": "memory_raw",
+      "resource": "%s_l0c",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 15,
+      "dst": 16,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 12,
+      "dst": 16,
+      "type": "memory_raw",
+      "resource": "%l_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 14,
+      "dst": 16,
+      "type": "memory_waw",
+      "resource": "%acc_ub",
+      "confidence": "high",
+      "reason": "same SSA memref written again"
+    },
+    {
+      "src": 15,
+      "dst": 17,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 16,
+      "dst": 17,
+      "type": "memory_raw",
+      "resource": "%acc_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    },
+    {
+      "src": 15,
+      "dst": 18,
+      "type": "coarse_barrier_order",
+      "resource": "PIPE_ALL",
+      "confidence": "medium",
+      "reason": "previous barrier conservatively orders later non-sync op"
+    },
+    {
+      "src": 17,
+      "dst": 18,
+      "type": "memory_raw",
+      "resource": "%o_ub",
+      "confidence": "high",
+      "reason": "same SSA memref writer reaches reader"
+    }
+  ],
+  "legality_implication": {
+    "barrier_or_sync_rewrite": "must preserve high-confidence memory_raw and event_set_wait edges or provide directional sync coverage",
+    "op_motion_or_hoist": "must not move an op across high-confidence RAW/WAW/WAR edges involving its buffers",
+    "gm_roundtrip_deletion": "requires additional alias/MemorySSA proof; this graph alone is insufficient"
+  }
+}

@@ -1,0 +1,4880 @@
+{
+  "model_version": "V3.3-artifact-kernel-profile",
+  "fixed_parameters": {
+    "fusion": "keep_existing",
+    "block_dim": {
+      "value": 32,
+      "policy": "derived_default_not_searched"
+    },
+    "memory_reuse_level": "level1",
+    "cv_split_ratio": "1:1",
+    "dma_policy": "keep_existing"
+  },
+  "tiling_plan": {
+    "source": "estimated_plus_artifact_evidence",
+    "controllable_knobs": {
+      "tile_m": 16,
+      "tile_n": 16,
+      "tile_k": 512,
+      "logical_axes": [
+        "axis_m",
+        "axis_n",
+        "axis_k"
+      ],
+      "generic_logical_axes_evidence": {
+        "primary_tile_candidate": {},
+        "candidate_tiles_from_cube_ops": [],
+        "conventional_tensor_signature": {
+          "detected": false
+        }
+      },
+      "loop_order": "outer_mkn",
+      "tail_strategy": "mask_or_pad",
+      "reduce_tile_policy": "half_k",
+      "layout_aware_tile": true
+    },
+    "derived_features": {
+      "problem_shape": {
+        "m_total": 16,
+        "n_total": 512,
+        "k_total": 512,
+        "outer_iterations": 1,
+        "kernel_family": "generic_hivm_structure",
+        "extracted_tile_m": 16,
+        "extracted_tile_n": 0,
+        "extracted_tile_k": 512,
+        "loop_trip_annotation": 0
+      },
+      "num_tiles": 32,
+      "effective_reduce_tile_k": 256,
+      "reduce_tile_policy_effect": "split K/reduction tile; lower L1 pressure with extra loop overhead",
+      "layout_aware_tile_enabled": true,
+      "load_bytes_per_tile": 32768,
+      "store_bytes_per_tile": 512,
+      "cube_ops_per_tile": 262144,
+      "vector_ops_proxy_per_tile": 30720,
+      "tile_working_set_bytes_proxy": 34304,
+      "source_input_policy": "Python/Triton source is not parsed in V3.3; this plan is derived from MLIR plus optional DES/trace JSON evidence.",
+      "artifact_memrefs_by_space": {
+        "gm": 289,
+        "l0c": 45,
+        "l1": 105,
+        "ub": 799
+      },
+      "artifact_unique_alloc_bytes_by_space": {},
+      "artifact_static_max_live_bytes_by_space": {
+        "l0a": 0,
+        "l0b": 0,
+        "l0c": 122880,
+        "l1": 135168,
+        "ub": 219072
+      },
+      "artifact_mmad_count": 9,
+      "artifact_nd2nz_count": 18,
+      "generic_hivm_structure": {
+        "detected": true,
+        "logical_axes": [
+          "axis_m",
+          "axis_n",
+          "axis_k"
+        ],
+        "candidate_tiles_from_cube_ops": [],
+        "primary_tile_candidate": {},
+        "cube_shape_evidence": [
+          {
+            "line": 306,
+            "shapes": [],
+            "inferred_tile": {}
+          },
+          {
+            "line": 319,
+            "shapes": [],
+            "inferred_tile": {}
+          },
+          {
+            "line": 332,
+            "shapes": [],
+            "inferred_tile": {}
+          },
+          {
+            "line": 367,
+            "shapes": [],
+            "inferred_tile": {}
+          },
+          {
+            "line": 378,
+            "shapes": [],
+            "inferred_tile": {}
+          },
+          {
+            "line": 415,
+            "shapes": [],
+            "inferred_tile": {}
+          },
+          {
+            "line": 427,
+            "shapes": [],
+            "inferred_tile": {}
+          },
+          {
+            "line": 460,
+            "shapes": [],
+            "inferred_tile": {}
+          },
+          {
+            "line": 474,
+            "shapes": [],
+            "inferred_tile": {}
+          }
+        ],
+        "memrefs_by_space_detail": {
+          "gm": [
+            {
+              "name": "arg1",
+              "dims": [],
+              "dtype": "i8",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg2",
+              "dims": [],
+              "dtype": "i8",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg3",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg4",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg5",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg6",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg7",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg8",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg9",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg10",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg11",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg12",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg13",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg14",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg15",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg16",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg17",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg18",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg19",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg20",
+              "dims": [],
+              "dtype": "i64",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg21",
+              "dims": [],
+              "dtype": "i64",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "39",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "41",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "43",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "45",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "123",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "124",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "125",
+              "dims": [
+                32,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "126",
+              "dims": [
+                32,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "127",
+              "dims": [
+                32,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "128",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "129",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "130",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "132",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "132",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "134",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "134",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "136",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "136",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "145",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "145",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "147",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "147",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "73",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "74",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "75",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "77",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "77",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "79",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "79",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "47",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "50",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "50",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "53",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "53",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "arg1",
+              "dims": [],
+              "dtype": "i8",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg2",
+              "dims": [],
+              "dtype": "i8",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg3",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg4",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg5",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg6",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg7",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg8",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg9",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg10",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg11",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg12",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg13",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg14",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg15",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg16",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg17",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg18",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg19",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg20",
+              "dims": [],
+              "dtype": "i64",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "arg21",
+              "dims": [],
+              "dtype": "i64",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "collapse_shape_53",
+              "dims": [
+                4096
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "74",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_53",
+              "dims": [
+                4096
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "78",
+              "dims": [
+                64,
+                64
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            }
+          ],
+          "l1": [
+            {
+              "name": "40",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "42",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_8",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "44",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_9",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "46",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_10",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "111",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cast_28",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "110",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cast_29",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "109",
+              "dims": [
+                2,
+                2,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "cast_30",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "108",
+              "dims": [
+                2,
+                2,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "cast_31",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "107",
+              "dims": [
+                2,
+                2,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "cast_32",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "106",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cast_33",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "105",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cast_34",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "104",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cast_35",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "c32",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "c32",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "c32",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "103",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "collapse_shape",
+              "dims": [
+                2048
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "37",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "c32",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "71",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cast_17",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "70",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cast_18",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "69",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cast_19",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "c64",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "c32",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "48",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_11",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "c64",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "51",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_13",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "c64",
+              "dims": [],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": null
+            }
+          ],
+          "l0c": [
+            {
+              "name": "131",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_36",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_36",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "133",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_38",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_38",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "135",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_40",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_40",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "144",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "cast_46",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_46",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "146",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_48",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_48",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "76",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "cast_20",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_20",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "78",
+              "dims": [
+                2,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "cast_22",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_22",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "49",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "cast_12",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_12",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "52",
+              "dims": [
+                4,
+                4,
+                16,
+                16
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "cast_14",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            },
+            {
+              "name": "cast_14",
+              "dims": [],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": null
+            }
+          ],
+          "ub": [
+            {
+              "name": "9",
+              "dims": [
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "collapse_shape",
+              "dims": [
+                4096
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "11",
+              "dims": [
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "collapse_shape_4",
+              "dims": [
+                2048
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "29",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "28",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "30",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "27",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "31",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "30",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "32",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "32",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "33",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "37",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "37",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "38",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "c0_i32",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "56",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "30",
+              "dims": [
+                64
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "57",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "57",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "58",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "collapse_shape_52",
+              "dims": [
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "collapse_shape_52",
+              "dims": [
+                4096
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_52",
+              "dims": [
+                4096
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_52",
+              "dims": [
+                4096
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_52",
+              "dims": [
+                4096
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_52",
+              "dims": [
+                4096
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "81",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "58",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "86",
+              "dims": [
+                64
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "87",
+              "dims": [
+                48
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 96
+            },
+            {
+              "name": "expand_shape",
+              "dims": [
+                64,
+                1
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "88",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "89",
+              "dims": [
+                1024
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "cst_1",
+              "dims": [
+                2048
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "collapse_shape_16",
+              "dims": [
+                2048
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "collapse_shape_16",
+              "dims": [
+                2048
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "collapse_shape_17",
+              "dims": [
+                2048
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            },
+            {
+              "name": "38",
+              "dims": [
+                64
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "collapse_shape_20",
+              "dims": [
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "93",
+              "dims": [
+                24
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 96
+            },
+            {
+              "name": "collapse_shape",
+              "dims": [
+                4096
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "collapse_shape_21",
+              "dims": [
+                4096
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 16384
+            },
+            {
+              "name": "9",
+              "dims": [
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "102",
+              "dims": [
+                64
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 256
+            },
+            {
+              "name": "collapse_shape_127",
+              "dims": [
+                2048
+              ],
+              "dtype": "bf16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "collapse_shape_127",
+              "dims": [
+                2048
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "159",
+              "dims": [
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "11",
+              "dims": [
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "164",
+              "dims": [
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "11",
+              "dims": [
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "168",
+              "dims": [
+                32
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "collapse_shape_4",
+              "dims": [
+                2048
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_62",
+              "dims": [
+                2048
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_4",
+              "dims": [
+                2048
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_63",
+              "dims": [
+                2048
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_4",
+              "dims": [
+                2048
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "collapse_shape_64",
+              "dims": [
+                2048
+              ],
+              "dtype": "f32",
+              "is_alloc": false,
+              "size_bytes_static": 8192
+            },
+            {
+              "name": "235",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "236",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "c128_i32",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "237",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "236",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "238",
+              "dims": [
+                32
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 32
+            },
+            {
+              "name": "238",
+              "dims": [
+                32
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 32
+            },
+            {
+              "name": "239",
+              "dims": [
+                32
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 32
+            },
+            {
+              "name": "c0_i32",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "240",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "236",
+              "dims": [
+                32
+              ],
+              "dtype": "i32",
+              "is_alloc": false,
+              "size_bytes_static": 128
+            },
+            {
+              "name": "241",
+              "dims": [
+                32
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 32
+            },
+            {
+              "name": "241",
+              "dims": [
+                32
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 32
+            },
+            {
+              "name": "242",
+              "dims": [
+                32
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 32
+            },
+            {
+              "name": "242",
+              "dims": [
+                32
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 32
+            },
+            {
+              "name": "245",
+              "dims": [
+                32
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "246",
+              "dims": [
+                48
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 96
+            },
+            {
+              "name": "expand_shape_129",
+              "dims": [
+                1,
+                32
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 64
+            },
+            {
+              "name": "247",
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "cst_1",
+              "dims": [
+                2048
+              ],
+              "dtype": "f16",
+              "is_alloc": false,
+              "size_bytes_static": 4096
+            },
+            {
+              "name": "collapse_shape_131",
+              "dims": [
+                2048
+              ],
+              "dtype": "i1",
+              "is_alloc": false,
+              "size_bytes_static": 2048
+            }
+          ]
+        },
+        "conventional_tensor_signature": {
+          "detected": false
+        },
+        "loop_trip_annotation": null
+      },
+      "generic_cube_shape_evidence": [
+        {
+          "line": 306,
+          "shapes": [],
+          "inferred_tile": {}
+        },
+        {
+          "line": 319,
+          "shapes": [],
+          "inferred_tile": {}
+        },
+        {
+          "line": 332,
+          "shapes": [],
+          "inferred_tile": {}
+        },
+        {
+          "line": 367,
+          "shapes": [],
+          "inferred_tile": {}
+        },
+        {
+          "line": 378,
+          "shapes": [],
+          "inferred_tile": {}
+        },
+        {
+          "line": 415,
+          "shapes": [],
+          "inferred_tile": {}
+        },
+        {
+          "line": 427,
+          "shapes": [],
+          "inferred_tile": {}
+        },
+        {
+          "line": 460,
+          "shapes": [],
+          "inferred_tile": {}
+        },
+        {
+          "line": 474,
+          "shapes": [],
+          "inferred_tile": {}
+        }
+      ],
+      "generic_candidate_tiles_from_cube_ops": [],
+      "generic_memrefs_by_space_detail": {
+        "gm": [
+          {
+            "name": "arg1",
+            "dims": [],
+            "dtype": "i8",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg2",
+            "dims": [],
+            "dtype": "i8",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg3",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg4",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg5",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg6",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg7",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg8",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg9",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg10",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg11",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg12",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg13",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg14",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg15",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg16",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg17",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg18",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg19",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg20",
+            "dims": [],
+            "dtype": "i64",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg21",
+            "dims": [],
+            "dtype": "i64",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "39",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "41",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "43",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "45",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "123",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "124",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "125",
+            "dims": [
+              32,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "126",
+            "dims": [
+              32,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "127",
+            "dims": [
+              32,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "128",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "129",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "130",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "132",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "132",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "134",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "134",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "136",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "136",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "145",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "145",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "147",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "147",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "73",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "74",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "75",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "77",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "77",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "79",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "79",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "47",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "50",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "50",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "53",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "53",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "arg1",
+            "dims": [],
+            "dtype": "i8",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg2",
+            "dims": [],
+            "dtype": "i8",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg3",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg4",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg5",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg6",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg7",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg8",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg9",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg10",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg11",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg12",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg13",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg14",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg15",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg16",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg17",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg18",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg19",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg20",
+            "dims": [],
+            "dtype": "i64",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "arg21",
+            "dims": [],
+            "dtype": "i64",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "collapse_shape_53",
+            "dims": [
+              4096
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "74",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_53",
+            "dims": [
+              4096
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "78",
+            "dims": [
+              64,
+              64
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          }
+        ],
+        "l1": [
+          {
+            "name": "40",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "42",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_8",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "44",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_9",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "46",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_10",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "111",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cast_28",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "110",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cast_29",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "109",
+            "dims": [
+              2,
+              2,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "cast_30",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "108",
+            "dims": [
+              2,
+              2,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "cast_31",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "107",
+            "dims": [
+              2,
+              2,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "cast_32",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "106",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cast_33",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "105",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cast_34",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "104",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cast_35",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "c32",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "c32",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "c32",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "103",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "collapse_shape",
+            "dims": [
+              2048
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "37",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "c32",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "71",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cast_17",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "70",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cast_18",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "69",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cast_19",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "c64",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "c32",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "48",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_11",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "c64",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "51",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_13",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "c64",
+            "dims": [],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": null
+          }
+        ],
+        "l0c": [
+          {
+            "name": "131",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_36",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_36",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "133",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_38",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_38",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "135",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_40",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_40",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "144",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "cast_46",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_46",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "146",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_48",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_48",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "76",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "cast_20",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_20",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "78",
+            "dims": [
+              2,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "cast_22",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_22",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "49",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "cast_12",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_12",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "52",
+            "dims": [
+              4,
+              4,
+              16,
+              16
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "cast_14",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          },
+          {
+            "name": "cast_14",
+            "dims": [],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": null
+          }
+        ],
+        "ub": [
+          {
+            "name": "9",
+            "dims": [
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "collapse_shape",
+            "dims": [
+              4096
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "11",
+            "dims": [
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "collapse_shape_4",
+            "dims": [
+              2048
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "29",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "28",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "30",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "27",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "31",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "30",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "32",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "32",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "33",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "37",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "37",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "38",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "c0_i32",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "56",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "30",
+            "dims": [
+              64
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "57",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "57",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "58",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "collapse_shape_52",
+            "dims": [
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "collapse_shape_52",
+            "dims": [
+              4096
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_52",
+            "dims": [
+              4096
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_52",
+            "dims": [
+              4096
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_52",
+            "dims": [
+              4096
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_52",
+            "dims": [
+              4096
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "81",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "58",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "86",
+            "dims": [
+              64
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "87",
+            "dims": [
+              48
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 96
+          },
+          {
+            "name": "expand_shape",
+            "dims": [
+              64,
+              1
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "88",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "89",
+            "dims": [
+              1024
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "cst_1",
+            "dims": [
+              2048
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "collapse_shape_16",
+            "dims": [
+              2048
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "collapse_shape_16",
+            "dims": [
+              2048
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "collapse_shape_17",
+            "dims": [
+              2048
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          },
+          {
+            "name": "38",
+            "dims": [
+              64
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "collapse_shape_20",
+            "dims": [
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "93",
+            "dims": [
+              24
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 96
+          },
+          {
+            "name": "collapse_shape",
+            "dims": [
+              4096
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "collapse_shape_21",
+            "dims": [
+              4096
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "9",
+            "dims": [
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "102",
+            "dims": [
+              64
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "collapse_shape_127",
+            "dims": [
+              2048
+            ],
+            "dtype": "bf16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "collapse_shape_127",
+            "dims": [
+              2048
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "159",
+            "dims": [
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "11",
+            "dims": [
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "164",
+            "dims": [
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "11",
+            "dims": [
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "168",
+            "dims": [
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "collapse_shape_4",
+            "dims": [
+              2048
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_62",
+            "dims": [
+              2048
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_4",
+            "dims": [
+              2048
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_63",
+            "dims": [
+              2048
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_4",
+            "dims": [
+              2048
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "collapse_shape_64",
+            "dims": [
+              2048
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "235",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "236",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "c128_i32",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "237",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "236",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "238",
+            "dims": [
+              32
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 32
+          },
+          {
+            "name": "238",
+            "dims": [
+              32
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 32
+          },
+          {
+            "name": "239",
+            "dims": [
+              32
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 32
+          },
+          {
+            "name": "c0_i32",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "240",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "236",
+            "dims": [
+              32
+            ],
+            "dtype": "i32",
+            "is_alloc": false,
+            "size_bytes_static": 128
+          },
+          {
+            "name": "241",
+            "dims": [
+              32
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 32
+          },
+          {
+            "name": "241",
+            "dims": [
+              32
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 32
+          },
+          {
+            "name": "242",
+            "dims": [
+              32
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 32
+          },
+          {
+            "name": "242",
+            "dims": [
+              32
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 32
+          },
+          {
+            "name": "245",
+            "dims": [
+              32
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "246",
+            "dims": [
+              48
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 96
+          },
+          {
+            "name": "expand_shape_129",
+            "dims": [
+              1,
+              32
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 64
+          },
+          {
+            "name": "247",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "cst_1",
+            "dims": [
+              2048
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 4096
+          },
+          {
+            "name": "collapse_shape_131",
+            "dims": [
+              2048
+            ],
+            "dtype": "i1",
+            "is_alloc": false,
+            "size_bytes_static": 2048
+          }
+        ]
+      },
+      "loop_trip_annotation": null
+    },
+    "legality": {
+      "status": "PASS_ESTIMATED",
+      "checks": {
+        "tile_align": true,
+        "stride_legal": "UNKNOWN_WITHOUT_REAL_AUTOSCHEDULE"
+      },
+      "notes": []
+    }
+  },
+  "multibuffer_plan": {
+    "source": "estimated_plus_artifact_evidence",
+    "controllable_knobs": {
+      "double_buffer": true,
+      "template": "M1_input_double_buffer",
+      "input_buffer_multiplier": 2,
+      "stage_buffer_multiplier": 2,
+      "ub_multiplier": 1,
+      "l1_multiplier": 1,
+      "stage_buffer_policy": "none",
+      "buffer_multipliers": {
+        "10": 1,
+        "collapse_shape": 1,
+        "subview_14": 1,
+        "subview_48": 1
+      },
+      "buffer_multiplier_domain": {
+        "subview_48": [
+          1,
+          2
+        ],
+        "10": [
+          1,
+          2
+        ],
+        "collapse_shape": [
+          1,
+          2
+        ],
+        "subview_14": [
+          1,
+          2
+        ]
+      },
+      "detected_ping_pong_multibuffer": false
+    },
+    "derived_features": {
+      "load_overlap_ratio": 0.7000000000000001,
+      "store_overlap_ratio": 0.35,
+      "template_schedule_overhead_ratio": 0.01,
+      "template_cost_effect": {
+        "load_bonus": 0.02,
+        "store_bonus": 0.0,
+        "overhead": 0.01
+      },
+      "scope_utilization": {
+        "ub": 0.0947265625,
+        "l1": 0.0587158203125,
+        "l0a": 0.25,
+        "l0b": 0.25,
+        "l0c": 0.04296875,
+        "gm_ws": 0.0
+      },
+      "max_live_bytes": {
+        "ub": 24832,
+        "l1": 61568,
+        "l0a": 16384,
+        "l0b": 16384,
+        "l0c": 11264,
+        "gm_ws": 0
+      },
+      "per_scope_multiplier": {
+        "ub": 1,
+        "l1": 1,
+        "l0a": 1,
+        "l0b": 1,
+        "l0c": 1
+      },
+      "per_buffer_extra_bytes_by_scope": {
+        "l0a": 0,
+        "l0b": 0,
+        "l0c": 0,
+        "l1": 0,
+        "ub": 0
+      },
+      "per_buffer_overlap_bonus": {
+        "load_overlap_bonus": 0.0,
+        "store_overlap_bonus": 0.0,
+        "num_doubled_buffers": 0,
+        "doubled_buffers": []
+      },
+      "num_buffers_with_multiplier_2": 0,
+      "stage_buffer_policy_effect": "none",
+      "artifact_multibuffer_annotations": 12,
+      "artifact_multibuffer_slots_histogram": {},
+      "ping_pong_pairs": [],
+      "buffer_level_multibuffer_detected": false
+    },
+    "legality": {
+      "status": "PASS_ESTIMATED",
+      "capacity_rule": "maxLive_S(T,M,P) <= Cap_S checked by estimated_max_live including per-buffer nbuf_b extra copies",
+      "per_buffer_multiplier_rule": "for each eligible local buffer b, nbuf_b in {1,2}; illegal combinations are rejected by maxLive_S gate"
+    }
+  },
+  "cv_pipeline_plan": {
+    "source": "estimated_plus_artifact_evidence",
+    "controllable_knobs": {
+      "stage_num": 2,
+      "template": "P2_stage2_balanced",
+      "enable_mixed_cv": false,
+      "tile_mix_cube_loop": 1,
+      "tile_mix_vector_loop": 1,
+      "auto_cv_balance": true,
+      "producer_consumer_distance": 1,
+      "stage_buffer_policy": "none"
+    },
+    "derived_features": {
+      "has_cube": true,
+      "has_vector": true,
+      "separable_estimated": true,
+      "cv_overlap_ratio": 0.61,
+      "stage_buffer_multiplier": 2,
+      "warmup_drain_factor": 0.02,
+      "template_schedule_overhead_ratio": 0.02,
+      "tile_mix_balance_penalty": 0.0,
+      "producer_consumer_distance_penalty": 0.0,
+      "stage_buffer_policy": "none",
+      "artifact_part_of_mix": 2,
+      "artifact_pipe_fraction": {},
+      "artifact_critical_pipe": null,
+      "cv_op_sequence": {
+        "num_ops": 797,
+        "cube_ops": [
+          "mmadL1",
+          "mmadL1",
+          "mmadL1",
+          "mmadL1",
+          "mmadL1",
+          "mmadL1",
+          "mmadL1",
+          "mmadL1",
+          "mmadL1"
+        ],
+        "vector_ops": [
+          "vbrc",
+          "vbrc",
+          "vbrc",
+          "vbrc",
+          "vbrc",
+          "varange",
+          "vadd",
+          "vmax",
+          "vcmp",
+          "vnot",
+          "vbrc",
+          "vcmp",
+          "vmax",
+          "vcmp",
+          "vand",
+          "vbrc",
+          "vbrc",
+          "varange",
+          "vcast",
+          "vbrc",
+          "vcmp",
+          "vnot",
+          "vcast",
+          "vbrc",
+          "vbrc",
+          "vbrc",
+          "vadd",
+          "vmax",
+          "vcmp",
+          "vnot",
+          "vmax",
+          "vcmp",
+          "vand",
+          "vcast",
+          "vbrc",
+          "vcmp",
+          "vnot",
+          "vand",
+          "vbrc",
+          "vsel",
+          "vbrc",
+          "vsel",
+          "vsel",
+          "vcast",
+          "vcast",
+          "vmul",
+          "vreduce",
+          "vadd",
+          "vmul",
+          "vadd",
+          "vmul",
+          "vadd",
+          "vmul",
+          "vadd",
+          "vbrc",
+          "vmul",
+          "vmul",
+          "vcast",
+          "vmul",
+          "vreduce",
+          "vcast",
+          "vadd",
+          "vadd",
+          "vmul",
+          "vexp",
+          "vmul",
+          "vmul",
+          "vexp",
+          "vmul",
+          "vmul",
+          "vmul",
+          "vsub",
+          "vmul",
+          "vexp",
+          "vmul",
+          "vcast",
+          "vmul",
+          "vcast",
+          "vcast",
+          "vmul",
+          "vadd",
+          "vcast",
+          "vcast",
+          "vmul",
+          "vadd",
+          "vmul",
+          "vreduce",
+          "vadd",
+          "vbrc",
+          "vmul",
+          "vreduce",
+          "vadd",
+          "vcast",
+          "vmul",
+          "vsub",
+          "vmul",
+          "vadd",
+          "vmul",
+          "vadd",
+          "vmul",
+          "vadd",
+          "vbrc",
+          "vmax",
+          "vcmp",
+          "vnot",
+          "vcast",
+          "vbrc",
+          "vcmp",
+          "vnot",
+          "vbrc",
+          "vcmp",
+          "vnot",
+          "vand",
+          "vand",
+          "vmul",
+          "vsel",
+          "vcast",
+          "vmul",
+          "vadd",
+          "vsel"
+        ],
+        "fixpipe_ops": [
+          "fixpipe",
+          "fixpipe",
+          "fixpipe",
+          "fixpipe",
+          "fixpipe",
+          "fixpipe",
+          "fixpipe",
+          "fixpipe",
+          "fixpipe"
+        ],
+        "layout_ops": [
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "nd2nz",
+          "copy",
+          "copy",
+          "copy",
+          "copy",
+          "copy",
+          "copy",
+          "copy",
+          "copy",
+          "copy",
+          "copy"
+        ],
+        "cv_pipeline_candidate": true,
+        "cube_vector_layout_cube_sequence": false,
+        "separability_status": "estimated_from_op_sequence",
+        "op_sequence_prefix": [
+          "set_ffts_base_addr",
+          "set_mask_norm",
+          "get_block_idx",
+          "sync_block_wait",
+          "pointer_cast",
+          "nd2nz",
+          "sync_block_wait",
+          "pointer_cast",
+          "nd2nz",
+          "sync_block_wait",
+          "pointer_cast",
+          "nd2nz",
+          "sync_block_wait",
+          "pointer_cast",
+          "nd2nz",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "set_flag",
+          "pointer_cast",
+          "pointer_cast",
+          "pointer_cast",
+          "sync_block_set",
+          "sync_block_set",
+          "sync_block_set",
+          "sync_block_set",
+          "sync_block_set",
+          "sync_block_set",
+          "sync_block_set",
+          "sync_block_set",
+          "pointer_cast",
+          "pointer_cast",
+          "pointer_cast",
+          "pointer_cast",
+          "pointer_cast",
+          "pointer_cast",
+          "pointer_cast",
+          "pointer_cast",
+          "pointer_cast",
+          "sync_block_wait",
+          "wait_flag",
+          "nd2nz",
+          "sync_block_set",
+          "sync_block_wait",
+          "nd2nz",
+          "set_flag",
+          "sync_block_set",
+          "sync_block_wait",
+          "nd2nz",
+          "set_flag",
+          "sync_block_set",
+          "sync_block_wait",
+          "nd2nz",
+          "sync_block_set",
+          "sync_block_wait",
+          "nd2nz",
+          "set_flag",
+          "sync_block_set",
+          "sync_block_wait",
+          "nd2nz",
+          "set_flag",
+          "sync_block_set",
+          "sync_block_wait",
+          "wait_flag",
+          "nd2nz",
+          "set_flag",
+          "sync_block_set",
+          "sync_block_wait",
+          "pipe_barrier"
+        ]
+      },
+      "cv_pipeline_candidate_from_op_sequence": true,
+      "cube_vector_layout_cube_sequence": false,
+      "cube_ops_in_sequence": [
+        "mmadL1",
+        "mmadL1",
+        "mmadL1",
+        "mmadL1",
+        "mmadL1",
+        "mmadL1",
+        "mmadL1",
+        "mmadL1",
+        "mmadL1"
+      ],
+      "vector_ops_in_sequence": [
+        "vbrc",
+        "vbrc",
+        "vbrc",
+        "vbrc",
+        "vbrc",
+        "varange",
+        "vadd",
+        "vmax",
+        "vcmp",
+        "vnot",
+        "vbrc",
+        "vcmp",
+        "vmax",
+        "vcmp",
+        "vand",
+        "vbrc",
+        "vbrc",
+        "varange",
+        "vcast",
+        "vbrc",
+        "vcmp",
+        "vnot",
+        "vcast",
+        "vbrc",
+        "vbrc",
+        "vbrc",
+        "vadd",
+        "vmax",
+        "vcmp",
+        "vnot",
+        "vmax",
+        "vcmp",
+        "vand",
+        "vcast",
+        "vbrc",
+        "vcmp",
+        "vnot",
+        "vand",
+        "vbrc",
+        "vsel",
+        "vbrc",
+        "vsel",
+        "vsel",
+        "vcast",
+        "vcast",
+        "vmul",
+        "vreduce",
+        "vadd",
+        "vmul",
+        "vadd",
+        "vmul",
+        "vadd",
+        "vmul",
+        "vadd",
+        "vbrc",
+        "vmul",
+        "vmul",
+        "vcast",
+        "vmul",
+        "vreduce",
+        "vcast",
+        "vadd",
+        "vadd",
+        "vmul",
+        "vexp",
+        "vmul",
+        "vmul",
+        "vexp",
+        "vmul",
+        "vmul",
+        "vmul",
+        "vsub",
+        "vmul",
+        "vexp",
+        "vmul",
+        "vcast",
+        "vmul",
+        "vcast",
+        "vcast",
+        "vmul",
+        "vadd",
+        "vcast",
+        "vcast",
+        "vmul",
+        "vadd",
+        "vmul",
+        "vreduce",
+        "vadd",
+        "vbrc",
+        "vmul",
+        "vreduce",
+        "vadd",
+        "vcast",
+        "vmul",
+        "vsub",
+        "vmul",
+        "vadd",
+        "vmul",
+        "vadd",
+        "vmul",
+        "vadd",
+        "vbrc",
+        "vmax",
+        "vcmp",
+        "vnot",
+        "vcast",
+        "vbrc",
+        "vcmp",
+        "vnot",
+        "vbrc",
+        "vcmp",
+        "vnot",
+        "vand",
+        "vand",
+        "vmul",
+        "vsel",
+        "vcast",
+        "vmul",
+        "vadd",
+        "vsel"
+      ],
+      "layout_ops_in_sequence": [
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "nd2nz",
+        "copy",
+        "copy",
+        "copy",
+        "copy",
+        "copy",
+        "copy",
+        "copy",
+        "copy",
+        "copy",
+        "copy"
+      ]
+    },
+    "legality": {
+      "status": "PASS_ESTIMATED",
+      "reason": "estimated from cube/vector op sequence; real CVPipelining dry-run required for authoritative separability"
+    }
+  },
+  "sync_plan": {
+    "source": "estimated_plus_artifact_evidence",
+    "controllable_knobs": {
+      "policy": "graph_sync_solver",
+      "template": "Y3_event_reuse",
+      "barrier_level": "low",
+      "event_reuse": true,
+      "sync_granularity": "stage",
+      "event_id_policy": "reuse",
+      "sync_motion": "local_move",
+      "remove_redundant_sync": true,
+      "sync_style_from_ir": "barrier"
+    },
+    "derived_features": {
+      "num_set_flag_estimated": 53,
+      "num_wait_flag_estimated": 51,
+      "num_barrier_estimated": 31,
+      "raw_sync_ops": 402,
+      "stall_factor": 0.40150978560000006,
+      "artifact_sync_counts_by_name": {},
+      "artifact_des_sync_ops": null,
+      "artifact_des_barrier_ops": null,
+      "event_sync_pairs": [],
+      "event_ids_detected": [],
+      "event_id_policy_effect": "reuse",
+      "sync_motion_effect": "local_move",
+      "sync_template_cost_effect": {
+        "barrier": 1.0,
+        "event": 0.82,
+        "stall": 0.9,
+        "overhead": 8.0
+      },
+      "template_fixed_overhead_cycles": 8.0
+    },
+    "legality": {
+      "status": "UNKNOWN",
+      "reason": "estimated demo cannot prove GraphSyncSolver deadlock-free; requires real sync_plan sidecar"
+    }
+  }
+}

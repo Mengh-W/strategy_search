@@ -1,0 +1,1641 @@
+{
+  "schema_version": "four_plan_rewrite_readiness_v1",
+  "producer": "strategy_search.rewrite_readiness",
+  "meaning": "This is not a new IR and it does not mutate HIVM. It is the checklist/mutation-plan layer between selected_plan.json and HivmOpsEditor.",
+  "input_summary": {
+    "num_hivm_ops": 19,
+    "num_buffers": 13,
+    "num_loops": 1,
+    "op_counts": {
+      "hivm.hir.load": 3,
+      "hivm.hir.nd2nz": 3,
+      "hivm.hir.barrier": 2,
+      "hivm.hir.mmad": 2,
+      "hivm.hir.fixpipe": 2,
+      "hivm.hir.vreduce": 2,
+      "hivm.hir.vsub": 1,
+      "hivm.hir.vexp": 1,
+      "hivm.hir.vdiv": 1,
+      "hivm.hir.cast": 1,
+      "hivm.hir.store": 1
+    },
+    "role_counts": {
+      "gm_to_local_load": 3,
+      "cv_load_stage": 3,
+      "multibuffer_candidate": 3,
+      "layout_transform": 3,
+      "cv_transform_stage": 3,
+      "coarse_sync_barrier": 2,
+      "cube_compute_stage": 2,
+      "fixpipe_stage": 2,
+      "cv_boundary_candidate": 2,
+      "vector_compute_stage": 5,
+      "local_to_gm_store": 1,
+      "cv_store_stage": 1,
+      "gm_roundtrip_candidate": 1
+    },
+    "by_category": {
+      "data_move": 4,
+      "layout": 3,
+      "cube_compute": 2,
+      "vector_compute": 5,
+      "sync": 2,
+      "loops": 1,
+      "buffers": 13
+    },
+    "buffer_spaces": {
+      "ub": 9,
+      "cbuf": 3,
+      "cc": 1
+    },
+    "unknown_hivm_ops": [
+      "hivm.hir.cast"
+    ]
+  },
+  "readiness_order": [
+    "SyncPlan",
+    "MultiBufferPlan",
+    "CVPipelinePlan",
+    "TilingPlan"
+  ],
+  "reports": {
+    "sync_plan_readiness": {
+      "plan": "SyncPlan",
+      "purpose": "把粗粒度 barrier/pipe barrier 转成更细粒度的 set_flag/wait_flag，或者删除冗余同步。",
+      "selected_knobs": {
+        "policy": "graph_sync_solver",
+        "template": "Y3_event_reuse",
+        "barrier_level": "low",
+        "event_reuse": true,
+        "sync_granularity": "stage",
+        "event_id_policy": "reuse",
+        "sync_motion": "local_move",
+        "remove_redundant_sync": true,
+        "sync_style_from_ir": "barrier"
+      },
+      "anchors": {
+        "sync_ops": [
+          {
+            "line": 53,
+            "op": "hivm.hir.barrier",
+            "text": "hivm.hir.barrier {mode = \"ALL\"}",
+            "known_by_schema": true,
+            "syntax_family": "legacy_or_project_sample_barrier",
+            "roles": [
+              "coarse_sync_barrier"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 68,
+            "op": "hivm.hir.barrier",
+            "text": "hivm.hir.barrier {mode = \"ALL\"}",
+            "known_by_schema": true,
+            "syntax_family": "legacy_or_project_sample_barrier",
+            "roles": [
+              "coarse_sync_barrier"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          }
+        ],
+        "barrier_like_ops": [
+          {
+            "line": 53,
+            "op": "hivm.hir.barrier",
+            "text": "hivm.hir.barrier {mode = \"ALL\"}",
+            "known_by_schema": true,
+            "syntax_family": "legacy_or_project_sample_barrier",
+            "roles": [
+              "coarse_sync_barrier"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 68,
+            "op": "hivm.hir.barrier",
+            "text": "hivm.hir.barrier {mode = \"ALL\"}",
+            "known_by_schema": true,
+            "syntax_family": "legacy_or_project_sample_barrier",
+            "roles": [
+              "coarse_sync_barrier"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          }
+        ],
+        "existing_event_ops": [],
+        "possible_producer_ops": [
+          {
+            "line": 43,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%Q_gm"
+            ],
+            "outputs": [
+              "%q_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 44,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%q_ub"
+            ],
+            "outputs": [
+              "%q_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 46,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%K_gm"
+            ],
+            "outputs": [
+              "%k_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 47,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%V_gm"
+            ],
+            "outputs": [
+              "%v_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 48,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%k_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%k_ub"
+            ],
+            "outputs": [
+              "%k_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 49,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%v_ub"
+            ],
+            "outputs": [
+              "%v_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 55,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%q_l1, %k_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%q_l1",
+              "%k_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 63,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%p_ub, %v_l1 : memref<64x32xf32, #hivm.address_space<ub>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub",
+              "%v_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          }
+        ],
+        "possible_consumer_ops": [
+          {
+            "line": 55,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%q_l1, %k_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%q_l1",
+              "%k_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 57,
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%s_ub"
+            ],
+            "outputs": [
+              "%m_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 58,
+            "op": "hivm.hir.vsub",
+            "text": "hivm.hir.vsub {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_ub, %m_ub : memref<64x32xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%s_ub",
+              "%m_ub"
+            ],
+            "outputs": [
+              "%p_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 59,
+            "op": "hivm.hir.vexp",
+            "text": "hivm.hir.vexp {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 2 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%p_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 60,
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 3 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%l_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 63,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%p_ub, %v_l1 : memref<64x32xf32, #hivm.address_space<ub>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub",
+              "%v_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 71,
+            "op": "hivm.hir.vdiv",
+            "text": "hivm.hir.vdiv {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 4 : i64} ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%acc_ub",
+              "%l_ub"
+            ],
+            "outputs": [
+              "%acc_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 73,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%o_ub"
+            ],
+            "outputs": [
+              "%O_gm"
+            ],
+            "notes": []
+          }
+        ]
+      },
+      "backend_mutation_request_template": {
+        "mutation_kind": "sync_barrier_to_directional_event_or_sync_cleanup",
+        "input_policy": "graph_sync_solver",
+        "event_id_policy": "reuse",
+        "sync_motion": "local_move",
+        "remove_redundant_sync": true,
+        "must_use_backend_to_print_event_ops": true
+      },
+      "must_prove_before_mutate": [
+        "producer_consumer_pair_proven_by_backend_or_DES_graph",
+        "fresh_or_non_overlapping_event_id",
+        "no_wait_before_set_deadlock",
+        "no_cross_iteration_dependency_removed",
+        "roundtrip_and_verify_pass"
+      ],
+      "blocked_or_missing": [
+        "unknown_hivm_ops_present_in_file; true sync mutation must avoid/understand those regions"
+      ],
+      "status": "BLOCKED_OR_BACKEND_REQUIRED"
+    },
+    "multibuffer_plan_readiness": {
+      "plan": "MultiBufferPlan",
+      "purpose": "把 nbuf/double_buffer 从 hint 变成真实 buffer slot clone 与 operand 替换。",
+      "selected_knobs": {
+        "double_buffer": true,
+        "template": "M1_input_double_buffer",
+        "input_buffer_multiplier": 2,
+        "stage_buffer_multiplier": 2,
+        "ub_multiplier": 1,
+        "l1_multiplier": 1,
+        "stage_buffer_policy": "none",
+        "buffer_multipliers": {
+          "k_l1": 1,
+          "q_l1": 1,
+          "q_ub": 1,
+          "v_l1": 1
+        },
+        "buffer_multiplier_domain": {
+          "q_l1": [
+            1,
+            2
+          ],
+          "q_ub": [
+            1,
+            2
+          ],
+          "v_l1": [
+            1,
+            2
+          ],
+          "k_l1": [
+            1,
+            2
+          ]
+        },
+        "detected_ping_pong_multibuffer": false
+      },
+      "anchors": {
+        "candidate_buffers": [
+          {
+            "buffer": {
+              "line": 27,
+              "name": "%q_ub",
+              "space": "ub",
+              "type_text": "memref<64x128xf16, #hivm.address_space<ub>>",
+              "text": "%q_ub   = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 43,
+                "op": "hivm.hir.load",
+                "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 44,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%q_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 30,
+              "name": "%p_ub",
+              "space": "ub",
+              "type_text": "memref<64x32xf32,  #hivm.address_space<ub>>",
+              "text": "%p_ub   = memref.alloc() : memref<64x32xf32,  #hivm.address_space<ub>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 58,
+                "op": "hivm.hir.vsub",
+                "text": "hivm.hir.vsub {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_ub, %m_ub : memref<64x32xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+              },
+              {
+                "line": 59,
+                "op": "hivm.hir.vexp",
+                "text": "hivm.hir.vexp {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 2 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 59,
+                "op": "hivm.hir.vexp",
+                "text": "hivm.hir.vexp {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 2 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+              },
+              {
+                "line": 60,
+                "op": "hivm.hir.vreduce",
+                "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 3 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+              },
+              {
+                "line": 63,
+                "op": "hivm.hir.mmad",
+                "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%p_ub, %v_l1 : memref<64x32xf32, #hivm.address_space<ub>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%p_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 33,
+              "name": "%k_ub",
+              "space": "ub",
+              "type_text": "memref<32x128xf16, #hivm.address_space<ub>>",
+              "text": "%k_ub   = memref.alloc() : memref<32x128xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 46,
+                "op": "hivm.hir.load",
+                "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 48,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%k_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%k_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 34,
+              "name": "%v_ub",
+              "space": "ub",
+              "type_text": "memref<32x128xf16, #hivm.address_space<ub>>",
+              "text": "%v_ub   = memref.alloc() : memref<32x128xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 47,
+                "op": "hivm.hir.load",
+                "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 49,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%v_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 35,
+              "name": "%q_l1",
+              "space": "cbuf",
+              "type_text": "memref<64x128xf16, #hivm.address_space<cbuf>>",
+              "text": "%q_l1   = memref.alloc() : memref<64x128xf16, #hivm.address_space<cbuf>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 44,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 55,
+                "op": "hivm.hir.mmad",
+                "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%q_l1, %k_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%q_l1",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 36,
+              "name": "%k_l1",
+              "space": "cbuf",
+              "type_text": "memref<32x128xf16, #hivm.address_space<cbuf>>",
+              "text": "%k_l1   = memref.alloc() : memref<32x128xf16, #hivm.address_space<cbuf>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 48,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%k_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 55,
+                "op": "hivm.hir.mmad",
+                "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%q_l1, %k_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%k_l1",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 37,
+              "name": "%v_l1",
+              "space": "cbuf",
+              "type_text": "memref<32x128xf16, #hivm.address_space<cbuf>>",
+              "text": "%v_l1   = memref.alloc() : memref<32x128xf16, #hivm.address_space<cbuf>>"
+            },
+            "candidate_score": 2,
+            "producer_ops": [
+              {
+                "line": 49,
+                "op": "hivm.hir.nd2nz",
+                "text": "hivm.hir.nd2nz ins(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 63,
+                "op": "hivm.hir.mmad",
+                "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%p_ub, %v_l1 : memref<64x32xf32, #hivm.address_space<ub>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%v_l1",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 28,
+              "name": "%acc_ub",
+              "space": "ub",
+              "type_text": "memref<64x128xf32, #hivm.address_space<ub>>",
+              "text": "%acc_ub = memref.alloc() : memref<64x128xf32, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 64,
+                "op": "hivm.hir.fixpipe",
+                "text": "hivm.hir.fixpipe {hivm.cv.pipeline_hint = true, hivm.cv.role = \"fixpipe\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+              },
+              {
+                "line": 71,
+                "op": "hivm.hir.vdiv",
+                "text": "hivm.hir.vdiv {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 4 : i64} ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 71,
+                "op": "hivm.hir.vdiv",
+                "text": "hivm.hir.vdiv {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 4 : i64} ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+              },
+              {
+                "line": 72,
+                "op": "hivm.hir.cast",
+                "text": "hivm.hir.cast {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 5 : i64} ins(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>) outs(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%acc_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 29,
+              "name": "%s_ub",
+              "space": "ub",
+              "type_text": "memref<64x32xf32,  #hivm.address_space<ub>>",
+              "text": "%s_ub   = memref.alloc() : memref<64x32xf32,  #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 56,
+                "op": "hivm.hir.fixpipe",
+                "text": "hivm.hir.fixpipe {hivm.cv.pipeline_hint = true, hivm.cv.role = \"fixpipe\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 57,
+                "op": "hivm.hir.vreduce",
+                "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+              },
+              {
+                "line": 58,
+                "op": "hivm.hir.vsub",
+                "text": "hivm.hir.vsub {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_ub, %m_ub : memref<64x32xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%s_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 31,
+              "name": "%m_ub",
+              "space": "ub",
+              "type_text": "memref<64x1xf32,   #hivm.address_space<ub>>",
+              "text": "%m_ub   = memref.alloc() : memref<64x1xf32,   #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 57,
+                "op": "hivm.hir.vreduce",
+                "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 58,
+                "op": "hivm.hir.vsub",
+                "text": "hivm.hir.vsub {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_ub, %m_ub : memref<64x32xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%m_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 32,
+              "name": "%l_ub",
+              "space": "ub",
+              "type_text": "memref<64x1xf32,   #hivm.address_space<ub>>",
+              "text": "%l_ub   = memref.alloc() : memref<64x1xf32,   #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 60,
+                "op": "hivm.hir.vreduce",
+                "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 3 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 71,
+                "op": "hivm.hir.vdiv",
+                "text": "hivm.hir.vdiv {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 4 : i64} ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%l_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          },
+          {
+            "buffer": {
+              "line": 39,
+              "name": "%o_ub",
+              "space": "ub",
+              "type_text": "memref<64x128xf16, #hivm.address_space<ub>>",
+              "text": "%o_ub   = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>>"
+            },
+            "candidate_score": 1,
+            "producer_ops": [
+              {
+                "line": 72,
+                "op": "hivm.hir.cast",
+                "text": "hivm.hir.cast {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 5 : i64} ins(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>) outs(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+              }
+            ],
+            "consumer_ops": [
+              {
+                "line": 73,
+                "op": "hivm.hir.store",
+                "text": "hivm.hir.store ins(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+              }
+            ],
+            "backend_clone_request": {
+              "mutation_kind": "clone_local_buffer_slots",
+              "target_buffer": "%o_ub",
+              "requested_slots": 2,
+              "replacement_policy": "none"
+            },
+            "local_legality_observation": {
+              "has_known_local_address_space": true,
+              "has_observed_producer_or_consumer": true,
+              "requires_backend_use_def_resolution": true
+            }
+          }
+        ],
+        "num_local_buffers": 13
+      },
+      "backend_mutation_request_template": {
+        "mutation_kind": "clone_local_buffers_and_replace_uses",
+        "requires_iteration_or_stage_policy": true,
+        "requires_capacity_recheck": true,
+        "requires_backend_use_def_resolution": true
+      },
+      "must_prove_before_mutate": [
+        "all_uses_resolved_by_MLIR_use_def",
+        "target_buffer_does_not_escape_to_unknown_side_effect_op",
+        "capacity_recheck_passes_after_extra_slots",
+        "buffer_liveness_no_overwrite",
+        "roundtrip_and_verify_pass"
+      ],
+      "blocked_or_missing": [
+        "unknown_hivm_ops_present; true buffer clone must verify all uses in backend"
+      ],
+      "status": "BLOCKED_OR_BACKEND_REQUIRED"
+    },
+    "cv_pipeline_plan_readiness": {
+      "plan": "CVPipelinePlan",
+      "purpose": "把 load/transform/compute/store 拆成流水 stage；真实 overlap 依赖 MultiBuffer ping-pong 与 SyncPlan event。",
+      "selected_knobs": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "enable_mixed_cv": false,
+        "tile_mix_cube_loop": 1,
+        "tile_mix_vector_loop": 1,
+        "auto_cv_balance": true,
+        "producer_consumer_distance": 1,
+        "stage_buffer_policy": "none"
+      },
+      "anchors": {
+        "stage_sequence_by_line": [
+          {
+            "line": 43,
+            "stage": "load",
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 44,
+            "stage": "transform_or_copy",
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+          },
+          {
+            "line": 46,
+            "stage": "load",
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 47,
+            "stage": "load",
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 48,
+            "stage": "transform_or_copy",
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%k_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+          },
+          {
+            "line": 49,
+            "stage": "transform_or_copy",
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)"
+          },
+          {
+            "line": 53,
+            "stage": "sync",
+            "op": "hivm.hir.barrier",
+            "text": "hivm.hir.barrier {mode = \"ALL\"}"
+          },
+          {
+            "line": 55,
+            "stage": "cube_compute",
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%q_l1, %k_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)"
+          },
+          {
+            "line": 56,
+            "stage": "fixpipe",
+            "op": "hivm.hir.fixpipe",
+            "text": "hivm.hir.fixpipe {hivm.cv.pipeline_hint = true, hivm.cv.role = \"fixpipe\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 57,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}"
+          },
+          {
+            "line": 58,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vsub",
+            "text": "hivm.hir.vsub {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_ub, %m_ub : memref<64x32xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 59,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vexp",
+            "text": "hivm.hir.vexp {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 2 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 60,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 3 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}"
+          },
+          {
+            "line": 63,
+            "stage": "cube_compute",
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%p_ub, %v_l1 : memref<64x32xf32, #hivm.address_space<ub>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)"
+          },
+          {
+            "line": 64,
+            "stage": "fixpipe",
+            "op": "hivm.hir.fixpipe",
+            "text": "hivm.hir.fixpipe {hivm.cv.pipeline_hint = true, hivm.cv.role = \"fixpipe\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 68,
+            "stage": "sync",
+            "op": "hivm.hir.barrier",
+            "text": "hivm.hir.barrier {mode = \"ALL\"}"
+          },
+          {
+            "line": 71,
+            "stage": "vector_compute",
+            "op": "hivm.hir.vdiv",
+            "text": "hivm.hir.vdiv {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 4 : i64} ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)"
+          },
+          {
+            "line": 73,
+            "stage": "store",
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+          }
+        ],
+        "load_ops": [
+          {
+            "line": 43,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%Q_gm"
+            ],
+            "outputs": [
+              "%q_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 46,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%K_gm"
+            ],
+            "outputs": [
+              "%k_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 47,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%V_gm"
+            ],
+            "outputs": [
+              "%v_ub"
+            ],
+            "notes": []
+          }
+        ],
+        "layout_ops": [
+          {
+            "line": 44,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%q_ub"
+            ],
+            "outputs": [
+              "%q_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 48,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%k_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%k_ub"
+            ],
+            "outputs": [
+              "%k_l1"
+            ],
+            "notes": []
+          },
+          {
+            "line": 49,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz ins(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [
+              "%v_ub"
+            ],
+            "outputs": [
+              "%v_l1"
+            ],
+            "notes": []
+          }
+        ],
+        "copy_ops": [],
+        "cube_ops": [
+          {
+            "line": 55,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%q_l1, %k_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%q_l1",
+              "%k_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 63,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%p_ub, %v_l1 : memref<64x32xf32, #hivm.address_space<ub>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub",
+              "%v_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          }
+        ],
+        "vector_ops": [
+          {
+            "line": 57,
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%s_ub"
+            ],
+            "outputs": [
+              "%m_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 58,
+            "op": "hivm.hir.vsub",
+            "text": "hivm.hir.vsub {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_ub, %m_ub : memref<64x32xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%s_ub",
+              "%m_ub"
+            ],
+            "outputs": [
+              "%p_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 59,
+            "op": "hivm.hir.vexp",
+            "text": "hivm.hir.vexp {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 2 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%p_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 60,
+            "op": "hivm.hir.vreduce",
+            "text": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 3 : i64} ins(%p_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub"
+            ],
+            "outputs": [
+              "%l_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 71,
+            "op": "hivm.hir.vdiv",
+            "text": "hivm.hir.vdiv {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 4 : i64} ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%acc_ub",
+              "%l_ub"
+            ],
+            "outputs": [
+              "%acc_ub"
+            ],
+            "notes": []
+          }
+        ],
+        "fixpipe_ops": [
+          {
+            "line": 56,
+            "op": "hivm.hir.fixpipe",
+            "text": "hivm.hir.fixpipe {hivm.cv.pipeline_hint = true, hivm.cv.role = \"fixpipe\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "fixpipe_stage",
+              "cv_boundary_candidate"
+            ],
+            "inputs": [
+              "%s_l0c"
+            ],
+            "outputs": [
+              "%s_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 64,
+            "op": "hivm.hir.fixpipe",
+            "text": "hivm.hir.fixpipe {hivm.cv.pipeline_hint = true, hivm.cv.role = \"fixpipe\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "fixpipe_stage",
+              "cv_boundary_candidate"
+            ],
+            "inputs": [
+              "%s_l0c"
+            ],
+            "outputs": [
+              "%acc_ub"
+            ],
+            "notes": []
+          }
+        ],
+        "store_ops": [
+          {
+            "line": 73,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%o_ub"
+            ],
+            "outputs": [
+              "%O_gm"
+            ],
+            "notes": []
+          }
+        ],
+        "sync_ops": [
+          {
+            "line": 53,
+            "op": "hivm.hir.barrier",
+            "text": "hivm.hir.barrier {mode = \"ALL\"}",
+            "known_by_schema": true,
+            "syntax_family": "legacy_or_project_sample_barrier",
+            "roles": [
+              "coarse_sync_barrier"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 68,
+            "op": "hivm.hir.barrier",
+            "text": "hivm.hir.barrier {mode = \"ALL\"}",
+            "known_by_schema": true,
+            "syntax_family": "legacy_or_project_sample_barrier",
+            "roles": [
+              "coarse_sync_barrier"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          }
+        ]
+      },
+      "backend_mutation_request_template": {
+        "mutation_kind": "cv_pipeline_stage_reorder",
+        "requested_stage_num": 2,
+        "producer_consumer_distance": 1,
+        "requires_multibuffer_pingpong": true,
+        "requires_syncplan_events": true
+      },
+      "must_prove_before_mutate": [
+        "stage_dependency_is_linear_or_backend_can_schedule",
+        "no_cross_tile_reduction_or_side_effect_blocks_reorder",
+        "pingpong_buffer_available_for_prefetch_or_overlap",
+        "prologue_steady_state_epilogue_constructed",
+        "DES_or_trace_shows_expected_overlap_before_claiming_pipeline_success"
+      ],
+      "blocked_or_missing": [],
+      "status": "READY_FOR_BACKEND_DRY_RUN"
+    },
+    "tiling_plan_readiness": {
+      "plan": "TilingPlan",
+      "purpose": "把 tile_m/tile_n/tile_k 从策略参数落到 loop split、index remap、load/store slice 和 tail mask。",
+      "selected_knobs": {
+        "tile_m": 32,
+        "tile_n": 64,
+        "tile_k": 128,
+        "logical_axes": [
+          "axis_m",
+          "axis_n",
+          "axis_k"
+        ],
+        "generic_logical_axes_evidence": {
+          "primary_tile_candidate": {
+            "tile_m": 64,
+            "tile_n": 32,
+            "tile_k": 128
+          },
+          "candidate_tiles_from_cube_ops": [
+            {
+              "tile_m": 64,
+              "tile_n": 32,
+              "tile_k": 128
+            },
+            {
+              "tile_m": 64,
+              "tile_n": 32,
+              "tile_k": 32
+            }
+          ],
+          "conventional_tensor_signature": {
+            "detected": true,
+            "Q_gm": [
+              64,
+              128
+            ],
+            "K_gm": [
+              1024,
+              128
+            ],
+            "V_gm": [
+              1024,
+              128
+            ],
+            "O_gm": [
+              64,
+              128
+            ],
+            "note": "name-based conventional tensor signature; used as evidence only, not a hard-coded kernel family"
+          }
+        },
+        "loop_order": "outer_mkn",
+        "tail_strategy": "mask_or_pad",
+        "reduce_tile_policy": "half_k",
+        "layout_aware_tile": true
+      },
+      "anchors": {
+        "loop_ops": [
+          {
+            "line": 42,
+            "text": "scf.for %j = %c0 to %c1024 step %c32 {   // @trip=32",
+            "kind": "scf.for"
+          }
+        ],
+        "cube_compute_ops": [
+          {
+            "line": 55,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%q_l1, %k_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%q_l1",
+              "%k_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          },
+          {
+            "line": 63,
+            "op": "hivm.hir.mmad",
+            "text": "hivm.hir.mmad {hivm.cv.pipeline_hint = true, hivm.cv.role = \"cube\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 1 : i64} ins(%p_ub, %v_l1 : memref<64x32xf32, #hivm.address_space<ub>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x32xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%p_ub",
+              "%v_l1"
+            ],
+            "outputs": [
+              "%s_l0c"
+            ],
+            "notes": []
+          }
+        ],
+        "load_ops": [
+          {
+            "line": 43,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%Q_gm"
+            ],
+            "outputs": [
+              "%q_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 46,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%K_gm"
+            ],
+            "outputs": [
+              "%k_ub"
+            ],
+            "notes": []
+          },
+          {
+            "line": 47,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%V_gm"
+            ],
+            "outputs": [
+              "%v_ub"
+            ],
+            "notes": []
+          }
+        ],
+        "store_ops": [
+          {
+            "line": 73,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%o_ub"
+            ],
+            "outputs": [
+              "%O_gm"
+            ],
+            "notes": []
+          }
+        ]
+      },
+      "backend_mutation_request_template": {
+        "mutation_kind": "tiling_hint_or_restricted_loop_tiling",
+        "tile_m": 32,
+        "tile_n": 64,
+        "tile_k": 128,
+        "loop_order": "outer_mkn",
+        "tail_strategy": "mask_or_pad",
+        "v1_mode": "emit_hint_and_legality_report_only"
+      },
+      "must_prove_before_mutate": [
+        "loop_bounds_and_induction_vars_identified",
+        "load_store_slice_mapping_identified",
+        "tail_mask_semantics_defined",
+        "capacity_after_tiling_passes",
+        "roundtrip_and_verify_pass"
+      ],
+      "blocked_or_missing": [
+        "true_loop_index_slice_tailmask_rewrite_deferred_to_backend_MLIR_pass"
+      ],
+      "status": "REPORT_AND_HINT_ONLY_V1"
+    }
+  },
+  "recommended_next_backend_milestone": {
+    "name": "SyncPlan + MultiBufferPlan backend dry-run",
+    "why": "SyncPlan is the safest first true rewrite; MultiBuffer buffer clone is the necessary foundation for CVPipeline overlap.",
+    "requires_user_run": false,
+    "requires_user_run_when": "Only when compiling/running real vTriton/HivmOpsEditor backend."
+  }
+}

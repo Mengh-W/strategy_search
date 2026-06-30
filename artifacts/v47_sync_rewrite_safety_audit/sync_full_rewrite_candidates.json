@@ -1,0 +1,526 @@
+{
+  "schema_version": "hivm_sync_full_rewrite_candidate_report_v1",
+  "num_candidate_actions": 74,
+  "max_actions": 999999,
+  "allow_pipe_all": false,
+  "candidate_actions": [
+    {
+      "action_id": "sync_dryrun_barrier_001_line_301",
+      "line": 301,
+      "pipe": "PIPE_MTE2",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_003_line_361",
+      "line": 361,
+      "pipe": "PIPE_MTE2",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_006_line_645",
+      "line": 645,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_007_line_648",
+      "line": 648,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_008_line_651",
+      "line": 651,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_009_line_654",
+      "line": 654,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_010_line_662",
+      "line": 662,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_011_line_684",
+      "line": 684,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_012_line_687",
+      "line": 687,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_013_line_774",
+      "line": 774,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_014_line_779",
+      "line": 779,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_015_line_784",
+      "line": 784,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_016_line_788",
+      "line": 788,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_017_line_880",
+      "line": 880,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_018_line_905",
+      "line": 905,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_019_line_908",
+      "line": 908,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_020_line_911",
+      "line": 911,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_021_line_914",
+      "line": 914,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_022_line_919",
+      "line": 919,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_023_line_922",
+      "line": 922,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_024_line_930",
+      "line": 930,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_025_line_934",
+      "line": 934,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_026_line_939",
+      "line": 939,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_027_line_943",
+      "line": 943,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_028_line_947",
+      "line": 947,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_029_line_976",
+      "line": 976,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_030_line_1158",
+      "line": 1158,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_031_line_1162",
+      "line": 1162,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_032_line_1166",
+      "line": 1166,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_033_line_1184",
+      "line": 1184,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_034_line_1203",
+      "line": 1203,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_035_line_1222",
+      "line": 1222,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_038_line_1273",
+      "line": 1273,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_039_line_1277",
+      "line": 1277,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_040_line_1280",
+      "line": 1280,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_041_line_1317",
+      "line": 1317,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_042_line_1342",
+      "line": 1342,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_043_line_1346",
+      "line": 1346,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_044_line_1351",
+      "line": 1351,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_045_line_1354",
+      "line": 1354,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_046_line_1362",
+      "line": 1362,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_047_line_1370",
+      "line": 1370,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_048_line_1374",
+      "line": 1374,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_049_line_1382",
+      "line": 1382,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_050_line_1386",
+      "line": 1386,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_051_line_1394",
+      "line": 1394,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_052_line_1403",
+      "line": 1403,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_053_line_1408",
+      "line": 1408,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_054_line_1412",
+      "line": 1412,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_055_line_1416",
+      "line": 1416,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_056_line_1461",
+      "line": 1461,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_057_line_1475",
+      "line": 1475,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_058_line_1479",
+      "line": 1479,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_059_line_1510",
+      "line": 1510,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_060_line_1514",
+      "line": 1514,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_061_line_1523",
+      "line": 1523,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_062_line_1527",
+      "line": 1527,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_063_line_1536",
+      "line": 1536,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_064_line_1540",
+      "line": 1540,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_065_line_1545",
+      "line": 1545,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_066_line_1553",
+      "line": 1553,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_067_line_1603",
+      "line": 1603,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_068_line_1607",
+      "line": 1607,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_069_line_1615",
+      "line": 1615,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_070_line_1620",
+      "line": 1620,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_071_line_1624",
+      "line": 1624,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_072_line_1632",
+      "line": 1632,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_073_line_1636",
+      "line": 1636,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_074_line_1640",
+      "line": 1640,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_075_line_1644",
+      "line": 1644,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_076_line_1653",
+      "line": 1653,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_077_line_1657",
+      "line": 1657,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_078_line_1683",
+      "line": 1683,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    },
+    {
+      "action_id": "sync_dryrun_barrier_079_line_1688",
+      "line": 1688,
+      "pipe": "PIPE_V",
+      "risk": "medium_same_pipe_barrier_emulation",
+      "reason_selected": "non_PIPE_ALL pipe_barrier action with textual line anchor"
+    }
+  ]
+}

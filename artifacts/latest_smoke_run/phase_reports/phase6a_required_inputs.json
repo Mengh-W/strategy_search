@@ -1,0 +1,33 @@
+{
+  "must_provide_for_real_phase6_positive_case": [
+    {
+      "item": "vTriton source tree or internal HivmOpsEditor source tree",
+      "why": "Needed to build/verify a real Operation-level backend instead of text scanner or fake fixture.",
+      "cli": "--vtriton-source-root /path/to/vTriton"
+    },
+    {
+      "item": "built HIVM Operation backend binary",
+      "why": "Must support --print-capabilities, --inventory, --roundtrip, --verify-only, --dry-run, and guarded --mutate modes.",
+      "cli": "--hivm-operation-backend /path/to/hivm-operation-backend"
+    },
+    {
+      "item": "built tritonsim-hivm binary",
+      "why": "Needed for real DES/trace validation after mutation.",
+      "cli": "--tritonsim-hivm /path/to/tritonsim-hivm --run-vtriton-validation"
+    },
+    {
+      "item": "one positive restricted HIVM fixture",
+      "why": "Needed to prove one Q-load hoist or GM-deletion mutation end-to-end with verifier and DES/trace.",
+      "example": "simple attention-like or matmul-like .hivm.mlir with explicit Q load in KV loop or same-offset GM round-trip."
+    },
+    {
+      "item": "expected parser/dialect version notes",
+      "why": "Needed to diagnose MLIR dialect mismatch rather than treating parser failure as optimizer failure."
+    }
+  ],
+  "optional_but_useful": [
+    "compile_commands.json or build directory for the backend",
+    "real hardware run script and msprof command if Phase 6D/Phase 7 proceeds",
+    "known-good original/optimized DES graph and Perfetto trace examples"
+  ]
+}

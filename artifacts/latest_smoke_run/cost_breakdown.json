@@ -1,0 +1,4764 @@
+{
+  "selected_strategy_id": "candidate_01681",
+  "selected_cost_breakdown": {
+    "warmup_drain": 19.057779866955215,
+    "per_tile_load_exposed": 133.31325923306005,
+    "per_tile_store_exposed": 120.34888044198885,
+    "per_tile_workspace_exposed": 0.0,
+    "gm_workspace_bytes": 0.0,
+    "gm_workspace_bytes_per_tile_total": 0.0,
+    "workspace_detail": {
+      "enabled": false,
+      "policy": "none",
+      "workspace_bytes": 0,
+      "bytes_per_tile_read": 0,
+      "bytes_per_tile_write": 0,
+      "bytes_per_tile_total": 0,
+      "active_blocks": 0,
+      "stage": 2,
+      "handoff_bytes_per_stage": 0
+    },
+    "per_tile_cube_vector_pipeline": 259.54518079179053,
+    "per_tile_steady": 310.68413982168744,
+    "template_schedule_overhead": 12.124341741395511,
+    "scalar_control_time": 19.956837421546133,
+    "scalar_control_detail": {
+      "enabled": true,
+      "source": "mlir_only",
+      "kernel_type": "memory_or_layout_heavy",
+      "scalar_score": 49.72,
+      "sync_score_for_scalar_term": 6.0,
+      "scalar_family_counts": {
+        "arith_scalar": 0,
+        "index_cast": 0,
+        "reinterpret_cast": 0,
+        "pointer_cast": 0,
+        "apply": 0,
+        "scalar_load": 3,
+        "scf_for": 1,
+        "scf_if": 0,
+        "get_block_idx": 0,
+        "set_mask_norm": 0,
+        "set_ffts_base_addr": 0
+      },
+      "scalar_control_multiplier": 1.0465022079824602,
+      "small_tile_scalar_penalty_scale": 1.0301257,
+      "loop_weighted_scalar_multiplier": 1.0301257,
+      "alignment_penalty_scale": 1.0,
+      "loop_weighted_scalar_ops": 2.4,
+      "inner_loop_sync_count": 0.0,
+      "fragmentation_factor": 2.158844271553933,
+      "base_per_tile_cycles": 8.32434,
+      "per_tile_scalar_control_cycles": 19.956837421546133,
+      "uses_profiling_target": false
+    },
+    "kernel_cost_profile": {
+      "enabled": true,
+      "source": "mlir_only",
+      "uses_profiling_target": false,
+      "kernel_type": "memory_or_layout_heavy",
+      "dominant_component": "memory",
+      "ratios": {
+        "compute": 0.023910465792652914,
+        "memory": 0.9236487091145018,
+        "vector": 0.021276119736900984,
+        "scalar": 0.027808850507852697,
+        "sync": 0.003355854848091637
+      },
+      "static_ratios": {
+        "compute": 0.023910465792652914,
+        "memory": 0.9236487091145018,
+        "vector": 0.021276119736900984,
+        "scalar": 0.027808850507852697,
+        "sync": 0.003355854848091637
+      },
+      "product_ratios": {},
+      "weights": {
+        "compute_cycle_correction": 1.0188692558951182,
+        "memory_cycle_correction": 1.45,
+        "vector_cycle_correction": 0.9853190299342253,
+        "scalar_cycle_correction": 1.0465022079824602,
+        "sync_cycle_correction": 1.002852476620878,
+        "small_tile_fragmentation_correction": 1.0301257,
+        "memory_path_cycle_correction": 1.120326191742102,
+        "alignment_cycle_correction": 1.0,
+        "workspace_pressure_correction": 1.0599058150206087,
+        "overlap_confidence": 1.05,
+        "cv_overlap_confidence": 1.05,
+        "cv_pattern_opportunity_correction": 1.0825,
+        "compute_multiplier": 1.0188692558951182,
+        "memory_multiplier": 1.45,
+        "vector_multiplier": 0.9853190299342253,
+        "scalar_control_multiplier": 1.0465022079824602,
+        "sync_multiplier": 1.002852476620878,
+        "small_tile_scalar_penalty_scale": 1.0301257,
+        "memory_path_multiplier": 1.120326191742102,
+        "alignment_penalty_scale": 1.0,
+        "buffer_pressure_scale": 1.0599058150206087,
+        "overlap_reward_scale": 1.05,
+        "cv_reward_scale": 1.05,
+        "cube_reward_scale": 1.0,
+        "cv_pattern_opportunity_scale": 1.0825,
+        "loop_weighted_scalar_multiplier": 1.0301257
+      },
+      "raw_features": {
+        "compute_score": 42.75,
+        "memory_score": 1651.41,
+        "vector_score": 38.040000000000006,
+        "scalar_score": 49.72,
+        "sync_score": 6.0,
+        "scalar_family_counts": {
+          "arith_scalar": 0,
+          "index_cast": 0,
+          "reinterpret_cast": 0,
+          "pointer_cast": 0,
+          "apply": 0,
+          "scalar_load": 3,
+          "scf_for": 1,
+          "scf_if": 0,
+          "get_block_idx": 0,
+          "set_mask_norm": 0,
+          "set_ffts_base_addr": 0
+        },
+        "trace_scalar_hint": 0.0,
+        "trace_sync_hint": 0.0,
+        "product_pipe_fraction": {},
+        "product_critical_pipe": null,
+        "advanced_mlir_features": {
+          "loop_weighted": {
+            "max_loop_depth": 3,
+            "flat_counts_by_component": {
+              "compute": 2,
+              "memory": 5,
+              "vector": 5,
+              "scalar": 1,
+              "sync": 0
+            },
+            "loop_weighted_counts_by_component": {
+              "compute": 5.9,
+              "memory": 14.75,
+              "vector": 12.8,
+              "scalar": 2.4,
+              "sync": 0.0
+            },
+            "inner_loop_counts_by_component": {
+              "compute": 2,
+              "memory": 5,
+              "vector": 5,
+              "scalar": 0,
+              "sync": 0
+            },
+            "loop_weighted_ratios": {
+              "compute": 0.164575,
+              "memory": 0.411437,
+              "vector": 0.357043,
+              "scalar": 0.066946,
+              "sync": 0.0
+            },
+            "inner_loop_sync_count": 0,
+            "inner_loop_scalar_count": 0
+          },
+          "memory_path": {
+            "path_counts": {
+              "gm->ub": 3,
+              "ub->l1": 3,
+              "l0c->ub": 2,
+              "ub->gm": 1
+            },
+            "path_bytes": {
+              "gm->ub": 540672,
+              "ub->l1": 32768,
+              "l0c->ub": 40960,
+              "ub->gm": 16384
+            },
+            "op_bytes": {
+              "copy": 0,
+              "nd2nz": 32768,
+              "fixpipe": 40960,
+              "load_store": 557056
+            },
+            "total_path_bytes": 630784,
+            "gm_related_bytes": 557056,
+            "l0_l1_related_bytes": 73728
+          },
+          "buffer_lifetime": {
+            "by_space": {
+              "ub": {
+                "count": 9,
+                "bytes": 98816,
+                "span_sum": 253,
+                "byte_span_sum": 3031296,
+                "max_span": 43,
+                "avg_span": 28.11111111111111
+              },
+              "l1": {
+                "count": 3,
+                "bytes": 32768,
+                "span_sum": 65,
+                "byte_span_sum": 696320,
+                "max_span": 26,
+                "avg_span": 21.666666666666668
+              },
+              "l0c": {
+                "count": 1,
+                "bytes": 8192,
+                "span_sum": 26,
+                "byte_span_sum": 212992,
+                "max_span": 26,
+                "avg_span": 26.0
+              }
+            },
+            "top_double_buffer_candidates": [
+              {
+                "name": "acc_ub",
+                "space": "ub",
+                "size_bytes": 32768,
+                "live_span": 43,
+                "double_buffer_benefit_proxy": 13.2314
+              },
+              {
+                "name": "o_ub",
+                "space": "ub",
+                "size_bytes": 16384,
+                "live_span": 33,
+                "double_buffer_benefit_proxy": 9.9909
+              },
+              {
+                "name": "q_l1",
+                "space": "l1",
+                "size_bytes": 16384,
+                "live_span": 20,
+                "double_buffer_benefit_proxy": 8.6258
+              },
+              {
+                "name": "q_ub",
+                "space": "ub",
+                "size_bytes": 16384,
+                "live_span": 18,
+                "double_buffer_benefit_proxy": 8.3422
+              },
+              {
+                "name": "p_ub",
+                "space": "ub",
+                "size_bytes": 8192,
+                "live_span": 33,
+                "double_buffer_benefit_proxy": 7.7482
+              },
+              {
+                "name": "s_ub",
+                "space": "ub",
+                "size_bytes": 8192,
+                "live_span": 29,
+                "double_buffer_benefit_proxy": 7.4732
+              },
+              {
+                "name": "v_l1",
+                "space": "l1",
+                "size_bytes": 8192,
+                "live_span": 26,
+                "double_buffer_benefit_proxy": 7.2417
+              },
+              {
+                "name": "k_l1",
+                "space": "l1",
+                "size_bytes": 8192,
+                "live_span": 19,
+                "double_buffer_benefit_proxy": 6.5823
+              },
+              {
+                "name": "k_ub",
+                "space": "ub",
+                "size_bytes": 8192,
+                "live_span": 16,
+                "double_buffer_benefit_proxy": 6.2252
+              },
+              {
+                "name": "v_ub",
+                "space": "ub",
+                "size_bytes": 8192,
+                "live_span": 16,
+                "double_buffer_benefit_proxy": 6.2252
+              },
+              {
+                "name": "l_ub",
+                "space": "ub",
+                "size_bytes": 256,
+                "live_span": 38,
+                "double_buffer_benefit_proxy": 0.8175
+              },
+              {
+                "name": "m_ub",
+                "space": "ub",
+                "size_bytes": 256,
+                "live_span": 27,
+                "double_buffer_benefit_proxy": 0.7436
+              }
+            ],
+            "num_candidate_buffers": 12
+          },
+          "sync_criticality": {
+            "sync_counts": {
+              "set_flag": 0,
+              "wait_flag": 0,
+              "pipe_barrier": 2,
+              "sync_block_set": 0,
+              "sync_block_wait": 0
+            },
+            "total_sync_ops": 2,
+            "inner_loop_sync_count": 0,
+            "event_pair_count": 0,
+            "missing_set_or_wait_pairs": 0,
+            "cross_pipe_event_pairs": 0,
+            "sync_criticality_proxy": 0.0
+          },
+          "alignment_tail": {
+            "dim_total": 96,
+            "dim_not_multiple_of_16": 0,
+            "dim_misalignment_ratio": 0.0,
+            "mask_or_tail_ops": 0,
+            "storage_aligned_annotations": 0,
+            "offset_count": 0,
+            "offset_not_32B_aligned": 0,
+            "offset_misalignment_ratio": 0.0
+          },
+          "sequence_patterns": {
+            "patterns": {
+              "copy_nd2nz_mmad": 0,
+              "mmad_fixpipe_vector": 2,
+              "vector_to_store": 1,
+              "sync_dense_pair": 0
+            },
+            "cv_pipeline_opportunity_proxy": 0.55,
+            "op_sequence_len": 75
+          }
+        },
+        "feature_strengths": {
+          "sync_criticality": 0.0,
+          "loop_scalar_ratio": 0.066946,
+          "memory_path_strength": 0.6016309587105096,
+          "buffer_pressure_strength": 0.1996860500686956,
+          "alignment_penalty_strength": 0.0,
+          "cv_pipeline_opportunity_proxy": 0.55
+        }
+      },
+      "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+    },
+    "mb_template_overhead": 6.933438125559702,
+    "cv_template_overhead": 5.19090361583581,
+    "tile_mix_penalty_cycles": 0.0,
+    "producer_consumer_penalty_cycles": 0.0,
+    "parallelized_tile_cycles": 310.68413982168744,
+    "sync_cost": 68.39826243147166,
+    "legality_risk_penalty": 113.81777095921578,
+    "total_cycles_before_plan_calibration": 492.90017321237485,
+    "plan_calibration_multiplier": 1.0,
+    "plan_calibration_detail": {
+      "enabled": false,
+      "multiplier": 1.0,
+      "applied": []
+    },
+    "sync_unknown_penalty": 79.93939185101507,
+    "event_reuse_penalty": 12.0,
+    "cv_estimated_penalty": 21.878379108200708,
+    "improvement_attribution": {
+      "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+      "positive_cost_components_cycles": {
+        "parallelized_tile_cycles": 310.68413982168744,
+        "sync_cost": 68.39826243147166,
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "legality_risk_penalty": 113.81777095921578
+      },
+      "optimistic_savings_proxies_per_tile": {
+        "load_overlap_saving": 369.7556435332045,
+        "store_overlap_saving": 69.92602934771683,
+        "cv_overlap_saving": 57.88463806071833,
+        "raw_cv_overlap_before_risk": 0.69334125,
+        "cv_estimated_overlap_multiplier": 0.65
+      },
+      "risk_adjustments_cycles": {
+        "sync_unknown_penalty": 79.93939185101507,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708
+      }
+    },
+    "risk_assessment": {
+      "risk_level": "HIGH",
+      "risk_score": 104.0,
+      "risk_mode": "conservative",
+      "risk_reasons": [
+        "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+        "sync legality is UNKNOWN without real sync_plan sidecar",
+        "uses event reuse; requires real event-id dependency validation",
+        "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+        "uses double/multi-buffer overlap assumptions"
+      ],
+      "scope_utilization": {
+        "ub": 0.2529296875,
+        "l1": 0.038818359375,
+        "l0a": 0.125,
+        "l0b": 0.25,
+        "l0c": 0.03515625,
+        "gm_ws": 0.0
+      }
+    },
+    "cost_risk_mode": "conservative",
+    "memory_pressure_penalty": 0.0,
+    "shape_regularization_penalty": 0.0,
+    "pressure_penalty_detail": {},
+    "shape_penalty_detail": {
+      "n_total": 1024,
+      "tile_n": 64,
+      "preferred_tile_n": [
+        64,
+        96,
+        128,
+        160,
+        192,
+        256
+      ],
+      "tail_n": 0,
+      "tail_fraction": 0.0,
+      "tail_penalty": 0.0,
+      "nearest_preferred_tile_n": 64,
+      "preferred_distance_fraction": 0.0,
+      "irregular_tile_n_penalty": 0.0,
+      "large_tile_n_penalty": 0.0,
+      "regularization_mode": "continuous_low_weight_capped"
+    },
+    "overlap_pressure_factor": 1.0,
+    "tail_efficiency": 1.0
+  },
+  "top_cost_breakdowns": [
+    {
+      "strategy_id": "candidate_01681",
+      "predicted_cycles": 492.90017321237485,
+      "cost_breakdown": {
+        "warmup_drain": 19.057779866955215,
+        "per_tile_load_exposed": 133.31325923306005,
+        "per_tile_store_exposed": 120.34888044198885,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 259.54518079179053,
+        "per_tile_steady": 310.68413982168744,
+        "template_schedule_overhead": 12.124341741395511,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 6.933438125559702,
+        "cv_template_overhead": 5.19090361583581,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 310.68413982168744,
+        "sync_cost": 68.39826243147166,
+        "legality_risk_penalty": 113.81777095921578,
+        "total_cycles_before_plan_calibration": 492.90017321237485,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 79.93939185101507,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 310.68413982168744,
+            "sync_cost": 68.39826243147166,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 113.81777095921578
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 369.7556435332045,
+            "store_overlap_saving": 69.92602934771683,
+            "cv_overlap_saving": 57.88463806071833,
+            "raw_cv_overlap_before_risk": 0.69334125,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 79.93939185101507,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01686",
+      "predicted_cycles": 492.90017321237485,
+      "cost_breakdown": {
+        "warmup_drain": 19.057779866955215,
+        "per_tile_load_exposed": 133.31325923306005,
+        "per_tile_store_exposed": 120.34888044198885,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 259.54518079179053,
+        "per_tile_steady": 310.68413982168744,
+        "template_schedule_overhead": 12.124341741395511,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 6.933438125559702,
+        "cv_template_overhead": 5.19090361583581,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 310.68413982168744,
+        "sync_cost": 68.39826243147166,
+        "legality_risk_penalty": 113.81777095921578,
+        "total_cycles_before_plan_calibration": 492.90017321237485,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 79.93939185101507,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 310.68413982168744,
+            "sync_cost": 68.39826243147166,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 113.81777095921578
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 369.7556435332045,
+            "store_overlap_saving": 69.92602934771683,
+            "cv_overlap_saving": 57.88463806071833,
+            "raw_cv_overlap_before_risk": 0.69334125,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 79.93939185101507,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01682",
+      "predicted_cycles": 496.2975754741452,
+      "cost_breakdown": {
+        "warmup_drain": 19.057779866955215,
+        "per_tile_load_exposed": 133.31325923306005,
+        "per_tile_store_exposed": 120.34888044198885,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 259.54518079179053,
+        "per_tile_steady": 310.68413982168744,
+        "template_schedule_overhead": 12.124341741395511,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 6.933438125559702,
+        "cv_template_overhead": 5.19090361583581,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 310.68413982168744,
+        "sync_cost": 70.91485669944964,
+        "legality_risk_penalty": 114.69857895300808,
+        "total_cycles_before_plan_calibration": 496.2975754741452,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 80.82019984480738,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 310.68413982168744,
+            "sync_cost": 70.91485669944964,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 114.69857895300808
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 369.7556435332045,
+            "store_overlap_saving": 69.92602934771683,
+            "cv_overlap_saving": 57.88463806071833,
+            "raw_cv_overlap_before_risk": 0.69334125,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 80.82019984480738,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01717",
+      "predicted_cycles": 496.36689227515467,
+      "cost_breakdown": {
+        "warmup_drain": 19.057779866955215,
+        "per_tile_load_exposed": 128.03103575401423,
+        "per_tile_store_exposed": 110.3594476780293,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 259.54518079179053,
+        "per_tile_steady": 314.15085888446725,
+        "template_schedule_overhead": 15.591060804175363,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 10.400157188339552,
+        "cv_template_overhead": 5.19090361583581,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 314.15085888446725,
+        "sync_cost": 68.39826243147166,
+        "legality_risk_penalty": 113.81777095921578,
+        "total_cycles_before_plan_calibration": 496.36689227515467,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 79.93939185101507,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 314.15085888446725,
+            "sync_cost": 68.39826243147166,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 113.81777095921578
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 375.0378670122503,
+            "store_overlap_saving": 79.91546211167638,
+            "cv_overlap_saving": 57.88463806071833,
+            "raw_cv_overlap_before_risk": 0.69334125,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 79.93939185101507,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01722",
+      "predicted_cycles": 496.36689227515467,
+      "cost_breakdown": {
+        "warmup_drain": 19.057779866955215,
+        "per_tile_load_exposed": 128.03103575401423,
+        "per_tile_store_exposed": 110.3594476780293,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 259.54518079179053,
+        "per_tile_steady": 314.15085888446725,
+        "template_schedule_overhead": 15.591060804175363,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 10.400157188339552,
+        "cv_template_overhead": 5.19090361583581,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 314.15085888446725,
+        "sync_cost": 68.39826243147166,
+        "legality_risk_penalty": 113.81777095921578,
+        "total_cycles_before_plan_calibration": 496.36689227515467,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 79.93939185101507,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 314.15085888446725,
+            "sync_cost": 68.39826243147166,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 113.81777095921578
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 375.0378670122503,
+            "store_overlap_saving": 79.91546211167638,
+            "cv_overlap_saving": 57.88463806071833,
+            "raw_cv_overlap_before_risk": 0.69334125,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 79.93939185101507,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01685",
+      "predicted_cycles": 498.3180950217911,
+      "cost_breakdown": {
+        "warmup_drain": 19.057779866955215,
+        "per_tile_load_exposed": 133.31325923306005,
+        "per_tile_store_exposed": 120.34888044198885,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 259.54518079179053,
+        "per_tile_steady": 310.68413982168744,
+        "template_schedule_overhead": 12.124341741395511,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 6.933438125559702,
+        "cv_template_overhead": 5.19090361583581,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 310.68413982168744,
+        "sync_cost": 72.41153784585404,
+        "legality_risk_penalty": 115.22241735424961,
+        "total_cycles_before_plan_calibration": 498.3180950217911,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 81.34403824604891,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 310.68413982168744,
+            "sync_cost": 72.41153784585404,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 115.22241735424961
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 369.7556435332045,
+            "store_overlap_saving": 69.92602934771683,
+            "cv_overlap_saving": 57.88463806071833,
+            "raw_cv_overlap_before_risk": 0.69334125,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 81.34403824604891,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01683",
+      "predicted_cycles": 498.45955873163535,
+      "cost_breakdown": {
+        "warmup_drain": 19.057779866955215,
+        "per_tile_load_exposed": 133.31325923306005,
+        "per_tile_store_exposed": 120.34888044198885,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 259.54518079179053,
+        "per_tile_steady": 310.68413982168744,
+        "template_schedule_overhead": 12.124341741395511,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 6.933438125559702,
+        "cv_template_overhead": 5.19090361583581,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 310.68413982168744,
+        "sync_cost": 72.51632577907199,
+        "legality_risk_penalty": 115.2590931308759,
+        "total_cycles_before_plan_calibration": 498.45955873163535,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 81.38071402267519,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 310.68413982168744,
+            "sync_cost": 72.51632577907199,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 115.2590931308759
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 369.7556435332045,
+            "store_overlap_saving": 69.92602934771683,
+            "cv_overlap_saving": 57.88463806071833,
+            "raw_cv_overlap_before_risk": 0.69334125,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 81.38071402267519,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01669",
+      "predicted_cycles": 499.4595752287887,
+      "cost_breakdown": {
+        "warmup_drain": 19.209608425802998,
+        "per_tile_load_exposed": 133.31325923306005,
+        "per_tile_store_exposed": 120.34888044198885,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 267.1366087341798,
+        "per_tile_steady": 317.2435418381013,
+        "template_schedule_overhead": 10.9404872565724,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 6.933438125559702,
+        "cv_template_overhead": 4.007049131012697,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 317.2435418381013,
+        "sync_cost": 68.39826243147166,
+        "legality_risk_penalty": 113.81777095921578,
+        "total_cycles_before_plan_calibration": 499.4595752287887,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 79.93939185101507,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 317.2435418381013,
+            "sync_cost": 68.39826243147166,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 113.81777095921578
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 369.7556435332045,
+            "store_overlap_saving": 69.92602934771683,
+            "cv_overlap_saving": 50.29321011832905,
+            "raw_cv_overlap_before_risk": 0.6024112500000002,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 79.93939185101507,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01674",
+      "predicted_cycles": 499.4595752287887,
+      "cost_breakdown": {
+        "warmup_drain": 19.209608425802998,
+        "per_tile_load_exposed": 133.31325923306005,
+        "per_tile_store_exposed": 120.34888044198885,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 267.1366087341798,
+        "per_tile_steady": 317.2435418381013,
+        "template_schedule_overhead": 10.9404872565724,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 6.933438125559702,
+        "cv_template_overhead": 4.007049131012697,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 317.2435418381013,
+        "sync_cost": 68.39826243147166,
+        "legality_risk_penalty": 113.81777095921578,
+        "total_cycles_before_plan_calibration": 499.4595752287887,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 79.93939185101507,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 317.2435418381013,
+            "sync_cost": 68.39826243147166,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 113.81777095921578
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 369.7556435332045,
+            "store_overlap_saving": 69.92602934771683,
+            "cv_overlap_saving": 50.29321011832905,
+            "raw_cv_overlap_before_risk": 0.6024112500000002,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 79.93939185101507,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    },
+    {
+      "strategy_id": "candidate_01718",
+      "predicted_cycles": 499.76429453692504,
+      "cost_breakdown": {
+        "warmup_drain": 19.057779866955215,
+        "per_tile_load_exposed": 128.03103575401423,
+        "per_tile_store_exposed": 110.3594476780293,
+        "per_tile_workspace_exposed": 0.0,
+        "gm_workspace_bytes": 0.0,
+        "gm_workspace_bytes_per_tile_total": 0.0,
+        "workspace_detail": {
+          "enabled": false,
+          "policy": "none",
+          "workspace_bytes": 0,
+          "bytes_per_tile_read": 0,
+          "bytes_per_tile_write": 0,
+          "bytes_per_tile_total": 0,
+          "active_blocks": 0,
+          "stage": 2,
+          "handoff_bytes_per_stage": 0
+        },
+        "per_tile_cube_vector_pipeline": 259.54518079179053,
+        "per_tile_steady": 314.15085888446725,
+        "template_schedule_overhead": 15.591060804175363,
+        "scalar_control_time": 19.956837421546133,
+        "scalar_control_detail": {
+          "enabled": true,
+          "source": "mlir_only",
+          "kernel_type": "memory_or_layout_heavy",
+          "scalar_score": 49.72,
+          "sync_score_for_scalar_term": 6.0,
+          "scalar_family_counts": {
+            "arith_scalar": 0,
+            "index_cast": 0,
+            "reinterpret_cast": 0,
+            "pointer_cast": 0,
+            "apply": 0,
+            "scalar_load": 3,
+            "scf_for": 1,
+            "scf_if": 0,
+            "get_block_idx": 0,
+            "set_mask_norm": 0,
+            "set_ffts_base_addr": 0
+          },
+          "scalar_control_multiplier": 1.0465022079824602,
+          "small_tile_scalar_penalty_scale": 1.0301257,
+          "loop_weighted_scalar_multiplier": 1.0301257,
+          "alignment_penalty_scale": 1.0,
+          "loop_weighted_scalar_ops": 2.4,
+          "inner_loop_sync_count": 0.0,
+          "fragmentation_factor": 2.158844271553933,
+          "base_per_tile_cycles": 8.32434,
+          "per_tile_scalar_control_cycles": 19.956837421546133,
+          "uses_profiling_target": false
+        },
+        "kernel_cost_profile": {
+          "enabled": true,
+          "source": "mlir_only",
+          "uses_profiling_target": false,
+          "kernel_type": "memory_or_layout_heavy",
+          "dominant_component": "memory",
+          "ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "static_ratios": {
+            "compute": 0.023910465792652914,
+            "memory": 0.9236487091145018,
+            "vector": 0.021276119736900984,
+            "scalar": 0.027808850507852697,
+            "sync": 0.003355854848091637
+          },
+          "product_ratios": {},
+          "weights": {
+            "compute_cycle_correction": 1.0188692558951182,
+            "memory_cycle_correction": 1.45,
+            "vector_cycle_correction": 0.9853190299342253,
+            "scalar_cycle_correction": 1.0465022079824602,
+            "sync_cycle_correction": 1.002852476620878,
+            "small_tile_fragmentation_correction": 1.0301257,
+            "memory_path_cycle_correction": 1.120326191742102,
+            "alignment_cycle_correction": 1.0,
+            "workspace_pressure_correction": 1.0599058150206087,
+            "overlap_confidence": 1.05,
+            "cv_overlap_confidence": 1.05,
+            "cv_pattern_opportunity_correction": 1.0825,
+            "compute_multiplier": 1.0188692558951182,
+            "memory_multiplier": 1.45,
+            "vector_multiplier": 0.9853190299342253,
+            "scalar_control_multiplier": 1.0465022079824602,
+            "sync_multiplier": 1.002852476620878,
+            "small_tile_scalar_penalty_scale": 1.0301257,
+            "memory_path_multiplier": 1.120326191742102,
+            "alignment_penalty_scale": 1.0,
+            "buffer_pressure_scale": 1.0599058150206087,
+            "overlap_reward_scale": 1.05,
+            "cv_reward_scale": 1.05,
+            "cube_reward_scale": 1.0,
+            "cv_pattern_opportunity_scale": 1.0825,
+            "loop_weighted_scalar_multiplier": 1.0301257
+          },
+          "raw_features": {
+            "compute_score": 42.75,
+            "memory_score": 1651.41,
+            "vector_score": 38.040000000000006,
+            "scalar_score": 49.72,
+            "sync_score": 6.0,
+            "scalar_family_counts": {
+              "arith_scalar": 0,
+              "index_cast": 0,
+              "reinterpret_cast": 0,
+              "pointer_cast": 0,
+              "apply": 0,
+              "scalar_load": 3,
+              "scf_for": 1,
+              "scf_if": 0,
+              "get_block_idx": 0,
+              "set_mask_norm": 0,
+              "set_ffts_base_addr": 0
+            },
+            "trace_scalar_hint": 0.0,
+            "trace_sync_hint": 0.0,
+            "product_pipe_fraction": {},
+            "product_critical_pipe": null,
+            "advanced_mlir_features": {
+              "loop_weighted": {
+                "max_loop_depth": 3,
+                "flat_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 1,
+                  "sync": 0
+                },
+                "loop_weighted_counts_by_component": {
+                  "compute": 5.9,
+                  "memory": 14.75,
+                  "vector": 12.8,
+                  "scalar": 2.4,
+                  "sync": 0.0
+                },
+                "inner_loop_counts_by_component": {
+                  "compute": 2,
+                  "memory": 5,
+                  "vector": 5,
+                  "scalar": 0,
+                  "sync": 0
+                },
+                "loop_weighted_ratios": {
+                  "compute": 0.164575,
+                  "memory": 0.411437,
+                  "vector": 0.357043,
+                  "scalar": 0.066946,
+                  "sync": 0.0
+                },
+                "inner_loop_sync_count": 0,
+                "inner_loop_scalar_count": 0
+              },
+              "memory_path": {
+                "path_counts": {
+                  "gm->ub": 3,
+                  "ub->l1": 3,
+                  "l0c->ub": 2,
+                  "ub->gm": 1
+                },
+                "path_bytes": {
+                  "gm->ub": 540672,
+                  "ub->l1": 32768,
+                  "l0c->ub": 40960,
+                  "ub->gm": 16384
+                },
+                "op_bytes": {
+                  "copy": 0,
+                  "nd2nz": 32768,
+                  "fixpipe": 40960,
+                  "load_store": 557056
+                },
+                "total_path_bytes": 630784,
+                "gm_related_bytes": 557056,
+                "l0_l1_related_bytes": 73728
+              },
+              "buffer_lifetime": {
+                "by_space": {
+                  "ub": {
+                    "count": 9,
+                    "bytes": 98816,
+                    "span_sum": 253,
+                    "byte_span_sum": 3031296,
+                    "max_span": 43,
+                    "avg_span": 28.11111111111111
+                  },
+                  "l1": {
+                    "count": 3,
+                    "bytes": 32768,
+                    "span_sum": 65,
+                    "byte_span_sum": 696320,
+                    "max_span": 26,
+                    "avg_span": 21.666666666666668
+                  },
+                  "l0c": {
+                    "count": 1,
+                    "bytes": 8192,
+                    "span_sum": 26,
+                    "byte_span_sum": 212992,
+                    "max_span": 26,
+                    "avg_span": 26.0
+                  }
+                },
+                "top_double_buffer_candidates": [
+                  {
+                    "name": "acc_ub",
+                    "space": "ub",
+                    "size_bytes": 32768,
+                    "live_span": 43,
+                    "double_buffer_benefit_proxy": 13.2314
+                  },
+                  {
+                    "name": "o_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 9.9909
+                  },
+                  {
+                    "name": "q_l1",
+                    "space": "l1",
+                    "size_bytes": 16384,
+                    "live_span": 20,
+                    "double_buffer_benefit_proxy": 8.6258
+                  },
+                  {
+                    "name": "q_ub",
+                    "space": "ub",
+                    "size_bytes": 16384,
+                    "live_span": 18,
+                    "double_buffer_benefit_proxy": 8.3422
+                  },
+                  {
+                    "name": "p_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 33,
+                    "double_buffer_benefit_proxy": 7.7482
+                  },
+                  {
+                    "name": "s_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 29,
+                    "double_buffer_benefit_proxy": 7.4732
+                  },
+                  {
+                    "name": "v_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 26,
+                    "double_buffer_benefit_proxy": 7.2417
+                  },
+                  {
+                    "name": "k_l1",
+                    "space": "l1",
+                    "size_bytes": 8192,
+                    "live_span": 19,
+                    "double_buffer_benefit_proxy": 6.5823
+                  },
+                  {
+                    "name": "k_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "v_ub",
+                    "space": "ub",
+                    "size_bytes": 8192,
+                    "live_span": 16,
+                    "double_buffer_benefit_proxy": 6.2252
+                  },
+                  {
+                    "name": "l_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 38,
+                    "double_buffer_benefit_proxy": 0.8175
+                  },
+                  {
+                    "name": "m_ub",
+                    "space": "ub",
+                    "size_bytes": 256,
+                    "live_span": 27,
+                    "double_buffer_benefit_proxy": 0.7436
+                  }
+                ],
+                "num_candidate_buffers": 12
+              },
+              "sync_criticality": {
+                "sync_counts": {
+                  "set_flag": 0,
+                  "wait_flag": 0,
+                  "pipe_barrier": 2,
+                  "sync_block_set": 0,
+                  "sync_block_wait": 0
+                },
+                "total_sync_ops": 2,
+                "inner_loop_sync_count": 0,
+                "event_pair_count": 0,
+                "missing_set_or_wait_pairs": 0,
+                "cross_pipe_event_pairs": 0,
+                "sync_criticality_proxy": 0.0
+              },
+              "alignment_tail": {
+                "dim_total": 96,
+                "dim_not_multiple_of_16": 0,
+                "dim_misalignment_ratio": 0.0,
+                "mask_or_tail_ops": 0,
+                "storage_aligned_annotations": 0,
+                "offset_count": 0,
+                "offset_not_32B_aligned": 0,
+                "offset_misalignment_ratio": 0.0
+              },
+              "sequence_patterns": {
+                "patterns": {
+                  "copy_nd2nz_mmad": 0,
+                  "mmad_fixpipe_vector": 2,
+                  "vector_to_store": 1,
+                  "sync_dense_pair": 0
+                },
+                "cv_pipeline_opportunity_proxy": 0.55,
+                "op_sequence_len": 75
+              }
+            },
+            "feature_strengths": {
+              "sync_criticality": 0.0,
+              "loop_scalar_ratio": 0.066946,
+              "memory_path_strength": 0.6016309587105096,
+              "buffer_pressure_strength": 0.1996860500686956,
+              "alignment_penalty_strength": 0.0,
+              "cv_pipeline_opportunity_proxy": 0.55
+            }
+          },
+          "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score."
+        },
+        "mb_template_overhead": 10.400157188339552,
+        "cv_template_overhead": 5.19090361583581,
+        "tile_mix_penalty_cycles": 0.0,
+        "producer_consumer_penalty_cycles": 0.0,
+        "parallelized_tile_cycles": 314.15085888446725,
+        "sync_cost": 70.91485669944964,
+        "legality_risk_penalty": 114.69857895300808,
+        "total_cycles_before_plan_calibration": 499.76429453692504,
+        "plan_calibration_multiplier": 1.0,
+        "plan_calibration_detail": {
+          "enabled": false,
+          "multiplier": 1.0,
+          "applied": []
+        },
+        "sync_unknown_penalty": 80.82019984480738,
+        "event_reuse_penalty": 12.0,
+        "cv_estimated_penalty": 21.878379108200708,
+        "improvement_attribution": {
+          "note": "Attribution is analytical decomposition, not measured speedup attribution.",
+          "positive_cost_components_cycles": {
+            "parallelized_tile_cycles": 314.15085888446725,
+            "sync_cost": 70.91485669944964,
+            "memory_pressure_penalty": 0.0,
+            "shape_regularization_penalty": 0.0,
+            "legality_risk_penalty": 114.69857895300808
+          },
+          "optimistic_savings_proxies_per_tile": {
+            "load_overlap_saving": 375.0378670122503,
+            "store_overlap_saving": 79.91546211167638,
+            "cv_overlap_saving": 57.88463806071833,
+            "raw_cv_overlap_before_risk": 0.69334125,
+            "cv_estimated_overlap_multiplier": 0.65
+          },
+          "risk_adjustments_cycles": {
+            "sync_unknown_penalty": 80.82019984480738,
+            "event_reuse_penalty": 12.0,
+            "cv_estimated_penalty": 21.878379108200708
+          }
+        },
+        "risk_assessment": {
+          "risk_level": "HIGH",
+          "risk_score": 104.0,
+          "risk_mode": "conservative",
+          "risk_reasons": [
+            "uses graph_sync_solver; demo cannot prove deadlock-free sync rewrite",
+            "sync legality is UNKNOWN without real sync_plan sidecar",
+            "uses event reuse; requires real event-id dependency validation",
+            "CVPipeline separability is PASS_ESTIMATED, not pass-verified",
+            "uses double/multi-buffer overlap assumptions"
+          ],
+          "scope_utilization": {
+            "ub": 0.2529296875,
+            "l1": 0.038818359375,
+            "l0a": 0.125,
+            "l0b": 0.25,
+            "l0c": 0.03515625,
+            "gm_ws": 0.0
+          }
+        },
+        "cost_risk_mode": "conservative",
+        "memory_pressure_penalty": 0.0,
+        "shape_regularization_penalty": 0.0,
+        "pressure_penalty_detail": {},
+        "shape_penalty_detail": {
+          "n_total": 1024,
+          "tile_n": 64,
+          "preferred_tile_n": [
+            64,
+            96,
+            128,
+            160,
+            192,
+            256
+          ],
+          "tail_n": 0,
+          "tail_fraction": 0.0,
+          "tail_penalty": 0.0,
+          "nearest_preferred_tile_n": 64,
+          "preferred_distance_fraction": 0.0,
+          "irregular_tile_n_penalty": 0.0,
+          "large_tile_n_penalty": 0.0,
+          "regularization_mode": "continuous_low_weight_capped"
+        },
+        "overlap_pressure_factor": 1.0,
+        "tail_efficiency": 1.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "hivm_tiling_restricted_metadata_true_rewrite_v1",
+  "mutation_performed": true,
+  "rewritten_action_count": 1,
+  "skipped_action_count": 0,
+  "rewritten_actions": [
+    {
+      "action_id": "tiling_true_rewrite_action_0000",
+      "mutation_kind": "restricted_tiling_metadata_rewrite",
+      "status": "REWRITTEN",
+      "selected_tiles": {
+        "tile_m": 32,
+        "tile_n": 64,
+        "tile_k": 128,
+        "loop_order": "outer_mkn",
+        "tail_strategy": "mask_or_pad",
+        "reduce_tile_policy": "half_k"
+      },
+      "target": {
+        "line": 1,
+        "indent": "",
+        "policy": "after_entry_constant_region"
+      },
+      "matched_existing_constants": [],
+      "rewrite_policy": {
+        "mode": "additive_metadata_constants_and_annotation",
+        "loop_bound_rewrite": false,
+        "index_expression_rewrite": false,
+        "memref_shape_rewrite": false,
+        "tail_mask_rewrite": false,
+        "unrelated_constant_replacement": false,
+        "fallback_original_ir_preserved": true
+      },
+      "proposed_true_mutation": [
+        "insert explicit selected tile metadata constants",
+        "insert annotation.mark carrying tile_m/tile_n/tile_k/loop_order/tail_strategy",
+        "record existing constants matching selected tile values as evidence only"
+      ],
+      "risk_level": "LOW",
+      "inserted_after_line": 1,
+      "inserted_metadata_constant_count": 3,
+      "inserted_annotation_count": 3
+    }
+  ],
+  "skipped_actions": [],
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "restricted metadata-level portable TilingPlan rewrite; no loop/index/memref-shape mutation"
+}

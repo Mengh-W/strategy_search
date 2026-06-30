@@ -1,0 +1,6 @@
+Op Name,Task Type,Task Start Time(us),Task Duration(us)
+target_kernel,AI_CORE,0,1000
+target_kernel,AI_CORE,20000,1050
+target_kernel,AI_CORE,40000,5000
+target_kernel,AI_CPU,0,800
+other_kernel,AI_CORE,0,900

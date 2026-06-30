@@ -1,0 +1,12 @@
+{
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "inventory": true,
+  "roundtrip": true,
+  "verify_only": true,
+  "dry_run_edit_script": true,
+  "production_mutation": false,
+  "mutate_q_load_hoist": true,
+  "mutation_contract_only": true,
+  "backend_returncode": 0
+}

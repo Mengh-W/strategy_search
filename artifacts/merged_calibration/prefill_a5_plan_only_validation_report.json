@@ -1,0 +1,170 @@
+{
+  "benchmark": "prefill_a5_plan_only_validation",
+  "source_stage_report": "prefill_a5_stage_benchmark_report.json",
+  "prediction_key_used": "raw_project_anchor_scaled_cycles",
+  "scope": {
+    "included": "only transitions directly represented by the current four-plan StrategyConfig",
+    "excluded": "BLOCK_V gap, dtype/workspace policy, SSA reuse, hoist, compiler code motion"
+  },
+  "plan_only_summary": {
+    "num_supported_transitions": 4,
+    "direction_hits": 4,
+    "direction_hit_rate": 1.0,
+    "mean_absolute_gain_error": 0.012579839782402569,
+    "mean_abs_log_gain_error": 0.010155583067475028,
+    "verdict": "good: current four-plan cost model captures most plan-level directions on this benchmark"
+  },
+  "plan_only_transition_rows": [
+    {
+      "from": "S1",
+      "to": "S2",
+      "event": "BLOCK_SBS=256 + multibuffer=False",
+      "plans": [
+        "TilingPlan",
+        "MultiBufferPlan"
+      ],
+      "reason": "BLOCK_SBS maps to tile_n; multibuffer maps to MultiBufferPlan.double_buffer/template.",
+      "latency_before_us": 5392.0,
+      "latency_after_us": 4356.0,
+      "real_gain": 1.2378328741965106,
+      "predicted_gain": 1.2841832708554253,
+      "direction_hit": true,
+      "absolute_gain_error": 0.046350396658914716,
+      "signed_log_gain_error": 0.03676076085398386,
+      "interpretation": "Direction and rough gain magnitude are acceptable for this weak benchmark."
+    },
+    {
+      "from": "S2",
+      "to": "S3",
+      "event": "enable_mixed_cv=False",
+      "plans": [
+        "CVPipelinePlan"
+      ],
+      "reason": "enable_mixed_cv is explicitly represented by StrategyConfig.enable_mixed_cv.",
+      "latency_before_us": 4356.0,
+      "latency_after_us": 4337.0,
+      "real_gain": 1.0043809084620705,
+      "predicted_gain": 1.0038863885953853,
+      "direction_hit": true,
+      "absolute_gain_error": 0.0004945198666852502,
+      "signed_log_gain_error": -0.0004924841204205477,
+      "interpretation": "Direction and rough gain magnitude are acceptable for this weak benchmark."
+    },
+    {
+      "from": "S4",
+      "to": "S5",
+      "event": "enable_hivm_auto_cv_balance=True",
+      "plans": [
+        "CVPipelinePlan"
+      ],
+      "reason": "auto_cv_balance is explicitly represented by StrategyConfig.auto_cv_balance. S4 is used as the local baseline so the dtype change S3->S4 is not counted.",
+      "latency_before_us": 4294.0,
+      "latency_after_us": 4235.0,
+      "real_gain": 1.0139315230224322,
+      "predicted_gain": 1.0151376613820737,
+      "direction_hit": true,
+      "absolute_gain_error": 0.001206138359641562,
+      "signed_log_gain_error": 0.001188858922084592,
+      "interpretation": "Direction and rough gain magnitude are acceptable for this weak benchmark."
+    },
+    {
+      "from": "S5",
+      "to": "S6",
+      "event": "tile_mix_cube_loop=4, tile_mix_vector_loop=1",
+      "plans": [
+        "CVPipelinePlan"
+      ],
+      "reason": "tile_mix_cube_loop/tile_mix_vector_loop are explicitly represented by StrategyConfig.",
+      "latency_before_us": 4235.0,
+      "latency_after_us": 4075.0,
+      "real_gain": 1.0392638036809816,
+      "predicted_gain": 1.0415321079253503,
+      "direction_hit": true,
+      "absolute_gain_error": 0.0022683042443687462,
+      "signed_log_gain_error": 0.002180228373411114,
+      "interpretation": "Direction and rough gain magnitude are acceptable for this weak benchmark."
+    }
+  ],
+  "boundary_gap_transitions": [
+    {
+      "from": "S0",
+      "to": "S1",
+      "event": "BLOCK_V=512",
+      "classification": "conceptually TilingPlan, but not represented in current StrategyConfig",
+      "reason": "The current model maps BLOCK_SBS to tile_n and BLOCK_K to tile_k, but does not have a BLOCK_V/vector-block field. Therefore S0 and S1 become identical strategies in the current cost model."
+    }
+  ],
+  "out_of_scope_transitions": [
+    {
+      "from": "S3",
+      "to": "S4",
+      "event": "workspace_sv bf16",
+      "classification": "dtype / workspace policy, not one of the current four plan knobs"
+    },
+    {
+      "from": "S6",
+      "to": "S7",
+      "event": "shared kv_nope SSA",
+      "classification": "IR rewrite / SSA reuse, not in current four-plan cost model"
+    },
+    {
+      "from": "S7",
+      "to": "S8",
+      "event": "hoist Q loads",
+      "classification": "IR rewrite / code motion, not in current four-plan cost model"
+    },
+    {
+      "from": "S8",
+      "to": "S9",
+      "event": "enable_code_motion=True",
+      "classification": "compiler pass / code motion, not in current four-plan cost model"
+    }
+  ],
+  "calibration_suggestions": [
+    {
+      "transition": "S1->S2",
+      "event": "BLOCK_SBS=256 + multibuffer=False",
+      "plans": [
+        "TilingPlan",
+        "MultiBufferPlan"
+      ],
+      "real_gain": 1.2378328741965106,
+      "current_model_predicted_gain": 1.2841832708554253,
+      "recommended_gain_multiplier_on_predicted_effect": 0.9639067119850895,
+      "note": "no urgent calibration needed"
+    },
+    {
+      "transition": "S2->S3",
+      "event": "enable_mixed_cv=False",
+      "plans": [
+        "CVPipelinePlan"
+      ],
+      "real_gain": 1.0043809084620705,
+      "current_model_predicted_gain": 1.0038863885953853,
+      "recommended_gain_multiplier_on_predicted_effect": 1.0004926054106353,
+      "note": "no urgent calibration needed"
+    },
+    {
+      "transition": "S4->S5",
+      "event": "enable_hivm_auto_cv_balance=True",
+      "plans": [
+        "CVPipelinePlan"
+      ],
+      "real_gain": 1.0139315230224322,
+      "current_model_predicted_gain": 1.0151376613820737,
+      "recommended_gain_multiplier_on_predicted_effect": 0.9988118474907143,
+      "note": "no urgent calibration needed"
+    },
+    {
+      "transition": "S5->S6",
+      "event": "tile_mix_cube_loop=4, tile_mix_vector_loop=1",
+      "plans": [
+        "CVPipelinePlan"
+      ],
+      "real_gain": 1.0392638036809816,
+      "current_model_predicted_gain": 1.0415321079253503,
+      "recommended_gain_multiplier_on_predicted_effect": 0.9978221465981619,
+      "note": "no urgent calibration needed"
+    }
+  ]
+}

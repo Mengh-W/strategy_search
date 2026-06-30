@@ -1,0 +1,30 @@
+{
+  "schema_version": "hivm_cvpipeline_stage_planner_summary_v1",
+  "version": "V4.10-cvpipeline-stage-rewrite-planner",
+  "input_ir": "sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+  "record_count": 1715,
+  "stage_counts": {
+    "non_op": 4,
+    "other": 396,
+    "compute": 543,
+    "other_hivm": 7,
+    "view": 273,
+    "load": 46,
+    "sync": 402,
+    "loop": 10,
+    "store": 34
+  },
+  "segment_count": 662,
+  "dependency_edge_count": 717,
+  "pipeline_window_count": 50,
+  "pipeline_window_status_counts": {
+    "READY_FOR_CVPIPELINE_PLAN": 36,
+    "REVIEW_REQUIRED": 14
+  },
+  "multibuffer_stage_ready_count": 20,
+  "cvpipeline_rewrite_plan_action_count": 50,
+  "annotation_performed": true,
+  "semantic_mutation_performed": false,
+  "production_rewrite_claim_allowed": false,
+  "next_step": "unified four-plan rewrite controller or CVPipeline dependency proof after real verifier is available"
+}

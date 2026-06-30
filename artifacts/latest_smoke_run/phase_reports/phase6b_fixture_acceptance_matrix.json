@@ -1,0 +1,13 @@
+{
+  "schema_version": "hivm_phase6b_fixture_acceptance_matrix_v1",
+  "phase": "Phase-6B",
+  "fixtures": [],
+  "accepted_for_phase6_positive_case_execution": false,
+  "global_blockers": [
+    "no_phase6_positive_fixtures_provided",
+    "no_restricted_positive_fixture_identified_by_static_triage",
+    "real_hivmopseditor_or_mlir_operation_backend_not_connected",
+    "real_tritonsim_hivm_not_connected",
+    "vtriton_source_root_missing_or_not_recognized"
+  ]
+}

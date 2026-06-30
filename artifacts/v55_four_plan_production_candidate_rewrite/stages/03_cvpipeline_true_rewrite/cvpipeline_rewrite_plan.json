@@ -1,0 +1,350 @@
+{
+  "schema_version": "hivm_cvpipeline_rewrite_plan_v1",
+  "version": "V4.10-cvpipeline-stage-rewrite-planner",
+  "overall_decision": "CVPIPELINE_STAGE_PLAN_READY_NOT_MUTATED",
+  "action_count": 4,
+  "actions": [
+    {
+      "action_id": "cvpipeline_stage_plan_action_0000",
+      "mutation_kind": "cvpipeline_stage_rewrite_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "window_id": "cv_window_0000",
+      "line_span": [
+        8,
+        75
+      ],
+      "stage_segments": {
+        "load_or_view": {
+          "segment_id": "segment_0000",
+          "line_span": [
+            8,
+            50
+          ],
+          "op_count": 19,
+          "op_counts": {
+            "memref.alloc": 19
+          }
+        },
+        "compute": {
+          "segment_id": "segment_0004",
+          "line_span": [
+            72,
+            72
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.mmad": 1
+          }
+        },
+        "store": {
+          "segment_id": "segment_0005",
+          "line_span": [
+            75,
+            75
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.fixpipe": 1
+          }
+        },
+        "sync_segments": [
+          "segment_0003"
+        ]
+      },
+      "proposed_staged_rewrite": {
+        "stage_0": "prefetch/load_or_view for iteration i+1 into ping/pong buffer",
+        "stage_1": "compute iteration i from previous buffer slot",
+        "stage_2": "store/fixpipe iteration i-1 when safe",
+        "required_sync_edges": [
+          "load_to_compute",
+          "compute_to_store"
+        ],
+        "requires_multibuffer": true,
+        "requires_loop_skew_or_software_pipeline_indexing": true
+      },
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "locate stage segment operations by source line",
+          "clone or move load/view ops into prologue/steady-state stage",
+          "rewrite buffer uses according to MultiBufferPlan slots",
+          "insert or reuse SyncPlan set_flag/wait_flag edges",
+          "preserve dominance and SSA uses",
+          "exportToFile and mlir::verify"
+        ],
+        "migration_priority": "after_multibuffer_semantic_mutation_available"
+      },
+      "blockers_before_semantic_mutation": [
+        "need operation-level dominance and dependency graph",
+        "need valid MultiBufferPlan semantic mutation",
+        "need exact loop prologue/steady/epilogue transformation",
+        "need real MLIR verifier and DES/trace validation"
+      ],
+      "reasons": [
+        "load_compute_store_order_detected",
+        "sync_segment_between_load_compute_store",
+        "loop_context_detected",
+        "textual_symbol_overlap_between_stages",
+        "view_segment_can_attach_to_load_stage"
+      ],
+      "warnings": []
+    },
+    {
+      "action_id": "cvpipeline_stage_plan_action_0001",
+      "mutation_kind": "cvpipeline_stage_rewrite_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "window_id": "cv_window_0001",
+      "line_span": [
+        53,
+        75
+      ],
+      "stage_segments": {
+        "load_or_view": {
+          "segment_id": "segment_0001",
+          "line_span": [
+            53,
+            56
+          ],
+          "op_count": 2,
+          "op_counts": {
+            "hivm.hir.load": 1,
+            "hivm.hir.nd2nz": 1
+          }
+        },
+        "compute": {
+          "segment_id": "segment_0004",
+          "line_span": [
+            72,
+            72
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.mmad": 1
+          }
+        },
+        "store": {
+          "segment_id": "segment_0005",
+          "line_span": [
+            75,
+            75
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.fixpipe": 1
+          }
+        },
+        "sync_segments": [
+          "segment_0003"
+        ]
+      },
+      "proposed_staged_rewrite": {
+        "stage_0": "prefetch/load_or_view for iteration i+1 into ping/pong buffer",
+        "stage_1": "compute iteration i from previous buffer slot",
+        "stage_2": "store/fixpipe iteration i-1 when safe",
+        "required_sync_edges": [
+          "load_to_compute",
+          "compute_to_store"
+        ],
+        "requires_multibuffer": true,
+        "requires_loop_skew_or_software_pipeline_indexing": true
+      },
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "locate stage segment operations by source line",
+          "clone or move load/view ops into prologue/steady-state stage",
+          "rewrite buffer uses according to MultiBufferPlan slots",
+          "insert or reuse SyncPlan set_flag/wait_flag edges",
+          "preserve dominance and SSA uses",
+          "exportToFile and mlir::verify"
+        ],
+        "migration_priority": "after_multibuffer_semantic_mutation_available"
+      },
+      "blockers_before_semantic_mutation": [
+        "need operation-level dominance and dependency graph",
+        "need valid MultiBufferPlan semantic mutation",
+        "need exact loop prologue/steady/epilogue transformation",
+        "need real MLIR verifier and DES/trace validation"
+      ],
+      "reasons": [
+        "load_compute_store_order_detected",
+        "sync_segment_between_load_compute_store",
+        "loop_context_detected",
+        "textual_symbol_overlap_between_stages"
+      ],
+      "warnings": []
+    },
+    {
+      "action_id": "cvpipeline_stage_plan_action_0002",
+      "mutation_kind": "cvpipeline_stage_rewrite_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "risk_level": "LOW",
+      "window_id": "cv_window_0002",
+      "line_span": [
+        60,
+        75
+      ],
+      "stage_segments": {
+        "load_or_view": {
+          "segment_id": "segment_0002",
+          "line_span": [
+            60,
+            69
+          ],
+          "op_count": 5,
+          "op_counts": {
+            "hivm.hir.load": 2,
+            "hivm.hir.nd2nz": 2,
+            "hivm.hir.copy": 1
+          }
+        },
+        "compute": {
+          "segment_id": "segment_0004",
+          "line_span": [
+            72,
+            72
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.mmad": 1
+          }
+        },
+        "store": {
+          "segment_id": "segment_0005",
+          "line_span": [
+            75,
+            75
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.fixpipe": 1
+          }
+        },
+        "sync_segments": [
+          "segment_0003"
+        ]
+      },
+      "proposed_staged_rewrite": {
+        "stage_0": "prefetch/load_or_view for iteration i+1 into ping/pong buffer",
+        "stage_1": "compute iteration i from previous buffer slot",
+        "stage_2": "store/fixpipe iteration i-1 when safe",
+        "required_sync_edges": [
+          "load_to_compute",
+          "compute_to_store"
+        ],
+        "requires_multibuffer": true,
+        "requires_loop_skew_or_software_pipeline_indexing": true
+      },
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "locate stage segment operations by source line",
+          "clone or move load/view ops into prologue/steady-state stage",
+          "rewrite buffer uses according to MultiBufferPlan slots",
+          "insert or reuse SyncPlan set_flag/wait_flag edges",
+          "preserve dominance and SSA uses",
+          "exportToFile and mlir::verify"
+        ],
+        "migration_priority": "after_multibuffer_semantic_mutation_available"
+      },
+      "blockers_before_semantic_mutation": [
+        "need operation-level dominance and dependency graph",
+        "need valid MultiBufferPlan semantic mutation",
+        "need exact loop prologue/steady/epilogue transformation",
+        "need real MLIR verifier and DES/trace validation"
+      ],
+      "reasons": [
+        "load_compute_store_order_detected",
+        "sync_segment_between_load_compute_store",
+        "loop_context_detected",
+        "textual_symbol_overlap_between_stages"
+      ],
+      "warnings": []
+    },
+    {
+      "action_id": "cvpipeline_stage_plan_action_0003",
+      "mutation_kind": "cvpipeline_stage_rewrite_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "risk_level": "MEDIUM",
+      "window_id": "cv_window_0003",
+      "line_span": [
+        86,
+        90
+      ],
+      "stage_segments": {
+        "load_or_view": {
+          "segment_id": "segment_0007",
+          "line_span": [
+            86,
+            86
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.nd2nz": 1
+          }
+        },
+        "compute": {
+          "segment_id": "segment_0008",
+          "line_span": [
+            88,
+            88
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.mmad": 1
+          }
+        },
+        "store": {
+          "segment_id": "segment_0009",
+          "line_span": [
+            90,
+            90
+          ],
+          "op_count": 1,
+          "op_counts": {
+            "hivm.hir.fixpipe": 1
+          }
+        },
+        "sync_segments": []
+      },
+      "proposed_staged_rewrite": {
+        "stage_0": "prefetch/load_or_view for iteration i+1 into ping/pong buffer",
+        "stage_1": "compute iteration i from previous buffer slot",
+        "stage_2": "store/fixpipe iteration i-1 when safe",
+        "required_sync_edges": [
+          "load_to_compute",
+          "compute_to_store"
+        ],
+        "requires_multibuffer": true,
+        "requires_loop_skew_or_software_pipeline_indexing": true
+      },
+      "hivmopseditor_migration": {
+        "required_capabilities": [
+          "locate stage segment operations by source line",
+          "clone or move load/view ops into prologue/steady-state stage",
+          "rewrite buffer uses according to MultiBufferPlan slots",
+          "insert or reuse SyncPlan set_flag/wait_flag edges",
+          "preserve dominance and SSA uses",
+          "exportToFile and mlir::verify"
+        ],
+        "migration_priority": "after_multibuffer_semantic_mutation_available"
+      },
+      "blockers_before_semantic_mutation": [
+        "need operation-level dominance and dependency graph",
+        "need valid MultiBufferPlan semantic mutation",
+        "need exact loop prologue/steady/epilogue transformation",
+        "need real MLIR verifier and DES/trace validation"
+      ],
+      "reasons": [
+        "load_compute_store_order_detected",
+        "loop_context_detected",
+        "textual_symbol_overlap_between_stages"
+      ],
+      "warnings": [
+        "no_sync_segment_inside_window"
+      ]
+    }
+  ],
+  "semantic_mutation_performed": false,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "planner/scaffold only; no operation movement is performed"
+}

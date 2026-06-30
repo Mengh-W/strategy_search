@@ -1,0 +1,17 @@
+{
+  "schema_version": "hivm_phase6d_analysis_summary_v1",
+  "phase": "Phase-6D",
+  "status": "waiting_for_complete_vtriton_source_or_adapter_files",
+  "adapter_ready_for_user_local_build": false,
+  "production_mutation_allowed": false,
+  "blocker_count": 6,
+  "blockers": [
+    "vtriton_source_root_missing_or_not_recognized",
+    "HivmOpsEditor_header_not_found",
+    "HivmOpsEditor_impl_not_found",
+    "hivm_crud_reference_not_found",
+    "HivmOpsEditor_minimum_read_inventory_api_not_confirmed",
+    "HivmOpsEditor_roundtrip_export_api_not_confirmed"
+  ],
+  "leadership_summary": "Phase 6D consumes the provided vTriton source tree and generates a source-aware HivmOpsEditor backend adapter skeleton. The adapter is designed to be built inside vTriton and can support inventory, roundtrip, verify-only, dry-run, and limited GM deletion through the real HivmOpsEditor API. Q-load hoist remains disabled until a real dominance/region-motion implementation is added."
+}

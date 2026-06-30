@@ -1,0 +1,14 @@
+{
+  "schema_version": "hivm_v53_parameter_rewrite_coverage_summary_v1",
+  "version": "V5.3-four-plan-true-rewrite-with-parameter-coverage",
+  "parameter_count": 35,
+  "rewritten_back_to_ir_count": 35,
+  "not_rewritten_back_to_ir_count": 0,
+  "coverage_counts": {
+    "RESTRICTED_STRUCTURAL_REWRITE": 10,
+    "TRACE_METADATA_REWRITE": 25
+  },
+  "all_controllable_parameters_rewritten_back_to_ir": true,
+  "all_controllable_parameters_semantic_operation_rewrite": false,
+  "optimized_ir": "artifacts/v57_four_plan_operation_rewrite_precompile_audit/optimized.four_plan_operation_rewrite.with_coverage.hivm.mlir"
+}

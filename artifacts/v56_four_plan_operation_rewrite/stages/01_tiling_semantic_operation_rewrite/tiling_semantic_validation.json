@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "text_changed",
+      "passed": true
+    },
+    {
+      "name": "module_preserved",
+      "passed": true
+    },
+    {
+      "name": "return_preserved",
+      "passed": true
+    },
+    {
+      "name": "brace_balance_nonnegative",
+      "passed": true
+    },
+    {
+      "name": "marker_present::TilingPlan semantic operation rewrite",
+      "passed": true
+    },
+    {
+      "name": "marker_present::TilingPlan shape rewrite",
+      "passed": true
+    }
+  ]
+}

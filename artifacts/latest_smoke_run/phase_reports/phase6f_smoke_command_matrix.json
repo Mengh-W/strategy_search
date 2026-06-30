@@ -1,0 +1,12 @@
+{
+  "schema_version": "hivm_phase6f_smoke_command_matrix_v1",
+  "phase": "Phase-6F",
+  "commands": {
+    "print_capabilities": "hivm-operation-backend --print-capabilities",
+    "inventory": "hivm-operation-backend --inventory --input <fixture.hivm.mlir> --report inventory.json",
+    "roundtrip": "hivm-operation-backend --roundtrip --input <fixture.hivm.mlir> --output roundtrip.hivm.mlir --report roundtrip.json",
+    "verify_only": "hivm-operation-backend --verify-only --input roundtrip.hivm.mlir --report verify.json",
+    "restricted_gm_mutation_trial": "hivm-operation-backend --mutate --mutation-kind gm_roundtrip_deletion --max-gm-pairs 1 --input <restricted_gm_fixture.hivm.mlir> --output optimized.gm_removed.hivm.mlir --report gm_mutation.json"
+  },
+  "q_load_hoist_note": "Do not run production q_load_hoist until the real backend implements dominance and region-motion proof."
+}

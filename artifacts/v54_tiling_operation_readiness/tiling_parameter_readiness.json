@@ -1,0 +1,65 @@
+[
+  {
+    "parameter": "tile_m",
+    "selected_value": 32,
+    "present_in_selected_plan": true,
+    "readiness_level": "LEVEL_2_DRY_RUN_OPERATION_PLAN",
+    "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+    "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+    "meaning": "loop split on M + load/store/compute slice request"
+  },
+  {
+    "parameter": "tile_n",
+    "selected_value": 64,
+    "present_in_selected_plan": true,
+    "readiness_level": "LEVEL_2_DRY_RUN_OPERATION_PLAN",
+    "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+    "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+    "meaning": "loop split on N + load/store/compute slice request"
+  },
+  {
+    "parameter": "tile_k",
+    "selected_value": 128,
+    "present_in_selected_plan": true,
+    "readiness_level": "LEVEL_2_DRY_RUN_OPERATION_PLAN",
+    "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+    "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+    "meaning": "reduction-loop split + partial accumulation proof request"
+  },
+  {
+    "parameter": "loop_order",
+    "selected_value": "outer_mkn",
+    "present_in_selected_plan": true,
+    "readiness_level": "LEVEL_1_BACKEND_ANCHOR_VALIDATION",
+    "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+    "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+    "meaning": "loop permutation legality check; mutation deferred"
+  },
+  {
+    "parameter": "tail_strategy",
+    "selected_value": "mask_or_pad",
+    "present_in_selected_plan": true,
+    "readiness_level": "LEVEL_1_BACKEND_ANCHOR_VALIDATION",
+    "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+    "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+    "meaning": "tail guard/mask semantics check; mutation deferred"
+  },
+  {
+    "parameter": "reduce_tile_policy",
+    "selected_value": "half_k",
+    "present_in_selected_plan": true,
+    "readiness_level": "LEVEL_1_BACKEND_ANCHOR_VALIDATION",
+    "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+    "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+    "meaning": "reduction accumulation policy check; mutation deferred"
+  },
+  {
+    "parameter": "layout_aware_tile",
+    "selected_value": true,
+    "present_in_selected_plan": true,
+    "readiness_level": "LEVEL_1_BACKEND_ANCHOR_VALIDATION",
+    "linux_prevalidation_status": "READY_FOR_LINUX_DRY_RUN",
+    "operation_level_claim": "dry_run_plan_only_no_python_mutation",
+    "meaning": "layout-sensitive tile-shape proof; mutation deferred"
+  }
+]

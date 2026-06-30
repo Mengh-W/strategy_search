@@ -1,0 +1,204 @@
+{
+  "plan": "TilingPlan",
+  "purpose": "把 tile_m/tile_n/tile_k 从策略参数落到 loop split、index remap、load/store slice 和 tail mask。",
+  "selected_knobs": {
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "logical_axes": [
+      "axis_m",
+      "axis_n",
+      "axis_k"
+    ],
+    "generic_logical_axes_evidence": {
+      "primary_tile_candidate": {
+        "tile_m": 64,
+        "tile_n": 32,
+        "tile_k": 128
+      },
+      "candidate_tiles_from_cube_ops": [
+        {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 128
+        },
+        {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 32
+        }
+      ],
+      "conventional_tensor_signature": {
+        "detected": true,
+        "Q_gm": [
+          64,
+          128
+        ],
+        "K_gm": [
+          1024,
+          128
+        ],
+        "V_gm": [
+          1024,
+          128
+        ],
+        "O_gm": [
+          64,
+          128
+        ],
+        "note": "name-based conventional tensor signature; used as evidence only, not a hard-coded kernel family"
+      }
+    },
+    "loop_order": "outer_mkn",
+    "tail_strategy": "mask_or_pad",
+    "reduce_tile_policy": "half_k",
+    "layout_aware_tile": true
+  },
+  "anchors": {
+    "loop_ops": [
+      {
+        "line": 18,
+        "text": "scf.for %j = %c0 to %cE step %cB {   // @trip=10",
+        "kind": "scf.for"
+      }
+    ],
+    "cube_compute_ops": [
+      {
+        "line": 25,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "cube_compute_stage"
+        ],
+        "inputs": [
+          "%q_l1",
+          "%k_l1_ping"
+        ],
+        "outputs": [
+          "%s_l0c"
+        ],
+        "notes": []
+      },
+      {
+        "line": 32,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "cube_compute_stage"
+        ],
+        "inputs": [
+          "%p_ub",
+          "%v_l1"
+        ],
+        "outputs": [
+          "%s_l0c"
+        ],
+        "notes": []
+      }
+    ],
+    "load_ops": [
+      {
+        "line": 16,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "gm_to_local_load",
+          "cv_load_stage",
+          "multibuffer_candidate"
+        ],
+        "inputs": [
+          "%Q_gm"
+        ],
+        "outputs": [
+          "%q_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 19,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "gm_to_local_load",
+          "cv_load_stage",
+          "multibuffer_candidate"
+        ],
+        "inputs": [
+          "%K_gm"
+        ],
+        "outputs": [
+          "%k_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 20,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "gm_to_local_load",
+          "cv_load_stage",
+          "multibuffer_candidate"
+        ],
+        "inputs": [
+          "%V_gm"
+        ],
+        "outputs": [
+          "%v_ub"
+        ],
+        "notes": []
+      }
+    ],
+    "store_ops": [
+      {
+        "line": 37,
+        "op": "hivm.hir.store",
+        "text": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "local_to_gm_store",
+          "cv_store_stage",
+          "gm_roundtrip_candidate"
+        ],
+        "inputs": [
+          "%q_ub"
+        ],
+        "outputs": [
+          "%O_gm"
+        ],
+        "notes": []
+      }
+    ]
+  },
+  "backend_mutation_request_template": {
+    "mutation_kind": "tiling_hint_or_restricted_loop_tiling",
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "loop_order": "outer_mkn",
+    "tail_strategy": "mask_or_pad",
+    "v1_mode": "emit_hint_and_legality_report_only"
+  },
+  "must_prove_before_mutate": [
+    "loop_bounds_and_induction_vars_identified",
+    "load_store_slice_mapping_identified",
+    "tail_mask_semantics_defined",
+    "capacity_after_tiling_passes",
+    "roundtrip_and_verify_pass"
+  ],
+  "blocked_or_missing": [
+    "true_loop_index_slice_tailmask_rewrite_deferred_to_backend_MLIR_pass"
+  ],
+  "status": "REPORT_AND_HINT_ONLY_V1"
+}

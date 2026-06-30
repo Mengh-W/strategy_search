@@ -9,7 +9,7 @@ from strategy_search.des_profile import (
 
 
 def test_des_profile_summary_from_prefill_example():
-    s = summarize_des_trace("optional_profiles/prefill_des.json", mlir_file="sample_input/kernel_001.npuir.mlir", sample_id="unit_prefill")
+    s = summarize_des_trace("artifacts/optional_profiles/prefill_des.json", mlir_file="sample_input/kernel_001.npuir.mlir", sample_id="unit_prefill")
     assert s.sample_id == "unit_prefill"
     assert s.num_ops > 0
     assert s.makespan_cycles > 0
@@ -20,7 +20,7 @@ def test_des_profile_summary_from_prefill_example():
 
 
 def test_single_trace_calibration_scales_cost_and_records_audit():
-    s = summarize_des_trace("optional_profiles/prefill_des.json", sample_id="unit_prefill")
+    s = summarize_des_trace("artifacts/optional_profiles/prefill_des.json", sample_id="unit_prefill")
     calibration = build_single_trace_calibration(s, current_analytical_cycles=s.makespan_cycles / 2.0)
     assert calibration["enabled"] is True
     assert abs(calibration["global_scale"] - 2.0) < 1e-9

@@ -1,0 +1,13 @@
+/*
+ * MTE GM to UB Bandwidth Microbenchmark
+ */
+#include "vt_microbench_common.h"
+
+extern "C" __global__ __aicore__ void mte_gm_to_ub(
+    GM_ADDR src, GM_ADDR dst, uint32_t startIter, uint32_t iterCount)
+{
+    KERNEL_TASK_TYPE_DEFAULT(KERNEL_TYPE_AIV_ONLY);
+    VTCalib::MteGmUbKernel op;
+    op.Init(src, dst, startIter, iterCount);
+    op.GmToUb();
+}

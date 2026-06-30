@@ -1,0 +1,21 @@
+{
+  "version": "V5.2-tiling-restricted-metadata-true-rewrite",
+  "schema_version": "hivm_tiling_true_rewrite_summary_v1",
+  "selected_tiles": {
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "loop_order": "outer_mkn",
+    "tail_strategy": "mask_or_pad",
+    "reduce_tile_policy": "half_k"
+  },
+  "anchor_constant_count": 0,
+  "matched_existing_tile_constant_count": 0,
+  "true_rewrite_action_count": 1,
+  "mutation_performed": true,
+  "rewritten_action_count": 1,
+  "passed_portable_validation": true,
+  "num_tiling_related_diff_lines": 9,
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false
+}

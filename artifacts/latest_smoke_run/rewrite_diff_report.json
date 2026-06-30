@@ -1,0 +1,476 @@
+{
+  "schema_version": "hivm_rewrite_diff_v1",
+  "producer": "strategy_search_demo_v3.3.1_step2_safe_structural",
+  "strategy_id": "candidate_01681",
+  "rewrite_mode": "both",
+  "rewrite_safety": "conservative",
+  "annotated_ir": "/mnt/data/hivm_work/smoke_out/optimized.annotated.hivm.mlir",
+  "safe_structural_ir": "/mnt/data/hivm_work/smoke_out/optimized.safe_structural.hivm.mlir",
+  "formal_structural_ir": "/mnt/data/hivm_work/smoke_out/optimized.structural.hivm.mlir",
+  "structural_rewrite_report": "/mnt/data/hivm_work/smoke_out/structural_rewrite_report.json",
+  "structural_legality_report": "/mnt/data/hivm_work/smoke_out/structural_legality_report.json",
+  "structural_validation_summary": "/mnt/data/hivm_work/smoke_out/structural_validation_summary.json",
+  "hivm_bridge_manifest": "/mnt/data/hivm_work/smoke_out/hivm_bridge_manifest.json",
+  "vtriton_adapter_manifest": "/mnt/data/hivm_work/smoke_out/vtriton_adapter_manifest.json",
+  "phase2_closure_report": "/mnt/data/hivm_work/smoke_out/phase2_closure_report.json",
+  "phase3a_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase3a_analysis_summary.json",
+  "phase3b_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase3b_analysis_summary.json",
+  "buffer_liveness_report": "/mnt/data/hivm_work/smoke_out/buffer_liveness_report.json",
+  "capacity_recheck_report": "/mnt/data/hivm_work/smoke_out/capacity_recheck_report.json",
+  "gm_alias_report": "/mnt/data/hivm_work/smoke_out/gm_alias_report.json",
+  "phase3c_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase3c_analysis_summary.json",
+  "phase3d_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase3d_analysis_summary.json",
+  "phase3e_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase3e_analysis_summary.json",
+  "vtriton_des_trace_validation_report": "/mnt/data/hivm_work/smoke_out/vtriton_des_trace_validation_report.json",
+  "trace_comparison_report_html": "/mnt/data/hivm_work/smoke_out/trace_comparison_report.html",
+  "phase3_closure_report": "/mnt/data/hivm_work/smoke_out/phase3_closure_report.json",
+  "phase3f_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase3f_analysis_summary.json",
+  "phase5a_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase5a_analysis_summary.json",
+  "phase5b_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase5b_analysis_summary.json",
+  "phase5b_roundtrip_verifier_gate_report": "/mnt/data/hivm_work/smoke_out/phase5b_roundtrip_verifier_gate_report.json",
+  "phase5c_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase5c_analysis_summary.json",
+  "phase6e_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase6e_analysis_summary.json",
+  "phase6e_vtriton_local_integration_report": "/mnt/data/hivm_work/smoke_out/phase6e_vtriton_local_integration_report.json",
+  "phase6e_backend_build_plan": "/mnt/data/hivm_work/smoke_out/phase6e_backend_build_plan.json",
+  "phase6f_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase6f_analysis_summary.json",
+  "phase6f_backend_acceptance_report": "/mnt/data/hivm_work/smoke_out/phase6f_backend_acceptance_report.json",
+  "phase6_closure_report": "/mnt/data/hivm_work/smoke_out/phase6_closure_report.json",
+  "phase5c_operation_level_dry_run_report": "/mnt/data/hivm_work/smoke_out/phase5c_operation_level_dry_run_report.json",
+  "phase5d_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase5d_analysis_summary.json",
+  "phase5d_guarded_mutation_execution_report": "/mnt/data/hivm_work/smoke_out/phase5d_guarded_mutation_execution_report.json",
+  "phase5d_mutation_safety_report": "/mnt/data/hivm_work/smoke_out/phase5d_mutation_safety_report.json",
+  "phase5e_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase5e_analysis_summary.json",
+  "phase5e_limited_gm_roundtrip_deletion_report": "/mnt/data/hivm_work/smoke_out/phase5e_limited_gm_roundtrip_deletion_report.json",
+  "phase5e_gm_deletion_safety_report": "/mnt/data/hivm_work/smoke_out/phase5e_gm_deletion_safety_report.json",
+  "phase5_closure_report": "/mnt/data/hivm_work/smoke_out/phase5_closure_report.json",
+  "phase5f_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase5f_analysis_summary.json",
+  "phase5f_leadership_summary": "/mnt/data/hivm_work/smoke_out/phase5f_leadership_summary.json",
+  "phase6a_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase6a_analysis_summary.json",
+  "phase6b_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase6b_analysis_summary.json",
+  "phase6c_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase6c_analysis_summary.json",
+  "phase6d_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase6d_analysis_summary.json",
+  "phase6d_vtriton_source_integration_report": "/mnt/data/hivm_work/smoke_out/phase6d_vtriton_source_integration_report.json",
+  "phase6d_backend_files_manifest": "/mnt/data/hivm_work/smoke_out/phase6d_generated_backend_files_manifest.json",
+  "target_parser_validation_report": "/mnt/data/hivm_work/smoke_out/target_parser_validation_report.json",
+  "phase4a_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase4a_analysis_summary.json",
+  "phase4b_des_trace_execution_report": "/mnt/data/hivm_work/smoke_out/phase4b_des_trace_execution_report.json",
+  "phase4b_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase4b_analysis_summary.json",
+  "phase4b_validation_commands": "/mnt/data/hivm_work/smoke_out/phase4b_validation_commands.sh",
+  "phase4c_q_load_hoist_prototype_report": "/mnt/data/hivm_work/smoke_out/phase4c_q_load_hoist_prototype_report.json",
+  "phase4c_q_load_hoist_candidate_script": "/mnt/data/hivm_work/smoke_out/phase4c_q_load_hoist_candidate_script.json",
+  "phase4c_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase4c_analysis_summary.json",
+  "phase4d_operation_rewrite_dry_run_report": "/mnt/data/hivm_work/smoke_out/phase4d_operation_rewrite_dry_run_report.json",
+  "phase4d_hivmopseditor_dry_run_plan": "/mnt/data/hivm_work/smoke_out/phase4d_hivmopseditor_dry_run_plan.json",
+  "phase4d_official_mlir_compliance_report": "/mnt/data/hivm_work/smoke_out/phase4d_official_mlir_compliance_report.json",
+  "phase4d_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase4d_analysis_summary.json",
+  "phase4_closure_report": "/mnt/data/hivm_work/smoke_out/phase4_closure_report.json",
+  "phase4e_analysis_summary": "/mnt/data/hivm_work/smoke_out/phase4e_analysis_summary.json",
+  "loop_invariant_load_hoist_report": "/mnt/data/hivm_work/smoke_out/loop_invariant_load_hoist_report.json",
+  "q_load_hoist_decision": "/mnt/data/hivm_work/smoke_out/q_load_hoist_decision.json",
+  "gm_memory_ssa_report": "/mnt/data/hivm_work/smoke_out/gm_memory_ssa_report.json",
+  "gm_roundtrip_deletion_decision": "/mnt/data/hivm_work/smoke_out/gm_roundtrip_deletion_decision.json",
+  "rewrite_legality_gate_report": "/mnt/data/hivm_work/smoke_out/rewrite_legality_gate_report.json",
+  "dependency_graph_report": "/mnt/data/hivm_work/smoke_out/dependency_graph_report.json",
+  "event_liveness_report": "/mnt/data/hivm_work/smoke_out/event_liveness_report.json",
+  "hivm_ir_inventory": "/mnt/data/hivm_work/smoke_out/hivm_ir_inventory.json",
+  "rewrite_capability_report": "/mnt/data/hivm_work/smoke_out/rewrite_capability_report.json",
+  "cv_pipeline_rewrite_report": "/mnt/data/hivm_work/smoke_out/cv_pipeline_rewrite_report.json",
+  "changes": [
+    {
+      "type": "module_attr",
+      "key": "hivm.sync",
+      "after": "graph_sync_solver",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "module_attr",
+      "key": "hivm.strategy.source",
+      "after": "auto_strategy_search_v3",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "module_attr",
+      "key": "hivm.strategy.version",
+      "after": "V3.3.1-step2-safe-structural",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.strategy_id",
+      "after": "candidate_01681",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.model_version",
+      "after": "V3.3-artifact-kernel-profile",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.tile_m",
+      "after": 32,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.tile_n",
+      "after": 64,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.tile_k",
+      "after": 128,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.block_dim",
+      "after": 32,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.loop_order",
+      "after": "outer_mkn",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.tail_strategy",
+      "after": "mask_or_pad",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.reduce_tile_policy",
+      "after": "half_k",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.layout_aware_tile",
+      "after": true,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.double_buffer",
+      "after": true,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.ub_multiplier",
+      "after": 1,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.l1_multiplier",
+      "after": 1,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.buffer_multipliers_json",
+      "after": "{\"k_l1\":1,\"q_l1\":1,\"q_ub\":1,\"v_l1\":1}",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.multibuffer_template",
+      "after": "M1_input_double_buffer",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.stage_buffer_policy",
+      "after": "none",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.memory_reuse_level",
+      "after": "level1",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.dma_policy",
+      "after": "keep_existing",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.cv_pipeline_stage",
+      "after": 2,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.cv_pipeline_template",
+      "after": "P2_stage2_balanced",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.cv_split_ratio",
+      "after": "1:1",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.enable_mixed_cv",
+      "after": false,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.tile_mix_cube_loop",
+      "after": 1,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.tile_mix_vector_loop",
+      "after": 1,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.auto_cv_balance",
+      "after": true,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.producer_consumer_distance",
+      "after": 1,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.fusion",
+      "after": "keep_existing",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.sync_policy",
+      "after": "graph_sync_solver",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.sync_template",
+      "after": "Y3_event_reuse",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.barrier_level",
+      "after": "low",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.event_reuse",
+      "after": true,
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.sync_granularity",
+      "after": "stage",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.event_id_policy",
+      "after": "reuse",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "func_attr",
+      "key": "hivm.strategy.sync_motion",
+      "after": "local_move",
+      "insertion": "created_attributes_block"
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.mmad",
+      "role": "cube",
+      "line_hint_index": 0,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.fixpipe",
+      "role": "fixpipe",
+      "line_hint_index": 0,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.vreduce",
+      "role": "vector",
+      "line_hint_index": 0,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.vsub",
+      "role": "vector",
+      "line_hint_index": 1,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.vexp",
+      "role": "vector",
+      "line_hint_index": 2,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.vreduce",
+      "role": "vector",
+      "line_hint_index": 3,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.mmad",
+      "role": "cube",
+      "line_hint_index": 1,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.fixpipe",
+      "role": "fixpipe",
+      "line_hint_index": 1,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.vdiv",
+      "role": "vector",
+      "line_hint_index": 4,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "cv_op_attr",
+      "op": "hivm.hir.cast",
+      "role": "vector",
+      "line_hint_index": 5,
+      "change": "add hivm.cv.* pipeline hint attrs",
+      "stage": 2,
+      "template": "P2_stage2_balanced",
+      "safety": "conservative",
+      "structural_reorder": false
+    },
+    {
+      "type": "sync_hint",
+      "change": "annotate barrier only",
+      "safety": "conservative",
+      "structural_rewrite": false
+    },
+    {
+      "type": "sync_hint",
+      "change": "annotate barrier only",
+      "safety": "conservative",
+      "structural_rewrite": false
+    },
+    {
+      "type": "replace_barrier_all_with_directional_sync",
+      "line": 53,
+      "before": "hivm.hir.barrier {mode = \"ALL\"}",
+      "after": [
+        "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_M>, <EVENT_ID0>]",
+        "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_M>, <EVENT_ID0>]"
+      ],
+      "structural_change": true
+    },
+    {
+      "type": "replace_barrier_all_with_directional_sync",
+      "line": 68,
+      "before": "hivm.hir.barrier {mode = \"ALL\"}",
+      "after": [
+        "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_M>, <EVENT_ID0>]",
+        "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_M>, <EVENT_ID0>]"
+      ],
+      "structural_change": true
+    },
+    {
+      "type": "insert_sync_before_first_vector_op",
+      "line": 59,
+      "target": "hivm.hir.vreduce {hivm.cv.pipeline_hint = true, hivm.cv.role = \"vector\", hivm.cv.stage = 2 : i64, hivm.cv.template = \"P2_stage2_balanced\", hivm.cv.producer_consumer_distance = 1 : i64, hivm.cv.cube_loop = 1 : i64, hivm.cv.vector_loop = 1 : i64, hivm.cv.enable_mixed_cv = false, hivm.cv.auto_balance = true, hivm.cv.anchor_index = 0 : i64} ins(%s_ub : memref<64x32xf32, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+      "inserted": [
+        "hivm.hir.set_flag[<PIPE_FIX>, <PIPE_V>, <EVENT_ID1>]",
+        "hivm.hir.wait_flag[<PIPE_FIX>, <PIPE_V>, <EVENT_ID1>]"
+      ],
+      "structural_change": true
+    },
+    {
+      "type": "hoist_invariant_q_load_from_simple_loop",
+      "loop_line": 42,
+      "removed_lines_in_loop": [
+        43,
+        44
+      ],
+      "hoisted_lines": [
+        "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+        "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)"
+      ],
+      "structural_change": true
+    }
+  ],
+  "structural_change": true,
+  "formal_operation_sequence_change": true,
+  "limitations": [
+    "Step-2 may replace existing tile attributes, but it does not generate a new tiling loop nest.",
+    "Step-2 may add alloc-level multi_buffer/hivm.nbuf hints, but it does not duplicate buffers or implement ping-pong scheduling.",
+    "CVPipeline op-level hivm.cv.* hints may be emitted in Step-2, but cube/vector/fixpipe/store operations are not reordered.",
+    "Sync barrier/event deletion, motion, and reuse are not structurally rewritten in Step-2.",
+    "Compiler-pass-level optimized IR must be produced/validated by vTriton or a real AscendNPU compiler pass pipeline."
+  ]
+}

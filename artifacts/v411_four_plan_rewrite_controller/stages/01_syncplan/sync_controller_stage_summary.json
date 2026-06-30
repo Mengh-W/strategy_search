@@ -1,0 +1,33 @@
+{
+  "stage": "SyncPlan",
+  "stage_status": "PASSED",
+  "rewrite_level": "portable_text_level_audited",
+  "contract_overall_decision": "READY_FOR_PRECISE_BACKEND_DRY_RUN_BARRIER_ACTIONS",
+  "candidate_action_count": 74,
+  "mutation_performed": true,
+  "rewritten_action_count": 74,
+  "skipped_action_count": 0,
+  "passed_portable_validation": true,
+  "passed_portable_liveness_after": true,
+  "num_sync_related_diff_lines": 321,
+  "audit_decision": "PORTABLE_REWRITE_AUDITED_NOT_PRODUCTION",
+  "audit_risk_counts": {
+    "MEDIUM": 73,
+    "BLOCKED": 6,
+    "LOW": 1
+  },
+  "hivmopseditor_migration_action_count": 74,
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "artifacts": {
+    "contract": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_precision_contract/sync_precision_contract.json",
+    "candidate_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_full_rewrite_candidates.json",
+    "optimized_ir": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/optimized.sync_controller_rewritten.hivm.mlir",
+    "rewrite_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_controller_rewrite_report.json",
+    "validation_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_controller_rewrite_validation.json",
+    "diff_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_controller_rewrite_diff.json",
+    "audit_report": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_rewrite_safety_audit.json",
+    "before_liveness": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_liveness_before.json",
+    "after_liveness": "/mnt/data/HIVM_strategy_search_demo_V4.11/artifacts/v411_four_plan_rewrite_controller/stages/01_syncplan/sync_liveness_after.json"
+  }
+}

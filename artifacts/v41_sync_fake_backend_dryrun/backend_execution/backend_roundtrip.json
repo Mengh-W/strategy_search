@@ -1,0 +1,9 @@
+{
+  "schema_version": "fake_hivm_roundtrip_report_v1",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "input": "sample_input/fa_best.hivm.mlir",
+  "output": "artifacts/v41_sync_fake_backend_dryrun/backend_execution/roundtrip.hivm.mlir",
+  "byte_identical": true,
+  "status": "passed_fake_roundtrip"
+}

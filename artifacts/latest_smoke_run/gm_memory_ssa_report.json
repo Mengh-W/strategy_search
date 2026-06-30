@@ -1,0 +1,86 @@
+{
+  "schema_version": "hivm_gm_memory_ssa_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase3c_gm_memoryssa_gate",
+  "policy": "conservative_memoryssa_like_text_gate__future_target_mlir_analysis",
+  "gm_access_count": 4,
+  "memory_event_count": 4,
+  "unknown_side_effect_count": 0,
+  "unique_reaching_use_count": 0,
+  "candidate_count": 0,
+  "candidate_memoryssa_updates": [],
+  "memory_events": [
+    {
+      "kind": "MemoryUse",
+      "gm_var": "%Q_gm",
+      "op_id": 0,
+      "line": 43,
+      "op_name": "hivm.hir.load",
+      "observable_boundary": true,
+      "reaching_def_op_id": null,
+      "reaching_def_line": null,
+      "unique_reaching_def": false,
+      "blocked_by_observable_boundary": true,
+      "blocked_by_unknown_side_effect": false,
+      "parent_loop": {
+        "line": 42,
+        "induction": "%j",
+        "depth": 2
+      },
+      "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "kind": "MemoryUse",
+      "gm_var": "%K_gm",
+      "op_id": 2,
+      "line": 46,
+      "op_name": "hivm.hir.load",
+      "observable_boundary": true,
+      "reaching_def_op_id": null,
+      "reaching_def_line": null,
+      "unique_reaching_def": false,
+      "blocked_by_observable_boundary": true,
+      "blocked_by_unknown_side_effect": false,
+      "parent_loop": {
+        "line": 42,
+        "induction": "%j",
+        "depth": 2
+      },
+      "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<32x128xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "kind": "MemoryUse",
+      "gm_var": "%V_gm",
+      "op_id": 3,
+      "line": 47,
+      "op_name": "hivm.hir.load",
+      "observable_boundary": true,
+      "reaching_def_op_id": null,
+      "reaching_def_line": null,
+      "unique_reaching_def": false,
+      "blocked_by_observable_boundary": true,
+      "blocked_by_unknown_side_effect": false,
+      "parent_loop": {
+        "line": 42,
+        "induction": "%j",
+        "depth": 2
+      },
+      "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<32x128xf16, #hivm.address_space<ub>>)"
+    },
+    {
+      "kind": "MemoryDef",
+      "gm_var": "%O_gm",
+      "op_id": 18,
+      "line": 73,
+      "op_name": "hivm.hir.store",
+      "observable_boundary": true,
+      "parent_loop": null,
+      "text": "hivm.hir.store ins(%o_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)"
+    }
+  ],
+  "unknown_side_effects": [],
+  "limitations": [
+    "This is a MemorySSA-like conservative report, not LLVM/MLIR MemorySSA.",
+    "Static offset/slice equivalence is not yet proven; same SSA GM var is not enough for deletion.",
+    "Function-boundary GM buffers are treated as observable unless target backend proves otherwise."
+  ]
+}

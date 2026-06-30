@@ -1,0 +1,98 @@
+{
+  "schema_version": "hivm_phase6d_vtriton_source_integration_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase6d_vtriton_source_aware_adapter",
+  "phase": "Phase-6D",
+  "phase6d_status": "waiting_for_complete_vtriton_source_or_adapter_files",
+  "plain_language_summary": "Phase 6D uses the supplied vTriton source tree to generate a real HivmOpsEditor-oriented backend adapter skeleton. This is no longer a purely invented interface: the adapter includes the observed HivmOpsEditor header/API names from the provided source.",
+  "source_root_probe": {
+    "provided": false,
+    "path": null,
+    "exists": false,
+    "looks_like_vtriton_repo": false,
+    "reason": "vtriton_source_root_not_provided"
+  },
+  "located_files": {
+    "HivmOpsEditor.h": null,
+    "HivmOpsEditor.cpp": null,
+    "hivm-crud.cpp": null,
+    "tritonsim-hivm.cpp": null
+  },
+  "observed_hivmopseditor_api": {
+    "loadFromFile": false,
+    "exportToFile": false,
+    "exportToString": false,
+    "listOps": false,
+    "opCounts": false,
+    "deleteOp": false,
+    "replaceOpWith": false,
+    "addSetFlagWaitFlagBefore": false,
+    "removeRedundantLoadStorePair": false,
+    "removeRedundantGMTrips": false,
+    "hivm_crud_says_call_editor_directly": false
+  },
+  "generated_adapter": {
+    "directory": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend",
+    "files": [
+      {
+        "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/CMakeLists.txt",
+        "size_bytes": 1036
+      },
+      {
+        "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/README.md",
+        "size_bytes": 1560
+      },
+      {
+        "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/hivm_operation_backend.cpp",
+        "size_bytes": 10615
+      },
+      {
+        "path": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/vtriton_integration_patch.diff",
+        "size_bytes": 1042
+      }
+    ],
+    "install_script": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/scripts/phase6d_install_backend_adapter.sh",
+    "intended_vtriton_location": "<vTriton>/tools/hivm-operation-backend/",
+    "primary_cpp": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/hivm_operation_backend.cpp",
+    "cmake": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/vtriton_hivm_operation_backend/CMakeLists.txt"
+  },
+  "capability_contract": {
+    "implemented_in_adapter_skeleton": [
+      "--print-capabilities",
+      "--inventory",
+      "--roundtrip",
+      "--verify-only",
+      "--dry-run",
+      "--mutate --mutation-kind gm_roundtrip_deletion --max-gm-pairs N"
+    ],
+    "intentionally_rejected_until_algorithm_added": [
+      "--mutate --mutation-kind q_load_hoist"
+    ],
+    "why_q_load_hoist_is_rejected": "The supplied HivmOpsEditor exposes CRUD and creation helpers, but a production Q-load hoist still needs a dominance/region-motion algorithm. The generated adapter refuses to perform text-level region motion."
+  },
+  "official_discipline": {
+    "uses_HivmOpsEditor_API": true,
+    "requires_MLIR_context_and_registered_dialects": true,
+    "rejects_fake_backend_for_production": true,
+    "does_not_use_python_text_region_motion": true,
+    "broad_production_mutation_still_requires_build_verifier_DES_trace": true
+  },
+  "adapter_ready_for_user_local_build": false,
+  "production_mutation_allowed_in_this_sandbox": false,
+  "blocker_count": 6,
+  "blockers": [
+    "vtriton_source_root_missing_or_not_recognized",
+    "HivmOpsEditor_header_not_found",
+    "HivmOpsEditor_impl_not_found",
+    "hivm_crud_reference_not_found",
+    "HivmOpsEditor_minimum_read_inventory_api_not_confirmed",
+    "HivmOpsEditor_roundtrip_export_api_not_confirmed"
+  ],
+  "next_steps_for_user_local_environment": [
+    "Run scripts/phase6d_install_backend_adapter.sh /path/to/vTriton",
+    "Add add_subdirectory(hivm-operation-backend) to vTriton/tools/CMakeLists.txt if needed",
+    "Rebuild vTriton with HIVM/BishengIR support enabled",
+    "Run hivm-operation-backend --print-capabilities and check is_real_mlir_backend=true",
+    "Run --inventory/--roundtrip/--verify-only on kernel.npuir.mlir and fa_best.hivm.mlir",
+    "Only then consider guarded GM deletion or future Q-load hoist implementation"
+  ]
+}

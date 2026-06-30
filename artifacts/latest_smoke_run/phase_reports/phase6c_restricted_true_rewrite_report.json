@@ -1,0 +1,116 @@
+{
+  "schema_version": "hivm_phase6c_restricted_true_rewrite_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase6c_restricted_true_rewrite",
+  "phase": "Phase-6C",
+  "phase6c_status": "restricted_true_rewrite_positive_case_completed",
+  "plain_language_summary": "Phase 6C finally performs real file-level IR rewrites on tiny explicitly marked positive fixtures. This is more than attributes or dry-run, but it is still not a production MLIR/HivmOpsEditor backend.",
+  "fixture_count": 2,
+  "attempt_count": 2,
+  "restricted_true_mutation_count": 2,
+  "production_mutation_allowed": false,
+  "production_mutation_unlocked": false,
+  "results": [
+    {
+      "fixture": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/sample_input/phase6_positive_fixtures/restricted_q_load_hoist_mutation_positive.hivm.mlir",
+      "mutation_kind": "q_load_hoist",
+      "tool": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/tools/restricted_hivm_true_rewriter.py",
+      "returncode": 0,
+      "stdout_preview": "",
+      "stderr_preview": "",
+      "mutation_performed": true,
+      "restricted_true_mutation": true,
+      "production_mutation": false,
+      "status": "mutated_restricted_fixture",
+      "output": "/mnt/data/hivm_work/smoke_out/optimized.phase6c.restricted_q_load_hoist_mutation_positive_hivm.q_load_hoist.hivm.mlir",
+      "report": "/mnt/data/hivm_work/smoke_out/phase6c_restricted_q_load_hoist_mutation_positive_hivm_q_load_hoist_restricted_true_rewrite_report.json",
+      "backend_report": {
+        "schema_version": "restricted_hivm_true_rewrite_report_v1",
+        "backend": "restricted_hivm_true_rewriter_phase6c",
+        "backend_kind": "restricted_textual_true_rewriter",
+        "is_real_mlir_backend": false,
+        "uses_hivmopseditor": false,
+        "uses_mlir_operation_walk": false,
+        "production_mutation": false,
+        "restricted_true_mutation": true,
+        "status": "mutated_restricted_fixture",
+        "input": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/sample_input/phase6_positive_fixtures/restricted_q_load_hoist_mutation_positive.hivm.mlir",
+        "output": "/mnt/data/hivm_work/smoke_out/optimized.phase6c.restricted_q_load_hoist_mutation_positive_hivm.q_load_hoist.hivm.mlir",
+        "mutation_kind": "q_load_hoist",
+        "mutation_performed": true,
+        "changed_line_count": 2,
+        "actions": [
+          {
+            "type": "q_load_hoist",
+            "loop_line": 10,
+            "load_line_before": 11,
+            "nd2nz_line_before": 12,
+            "inserted_before_loop_line": 10,
+            "buffers": {
+              "q_ub": "%q_ub",
+              "q_l1": "%q_l1"
+            },
+            "structural_change": "moved two operation lines before scf.for"
+          }
+        ],
+        "blockers": [],
+        "disclaimer": "This is a real file-level IR mutation for restricted positive fixtures only. It is not a production MLIR/HivmOpsEditor rewrite backend."
+      },
+      "blockers": []
+    },
+    {
+      "fixture": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/sample_input/phase6_positive_fixtures/restricted_gm_roundtrip_deletion_positive.hivm.mlir",
+      "mutation_kind": "gm_roundtrip_deletion",
+      "tool": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/tools/restricted_hivm_true_rewriter.py",
+      "returncode": 0,
+      "stdout_preview": "",
+      "stderr_preview": "",
+      "mutation_performed": true,
+      "restricted_true_mutation": true,
+      "production_mutation": false,
+      "status": "mutated_restricted_fixture",
+      "output": "/mnt/data/hivm_work/smoke_out/optimized.phase6c.restricted_gm_roundtrip_deletion_positive_hivm.gm_roundtrip_deletion.hivm.mlir",
+      "report": "/mnt/data/hivm_work/smoke_out/phase6c_restricted_gm_roundtrip_deletion_positive_hivm_gm_roundtrip_deletion_restricted_true_rewrite_report.json",
+      "backend_report": {
+        "schema_version": "restricted_hivm_true_rewrite_report_v1",
+        "backend": "restricted_hivm_true_rewriter_phase6c",
+        "backend_kind": "restricted_textual_true_rewriter",
+        "is_real_mlir_backend": false,
+        "uses_hivmopseditor": false,
+        "uses_mlir_operation_walk": false,
+        "production_mutation": false,
+        "restricted_true_mutation": true,
+        "status": "mutated_restricted_fixture",
+        "input": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/sample_input/phase6_positive_fixtures/restricted_gm_roundtrip_deletion_positive.hivm.mlir",
+        "output": "/mnt/data/hivm_work/smoke_out/optimized.phase6c.restricted_gm_roundtrip_deletion_positive_hivm.gm_roundtrip_deletion.hivm.mlir",
+        "mutation_kind": "gm_roundtrip_deletion",
+        "mutation_performed": true,
+        "deleted_pair_count": 1,
+        "changed_line_count": 2,
+        "actions": [
+          {
+            "type": "gm_roundtrip_deletion",
+            "load_source_line": 8,
+            "store_deleted_line": 9,
+            "reload_deleted_line": 10,
+            "gm": "%A_gm",
+            "tmp_buffer": "%tmp_ub",
+            "reload_buffer": "%tmp2_ub",
+            "structural_change": "commented out one store and one reload in restricted fixture"
+          }
+        ],
+        "blockers": [],
+        "disclaimer": "This is a real file-level IR mutation for restricted positive fixtures only. It is not a production MLIR/HivmOpsEditor rewrite backend."
+      },
+      "blockers": []
+    }
+  ],
+  "blocker_count": 0,
+  "blockers": [],
+  "scope": {
+    "does_real_file_level_ir_mutation": true,
+    "does_not_require_msprof": true,
+    "not_a_production_mlir_backend": true,
+    "only_for_restricted_positive_fixtures": true,
+    "complex_kernels_remain_locked": true
+  }
+}

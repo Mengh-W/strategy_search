@@ -1,0 +1,94 @@
+{
+  "schema_version": "hivm_v56_tiling_semantic_loop_rewrite_report_v1",
+  "mutation_performed": true,
+  "mutation_kind": "semantic_tile_loop_wrap_plus_shape_rewrite",
+  "selected_tiling": {
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "loop_order": "outer_mkn",
+    "tail_strategy": "mask_or_pad",
+    "reduce_tile_policy": "half_k",
+    "layout_aware_tile": true
+  },
+  "loop_anchor": {
+    "start_line": 18,
+    "end_line": 35,
+    "original_header": "scf.for %j = %c0 to %cE step %cB {   // @trip=10"
+  },
+  "actions": [
+    {
+      "parameter": "tile_m",
+      "selected_value": 32,
+      "operation_action": "insert_M_outer_tile_loop_and_bind_M_slice_guard",
+      "before_line": 18,
+      "after_snippet": [
+        "    // HIVM V5.6 TilingPlan semantic operation rewrite begin",
+        "    // selected: tile_m=32 tile_n=64 tile_k=128 loop_order=outer_mkn tail_strategy=mask_or_pad reduce_tile_policy=half_k layout_aware_tile=True",
+        "    // operation-level intent: loop split + tiled load/store/compute slice + tail/reduction guards. Linux backend must bind %cM/%cN/%cK and verify official HIVM legality.",
+        "    scf.for %m_outer = %c0 to %cM step %c32 {   // HIVM V5.6 TilingPlan M-tile loop"
+      ]
+    },
+    {
+      "parameter": "tile_n",
+      "selected_value": 64,
+      "operation_action": "insert_N_outer_tile_loop_and_bind_N_slice_guard",
+      "before_line": 18,
+      "after_snippet": [
+        "    // HIVM V5.6 TilingPlan semantic operation rewrite begin",
+        "    // selected: tile_m=32 tile_n=64 tile_k=128 loop_order=outer_mkn tail_strategy=mask_or_pad reduce_tile_policy=half_k layout_aware_tile=True",
+        "    // operation-level intent: loop split + tiled load/store/compute slice + tail/reduction guards. Linux backend must bind %cM/%cN/%cK and verify official HIVM legality.",
+        "    scf.for %m_outer = %c0 to %cM step %c32 {   // HIVM V5.6 TilingPlan M-tile loop",
+        "      scf.for %k_outer = %c0 to %cK step %c128 {   // HIVM V5.6 TilingPlan K-tile loop"
+      ]
+    },
+    {
+      "parameter": "tile_k",
+      "selected_value": 128,
+      "operation_action": "insert_K_outer_tile_loop_and_reduction_tile_guard",
+      "before_line": 18,
+      "after_snippet": [
+        "    // HIVM V5.6 TilingPlan semantic operation rewrite begin",
+        "    // selected: tile_m=32 tile_n=64 tile_k=128 loop_order=outer_mkn tail_strategy=mask_or_pad reduce_tile_policy=half_k layout_aware_tile=True",
+        "    // operation-level intent: loop split + tiled load/store/compute slice + tail/reduction guards. Linux backend must bind %cM/%cN/%cK and verify official HIVM legality.",
+        "    scf.for %m_outer = %c0 to %cM step %c32 {   // HIVM V5.6 TilingPlan M-tile loop",
+        "      scf.for %k_outer = %c0 to %cK step %c128 {   // HIVM V5.6 TilingPlan K-tile loop",
+        "        scf.for %n_outer = %c0 to %cN step %c64 {   // HIVM V5.6 TilingPlan N-tile loop"
+      ]
+    },
+    {
+      "parameter": "loop_order",
+      "selected_value": "outer_mkn",
+      "operation_action": "materialize_outer_tile_loop_order",
+      "axis_order": [
+        "m",
+        "k",
+        "n"
+      ]
+    },
+    {
+      "parameter": "tail_strategy",
+      "selected_value": "mask_or_pad",
+      "operation_action": "insert_tail_guard_request_at_tile_body"
+    },
+    {
+      "parameter": "reduce_tile_policy",
+      "selected_value": "half_k",
+      "operation_action": "insert_reduction_accumulation_guard_request"
+    },
+    {
+      "parameter": "layout_aware_tile",
+      "selected_value": true,
+      "operation_action": "insert_layout_legality_guard_request"
+    }
+  ],
+  "blockers": [],
+  "official_backend_binding_required": [
+    "%cM",
+    "%cN",
+    "%cK",
+    "slice_offsets",
+    "tail_mask",
+    "partial_accumulator"
+  ]
+}

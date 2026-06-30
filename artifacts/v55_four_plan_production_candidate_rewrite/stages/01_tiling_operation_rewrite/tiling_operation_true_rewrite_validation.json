@@ -1,0 +1,23 @@
+{
+  "schema_version": "hivm_v55_tiling_operation_true_validation_v1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "mutation_performed",
+      "passed": true
+    },
+    {
+      "name": "operation_shape_mutations_exist",
+      "passed": true
+    },
+    {
+      "name": "gm_argument_shapes_not_rewritten",
+      "passed": true
+    },
+    {
+      "name": "tiling_candidate_marker_present",
+      "passed": true
+    }
+  ],
+  "production_rewrite_claim_allowed": false
+}

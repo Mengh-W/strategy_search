@@ -1,0 +1,123 @@
+{
+  "schema_version": "hivm_rewrite_capability_v1",
+  "producer": "strategy_search_demo_v3.3.1_step2_safe_structural",
+  "rewrite_stage": "step2_safe_structural_hint_rewrite",
+  "rewrite_safety": "conservative",
+  "strategy_id": "candidate_01681",
+  "capabilities": {
+    "func_and_module_annotation": true,
+    "alloc_level_multibuffer_hint": false,
+    "existing_tile_attr_replacement": false,
+    "tiling_loop_nest_generation": false,
+    "real_pingpong_buffer_duplication": false,
+    "load_store_op_motion": false,
+    "cv_pipeline_op_level_hint_attrs": true,
+    "cv_pipeline_structural_reorder": false,
+    "sync_barrier_or_event_rewrite": false
+  },
+  "anchors": {
+    "alloc_count": 13,
+    "ub_l1_alloc_count": 12,
+    "tile_attr_anchor_found": false,
+    "explicit_buffer_multiplier_targets": {},
+    "cv_related_op_count": 19,
+    "cv_cube_anchor_count": 2,
+    "cv_vector_anchor_count": 6,
+    "cv_fixpipe_anchor_count": 2
+  },
+  "applied_changes_summary": {
+    "buffer_hints_added": 0,
+    "buffers_rewritten": [],
+    "tile_attrs_replaced": [],
+    "cv_op_hints_added": 10,
+    "cv_roles_rewritten": [
+      "cube",
+      "fixpipe",
+      "vector"
+    ],
+    "sync_rewrites_performed": 0
+  },
+  "fallback_reasons": {
+    "tile_loop_rewrite": "not_in_step2; requires index remapping, tail masks, reduction accumulation, and legality checks",
+    "real_multibuffer_pingpong": "not_in_step2; requires buffer duplication, producer-consumer live-range analysis, and event/wait insertion",
+    "cv_pipeline_rewrite": null,
+    "cv_pipeline_structural_reorder": "not_in_step2; requires cube/vector/fixpipe/store dependency graph, live-range analysis, and event/wait legality",
+    "sync_rewrite": "not_in_step2; requires proven dependency graph and deadlock/data-race validation",
+    "tile_attr_replacement": "no_existing_tile_attribute_anchor_found; kept function-level strategy annotation only",
+    "conservative_multibuffer": "no concrete safe alloc-level multi-buffer rewrite was emitted under current safety mode"
+  },
+  "skipped_buffers": [
+    {
+      "name": "q_ub",
+      "scope": "ub",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "acc_ub",
+      "scope": "ub",
+      "reason": "accumulator_output_or_persistent_name_guard"
+    },
+    {
+      "name": "s_ub",
+      "scope": "ub",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "p_ub",
+      "scope": "ub",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "m_ub",
+      "scope": "ub",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "l_ub",
+      "scope": "ub",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "k_ub",
+      "scope": "ub",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "v_ub",
+      "scope": "ub",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "q_l1",
+      "scope": "l1",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "k_l1",
+      "scope": "l1",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "v_l1",
+      "scope": "l1",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    },
+    {
+      "name": "s_l0c",
+      "scope": "l0c",
+      "reason": "not_ub_or_l1_scope"
+    },
+    {
+      "name": "o_ub",
+      "scope": "ub",
+      "reason": "no_explicit_per_buffer_multiplier_ge_2_under_conservative_safety"
+    }
+  ],
+  "safety_contract": [
+    "Step-2 may add attributes to existing func/module/alloc/tile anchors.",
+    "Step-2 must not create new buffers or duplicate existing buffers.",
+    "Step-2 must not move load/store/compute operations.",
+    "Step-2 must not remove or move barriers/events.",
+    "Step-2 output still requires vTriton/compiler-pass validation before claiming realized speedup."
+  ]
+}

@@ -1,0 +1,2452 @@
+{
+  "schema_version": "hivm_four_plan_rewrite_plan_v1",
+  "producer": "strategy_search.hivm_official_rewrite_plan",
+  "basis": {
+    "official_docs": "AscendNPU-IR HIVM Dialect official documentation subset for load/store/set_flag/wait_flag/pipe_barrier and related ops",
+    "important_rule": "Python emits rewrite intent only. True HIVM IR mutation must be done by HivmOpsEditor/MLIR backend and verified."
+  },
+  "input_summary": {
+    "num_hivm_ops": 787,
+    "num_buffers": 0,
+    "num_loops": 10,
+    "op_counts": {
+      "hivm.hir.set_ffts_base_addr": 2,
+      "hivm.hir.set_mask_norm": 2,
+      "hivm.hir.get_block_idx": 2,
+      "hivm.hir.sync_block_wait": 48,
+      "hivm.hir.pointer_cast": 183,
+      "hivm.hir.nd2nz": 18,
+      "hivm.hir.set_flag": 116,
+      "hivm.hir.sync_block_set": 48,
+      "hivm.hir.wait_flag": 110,
+      "hivm.hir.pipe_barrier": 80,
+      "hivm.hir.mmadL1": 9,
+      "hivm.hir.fixpipe": 9,
+      "hivm.hir.vbrc": 20,
+      "hivm.hir.varange": 2,
+      "hivm.hir.vadd": 16,
+      "hivm.hir.vmax": 5,
+      "hivm.hir.vcmp": 10,
+      "hivm.hir.vnot": 7,
+      "hivm.hir.vand": 5,
+      "hivm.hir.load": 17,
+      "hivm.hir.get_sub_block_idx": 1,
+      "hivm.hir.store": 22,
+      "hivm.hir.vcast": 15,
+      "hivm.hir.vsel": 5,
+      "hivm.hir.vmul": 26,
+      "hivm.hir.vreduce": 4,
+      "hivm.hir.vexp": 3,
+      "hivm.hir.vsub": 2
+    },
+    "role_counts": {
+      "side_effect_or_debug_anchor": 4,
+      "mutation_blocker": 4,
+      "system_query": 3,
+      "do_not_move_across_control_boundary": 3,
+      "sync_block": 96,
+      "inter_or_intra_block_sync": 96,
+      "pointer_cast": 183,
+      "alias_sensitive_anchor": 183,
+      "layout_transform": 18,
+      "cv_transform_stage": 18,
+      "sync_set": 116,
+      "sync_wait": 110,
+      "coarse_or_pipe_sync_barrier": 80,
+      "cube_compute_stage": 9,
+      "fixpipe_stage": 9,
+      "cv_boundary_candidate": 9,
+      "vector_compute_stage": 120,
+      "gm_to_local_load": 17,
+      "cv_load_stage": 17,
+      "multibuffer_candidate": 17,
+      "local_to_gm_store": 22,
+      "cv_store_stage": 22,
+      "gm_roundtrip_candidate": 22
+    },
+    "by_category": {
+      "data_move": 39,
+      "layout": 18,
+      "cube_compute": 9,
+      "vector_compute": 120,
+      "sync": 402,
+      "loops": 10,
+      "buffers": 0
+    },
+    "buffer_spaces": {},
+    "unknown_hivm_ops": []
+  },
+  "unknown_op_policy": "unknown HIVM ops block true mutation touching their region; dry-run/report is still allowed",
+  "requests": [
+    {
+      "plan": "SyncPlan",
+      "selected_knobs": {
+        "policy": "graph_sync_solver",
+        "template": "Y3_event_reuse",
+        "barrier_level": "low",
+        "event_reuse": true,
+        "event_id_policy": "reuse",
+        "sync_motion": "local_move",
+        "remove_redundant_sync": true
+      },
+      "candidate_anchors": {
+        "sync_ops": [
+          {
+            "line": 130,
+            "op": "hivm.hir.sync_block_wait",
+            "text": "hivm.hir.sync_block_wait[<CUBE>, <PIPE_MTE3>, <PIPE_S>] flag = 1",
+            "known_by_schema": true,
+            "syntax_family": "sync_block",
+            "roles": [
+              "sync_block",
+              "inter_or_intra_block_sync"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 135,
+            "op": "hivm.hir.sync_block_wait",
+            "text": "hivm.hir.sync_block_wait[<CUBE>, <PIPE_MTE3>, <PIPE_S>] flag = 1",
+            "known_by_schema": true,
+            "syntax_family": "sync_block",
+            "roles": [
+              "sync_block",
+              "inter_or_intra_block_sync"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 140,
+            "op": "hivm.hir.sync_block_wait",
+            "text": "hivm.hir.sync_block_wait[<CUBE>, <PIPE_MTE3>, <PIPE_S>] flag = 1",
+            "known_by_schema": true,
+            "syntax_family": "sync_block",
+            "roles": [
+              "sync_block",
+              "inter_or_intra_block_sync"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 145,
+            "op": "hivm.hir.sync_block_wait",
+            "text": "hivm.hir.sync_block_wait[<CUBE>, <PIPE_MTE3>, <PIPE_S>] flag = 1",
+            "known_by_schema": true,
+            "syntax_family": "sync_block",
+            "roles": [
+              "sync_block",
+              "inter_or_intra_block_sync"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 149,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_MTE1>, <PIPE_MTE2>, <EVENT_ID0>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 150,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_MTE1>, <PIPE_MTE2>, <EVENT_ID1>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 151,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_MTE1>, <PIPE_MTE2>, <EVENT_ID2>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 152,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_MTE1>, <PIPE_MTE2>, <EVENT_ID3>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 153,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_MTE1>, <PIPE_MTE2>, <EVENT_ID4>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 154,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_MTE1>, <PIPE_MTE2>, <EVENT_ID5>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 155,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_MTE1>, <PIPE_MTE2>, <EVENT_ID6>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 156,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_MTE1>, <PIPE_MTE2>, <EVENT_ID7>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 157,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_FIX>, <PIPE_M>, <EVENT_ID0>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 158,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_FIX>, <PIPE_M>, <EVENT_ID1>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 159,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_FIX>, <PIPE_M>, <EVENT_ID2>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 160,
+            "op": "hivm.hir.set_flag",
+            "text": "hivm.hir.set_flag[<PIPE_FIX>, <PIPE_M>, <EVENT_ID3>]",
+            "known_by_schema": true,
+            "syntax_family": "event_sync",
+            "roles": [
+              "sync_set"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          }
+        ],
+        "producer_ops": [
+          {
+            "line": 713,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%collapse_shape_10 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%collapse_shape_11 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %68 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_10"
+            ],
+            "outputs": [
+              "%collapse_shape_11"
+            ],
+            "notes": []
+          },
+          {
+            "line": 725,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_13 : memref<64x?xbf16, strided<[1, 64], offset: ?>, #hivm.address_space<gm>>) outs(%subview_14 : memref<64x?xbf16, strided<[64, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %68 : index init_out_buffer = false may_implicit_transpose_with_last_axis = true",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_13"
+            ],
+            "outputs": [
+              "%subview_14"
+            ],
+            "notes": []
+          },
+          {
+            "line": 849,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_54 : memref<?x?xbf16, strided<[4096, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_55 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %151 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_54"
+            ],
+            "outputs": [
+              "%subview_55"
+            ],
+            "notes": []
+          },
+          {
+            "line": 859,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_56 : memref<?x?xf32, strided<[4096, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_57 : memref<?x?xf32, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %151 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_56"
+            ],
+            "outputs": [
+              "%subview_57"
+            ],
+            "notes": []
+          },
+          {
+            "line": 875,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_59 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_60 : memref<?xf32, strided<[1]>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %c0 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_59"
+            ],
+            "outputs": [
+              "%subview_60"
+            ],
+            "notes": []
+          },
+          {
+            "line": 968,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_134 : memref<?x?xbf16, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_135 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %256 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_134"
+            ],
+            "outputs": [
+              "%subview_135"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1000,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_138 : memref<?x?xbf16, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_139 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %256 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_138"
+            ],
+            "outputs": [
+              "%subview_139"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1174,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%collapse_shape_150 : memref<2048xf32, #hivm.address_space<gm>>) outs(%collapse_shape_151 : memref<2048xf32, #hivm.address_space<ub>>) init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_150"
+            ],
+            "outputs": [
+              "%collapse_shape_151"
+            ],
+            "notes": []
+          },
+          {
+            "line": 308,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_29, %cast_30, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_36 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c3_i64, %c4_i64, %c-1_i64_37, %c-1_i64_37, %89, %c-1_i64_37, %c-1_i64_37 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_29",
+              "%cast_30",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_36"
+            ],
+            "notes": []
+          },
+          {
+            "line": 321,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_28, %cast_32, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_38 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_39, %c2_i64, %c-1_i64_39, %c-1_i64_39, %89, %c-1_i64_39, %c-1_i64_39 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_28",
+              "%cast_32",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_38"
+            ],
+            "notes": []
+          },
+          {
+            "line": 334,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_33, %cast_31, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_40 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c1_i64_2, %c-1_i64_41, %c-1_i64_41, %102, %89, %c-1_i64_41, %c-1_i64_41 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_33",
+              "%cast_31",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_40"
+            ],
+            "notes": []
+          },
+          {
+            "line": 369,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {b_transpose, fixpipe_already_inserted = true} ins(%cast_34, %cast_43, %true, %c64, %c32, %37 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_46 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_47, %c0_i64_3, %c-1_i64_47, %c-1_i64_47, %89, %c-1_i64_47, %c-1_i64_47 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_34",
+              "%cast_43",
+              "%true",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_46"
+            ],
+            "notes": []
+          },
+          {
+            "line": 380,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast, %cast_35, %true, %c64, %c64, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_48 : memref<?x?x?x?xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast",
+              "%cast_35",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_48"
+            ],
+            "notes": []
+          },
+          {
+            "line": 417,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {b_transpose, fixpipe_already_inserted = true} ins(%cast_17, %cast_19, %true, %c64, %c32, %c64 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_20 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c0_i64_1, %c1_i64, %68, %c-1_i64_21, %59, %c-1_i64_21, %c-1_i64_21 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_17",
+              "%cast_19",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c64"
+            ],
+            "outputs": [
+              "%cast_20"
+            ],
+            "notes": []
+          },
+          {
+            "line": 429,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_8, %cast_18, %true, %c64, %c64, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_22 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_23, %c-1_i64_23, %c-1_i64_23, %66, %59, %c-1_i64_23, %c-1_i64_23 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_8",
+              "%cast_18",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_22"
+            ],
+            "notes": []
+          },
+          {
+            "line": 462,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_11, %cast_9, %true, %c64, %c64, %c64 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_12 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c0_i64_0, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_11",
+              "%cast_9",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c64"
+            ],
+            "outputs": [
+              "%cast_12"
+            ],
+            "notes": []
+          }
+        ],
+        "consumer_ops": [
+          {
+            "line": 308,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_29, %cast_30, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_36 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c3_i64, %c4_i64, %c-1_i64_37, %c-1_i64_37, %89, %c-1_i64_37, %c-1_i64_37 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_29",
+              "%cast_30",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_36"
+            ],
+            "notes": []
+          },
+          {
+            "line": 321,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_28, %cast_32, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_38 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_39, %c2_i64, %c-1_i64_39, %c-1_i64_39, %89, %c-1_i64_39, %c-1_i64_39 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_28",
+              "%cast_32",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_38"
+            ],
+            "notes": []
+          },
+          {
+            "line": 334,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_33, %cast_31, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_40 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c1_i64_2, %c-1_i64_41, %c-1_i64_41, %102, %89, %c-1_i64_41, %c-1_i64_41 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_33",
+              "%cast_31",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_40"
+            ],
+            "notes": []
+          },
+          {
+            "line": 369,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {b_transpose, fixpipe_already_inserted = true} ins(%cast_34, %cast_43, %true, %c64, %c32, %37 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_46 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_47, %c0_i64_3, %c-1_i64_47, %c-1_i64_47, %89, %c-1_i64_47, %c-1_i64_47 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_34",
+              "%cast_43",
+              "%true",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_46"
+            ],
+            "notes": []
+          },
+          {
+            "line": 380,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast, %cast_35, %true, %c64, %c64, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_48 : memref<?x?x?x?xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast",
+              "%cast_35",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_48"
+            ],
+            "notes": []
+          },
+          {
+            "line": 417,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {b_transpose, fixpipe_already_inserted = true} ins(%cast_17, %cast_19, %true, %c64, %c32, %c64 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_20 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c0_i64_1, %c1_i64, %68, %c-1_i64_21, %59, %c-1_i64_21, %c-1_i64_21 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_17",
+              "%cast_19",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c64"
+            ],
+            "outputs": [
+              "%cast_20"
+            ],
+            "notes": []
+          },
+          {
+            "line": 429,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_8, %cast_18, %true, %c64, %c64, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_22 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_23, %c-1_i64_23, %c-1_i64_23, %66, %59, %c-1_i64_23, %c-1_i64_23 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_8",
+              "%cast_18",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_22"
+            ],
+            "notes": []
+          },
+          {
+            "line": 462,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_11, %cast_9, %true, %c64, %c64, %c64 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_12 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c0_i64_0, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_11",
+              "%cast_9",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c64"
+            ],
+            "outputs": [
+              "%cast_12"
+            ],
+            "notes": []
+          },
+          {
+            "line": 360,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : bf16) outs(%collapse_shape : memref<2048xbf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [
+              "%collapse_shape"
+            ],
+            "notes": []
+          },
+          {
+            "line": 613,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : f32) outs(%9 : memref<64xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 616,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : f32) outs(%collapse_shape : memref<4096xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [
+              "%collapse_shape"
+            ],
+            "notes": []
+          },
+          {
+            "line": 618,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : f32) outs(%11 : memref<32xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 621,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : f32) outs(%collapse_shape_4 : memref<2048xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [
+              "%collapse_shape_4"
+            ],
+            "notes": []
+          },
+          {
+            "line": 643,
+            "op": "hivm.hir.varange",
+            "text": "hivm.hir.varange offset[%c0] strides[%c1] outs(%29 : memref<64xi32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 646,
+            "op": "hivm.hir.vadd",
+            "text": "hivm.hir.vadd ins(%29, %28 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%30 : memref<64xi32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 649,
+            "op": "hivm.hir.vmax",
+            "text": "hivm.hir.vmax ins(%30, %27 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%31 : memref<64xi32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 736,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_52 : memref<4096xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_53 : memref<4096xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_52"
+            ],
+            "outputs": [
+              "%collapse_shape_53"
+            ],
+            "notes": []
+          },
+          {
+            "line": 744,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_52 : memref<4096xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_53 : memref<4096xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_52"
+            ],
+            "outputs": [
+              "%collapse_shape_53"
+            ],
+            "notes": []
+          },
+          {
+            "line": 752,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_52 : memref<4096xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_53 : memref<4096xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_52"
+            ],
+            "outputs": [
+              "%collapse_shape_53"
+            ],
+            "notes": []
+          },
+          {
+            "line": 760,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_52 : memref<4096xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_53 : memref<4096xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_52"
+            ],
+            "outputs": [
+              "%collapse_shape_53"
+            ],
+            "notes": []
+          },
+          {
+            "line": 985,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_137 : memref<2048xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_168 : memref<2048xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_137"
+            ],
+            "outputs": [
+              "%collapse_shape_168"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1016,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_141 : memref<2048xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_168 : memref<2048xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_141"
+            ],
+            "outputs": [
+              "%collapse_shape_168"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1047,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_168 : memref<1024xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_169 : memref<1024xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_168"
+            ],
+            "outputs": [
+              "%collapse_shape_169"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1056,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_168 : memref<1024xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_169 : memref<1024xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_168"
+            ],
+            "outputs": [
+              "%collapse_shape_169"
+            ],
+            "notes": []
+          }
+        ]
+      },
+      "rewrite_actions": [
+        "detect_pipe_barrier_or_legacy_barrier_candidates",
+        "derive_producer_consumer_pipe_pairs",
+        "allocate_fresh_or_proven_reusable_event_ids",
+        "ask_backend_to_create_set_flag_wait_flag_using_official_syntax",
+        "defer_event_printing_to_HivmOpsEditor_because_sample_event_syntax_may_be_legacy"
+      ],
+      "minimum_gates": [
+        "producer_consumer_pair_proven",
+        "event_live_range_non_overlapping_or_fresh_event",
+        "no_cross_iteration_dependency_removed",
+        "deadlock_freedom_check_required",
+        "backend_roundtrip_and_verify_pass"
+      ],
+      "status": "backend_required"
+    },
+    {
+      "plan": "MultiBufferPlan",
+      "selected_knobs": {
+        "double_buffer": true,
+        "template": "M1_input_double_buffer",
+        "input_buffer_multiplier": 2,
+        "stage_buffer_multiplier": 2,
+        "buffer_multipliers": {
+          "k_l1": 1,
+          "q_l1": 1,
+          "q_ub": 1,
+          "v_l1": 1
+        },
+        "stage_buffer_policy": "none"
+      },
+      "candidate_anchors": {
+        "local_buffers": [],
+        "load_ops": [
+          {
+            "line": 713,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%collapse_shape_10 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%collapse_shape_11 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %68 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_10"
+            ],
+            "outputs": [
+              "%collapse_shape_11"
+            ],
+            "notes": []
+          },
+          {
+            "line": 725,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_13 : memref<64x?xbf16, strided<[1, 64], offset: ?>, #hivm.address_space<gm>>) outs(%subview_14 : memref<64x?xbf16, strided<[64, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %68 : index init_out_buffer = false may_implicit_transpose_with_last_axis = true",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_13"
+            ],
+            "outputs": [
+              "%subview_14"
+            ],
+            "notes": []
+          },
+          {
+            "line": 849,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_54 : memref<?x?xbf16, strided<[4096, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_55 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %151 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_54"
+            ],
+            "outputs": [
+              "%subview_55"
+            ],
+            "notes": []
+          },
+          {
+            "line": 859,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_56 : memref<?x?xf32, strided<[4096, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_57 : memref<?x?xf32, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %151 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_56"
+            ],
+            "outputs": [
+              "%subview_57"
+            ],
+            "notes": []
+          },
+          {
+            "line": 875,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_59 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_60 : memref<?xf32, strided<[1]>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %c0 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_59"
+            ],
+            "outputs": [
+              "%subview_60"
+            ],
+            "notes": []
+          },
+          {
+            "line": 968,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_134 : memref<?x?xbf16, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_135 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %256 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_134"
+            ],
+            "outputs": [
+              "%subview_135"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1000,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_138 : memref<?x?xbf16, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_139 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %256 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_138"
+            ],
+            "outputs": [
+              "%subview_139"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1174,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%collapse_shape_150 : memref<2048xf32, #hivm.address_space<gm>>) outs(%collapse_shape_151 : memref<2048xf32, #hivm.address_space<ub>>) init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_150"
+            ],
+            "outputs": [
+              "%collapse_shape_151"
+            ],
+            "notes": []
+          }
+        ],
+        "layout_ops": [
+          {
+            "line": 133,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%39 : memref<64x64xbf16, #hivm.address_space<gm>>) outs(%cast : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast"
+            ],
+            "notes": []
+          },
+          {
+            "line": 138,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%41 : memref<64x64xbf16, #hivm.address_space<gm>>) outs(%cast_8 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_8"
+            ],
+            "notes": []
+          },
+          {
+            "line": 143,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%43 : memref<64x64xbf16, #hivm.address_space<gm>>) outs(%cast_9 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_9"
+            ],
+            "notes": []
+          },
+          {
+            "line": 148,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%45 : memref<64x64xbf16, #hivm.address_space<gm>>) outs(%cast_10 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_10"
+            ],
+            "notes": []
+          },
+          {
+            "line": 260,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%123 : memref<64x32xbf16, #hivm.address_space<gm>>) outs(%cast_28 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_28"
+            ],
+            "notes": []
+          },
+          {
+            "line": 265,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%124 : memref<64x32xbf16, #hivm.address_space<gm>>) outs(%cast_29 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_29"
+            ],
+            "notes": []
+          },
+          {
+            "line": 271,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%125 : memref<32x32xbf16, #hivm.address_space<gm>>) outs(%cast_30 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_30"
+            ],
+            "notes": []
+          },
+          {
+            "line": 277,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%126 : memref<32x32xbf16, #hivm.address_space<gm>>) outs(%cast_31 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_31"
+            ],
+            "notes": []
+          }
+        ]
+      },
+      "rewrite_actions": [
+        "select_cloneable_local_buffers",
+        "create_backend_buffer_clone_requests",
+        "replace_load_layout_compute_operands_by_iteration_or_stage_policy",
+        "defer_actual_buffer_creation_and_use_replacement_to_HivmOpsEditor"
+      ],
+      "minimum_gates": [
+        "target_buffer_has_known_address_space",
+        "all_uses_are_known_or_backend_resolvable",
+        "no_unknown_side_effect_op_between_producer_consumer",
+        "capacity_recheck_passes_after_extra_buffer_slots",
+        "buffer_liveness_no_overwrite",
+        "backend_roundtrip_and_verify_pass"
+      ],
+      "status": "backend_required"
+    },
+    {
+      "plan": "CVPipelinePlan",
+      "selected_knobs": {
+        "stage_num": 2,
+        "template": "P2_stage2_balanced",
+        "producer_consumer_distance": 1,
+        "enable_mixed_cv": false
+      },
+      "candidate_anchors": {
+        "load_ops": [
+          {
+            "line": 713,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%collapse_shape_10 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%collapse_shape_11 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %68 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_10"
+            ],
+            "outputs": [
+              "%collapse_shape_11"
+            ],
+            "notes": []
+          },
+          {
+            "line": 725,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_13 : memref<64x?xbf16, strided<[1, 64], offset: ?>, #hivm.address_space<gm>>) outs(%subview_14 : memref<64x?xbf16, strided<[64, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %68 : index init_out_buffer = false may_implicit_transpose_with_last_axis = true",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_13"
+            ],
+            "outputs": [
+              "%subview_14"
+            ],
+            "notes": []
+          },
+          {
+            "line": 849,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_54 : memref<?x?xbf16, strided<[4096, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_55 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %151 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_54"
+            ],
+            "outputs": [
+              "%subview_55"
+            ],
+            "notes": []
+          },
+          {
+            "line": 859,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_56 : memref<?x?xf32, strided<[4096, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_57 : memref<?x?xf32, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %151 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_56"
+            ],
+            "outputs": [
+              "%subview_57"
+            ],
+            "notes": []
+          },
+          {
+            "line": 875,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_59 : memref<?xf32, strided<[1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_60 : memref<?xf32, strided<[1]>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst : f32 left_padding_num = %c0 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_59"
+            ],
+            "outputs": [
+              "%subview_60"
+            ],
+            "notes": []
+          },
+          {
+            "line": 968,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_134 : memref<?x?xbf16, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_135 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %256 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_134"
+            ],
+            "outputs": [
+              "%subview_135"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1000,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%subview_138 : memref<?x?xbf16, strided<[128, 1], offset: ?>, #hivm.address_space<gm>>) outs(%subview_139 : memref<?x?xbf16, strided<[32, 1], offset: ?>, #hivm.address_space<ub>>) pad_mode = <PadValue> pad_value = %cst_0 : bf16 left_padding_num = %256 : index init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%subview_138"
+            ],
+            "outputs": [
+              "%subview_139"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1174,
+            "op": "hivm.hir.load",
+            "text": "hivm.hir.load ins(%collapse_shape_150 : memref<2048xf32, #hivm.address_space<gm>>) outs(%collapse_shape_151 : memref<2048xf32, #hivm.address_space<ub>>) init_out_buffer = false may_implicit_transpose_with_last_axis = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "gm_to_local_load",
+              "cv_load_stage",
+              "multibuffer_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_150"
+            ],
+            "outputs": [
+              "%collapse_shape_151"
+            ],
+            "notes": []
+          }
+        ],
+        "layout_ops": [
+          {
+            "line": 133,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%39 : memref<64x64xbf16, #hivm.address_space<gm>>) outs(%cast : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast"
+            ],
+            "notes": []
+          },
+          {
+            "line": 138,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%41 : memref<64x64xbf16, #hivm.address_space<gm>>) outs(%cast_8 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_8"
+            ],
+            "notes": []
+          },
+          {
+            "line": 143,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%43 : memref<64x64xbf16, #hivm.address_space<gm>>) outs(%cast_9 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_9"
+            ],
+            "notes": []
+          },
+          {
+            "line": 148,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%45 : memref<64x64xbf16, #hivm.address_space<gm>>) outs(%cast_10 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_10"
+            ],
+            "notes": []
+          },
+          {
+            "line": 260,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%123 : memref<64x32xbf16, #hivm.address_space<gm>>) outs(%cast_28 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_28"
+            ],
+            "notes": []
+          },
+          {
+            "line": 265,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%124 : memref<64x32xbf16, #hivm.address_space<gm>>) outs(%cast_29 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_29"
+            ],
+            "notes": []
+          },
+          {
+            "line": 271,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%125 : memref<32x32xbf16, #hivm.address_space<gm>>) outs(%cast_30 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_30"
+            ],
+            "notes": []
+          },
+          {
+            "line": 277,
+            "op": "hivm.hir.nd2nz",
+            "text": "hivm.hir.nd2nz {dst_continuous} ins(%126 : memref<32x32xbf16, #hivm.address_space<gm>>) outs(%cast_31 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>) init_out_buffer = false",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "layout_transform",
+              "cv_transform_stage"
+            ],
+            "inputs": [],
+            "outputs": [
+              "%cast_31"
+            ],
+            "notes": []
+          }
+        ],
+        "cube_ops": [
+          {
+            "line": 308,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_29, %cast_30, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_36 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c3_i64, %c4_i64, %c-1_i64_37, %c-1_i64_37, %89, %c-1_i64_37, %c-1_i64_37 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_29",
+              "%cast_30",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_36"
+            ],
+            "notes": []
+          },
+          {
+            "line": 321,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_28, %cast_32, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_38 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_39, %c2_i64, %c-1_i64_39, %c-1_i64_39, %89, %c-1_i64_39, %c-1_i64_39 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_28",
+              "%cast_32",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_38"
+            ],
+            "notes": []
+          },
+          {
+            "line": 334,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_33, %cast_31, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_40 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c1_i64_2, %c-1_i64_41, %c-1_i64_41, %102, %89, %c-1_i64_41, %c-1_i64_41 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_33",
+              "%cast_31",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_40"
+            ],
+            "notes": []
+          },
+          {
+            "line": 369,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {b_transpose, fixpipe_already_inserted = true} ins(%cast_34, %cast_43, %true, %c64, %c32, %37 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_46 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_47, %c0_i64_3, %c-1_i64_47, %c-1_i64_47, %89, %c-1_i64_47, %c-1_i64_47 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_34",
+              "%cast_43",
+              "%true",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_46"
+            ],
+            "notes": []
+          },
+          {
+            "line": 380,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast, %cast_35, %true, %c64, %c64, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_48 : memref<?x?x?x?xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast",
+              "%cast_35",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_48"
+            ],
+            "notes": []
+          },
+          {
+            "line": 417,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {b_transpose, fixpipe_already_inserted = true} ins(%cast_17, %cast_19, %true, %c64, %c32, %c64 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_20 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c0_i64_1, %c1_i64, %68, %c-1_i64_21, %59, %c-1_i64_21, %c-1_i64_21 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_17",
+              "%cast_19",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c64"
+            ],
+            "outputs": [
+              "%cast_20"
+            ],
+            "notes": []
+          },
+          {
+            "line": 429,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_8, %cast_18, %true, %c64, %c64, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_22 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_23, %c-1_i64_23, %c-1_i64_23, %66, %59, %c-1_i64_23, %c-1_i64_23 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_8",
+              "%cast_18",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_22"
+            ],
+            "notes": []
+          },
+          {
+            "line": 462,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_11, %cast_9, %true, %c64, %c64, %c64 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_12 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c0_i64_0, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_11",
+              "%cast_9",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c64"
+            ],
+            "outputs": [
+              "%cast_12"
+            ],
+            "notes": []
+          }
+        ],
+        "vector_ops": [
+          {
+            "line": 360,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : bf16) outs(%collapse_shape : memref<2048xbf16, #hivm.address_space<cbuf>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [
+              "%collapse_shape"
+            ],
+            "notes": []
+          },
+          {
+            "line": 613,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : f32) outs(%9 : memref<64xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 616,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : f32) outs(%collapse_shape : memref<4096xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [
+              "%collapse_shape"
+            ],
+            "notes": []
+          },
+          {
+            "line": 618,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : f32) outs(%11 : memref<32xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 621,
+            "op": "hivm.hir.vbrc",
+            "text": "hivm.hir.vbrc ins(%cst : f32) outs(%collapse_shape_4 : memref<2048xf32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [
+              "%cst"
+            ],
+            "outputs": [
+              "%collapse_shape_4"
+            ],
+            "notes": []
+          },
+          {
+            "line": 643,
+            "op": "hivm.hir.varange",
+            "text": "hivm.hir.varange offset[%c0] strides[%c1] outs(%29 : memref<64xi32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 646,
+            "op": "hivm.hir.vadd",
+            "text": "hivm.hir.vadd ins(%29, %28 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%30 : memref<64xi32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          },
+          {
+            "line": 649,
+            "op": "hivm.hir.vmax",
+            "text": "hivm.hir.vmax ins(%30, %27 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%31 : memref<64xi32, #hivm.address_space<ub>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style_vector",
+            "roles": [
+              "vector_compute_stage"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "notes": []
+          }
+        ],
+        "store_ops": [
+          {
+            "line": 736,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_52 : memref<4096xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_53 : memref<4096xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_52"
+            ],
+            "outputs": [
+              "%collapse_shape_53"
+            ],
+            "notes": []
+          },
+          {
+            "line": 744,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_52 : memref<4096xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_53 : memref<4096xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_52"
+            ],
+            "outputs": [
+              "%collapse_shape_53"
+            ],
+            "notes": []
+          },
+          {
+            "line": 752,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_52 : memref<4096xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_53 : memref<4096xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_52"
+            ],
+            "outputs": [
+              "%collapse_shape_53"
+            ],
+            "notes": []
+          },
+          {
+            "line": 760,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_52 : memref<4096xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_53 : memref<4096xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_52"
+            ],
+            "outputs": [
+              "%collapse_shape_53"
+            ],
+            "notes": []
+          },
+          {
+            "line": 985,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_137 : memref<2048xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_168 : memref<2048xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_137"
+            ],
+            "outputs": [
+              "%collapse_shape_168"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1016,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_141 : memref<2048xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_168 : memref<2048xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_141"
+            ],
+            "outputs": [
+              "%collapse_shape_168"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1047,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_168 : memref<1024xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_169 : memref<1024xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_168"
+            ],
+            "outputs": [
+              "%collapse_shape_169"
+            ],
+            "notes": []
+          },
+          {
+            "line": 1056,
+            "op": "hivm.hir.store",
+            "text": "hivm.hir.store ins(%collapse_shape_168 : memref<1024xbf16, #hivm.address_space<ub>>) outs(%collapse_shape_169 : memref<1024xbf16, #hivm.address_space<gm>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "local_to_gm_store",
+              "cv_store_stage",
+              "gm_roundtrip_candidate"
+            ],
+            "inputs": [
+              "%collapse_shape_168"
+            ],
+            "outputs": [
+              "%collapse_shape_169"
+            ],
+            "notes": []
+          }
+        ]
+      },
+      "rewrite_actions": [
+        "classify_ops_into_load_transform_cube_vector_store_stages",
+        "check_stage_dependency_is_linear",
+        "require_MultiBufferPlan_pingpong_for_overlap",
+        "insert_or_reuse_SyncPlan_directional_events_at_stage_boundaries",
+        "defer_true_stage_reorder_to_HivmOpsEditor"
+      ],
+      "minimum_gates": [
+        "stage_sequence_detected",
+        "no_cross_tile_reduction_or_unknown_side_effect",
+        "pingpong_or_stage_buffer_available",
+        "event_liveness_passes",
+        "prologue_steady_state_epilogue_defined",
+        "backend_roundtrip_verify_DES_trace_pass"
+      ],
+      "status": "backend_required"
+    },
+    {
+      "plan": "TilingPlan",
+      "selected_knobs": {
+        "tile_m": 32,
+        "tile_n": 64,
+        "tile_k": 128,
+        "loop_order": "outer_mkn",
+        "tail_strategy": "mask_or_pad",
+        "reduce_tile_policy": "half_k"
+      },
+      "candidate_anchors": {
+        "loops": [
+          {
+            "line": 164,
+            "text": "scf.for %arg29 = %c0_i32 to %c4_i32 step %c1_i32  : i32 {",
+            "kind": "scf.for"
+          },
+          {
+            "line": 199,
+            "text": "scf.for %arg30 = %c0_i32 to %c4_i32 step %c1_i32  : i32 {",
+            "kind": "scf.for"
+          },
+          {
+            "line": 819,
+            "text": "%103:2 = scf.for %arg29 = %c0_i32 to %c4_i32 step %c1_i32 iter_args(%arg30 = %101, %arg31 = %102) -> (memref<64x64xf32, #hivm.address_space<ub>>, memref<64xf32, #hivm.address_space<ub>>)  : i32 {",
+            "kind": "scf.for"
+          },
+          {
+            "line": 902,
+            "text": "%172:6 = scf.for %arg32 = %c0_i32 to %c4_i32 step %c1_i32 iter_args(%arg33 = %168, %arg34 = %169, %arg35 = %170, %arg36 = %171, %arg37 = %arg30, %arg38 = %arg31) -> (memref<32xf32, #hivm.address_space<ub>>, memref<64x32xf32, #hivm.address_space<ub>>, memref<64x32xf32, #hivm.address_space<ub>>, memref<64x32xf32, #hivm.address_space<ub>>, memref<64x64xf32, #hivm.address_space<ub>>, memref<64xf32, #hivm.address_space<ub>>)  : i32 {",
+            "kind": "scf.for"
+          },
+          {
+            "line": 1025,
+            "text": "scf.for %arg39 = %c0 to %c32 step %c1 {",
+            "kind": "scf.for"
+          },
+          {
+            "line": 1029,
+            "text": "scf.for %arg40 = %c0 to %c32 step %c1 {",
+            "kind": "scf.for"
+          },
+          {
+            "line": 1064,
+            "text": "scf.for %arg39 = %c0 to %c32 step %c1 {",
+            "kind": "scf.for"
+          },
+          {
+            "line": 1068,
+            "text": "scf.for %arg40 = %c0 to %c32 step %c1 {",
+            "kind": "scf.for"
+          }
+        ],
+        "cube_compute_ops": [
+          {
+            "line": 308,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_29, %cast_30, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_36 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c3_i64, %c4_i64, %c-1_i64_37, %c-1_i64_37, %89, %c-1_i64_37, %c-1_i64_37 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_29",
+              "%cast_30",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_36"
+            ],
+            "notes": []
+          },
+          {
+            "line": 321,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_28, %cast_32, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_38 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_39, %c2_i64, %c-1_i64_39, %c-1_i64_39, %89, %c-1_i64_39, %c-1_i64_39 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_28",
+              "%cast_32",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_38"
+            ],
+            "notes": []
+          },
+          {
+            "line": 334,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_33, %cast_31, %true, %c64, %c32, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_40 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c1_i64_2, %c-1_i64_41, %c-1_i64_41, %102, %89, %c-1_i64_41, %c-1_i64_41 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_33",
+              "%cast_31",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_40"
+            ],
+            "notes": []
+          },
+          {
+            "line": 369,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {b_transpose, fixpipe_already_inserted = true} ins(%cast_34, %cast_43, %true, %c64, %c32, %37 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_46 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_47, %c0_i64_3, %c-1_i64_47, %c-1_i64_47, %89, %c-1_i64_47, %c-1_i64_47 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_34",
+              "%cast_43",
+              "%true",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_46"
+            ],
+            "notes": []
+          },
+          {
+            "line": 380,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast, %cast_35, %true, %c64, %c64, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_48 : memref<?x?x?x?xf32, #hivm.address_space<cc>>)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast",
+              "%cast_35",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_48"
+            ],
+            "notes": []
+          },
+          {
+            "line": 417,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {b_transpose, fixpipe_already_inserted = true} ins(%cast_17, %cast_19, %true, %c64, %c32, %c64 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_20 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c0_i64_1, %c1_i64, %68, %c-1_i64_21, %59, %c-1_i64_21, %c-1_i64_21 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_17",
+              "%cast_19",
+              "%true",
+              "%c64",
+              "%c32",
+              "%c64"
+            ],
+            "outputs": [
+              "%cast_20"
+            ],
+            "notes": []
+          },
+          {
+            "line": 429,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_8, %cast_18, %true, %c64, %c64, %c32 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_22 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c-1_i64_23, %c-1_i64_23, %c-1_i64_23, %66, %59, %c-1_i64_23, %c-1_i64_23 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_8",
+              "%cast_18",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c32"
+            ],
+            "outputs": [
+              "%cast_22"
+            ],
+            "notes": []
+          },
+          {
+            "line": 462,
+            "op": "hivm.hir.mmadL1",
+            "text": "hivm.hir.mmadL1 {fixpipe_already_inserted = true} ins(%cast_11, %cast_9, %true, %c64, %c64, %c64 : memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, memref<?x?x?x?xbf16, #hivm.address_space<cbuf>>, i1, index, index, index) outs(%cast_12 : memref<?x?x?x?xf32, #hivm.address_space<cc>>) sync_related_args(%c0_i64_0, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64, %c-1_i64 : i64, i64, i64, i64, i64, i64, i64)",
+            "known_by_schema": true,
+            "syntax_family": "destination_style",
+            "roles": [
+              "cube_compute_stage"
+            ],
+            "inputs": [
+              "%cast_11",
+              "%cast_9",
+              "%true",
+              "%c64",
+              "%c64",
+              "%c64"
+            ],
+            "outputs": [
+              "%cast_12"
+            ],
+            "notes": []
+          }
+        ]
+      },
+      "rewrite_actions": [
+        "emit_tiling_hint_to_backend",
+        "analyze_loop_split_legality",
+        "defer_true_loop_index_slice_tailmask_rewrite_to_HivmOpsEditor_or_MLIR_pass"
+      ],
+      "minimum_gates": [
+        "loop_bounds_identified",
+        "load_store_slice_mapping_identified",
+        "tail_mask_policy_defined",
+        "capacity_after_tiling_passes",
+        "backend_roundtrip_and_verify_pass"
+      ],
+      "status": "report_and_hint_only_v1"
+    }
+  ],
+  "backend_contract": {
+    "input_files": [
+      "selected_plan.json",
+      "hivm_ir_inventory.json",
+      "rewrite_plan.json"
+    ],
+    "required_backend_steps": [
+      "inventory",
+      "roundtrip",
+      "verify-only",
+      "dry-run",
+      "mutate",
+      "post-mutate verify",
+      "optional DES/trace"
+    ],
+    "do_not_claim": [
+      "Do not claim real double-buffer if only hints were emitted.",
+      "Do not claim CV overlap unless trace/DES shows expected stage overlap.",
+      "Do not claim tiling rewrite unless loop/index/slice/tail-mask changed and verifier passed.",
+      "Do not claim speedup without msprof or accepted simulator evidence."
+    ]
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "hivm.hir.load": {
+    "syntax_family": "destination_style",
+    "official_syntax_summary": "hivm.hir.load ins(%src : type) outs(%dst : type) attr-dict",
+    "roles": [
+      "gm_to_local_load",
+      "cv_load_stage",
+      "multibuffer_candidate"
+    ],
+    "plan_consumers": [
+      "MultiBufferPlan",
+      "CVPipelinePlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_operand_replacement_or_op_motion"
+  },
+  "hivm.hir.store": {
+    "syntax_family": "destination_style",
+    "official_syntax_summary": "hivm.hir.store ins(%src : type) outs(%dst : type) attr-dict",
+    "roles": [
+      "local_to_gm_store",
+      "cv_store_stage",
+      "gm_roundtrip_candidate"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_deletion_or_stage_reorder"
+  },
+  "hivm.hir.nd2nz": {
+    "syntax_family": "destination_style",
+    "official_syntax_summary": "destination-style layout transform; ins/outs operands are explicit",
+    "roles": [
+      "layout_transform",
+      "cv_transform_stage"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan",
+      "MultiBufferPlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_op_motion"
+  },
+  "hivm.hir.copy": {
+    "syntax_family": "destination_style",
+    "roles": [
+      "local_copy",
+      "possible_stage_buffer_copy"
+    ],
+    "plan_consumers": [
+      "MultiBufferPlan",
+      "CVPipelinePlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_operand_replacement"
+  },
+  "hivm.hir.mmad": {
+    "syntax_family": "destination_style",
+    "roles": [
+      "cube_compute_stage"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan",
+      "TilingPlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_tile_shape_or_schedule_change"
+  },
+  "hivm.hir.mmadL1": {
+    "syntax_family": "destination_style",
+    "roles": [
+      "cube_compute_stage"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan",
+      "TilingPlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_tile_shape_or_schedule_change"
+  },
+  "hivm.hir.fixpipe": {
+    "syntax_family": "destination_style",
+    "roles": [
+      "fixpipe_stage",
+      "cv_boundary_candidate"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan",
+      "SyncPlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_stage_sync_insertion"
+  },
+  "hivm.hir.vreduce": {
+    "syntax_family": "destination_style",
+    "roles": [
+      "vector_compute_stage"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan"
+    ]
+  },
+  "hivm.hir.vsub": {
+    "syntax_family": "destination_style",
+    "roles": [
+      "vector_compute_stage"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan"
+    ]
+  },
+  "hivm.hir.vexp": {
+    "syntax_family": "destination_style",
+    "roles": [
+      "vector_compute_stage"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan"
+    ]
+  },
+  "hivm.hir.vdiv": {
+    "syntax_family": "destination_style",
+    "roles": [
+      "vector_compute_stage"
+    ],
+    "plan_consumers": [
+      "CVPipelinePlan"
+    ]
+  },
+  "hivm.hir.set_flag": {
+    "syntax_family": "event_sync",
+    "official_syntax_summary": "hivm.hir.set_flag [set_pipe, wait_pipe, event] attr-dict",
+    "legacy_sample_syntax_readonly": "hivm.hir.set_flag {pipe=..., event=...}",
+    "roles": [
+      "sync_set"
+    ],
+    "plan_consumers": [
+      "SyncPlan",
+      "CVPipelinePlan"
+    ],
+    "true_rewrite_boundary": "backend_should_create_or_print_event_ops"
+  },
+  "hivm.hir.wait_flag": {
+    "syntax_family": "event_sync",
+    "official_syntax_summary": "hivm.hir.wait_flag [set_pipe, wait_pipe, event] attr-dict",
+    "legacy_sample_syntax_readonly": "hivm.hir.wait_flag {pipe=..., event=...}",
+    "roles": [
+      "sync_wait"
+    ],
+    "plan_consumers": [
+      "SyncPlan",
+      "CVPipelinePlan"
+    ],
+    "true_rewrite_boundary": "backend_should_create_or_print_event_ops"
+  },
+  "hivm.hir.pipe_barrier": {
+    "syntax_family": "pipe_barrier",
+    "official_syntax_summary": "hivm.hir.pipe_barrier [pipe] attr-dict",
+    "roles": [
+      "coarse_or_pipe_sync_barrier"
+    ],
+    "plan_consumers": [
+      "SyncPlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_barrier_to_event_rewrite"
+  },
+  "hivm.hir.barrier": {
+    "syntax_family": "legacy_or_project_sample_barrier",
+    "roles": [
+      "coarse_sync_barrier"
+    ],
+    "plan_consumers": [
+      "SyncPlan"
+    ],
+    "true_rewrite_boundary": "backend_required_for_barrier_to_event_rewrite"
+  }
+}

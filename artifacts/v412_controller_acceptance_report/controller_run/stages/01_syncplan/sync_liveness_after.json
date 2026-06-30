@@ -1,0 +1,1556 @@
+{
+  "schema_version": "hivm_sync_liveness_report_v1",
+  "report_kind": "portable_textual_sync_event_liveness",
+  "num_sync_ops": 476,
+  "num_events": 86,
+  "num_pipe_barrier": 6,
+  "num_sync_block": 96,
+  "event_reports": [
+    {
+      "event_id": "%100",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        396
+      ],
+      "wait_lines": [
+        294
+      ]
+    },
+    {
+      "event_id": "%102",
+      "status": "UNPAIRED",
+      "set_count": 0,
+      "wait_count": 1,
+      "set_lines": [],
+      "wait_lines": [
+        259
+      ]
+    },
+    {
+      "event_id": "%66",
+      "status": "UNPAIRED",
+      "set_count": 0,
+      "wait_count": 1,
+      "set_lines": [],
+      "wait_lines": [
+        410
+      ]
+    },
+    {
+      "event_id": "%68",
+      "status": "UNPAIRED",
+      "set_count": 0,
+      "wait_count": 1,
+      "set_lines": [],
+      "wait_lines": [
+        404
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto0",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        302
+      ],
+      "wait_lines": [
+        303
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto1",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        364
+      ],
+      "wait_lines": [
+        365
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto10",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        800
+      ],
+      "wait_lines": [
+        801
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto11",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        807
+      ],
+      "wait_lines": [
+        808
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto12",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        813
+      ],
+      "wait_lines": [
+        814
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto13",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        907
+      ],
+      "wait_lines": [
+        908
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto14",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        934
+      ],
+      "wait_lines": [
+        935
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto15",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        939
+      ],
+      "wait_lines": [
+        940
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto16",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        944
+      ],
+      "wait_lines": [
+        945
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto17",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        949
+      ],
+      "wait_lines": [
+        950
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto18",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        956
+      ],
+      "wait_lines": [
+        957
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto19",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        961
+      ],
+      "wait_lines": [
+        962
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto2",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        650
+      ],
+      "wait_lines": [
+        651
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto20",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        971
+      ],
+      "wait_lines": [
+        972
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto21",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        977
+      ],
+      "wait_lines": [
+        978
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto22",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        984
+      ],
+      "wait_lines": [
+        985
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto23",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        990
+      ],
+      "wait_lines": [
+        991
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto24",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        996
+      ],
+      "wait_lines": [
+        997
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto25",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1027
+      ],
+      "wait_lines": [
+        1028
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto26",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1211
+      ],
+      "wait_lines": [
+        1212
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto27",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1217
+      ],
+      "wait_lines": [
+        1218
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto28",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1223
+      ],
+      "wait_lines": [
+        1224
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto29",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1243
+      ],
+      "wait_lines": [
+        1244
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto3",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        655
+      ],
+      "wait_lines": [
+        656
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto30",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1264
+      ],
+      "wait_lines": [
+        1265
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto31",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1285
+      ],
+      "wait_lines": [
+        1286
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto32",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1338
+      ],
+      "wait_lines": [
+        1339
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto33",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1344
+      ],
+      "wait_lines": [
+        1345
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto34",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1349
+      ],
+      "wait_lines": [
+        1350
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto35",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1388
+      ],
+      "wait_lines": [
+        1389
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto36",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1415
+      ],
+      "wait_lines": [
+        1416
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto37",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1421
+      ],
+      "wait_lines": [
+        1422
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto38",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1428
+      ],
+      "wait_lines": [
+        1429
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto39",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1433
+      ],
+      "wait_lines": [
+        1434
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto4",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        660
+      ],
+      "wait_lines": [
+        661
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto40",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1443
+      ],
+      "wait_lines": [
+        1444
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto41",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1453
+      ],
+      "wait_lines": [
+        1454
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto42",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1459
+      ],
+      "wait_lines": [
+        1460
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto43",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1469
+      ],
+      "wait_lines": [
+        1470
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto44",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1475
+      ],
+      "wait_lines": [
+        1476
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto45",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1485
+      ],
+      "wait_lines": [
+        1486
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto46",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1496
+      ],
+      "wait_lines": [
+        1497
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto47",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1503
+      ],
+      "wait_lines": [
+        1504
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto48",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1509
+      ],
+      "wait_lines": [
+        1510
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto49",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1515
+      ],
+      "wait_lines": [
+        1516
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto5",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        665
+      ],
+      "wait_lines": [
+        666
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto50",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1562
+      ],
+      "wait_lines": [
+        1563
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto51",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1578
+      ],
+      "wait_lines": [
+        1579
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto52",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1584
+      ],
+      "wait_lines": [
+        1585
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto53",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1617
+      ],
+      "wait_lines": [
+        1618
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto54",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1623
+      ],
+      "wait_lines": [
+        1624
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto55",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1634
+      ],
+      "wait_lines": [
+        1635
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto56",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1640
+      ],
+      "wait_lines": [
+        1641
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto57",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1651
+      ],
+      "wait_lines": [
+        1652
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto58",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1657
+      ],
+      "wait_lines": [
+        1658
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto59",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1664
+      ],
+      "wait_lines": [
+        1665
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto6",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        675
+      ],
+      "wait_lines": [
+        676
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto60",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1674
+      ],
+      "wait_lines": [
+        1675
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto61",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1726
+      ],
+      "wait_lines": [
+        1727
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto62",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1732
+      ],
+      "wait_lines": [
+        1733
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto63",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1742
+      ],
+      "wait_lines": [
+        1743
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto64",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1749
+      ],
+      "wait_lines": [
+        1750
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto65",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1755
+      ],
+      "wait_lines": [
+        1756
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto66",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1765
+      ],
+      "wait_lines": [
+        1766
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto67",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1771
+      ],
+      "wait_lines": [
+        1772
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto68",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1777
+      ],
+      "wait_lines": [
+        1778
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto69",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1783
+      ],
+      "wait_lines": [
+        1784
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto7",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        699
+      ],
+      "wait_lines": [
+        700
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto70",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1794
+      ],
+      "wait_lines": [
+        1795
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto71",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1800
+      ],
+      "wait_lines": [
+        1801
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto72",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1828
+      ],
+      "wait_lines": [
+        1829
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto73",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        1835
+      ],
+      "wait_lines": [
+        1836
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto8",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        704
+      ],
+      "wait_lines": [
+        705
+      ]
+    },
+    {
+      "event_id": "%hivm_sync_auto9",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        793
+      ],
+      "wait_lines": [
+        794
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID0>",
+      "status": "OK_PAIRED",
+      "set_count": 69,
+      "wait_count": 65,
+      "set_lines": [
+        149,
+        157,
+        296,
+        311,
+        324,
+        337,
+        368,
+        374,
+        385,
+        392,
+        406,
+        422,
+        434,
+        462,
+        467,
+        471,
+        476,
+        481,
+        726,
+        740,
+        744,
+        780,
+        822,
+        835,
+        842,
+        844,
+        872,
+        882,
+        898,
+        902,
+        924,
+        928,
+        1014,
+        1019,
+        1030,
+        1048,
+        1053,
+        1061,
+        1092,
+        1131,
+        1140,
+        1163,
+        1171,
+        1207,
+        1233,
+        1254,
+        1275,
+        1304,
+        1314,
+        1328,
+        1357,
+        1375,
+        1399,
+        1499,
+        1518,
+        1537,
+        1553,
+        1571,
+        1606,
+        1610,
+        1677,
+        1692,
+        1698,
+        1711,
+        1712,
+        1713,
+        1803,
+        1820,
+        1838
+      ],
+      "wait_lines": [
+        314,
+        327,
+        340,
+        346,
+        376,
+        383,
+        390,
+        424,
+        436,
+        442,
+        449,
+        469,
+        474,
+        483,
+        727,
+        741,
+        750,
+        833,
+        834,
+        873,
+        883,
+        899,
+        905,
+        922,
+        923,
+        1015,
+        1025,
+        1034,
+        1049,
+        1059,
+        1065,
+        1095,
+        1114,
+        1115,
+        1134,
+        1169,
+        1174,
+        1237,
+        1258,
+        1279,
+        1305,
+        1317,
+        1331,
+        1332,
+        1371,
+        1393,
+        1395,
+        1491,
+        1520,
+        1539,
+        1551,
+        1556,
+        1574,
+        1607,
+        1629,
+        1688,
+        1701,
+        1702,
+        1710,
+        1792,
+        1805,
+        1817,
+        1818,
+        1823,
+        1849
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID1>",
+      "status": "OK_PAIRED",
+      "set_count": 13,
+      "wait_count": 11,
+      "set_lines": [
+        150,
+        158,
+        289,
+        378,
+        416,
+        836,
+        843,
+        925,
+        929,
+        1031,
+        1039,
+        1110,
+        1202
+      ],
+      "wait_lines": [
+        371,
+        443,
+        450,
+        1017,
+        1024,
+        1075,
+        1076,
+        1394,
+        1396,
+        1703,
+        1704
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID2>",
+      "status": "OK_PAIRED",
+      "set_count": 8,
+      "wait_count": 7,
+      "set_lines": [
+        151,
+        159,
+        283,
+        316,
+        837,
+        926,
+        1062,
+        1070
+      ],
+      "wait_lines": [
+        308,
+        444,
+        451,
+        1051,
+        1058,
+        1397,
+        1705
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID3>",
+      "status": "OK_PAIRED",
+      "set_count": 8,
+      "wait_count": 7,
+      "set_lines": [
+        152,
+        160,
+        266,
+        329,
+        838,
+        927,
+        1195,
+        1246
+      ],
+      "wait_lines": [
+        321,
+        445,
+        452,
+        1168,
+        1231,
+        1398,
+        1706
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID4>",
+      "status": "OK_PAIRED",
+      "set_count": 6,
+      "wait_count": 5,
+      "set_lines": [
+        153,
+        161,
+        272,
+        342,
+        839,
+        1267
+      ],
+      "wait_lines": [
+        334,
+        446,
+        453,
+        1252,
+        1707
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID5>",
+      "status": "OK_PAIRED",
+      "set_count": 5,
+      "wait_count": 5,
+      "set_lines": [
+        154,
+        162,
+        426,
+        840,
+        1288
+      ],
+      "wait_lines": [
+        419,
+        447,
+        454,
+        1273,
+        1708
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID6>",
+      "status": "OK_PAIRED",
+      "set_count": 5,
+      "wait_count": 5,
+      "set_lines": [
+        155,
+        163,
+        438,
+        841,
+        1385
+      ],
+      "wait_lines": [
+        431,
+        448,
+        455,
+        1290,
+        1709
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID7>",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        156
+      ],
+      "wait_lines": [
+        456
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "event_id": "%100",
+      "reason": "wait_before_set_text_order",
+      "set_lines": [
+        396
+      ],
+      "wait_lines": [
+        294
+      ]
+    },
+    {
+      "event_id": "%102",
+      "reason": "event_missing_set_or_wait",
+      "set_lines": [],
+      "wait_lines": [
+        259
+      ]
+    },
+    {
+      "event_id": "%66",
+      "reason": "event_missing_set_or_wait",
+      "set_lines": [],
+      "wait_lines": [
+        410
+      ]
+    },
+    {
+      "event_id": "%68",
+      "reason": "event_missing_set_or_wait",
+      "set_lines": [],
+      "wait_lines": [
+        404
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID0>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        149,
+        157,
+        296,
+        311,
+        324,
+        337,
+        368,
+        374,
+        385,
+        392,
+        406,
+        422,
+        434,
+        462,
+        467,
+        471,
+        476,
+        481,
+        726,
+        740,
+        744,
+        780,
+        822,
+        835,
+        842,
+        844,
+        872,
+        882,
+        898,
+        902,
+        924,
+        928,
+        1014,
+        1019,
+        1030,
+        1048,
+        1053,
+        1061,
+        1092,
+        1131,
+        1140,
+        1163,
+        1171,
+        1207,
+        1233,
+        1254,
+        1275,
+        1304,
+        1314,
+        1328,
+        1357,
+        1375,
+        1399,
+        1499,
+        1518,
+        1537,
+        1553,
+        1571,
+        1606,
+        1610,
+        1677,
+        1692,
+        1698,
+        1711,
+        1712,
+        1713,
+        1803,
+        1820,
+        1838
+      ],
+      "wait_lines": [
+        314,
+        327,
+        340,
+        346,
+        376,
+        383,
+        390,
+        424,
+        436,
+        442,
+        449,
+        469,
+        474,
+        483,
+        727,
+        741,
+        750,
+        833,
+        834,
+        873,
+        883,
+        899,
+        905,
+        922,
+        923,
+        1015,
+        1025,
+        1034,
+        1049,
+        1059,
+        1065,
+        1095,
+        1114,
+        1115,
+        1134,
+        1169,
+        1174,
+        1237,
+        1258,
+        1279,
+        1305,
+        1317,
+        1331,
+        1332,
+        1371,
+        1393,
+        1395,
+        1491,
+        1520,
+        1539,
+        1551,
+        1556,
+        1574,
+        1607,
+        1629,
+        1688,
+        1701,
+        1702,
+        1710,
+        1792,
+        1805,
+        1817,
+        1818,
+        1823,
+        1849
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID1>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        150,
+        158,
+        289,
+        378,
+        416,
+        836,
+        843,
+        925,
+        929,
+        1031,
+        1039,
+        1110,
+        1202
+      ],
+      "wait_lines": [
+        371,
+        443,
+        450,
+        1017,
+        1024,
+        1075,
+        1076,
+        1394,
+        1396,
+        1703,
+        1704
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID2>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        151,
+        159,
+        283,
+        316,
+        837,
+        926,
+        1062,
+        1070
+      ],
+      "wait_lines": [
+        308,
+        444,
+        451,
+        1051,
+        1058,
+        1397,
+        1705
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID3>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        152,
+        160,
+        266,
+        329,
+        838,
+        927,
+        1195,
+        1246
+      ],
+      "wait_lines": [
+        321,
+        445,
+        452,
+        1168,
+        1231,
+        1398,
+        1706
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID4>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        153,
+        161,
+        272,
+        342,
+        839,
+        1267
+      ],
+      "wait_lines": [
+        334,
+        446,
+        453,
+        1252,
+        1707
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID5>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        154,
+        162,
+        426,
+        840,
+        1288
+      ],
+      "wait_lines": [
+        419,
+        447,
+        454,
+        1273,
+        1708
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID6>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        155,
+        163,
+        438,
+        841,
+        1385
+      ],
+      "wait_lines": [
+        431,
+        448,
+        455,
+        1290,
+        1709
+      ]
+    }
+  ],
+  "blockers": [],
+  "passed_portable_liveness": true,
+  "production_rewrite_claim_allowed": false,
+  "requires_real_scheduler_or_des_liveness": true
+}

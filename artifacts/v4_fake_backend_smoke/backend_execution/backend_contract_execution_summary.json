@@ -1,0 +1,127 @@
+{
+  "schema_version": "hivm_backend_contract_execution_v1",
+  "backend": "tools/fake_hivm_operation_backend.py",
+  "input_ir": "sample_input/fa_best.hivm.mlir",
+  "contract": "artifacts/v4_fake_backend_smoke/backend_contract/sync_multibuffer_backend_contract.json",
+  "output_dir": "artifacts/v4_fake_backend_smoke/backend_execution",
+  "is_real_mlir_backend": false,
+  "run_mutate_requested": false,
+  "all_required_commands_ok": true,
+  "command_results": [
+    {
+      "name": "print_capabilities",
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "tools/fake_hivm_operation_backend.py",
+        "--print-capabilities"
+      ],
+      "returncode": 0,
+      "ok": true,
+      "stdout_preview": "{\"backend\": \"fake_hivm_operation_backend_ci_fixture\", \"is_real_mlir_backend\": false, \"inventory\": true, \"roundtrip\": true, \"verify_only\": true, \"dry_run_edit_script\": true, \"production_mutation\": false, \"mutate_q_load_hoist\": true, \"mutation_contract_only\": true}\n",
+      "stderr_preview": "",
+      "report_path": null,
+      "output_path": null
+    },
+    {
+      "name": "inventory",
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "tools/fake_hivm_operation_backend.py",
+        "--inventory",
+        "--input",
+        "sample_input/fa_best.hivm.mlir",
+        "--report",
+        "artifacts/v4_fake_backend_smoke/backend_execution/backend_inventory.json"
+      ],
+      "returncode": 0,
+      "ok": true,
+      "stdout_preview": "",
+      "stderr_preview": "",
+      "report_path": "artifacts/v4_fake_backend_smoke/backend_execution/backend_inventory.json",
+      "output_path": null
+    },
+    {
+      "name": "roundtrip",
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "tools/fake_hivm_operation_backend.py",
+        "--roundtrip",
+        "--input",
+        "sample_input/fa_best.hivm.mlir",
+        "--output",
+        "artifacts/v4_fake_backend_smoke/backend_execution/roundtrip.hivm.mlir",
+        "--report",
+        "artifacts/v4_fake_backend_smoke/backend_execution/backend_roundtrip.json"
+      ],
+      "returncode": 0,
+      "ok": true,
+      "stdout_preview": "",
+      "stderr_preview": "",
+      "report_path": "artifacts/v4_fake_backend_smoke/backend_execution/backend_roundtrip.json",
+      "output_path": "artifacts/v4_fake_backend_smoke/backend_execution/roundtrip.hivm.mlir"
+    },
+    {
+      "name": "verify_only",
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "tools/fake_hivm_operation_backend.py",
+        "--verify-only",
+        "--input",
+        "artifacts/v4_fake_backend_smoke/backend_execution/roundtrip.hivm.mlir",
+        "--report",
+        "artifacts/v4_fake_backend_smoke/backend_execution/backend_verify.json"
+      ],
+      "returncode": 0,
+      "ok": true,
+      "stdout_preview": "",
+      "stderr_preview": "",
+      "report_path": "artifacts/v4_fake_backend_smoke/backend_execution/backend_verify.json",
+      "output_path": null
+    },
+    {
+      "name": "dry_run_contract",
+      "argv": [
+        "/opt/pyvenv/bin/python",
+        "tools/fake_hivm_operation_backend.py",
+        "--dry-run",
+        "--input",
+        "sample_input/fa_best.hivm.mlir",
+        "--edit-script",
+        "artifacts/v4_fake_backend_smoke/backend_contract/sync_multibuffer_backend_contract.json",
+        "--mutation-kind",
+        "contract_smoke",
+        "--report",
+        "artifacts/v4_fake_backend_smoke/backend_execution/backend_dry_run_contract.json"
+      ],
+      "returncode": 0,
+      "ok": true,
+      "stdout_preview": "",
+      "stderr_preview": "",
+      "report_path": "artifacts/v4_fake_backend_smoke/backend_execution/backend_dry_run_contract.json",
+      "output_path": null
+    }
+  ],
+  "report_files": {
+    "capabilities": "artifacts/v4_fake_backend_smoke/backend_execution/backend_capabilities.json",
+    "inventory": "artifacts/v4_fake_backend_smoke/backend_execution/backend_inventory.json",
+    "roundtrip": "artifacts/v4_fake_backend_smoke/backend_execution/backend_roundtrip.json",
+    "verify": "artifacts/v4_fake_backend_smoke/backend_execution/backend_verify.json",
+    "dry_run": "artifacts/v4_fake_backend_smoke/backend_execution/backend_dry_run_contract.json"
+  },
+  "loaded_report_status": {
+    "capabilities": null,
+    "inventory": "fake_hivm_operation_inventory_v1",
+    "roundtrip": "passed_fake_roundtrip",
+    "verify": "passed_fake_verify",
+    "dry_run": "dry_run_only_fake_backend_no_mutation"
+  },
+  "dry_run_action_count": 9,
+  "dry_run_located_action_count": 9,
+  "production_rewrite_claim_allowed": false,
+  "decision": "READY_FOR_USER_REAL_BACKEND_RUN",
+  "notes": [
+    "Fake backend validates CLI/report plumbing only; it is not production rewrite evidence.",
+    "Do not enable mutation on a real backend until inventory, roundtrip, verify-only, and dry-run pass.",
+    "Mutation success still requires post-mutate verify/DES/trace before claiming real four-Plan rewrite."
+  ]
+}

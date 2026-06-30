@@ -1,0 +1,428 @@
+{
+  "plan": "SyncPlan",
+  "purpose": "把粗粒度 barrier/pipe barrier 转成更细粒度的 set_flag/wait_flag，或者删除冗余同步。",
+  "selected_knobs": {
+    "policy": "graph_sync_solver",
+    "template": "Y3_event_reuse",
+    "barrier_level": "low",
+    "event_reuse": true,
+    "sync_granularity": "stage",
+    "event_id_policy": "reuse",
+    "sync_motion": "local_move",
+    "remove_redundant_sync": true,
+    "sync_style_from_ir": "barrier"
+  },
+  "anchors": {
+    "sync_ops": [
+      {
+        "line": 24,
+        "op": "hivm.hir.wait_flag",
+        "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+        "known_by_schema": true,
+        "syntax_family": "event_sync",
+        "roles": [
+          "sync_wait"
+        ],
+        "inputs": [],
+        "outputs": [],
+        "notes": [
+          "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+        ]
+      },
+      {
+        "line": 34,
+        "op": "hivm.hir.set_flag",
+        "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+        "known_by_schema": true,
+        "syntax_family": "event_sync",
+        "roles": [
+          "sync_set"
+        ],
+        "inputs": [],
+        "outputs": [],
+        "notes": [
+          "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+        ]
+      }
+    ],
+    "barrier_like_ops": [],
+    "existing_event_ops": [
+      {
+        "line": 24,
+        "op": "hivm.hir.wait_flag",
+        "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+        "known_by_schema": true,
+        "syntax_family": "event_sync",
+        "roles": [
+          "sync_wait"
+        ],
+        "inputs": [],
+        "outputs": [],
+        "notes": [
+          "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+        ]
+      },
+      {
+        "line": 34,
+        "op": "hivm.hir.set_flag",
+        "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+        "known_by_schema": true,
+        "syntax_family": "event_sync",
+        "roles": [
+          "sync_set"
+        ],
+        "inputs": [],
+        "outputs": [],
+        "notes": [
+          "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+        ]
+      }
+    ],
+    "possible_producer_ops": [
+      {
+        "line": 16,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "gm_to_local_load",
+          "cv_load_stage",
+          "multibuffer_candidate"
+        ],
+        "inputs": [
+          "%Q_gm"
+        ],
+        "outputs": [
+          "%q_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 17,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "layout_transform",
+          "cv_transform_stage"
+        ],
+        "inputs": [
+          "%q_ub"
+        ],
+        "outputs": [
+          "%q_l1"
+        ],
+        "notes": []
+      },
+      {
+        "line": 19,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "gm_to_local_load",
+          "cv_load_stage",
+          "multibuffer_candidate"
+        ],
+        "inputs": [
+          "%K_gm"
+        ],
+        "outputs": [
+          "%k_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 20,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "gm_to_local_load",
+          "cv_load_stage",
+          "multibuffer_candidate"
+        ],
+        "inputs": [
+          "%V_gm"
+        ],
+        "outputs": [
+          "%v_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 21,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%k_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "layout_transform",
+          "cv_transform_stage"
+        ],
+        "inputs": [
+          "%k_ub"
+        ],
+        "outputs": [
+          "%k_l1_ping"
+        ],
+        "notes": []
+      },
+      {
+        "line": 22,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%v_ub : memref<96x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "layout_transform",
+          "cv_transform_stage"
+        ],
+        "inputs": [
+          "%v_ub"
+        ],
+        "outputs": [
+          "%v_l1"
+        ],
+        "notes": []
+      },
+      {
+        "line": 23,
+        "op": "hivm.hir.copy",
+        "text": "hivm.hir.copy ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_l1_pong : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "local_copy",
+          "possible_stage_buffer_copy"
+        ],
+        "inputs": [
+          "%K_gm"
+        ],
+        "outputs": [
+          "%k_l1_pong"
+        ],
+        "notes": []
+      },
+      {
+        "line": 25,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "cube_compute_stage"
+        ],
+        "inputs": [
+          "%q_l1",
+          "%k_l1_ping"
+        ],
+        "outputs": [
+          "%s_l0c"
+        ],
+        "notes": []
+      },
+      {
+        "line": 31,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<96x128xf16, #hivm.address_space<cbuf>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "layout_transform",
+          "cv_transform_stage"
+        ],
+        "inputs": [
+          "%p_ub"
+        ],
+        "outputs": [
+          "%v_l1"
+        ],
+        "notes": []
+      },
+      {
+        "line": 32,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "cube_compute_stage"
+        ],
+        "inputs": [
+          "%p_ub",
+          "%v_l1"
+        ],
+        "outputs": [
+          "%s_l0c"
+        ],
+        "notes": []
+      }
+    ],
+    "possible_consumer_ops": [
+      {
+        "line": 25,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "cube_compute_stage"
+        ],
+        "inputs": [
+          "%q_l1",
+          "%k_l1_ping"
+        ],
+        "outputs": [
+          "%s_l0c"
+        ],
+        "notes": []
+      },
+      {
+        "line": 27,
+        "op": "hivm.hir.vreduce",
+        "text": "hivm.hir.vreduce ins(%s_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "vector_compute_stage"
+        ],
+        "inputs": [
+          "%s_ub"
+        ],
+        "outputs": [
+          "%m_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 28,
+        "op": "hivm.hir.vsub",
+        "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<64x96xf16, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "vector_compute_stage"
+        ],
+        "inputs": [
+          "%s_ub",
+          "%m_ub"
+        ],
+        "outputs": [
+          "%p_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 29,
+        "op": "hivm.hir.vexp",
+        "text": "hivm.hir.vexp ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "vector_compute_stage"
+        ],
+        "inputs": [
+          "%p_ub"
+        ],
+        "outputs": [
+          "%p_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 30,
+        "op": "hivm.hir.vreduce",
+        "text": "hivm.hir.vreduce ins(%p_ub : memref<64x96xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<64x1xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "vector_compute_stage"
+        ],
+        "inputs": [
+          "%p_ub"
+        ],
+        "outputs": [
+          "%l_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 32,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<64x96xf16, #hivm.address_space<ub>>, memref<96x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<64x96xf32, #hivm.address_space<cc>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "cube_compute_stage"
+        ],
+        "inputs": [
+          "%p_ub",
+          "%v_l1"
+        ],
+        "outputs": [
+          "%s_l0c"
+        ],
+        "notes": []
+      },
+      {
+        "line": 36,
+        "op": "hivm.hir.vdiv",
+        "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<64x128xf32, #hivm.address_space<ub>>, memref<64x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<64x128xf32, #hivm.address_space<ub>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "vector_compute_stage"
+        ],
+        "inputs": [
+          "%acc_ub",
+          "%l_ub"
+        ],
+        "outputs": [
+          "%acc_ub"
+        ],
+        "notes": []
+      },
+      {
+        "line": 37,
+        "op": "hivm.hir.store",
+        "text": "hivm.hir.store ins(%q_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%O_gm : memref<64x128xf16, #hivm.address_space<gm>>)",
+        "known_by_schema": true,
+        "syntax_family": "destination_style",
+        "roles": [
+          "local_to_gm_store",
+          "cv_store_stage",
+          "gm_roundtrip_candidate"
+        ],
+        "inputs": [
+          "%q_ub"
+        ],
+        "outputs": [
+          "%O_gm"
+        ],
+        "notes": []
+      }
+    ]
+  },
+  "backend_mutation_request_template": {
+    "mutation_kind": "sync_barrier_to_directional_event_or_sync_cleanup",
+    "input_policy": "graph_sync_solver",
+    "event_id_policy": "reuse",
+    "sync_motion": "local_move",
+    "remove_redundant_sync": true,
+    "must_use_backend_to_print_event_ops": true
+  },
+  "must_prove_before_mutate": [
+    "producer_consumer_pair_proven_by_backend_or_DES_graph",
+    "fresh_or_non_overlapping_event_id",
+    "no_wait_before_set_deadlock",
+    "no_cross_iteration_dependency_removed",
+    "roundtrip_and_verify_pass"
+  ],
+  "blocked_or_missing": [],
+  "status": "READY_FOR_BACKEND_DRY_RUN"
+}

@@ -1,0 +1,14 @@
+/*
+ * Vector Peak Add Microbenchmark
+ *
+ * Runs VADD over a UB-resident 256-element FP16 tile.
+ */
+#include "vt_microbench_common.h"
+
+extern "C" __global__ __aicore__ void vector_peak_elemwise_add(GM_ADDR x, GM_ADDR y, GM_ADDR z)
+{
+    KERNEL_TASK_TYPE_DEFAULT(KERNEL_TYPE_AIV_ONLY);
+    VTCalib::VectorElemwiseKernel op;
+    op.Init(x, y, z);
+    op.ProcessAdd();
+}

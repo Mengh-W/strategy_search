@@ -1,0 +1,1037 @@
+{
+  "schema_version": "hivm_sync_precision_contract_v1",
+  "producer": "strategy_search.sync_contract_precision",
+  "meaning": "Precise SyncPlan dry-run/check contract; not an IR and not a mutation result.",
+  "selected_sync_policy": "graph_sync_solver",
+  "inventory_summary": {
+    "num_hivm_ops": 28,
+    "num_buffers": 19,
+    "num_loops": 1,
+    "op_counts": {
+      "hivm.hir.set_flag": 5,
+      "hivm.hir.load": 3,
+      "hivm.hir.nd2nz": 4,
+      "hivm.hir.copy": 1,
+      "hivm.hir.wait_flag": 5,
+      "hivm.hir.mmad": 2,
+      "hivm.hir.fixpipe": 2,
+      "hivm.hir.vreduce": 2,
+      "hivm.hir.vsub": 1,
+      "hivm.hir.vexp": 1,
+      "hivm.hir.vdiv": 1,
+      "hivm.hir.store": 1
+    },
+    "role_counts": {
+      "sync_set": 5,
+      "gm_to_local_load": 3,
+      "cv_load_stage": 3,
+      "multibuffer_candidate": 3,
+      "layout_transform": 4,
+      "cv_transform_stage": 4,
+      "local_copy": 1,
+      "possible_stage_buffer_copy": 1,
+      "sync_wait": 5,
+      "cube_compute_stage": 2,
+      "fixpipe_stage": 2,
+      "cv_boundary_candidate": 2,
+      "vector_compute_stage": 5,
+      "local_to_gm_store": 1,
+      "cv_store_stage": 1,
+      "gm_roundtrip_candidate": 1
+    },
+    "by_category": {
+      "data_move": 5,
+      "layout": 4,
+      "cube_compute": 2,
+      "vector_compute": 5,
+      "sync": 10,
+      "loops": 1,
+      "buffers": 19
+    },
+    "buffer_spaces": {
+      "ub": 14,
+      "cbuf": 4,
+      "cc": 1
+    },
+    "unknown_hivm_ops": []
+  },
+  "readiness_status": "READY_FOR_BACKEND_DRY_RUN",
+  "normalized_sync_inventory": {
+    "num_event_records": 10,
+    "num_event_pair_reports": 5,
+    "num_barrier_records": 0,
+    "num_sync_block_records": 0,
+    "event_records": [
+      {
+        "record_id": "event_001_set_flag_line_49",
+        "kind": "set",
+        "anchor": {
+          "op_index": 0,
+          "line": 49,
+          "op": "hivm.hir.set_flag",
+          "text_preview": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+          "inputs": [],
+          "outputs": [],
+          "notes": []
+        },
+        "normalized_event": {
+          "syntax_detected": "official_bracket_like",
+          "parse_confidence": "medium",
+          "set_pipe": "<PIPE_MTE2>",
+          "wait_pipe": "<PIPE_V>",
+          "event_id": "EVENT_ID_CVP_L2C_0",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID_CVP_L2C_0"
+      },
+      {
+        "record_id": "event_002_wait_flag_line_60",
+        "kind": "wait",
+        "anchor": {
+          "op_index": 8,
+          "line": 60,
+          "op": "hivm.hir.wait_flag",
+          "text_preview": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+          "inputs": [],
+          "outputs": [],
+          "notes": [
+            "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+          ]
+        },
+        "normalized_event": {
+          "syntax_detected": "legacy_attr_or_sample_attr",
+          "parse_confidence": "medium",
+          "set_pipe": null,
+          "wait_pipe": "M",
+          "pipe": "M",
+          "event_id": "EVENT_ID0",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID0"
+      },
+      {
+        "record_id": "event_003_wait_flag_line_62",
+        "kind": "wait",
+        "anchor": {
+          "op_index": 9,
+          "line": 62,
+          "op": "hivm.hir.wait_flag",
+          "text_preview": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+          "inputs": [],
+          "outputs": [],
+          "notes": []
+        },
+        "normalized_event": {
+          "syntax_detected": "official_bracket_like",
+          "parse_confidence": "medium",
+          "set_pipe": "<PIPE_MTE2>",
+          "wait_pipe": "<PIPE_V>",
+          "event_id": "EVENT_ID_CVP_L2C_0",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID_CVP_L2C_0"
+      },
+      {
+        "record_id": "event_004_set_flag_line_65",
+        "kind": "set",
+        "anchor": {
+          "op_index": 11,
+          "line": 65,
+          "op": "hivm.hir.set_flag",
+          "text_preview": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+          "inputs": [],
+          "outputs": [],
+          "notes": []
+        },
+        "normalized_event": {
+          "syntax_detected": "official_bracket_like",
+          "parse_confidence": "medium",
+          "set_pipe": "<PIPE_V>",
+          "wait_pipe": "<PIPE_MTE3>",
+          "event_id": "EVENT_ID_CVP_C2S_0",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID_CVP_C2S_0"
+      },
+      {
+        "record_id": "event_005_wait_flag_line_68",
+        "kind": "wait",
+        "anchor": {
+          "op_index": 12,
+          "line": 68,
+          "op": "hivm.hir.wait_flag",
+          "text_preview": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+          "inputs": [],
+          "outputs": [],
+          "notes": []
+        },
+        "normalized_event": {
+          "syntax_detected": "official_bracket_like",
+          "parse_confidence": "medium",
+          "set_pipe": "<PIPE_V>",
+          "wait_pipe": "<PIPE_MTE3>",
+          "event_id": "EVENT_ID_CVP_C2S_0",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID_CVP_C2S_0"
+      },
+      {
+        "record_id": "event_006_set_flag_line_80",
+        "kind": "set",
+        "anchor": {
+          "op_index": 19,
+          "line": 80,
+          "op": "hivm.hir.set_flag",
+          "text_preview": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+          "inputs": [],
+          "outputs": [],
+          "notes": []
+        },
+        "normalized_event": {
+          "syntax_detected": "official_bracket_like",
+          "parse_confidence": "medium",
+          "set_pipe": "<PIPE_MTE2>",
+          "wait_pipe": "<PIPE_V>",
+          "event_id": "EVENT_ID_CVP_L2C_1",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID_CVP_L2C_1"
+      },
+      {
+        "record_id": "event_007_wait_flag_line_82",
+        "kind": "wait",
+        "anchor": {
+          "op_index": 20,
+          "line": 82,
+          "op": "hivm.hir.wait_flag",
+          "text_preview": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+          "inputs": [],
+          "outputs": [],
+          "notes": []
+        },
+        "normalized_event": {
+          "syntax_detected": "official_bracket_like",
+          "parse_confidence": "medium",
+          "set_pipe": "<PIPE_MTE2>",
+          "wait_pipe": "<PIPE_V>",
+          "event_id": "EVENT_ID_CVP_L2C_1",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID_CVP_L2C_1"
+      },
+      {
+        "record_id": "event_008_set_flag_line_85",
+        "kind": "set",
+        "anchor": {
+          "op_index": 22,
+          "line": 85,
+          "op": "hivm.hir.set_flag",
+          "text_preview": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+          "inputs": [],
+          "outputs": [],
+          "notes": []
+        },
+        "normalized_event": {
+          "syntax_detected": "official_bracket_like",
+          "parse_confidence": "medium",
+          "set_pipe": "<PIPE_V>",
+          "wait_pipe": "<PIPE_MTE3>",
+          "event_id": "EVENT_ID_CVP_C2S_1",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID_CVP_C2S_1"
+      },
+      {
+        "record_id": "event_009_wait_flag_line_88",
+        "kind": "wait",
+        "anchor": {
+          "op_index": 23,
+          "line": 88,
+          "op": "hivm.hir.wait_flag",
+          "text_preview": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+          "inputs": [],
+          "outputs": [],
+          "notes": []
+        },
+        "normalized_event": {
+          "syntax_detected": "official_bracket_like",
+          "parse_confidence": "medium",
+          "set_pipe": "<PIPE_V>",
+          "wait_pipe": "<PIPE_MTE3>",
+          "event_id": "EVENT_ID_CVP_C2S_1",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID_CVP_C2S_1"
+      },
+      {
+        "record_id": "event_010_set_flag_line_91",
+        "kind": "set",
+        "anchor": {
+          "op_index": 25,
+          "line": 91,
+          "op": "hivm.hir.set_flag",
+          "text_preview": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+          "inputs": [],
+          "outputs": [],
+          "notes": [
+            "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+          ]
+        },
+        "normalized_event": {
+          "syntax_detected": "legacy_attr_or_sample_attr",
+          "parse_confidence": "medium",
+          "set_pipe": "FIX",
+          "wait_pipe": null,
+          "pipe": "FIX",
+          "event_id": "EVENT_ID0",
+          "backend_must_reparse": true,
+          "python_must_not_print_new_event_op": true
+        },
+        "event_id_key": "EVENT_ID0"
+      }
+    ],
+    "event_pair_reports": [
+      {
+        "event_id": "EVENT_ID0",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_010_set_flag_line_91",
+            "kind": "set",
+            "anchor": {
+              "op_index": 25,
+              "line": 91,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+              "inputs": [],
+              "outputs": [],
+              "notes": [
+                "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+              ]
+            },
+            "normalized_event": {
+              "syntax_detected": "legacy_attr_or_sample_attr",
+              "parse_confidence": "medium",
+              "set_pipe": "FIX",
+              "wait_pipe": null,
+              "pipe": "FIX",
+              "event_id": "EVENT_ID0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID0"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_002_wait_flag_line_60",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 8,
+              "line": 60,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+              "inputs": [],
+              "outputs": [],
+              "notes": [
+                "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+              ]
+            },
+            "normalized_event": {
+              "syntax_detected": "legacy_attr_or_sample_attr",
+              "parse_confidence": "medium",
+              "set_pipe": null,
+              "wait_pipe": "M",
+              "pipe": "M",
+              "event_id": "EVENT_ID0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID0"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": "WAIT_BEFORE_SET_IN_TEXT_ORDER",
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      {
+        "event_id": "EVENT_ID_CVP_C2S_0",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_004_set_flag_line_65",
+            "kind": "set",
+            "anchor": {
+              "op_index": 11,
+              "line": 65,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_V>",
+              "wait_pipe": "<PIPE_MTE3>",
+              "event_id": "EVENT_ID_CVP_C2S_0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_C2S_0"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_005_wait_flag_line_68",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 12,
+              "line": 68,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_V>",
+              "wait_pipe": "<PIPE_MTE3>",
+              "event_id": "EVENT_ID_CVP_C2S_0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_C2S_0"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": null,
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      {
+        "event_id": "EVENT_ID_CVP_C2S_1",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_008_set_flag_line_85",
+            "kind": "set",
+            "anchor": {
+              "op_index": 22,
+              "line": 85,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_V>",
+              "wait_pipe": "<PIPE_MTE3>",
+              "event_id": "EVENT_ID_CVP_C2S_1",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_C2S_1"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_009_wait_flag_line_88",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 23,
+              "line": 88,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_V>",
+              "wait_pipe": "<PIPE_MTE3>",
+              "event_id": "EVENT_ID_CVP_C2S_1",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_C2S_1"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": null,
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      {
+        "event_id": "EVENT_ID_CVP_L2C_0",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_001_set_flag_line_49",
+            "kind": "set",
+            "anchor": {
+              "op_index": 0,
+              "line": 49,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_MTE2>",
+              "wait_pipe": "<PIPE_V>",
+              "event_id": "EVENT_ID_CVP_L2C_0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_L2C_0"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_003_wait_flag_line_62",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 9,
+              "line": 62,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_MTE2>",
+              "wait_pipe": "<PIPE_V>",
+              "event_id": "EVENT_ID_CVP_L2C_0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_L2C_0"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": null,
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      {
+        "event_id": "EVENT_ID_CVP_L2C_1",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_006_set_flag_line_80",
+            "kind": "set",
+            "anchor": {
+              "op_index": 19,
+              "line": 80,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_MTE2>",
+              "wait_pipe": "<PIPE_V>",
+              "event_id": "EVENT_ID_CVP_L2C_1",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_L2C_1"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_007_wait_flag_line_82",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 20,
+              "line": 82,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_MTE2>",
+              "wait_pipe": "<PIPE_V>",
+              "event_id": "EVENT_ID_CVP_L2C_1",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_L2C_1"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": null,
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      }
+    ],
+    "barrier_records": [],
+    "sync_block_records": []
+  },
+  "global_backend_policy": {
+    "python_may": [
+      "parse anchors",
+      "emit JSON contract",
+      "classify sync structures"
+    ],
+    "python_must_not": [
+      "print new set_flag/wait_flag MLIR",
+      "delete barriers",
+      "change event IDs"
+    ],
+    "real_mutation_owner": "vTriton/HivmOpsEditor backend",
+    "first_mutation_candidate": "only after real backend proves exact producer-consumer and event-liveness fields"
+  },
+  "actions": [
+    {
+      "action_id": "sync_check_event_EVENT_ID0",
+      "plan": "SyncPlan",
+      "mutation_kind": "validate_existing_event_pair_liveness",
+      "mode": "verify_or_dry_run_only",
+      "mutation_allowed": false,
+      "reason_mutation_blocked": "existing_event_check_only_in_v1",
+      "event_report": {
+        "event_id": "EVENT_ID0",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_010_set_flag_line_91",
+            "kind": "set",
+            "anchor": {
+              "op_index": 25,
+              "line": 91,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}",
+              "inputs": [],
+              "outputs": [],
+              "notes": [
+                "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+              ]
+            },
+            "normalized_event": {
+              "syntax_detected": "legacy_attr_or_sample_attr",
+              "parse_confidence": "medium",
+              "set_pipe": "FIX",
+              "wait_pipe": null,
+              "pipe": "FIX",
+              "event_id": "EVENT_ID0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID0"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_002_wait_flag_line_60",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 8,
+              "line": 60,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}",
+              "inputs": [],
+              "outputs": [],
+              "notes": [
+                "sample_or_legacy_event_syntax_seen; read-only anchor, let backend print official form"
+              ]
+            },
+            "normalized_event": {
+              "syntax_detected": "legacy_attr_or_sample_attr",
+              "parse_confidence": "medium",
+              "set_pipe": null,
+              "wait_pipe": "M",
+              "pipe": "M",
+              "event_id": "EVENT_ID0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID0"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": "WAIT_BEFORE_SET_IN_TEXT_ORDER",
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      "acceptance": [
+        "backend_parses_event_operands",
+        "backend_reports_set_wait_pairs",
+        "event_liveness_non_conflicting_or_explained_reuse",
+        "no_deadlock_warning"
+      ]
+    },
+    {
+      "action_id": "sync_check_event_EVENT_ID_CVP_C2S_0",
+      "plan": "SyncPlan",
+      "mutation_kind": "validate_existing_event_pair_liveness",
+      "mode": "verify_or_dry_run_only",
+      "mutation_allowed": false,
+      "reason_mutation_blocked": "existing_event_check_only_in_v1",
+      "event_report": {
+        "event_id": "EVENT_ID_CVP_C2S_0",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_004_set_flag_line_65",
+            "kind": "set",
+            "anchor": {
+              "op_index": 11,
+              "line": 65,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_V>",
+              "wait_pipe": "<PIPE_MTE3>",
+              "event_id": "EVENT_ID_CVP_C2S_0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_C2S_0"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_005_wait_flag_line_68",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 12,
+              "line": 68,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_0]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_V>",
+              "wait_pipe": "<PIPE_MTE3>",
+              "event_id": "EVENT_ID_CVP_C2S_0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_C2S_0"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": null,
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      "acceptance": [
+        "backend_parses_event_operands",
+        "backend_reports_set_wait_pairs",
+        "event_liveness_non_conflicting_or_explained_reuse",
+        "no_deadlock_warning"
+      ]
+    },
+    {
+      "action_id": "sync_check_event_EVENT_ID_CVP_C2S_1",
+      "plan": "SyncPlan",
+      "mutation_kind": "validate_existing_event_pair_liveness",
+      "mode": "verify_or_dry_run_only",
+      "mutation_allowed": false,
+      "reason_mutation_blocked": "existing_event_check_only_in_v1",
+      "event_report": {
+        "event_id": "EVENT_ID_CVP_C2S_1",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_008_set_flag_line_85",
+            "kind": "set",
+            "anchor": {
+              "op_index": 22,
+              "line": 85,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_V>",
+              "wait_pipe": "<PIPE_MTE3>",
+              "event_id": "EVENT_ID_CVP_C2S_1",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_C2S_1"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_009_wait_flag_line_88",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 23,
+              "line": 88,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag[<PIPE_V>, <PIPE_MTE3>, EVENT_ID_CVP_C2S_1]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_V>",
+              "wait_pipe": "<PIPE_MTE3>",
+              "event_id": "EVENT_ID_CVP_C2S_1",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_C2S_1"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": null,
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      "acceptance": [
+        "backend_parses_event_operands",
+        "backend_reports_set_wait_pairs",
+        "event_liveness_non_conflicting_or_explained_reuse",
+        "no_deadlock_warning"
+      ]
+    },
+    {
+      "action_id": "sync_check_event_EVENT_ID_CVP_L2C_0",
+      "plan": "SyncPlan",
+      "mutation_kind": "validate_existing_event_pair_liveness",
+      "mode": "verify_or_dry_run_only",
+      "mutation_allowed": false,
+      "reason_mutation_blocked": "existing_event_check_only_in_v1",
+      "event_report": {
+        "event_id": "EVENT_ID_CVP_L2C_0",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_001_set_flag_line_49",
+            "kind": "set",
+            "anchor": {
+              "op_index": 0,
+              "line": 49,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_MTE2>",
+              "wait_pipe": "<PIPE_V>",
+              "event_id": "EVENT_ID_CVP_L2C_0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_L2C_0"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_003_wait_flag_line_62",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 9,
+              "line": 62,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_0]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_MTE2>",
+              "wait_pipe": "<PIPE_V>",
+              "event_id": "EVENT_ID_CVP_L2C_0",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_L2C_0"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": null,
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      "acceptance": [
+        "backend_parses_event_operands",
+        "backend_reports_set_wait_pairs",
+        "event_liveness_non_conflicting_or_explained_reuse",
+        "no_deadlock_warning"
+      ]
+    },
+    {
+      "action_id": "sync_check_event_EVENT_ID_CVP_L2C_1",
+      "plan": "SyncPlan",
+      "mutation_kind": "validate_existing_event_pair_liveness",
+      "mode": "verify_or_dry_run_only",
+      "mutation_allowed": false,
+      "reason_mutation_blocked": "existing_event_check_only_in_v1",
+      "event_report": {
+        "event_id": "EVENT_ID_CVP_L2C_1",
+        "set_count": 1,
+        "wait_count": 1,
+        "set_records": [
+          {
+            "record_id": "event_006_set_flag_line_80",
+            "kind": "set",
+            "anchor": {
+              "op_index": 19,
+              "line": 80,
+              "op": "hivm.hir.set_flag",
+              "text_preview": "hivm.hir.set_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_MTE2>",
+              "wait_pipe": "<PIPE_V>",
+              "event_id": "EVENT_ID_CVP_L2C_1",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_L2C_1"
+          }
+        ],
+        "wait_records": [
+          {
+            "record_id": "event_007_wait_flag_line_82",
+            "kind": "wait",
+            "anchor": {
+              "op_index": 20,
+              "line": 82,
+              "op": "hivm.hir.wait_flag",
+              "text_preview": "hivm.hir.wait_flag[<PIPE_MTE2>, <PIPE_V>, EVENT_ID_CVP_L2C_1]",
+              "inputs": [],
+              "outputs": [],
+              "notes": []
+            },
+            "normalized_event": {
+              "syntax_detected": "official_bracket_like",
+              "parse_confidence": "medium",
+              "set_pipe": "<PIPE_MTE2>",
+              "wait_pipe": "<PIPE_V>",
+              "event_id": "EVENT_ID_CVP_L2C_1",
+              "backend_must_reparse": true,
+              "python_must_not_print_new_event_op": true
+            },
+            "event_id_key": "EVENT_ID_CVP_L2C_1"
+          }
+        ],
+        "pairing_status": "HAS_SET_AND_WAIT",
+        "text_order_warning": null,
+        "backend_required_proofs": [
+          "parse_event_operands_with_real_HIVM_parser",
+          "prove_event_live_ranges_non_overlapping_or_intentionally_reused",
+          "prove_wait_is_reachable_after_matching_set_in_schedule_not_just_text_order",
+          "prove_no_deadlock_under_pipe_schedule"
+        ]
+      },
+      "acceptance": [
+        "backend_parses_event_operands",
+        "backend_reports_set_wait_pairs",
+        "event_liveness_non_conflicting_or_explained_reuse",
+        "no_deadlock_warning"
+      ]
+    }
+  ],
+  "overall_decision": "READY_FOR_PRECISE_BACKEND_DRY_RUN_CHECKS_ONLY",
+  "next_step": "Run real backend dry-run against these actions once hivm-operation-backend is compiled; do not mutate until a single action has all required backend proofs."
+}

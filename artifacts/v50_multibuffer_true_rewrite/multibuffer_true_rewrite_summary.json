@@ -1,0 +1,16 @@
+{
+  "schema_version": "hivm_multibuffer_true_rewrite_summary_v1",
+  "version": "V5.0-multibuffer-restricted-true-rewrite",
+  "input_ir": "sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+  "stage_candidate_count": 80,
+  "stage_ready_count": 20,
+  "true_rewrite_action_count": 3,
+  "mutation_performed": true,
+  "rewritten_action_count": 3,
+  "replacement_count": 6,
+  "num_multibuffer_related_diff_lines": 30,
+  "passed_portable_validation": true,
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "portable restricted additive text-level MultiBufferPlan rewrite; real HivmOpsEditor verifier/DES/msprof still required"
+}

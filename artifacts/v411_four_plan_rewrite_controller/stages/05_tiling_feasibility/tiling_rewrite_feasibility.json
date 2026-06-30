@@ -1,0 +1,1395 @@
+{
+  "schema_version": "hivm_tiling_rewrite_feasibility_v1",
+  "version": "V4.11-unified-four-plan-rewrite-controller",
+  "input_ir": "/mnt/data/HIVM_strategy_search_demo_V4.11/sample_input/original_repo_samples/chunk_kda_kernel_clean.npuir.mlir",
+  "tiling_knobs": {
+    "tile_m": 32,
+    "tile_n": 64,
+    "tile_k": 128,
+    "logical_axes": [
+      "axis_m",
+      "axis_n",
+      "axis_k"
+    ],
+    "generic_logical_axes_evidence": {
+      "primary_tile_candidate": {
+        "tile_m": 64,
+        "tile_n": 32,
+        "tile_k": 128
+      },
+      "candidate_tiles_from_cube_ops": [
+        {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 128
+        },
+        {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 32
+        }
+      ],
+      "conventional_tensor_signature": {
+        "detected": true,
+        "Q_gm": [
+          64,
+          128
+        ],
+        "K_gm": [
+          1024,
+          128
+        ],
+        "V_gm": [
+          1024,
+          128
+        ],
+        "O_gm": [
+          64,
+          128
+        ],
+        "note": "name-based conventional tensor signature; used as evidence only, not a hard-coded kernel family"
+      }
+    },
+    "loop_order": "outer_mkn",
+    "tail_strategy": "mask_or_pad",
+    "reduce_tile_policy": "half_k",
+    "layout_aware_tile": true
+  },
+  "derived_features": {
+    "problem_shape": {
+      "m_total": 64,
+      "n_total": 1024,
+      "k_total": 128,
+      "outer_iterations": 1,
+      "kernel_family": "generic_hivm_structure",
+      "extracted_tile_m": 64,
+      "extracted_tile_n": 32,
+      "extracted_tile_k": 128,
+      "loop_trip_annotation": 32
+    },
+    "num_tiles": 32,
+    "effective_reduce_tile_k": 64,
+    "reduce_tile_policy_effect": "split K/reduction tile; lower L1 pressure with extra loop overhead",
+    "layout_aware_tile_enabled": true,
+    "load_bytes_per_tile": 24576,
+    "store_bytes_per_tile": 4096,
+    "cube_ops_per_tile": 524288,
+    "vector_ops_proxy_per_tile": 10240,
+    "tile_working_set_bytes_proxy": 36864,
+    "source_input_policy": "Python/Triton source is not parsed in V3.3; this plan is derived from MLIR plus optional DES/trace JSON evidence.",
+    "artifact_memrefs_by_space": {
+      "gm": 8,
+      "l0c": 5,
+      "l1": 9,
+      "ub": 33
+    },
+    "artifact_unique_alloc_bytes_by_space": {
+      "ub": 98816,
+      "l1": 32768,
+      "l0c": 8192
+    },
+    "artifact_static_max_live_bytes_by_space": {
+      "l1": 32768,
+      "l0a": 0,
+      "ub": 98816,
+      "l0c": 8192,
+      "l0b": 0
+    },
+    "artifact_mmad_count": 2,
+    "artifact_nd2nz_count": 3,
+    "generic_hivm_structure": {
+      "detected": true,
+      "logical_axes": [
+        "axis_m",
+        "axis_n",
+        "axis_k"
+      ],
+      "candidate_tiles_from_cube_ops": [
+        {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 128
+        },
+        {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 32
+        }
+      ],
+      "primary_tile_candidate": {
+        "tile_m": 64,
+        "tile_n": 32,
+        "tile_k": 128
+      },
+      "cube_shape_evidence": [
+        {
+          "line": 47,
+          "shapes": [
+            {
+              "dims": [
+                64,
+                128
+              ],
+              "dtype": "f16",
+              "space": "l1",
+              "size_bytes": 16384
+            },
+            {
+              "dims": [
+                32,
+                128
+              ],
+              "dtype": "f16",
+              "space": "l1",
+              "size_bytes": 8192
+            },
+            {
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "space": "l0c",
+              "size_bytes": 8192
+            }
+          ],
+          "inferred_tile": {
+            "tile_m": 64,
+            "tile_n": 32,
+            "tile_k": 128
+          }
+        },
+        {
+          "line": 55,
+          "shapes": [
+            {
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "space": "ub",
+              "size_bytes": 8192
+            },
+            {
+              "dims": [
+                32,
+                128
+              ],
+              "dtype": "f16",
+              "space": "l1",
+              "size_bytes": 8192
+            },
+            {
+              "dims": [
+                64,
+                32
+              ],
+              "dtype": "f32",
+              "space": "l0c",
+              "size_bytes": 8192
+            }
+          ],
+          "inferred_tile": {
+            "tile_m": 64,
+            "tile_n": 32,
+            "tile_k": 32
+          }
+        }
+      ],
+      "memrefs_by_space_detail": {
+        "gm": [
+          {
+            "name": "Q_gm",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "K_gm",
+            "dims": [
+              1024,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 262144
+          },
+          {
+            "name": "V_gm",
+            "dims": [
+              1024,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 262144
+          },
+          {
+            "name": "O_gm",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "Q_gm",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "K_gm",
+            "dims": [
+              1024,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 262144
+          },
+          {
+            "name": "V_gm",
+            "dims": [
+              1024,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 262144
+          },
+          {
+            "name": "O_gm",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          }
+        ],
+        "ub": [
+          {
+            "name": "q_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": true,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "acc_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f32",
+            "is_alloc": true,
+            "size_bytes_static": 32768
+          },
+          {
+            "name": "s_ub",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": true,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "p_ub",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": true,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "m_ub",
+            "dims": [
+              64,
+              1
+            ],
+            "dtype": "f32",
+            "is_alloc": true,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "l_ub",
+            "dims": [
+              64,
+              1
+            ],
+            "dtype": "f32",
+            "is_alloc": true,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "k_ub",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": true,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "v_ub",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": true,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "o_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": true,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "q_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "q_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "k_ub",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "v_ub",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "k_ub",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "v_ub",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "s_ub",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "s_ub",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "m_ub",
+            "dims": [
+              64,
+              1
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "m_ub",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "p_ub",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "p_ub",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "p_ub",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "l_ub",
+            "dims": [
+              64,
+              1
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 256
+          },
+          {
+            "name": "v_l1",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "acc_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 32768
+          },
+          {
+            "name": "l_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 32768
+          },
+          {
+            "name": "acc_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 32768
+          },
+          {
+            "name": "acc_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 32768
+          },
+          {
+            "name": "o_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "o_ub",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          }
+        ],
+        "l1": [
+          {
+            "name": "q_l1",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": true,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "k_l1",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": true,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "v_l1",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": true,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "q_l1",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          },
+          {
+            "name": "k_l1",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "v_l1",
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "k_l1",
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "is_alloc": false,
+            "size_bytes_static": 16384
+          }
+        ],
+        "l0c": [
+          {
+            "name": "s_l0c",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": true,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "s_l0c",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "s_l0c",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "s_l0c",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          },
+          {
+            "name": "s_l0c",
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "is_alloc": false,
+            "size_bytes_static": 8192
+          }
+        ]
+      },
+      "conventional_tensor_signature": {
+        "detected": true,
+        "Q_gm": [
+          64,
+          128
+        ],
+        "K_gm": [
+          1024,
+          128
+        ],
+        "V_gm": [
+          1024,
+          128
+        ],
+        "O_gm": [
+          64,
+          128
+        ],
+        "note": "name-based conventional tensor signature; used as evidence only, not a hard-coded kernel family"
+      },
+      "loop_trip_annotation": 32
+    },
+    "generic_cube_shape_evidence": [
+      {
+        "line": 47,
+        "shapes": [
+          {
+            "dims": [
+              64,
+              128
+            ],
+            "dtype": "f16",
+            "space": "l1",
+            "size_bytes": 16384
+          },
+          {
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "space": "l1",
+            "size_bytes": 8192
+          },
+          {
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "space": "l0c",
+            "size_bytes": 8192
+          }
+        ],
+        "inferred_tile": {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 128
+        }
+      },
+      {
+        "line": 55,
+        "shapes": [
+          {
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "space": "ub",
+            "size_bytes": 8192
+          },
+          {
+            "dims": [
+              32,
+              128
+            ],
+            "dtype": "f16",
+            "space": "l1",
+            "size_bytes": 8192
+          },
+          {
+            "dims": [
+              64,
+              32
+            ],
+            "dtype": "f32",
+            "space": "l0c",
+            "size_bytes": 8192
+          }
+        ],
+        "inferred_tile": {
+          "tile_m": 64,
+          "tile_n": 32,
+          "tile_k": 32
+        }
+      }
+    ],
+    "generic_candidate_tiles_from_cube_ops": [
+      {
+        "tile_m": 64,
+        "tile_n": 32,
+        "tile_k": 128
+      },
+      {
+        "tile_m": 64,
+        "tile_n": 32,
+        "tile_k": 32
+      }
+    ],
+    "generic_memrefs_by_space_detail": {
+      "gm": [
+        {
+          "name": "Q_gm",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "K_gm",
+          "dims": [
+            1024,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 262144
+        },
+        {
+          "name": "V_gm",
+          "dims": [
+            1024,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 262144
+        },
+        {
+          "name": "O_gm",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "Q_gm",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "K_gm",
+          "dims": [
+            1024,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 262144
+        },
+        {
+          "name": "V_gm",
+          "dims": [
+            1024,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 262144
+        },
+        {
+          "name": "O_gm",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        }
+      ],
+      "ub": [
+        {
+          "name": "q_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": true,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "acc_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "is_alloc": true,
+          "size_bytes_static": 32768
+        },
+        {
+          "name": "s_ub",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": true,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "p_ub",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": true,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "m_ub",
+          "dims": [
+            64,
+            1
+          ],
+          "dtype": "f32",
+          "is_alloc": true,
+          "size_bytes_static": 256
+        },
+        {
+          "name": "l_ub",
+          "dims": [
+            64,
+            1
+          ],
+          "dtype": "f32",
+          "is_alloc": true,
+          "size_bytes_static": 256
+        },
+        {
+          "name": "k_ub",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": true,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "v_ub",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": true,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "o_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": true,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "q_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "q_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "k_ub",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "v_ub",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "k_ub",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "v_ub",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "s_ub",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "s_ub",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "m_ub",
+          "dims": [
+            64,
+            1
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 256
+        },
+        {
+          "name": "m_ub",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "p_ub",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "p_ub",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "p_ub",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "l_ub",
+          "dims": [
+            64,
+            1
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 256
+        },
+        {
+          "name": "v_l1",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "acc_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 32768
+        },
+        {
+          "name": "l_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 32768
+        },
+        {
+          "name": "acc_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 32768
+        },
+        {
+          "name": "acc_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 32768
+        },
+        {
+          "name": "o_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "o_ub",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        }
+      ],
+      "l1": [
+        {
+          "name": "q_l1",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": true,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "k_l1",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": true,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "v_l1",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": true,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "q_l1",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        },
+        {
+          "name": "k_l1",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "v_l1",
+          "dims": [
+            32,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "k_l1",
+          "dims": [
+            64,
+            128
+          ],
+          "dtype": "f16",
+          "is_alloc": false,
+          "size_bytes_static": 16384
+        }
+      ],
+      "l0c": [
+        {
+          "name": "s_l0c",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": true,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "s_l0c",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "s_l0c",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "s_l0c",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        },
+        {
+          "name": "s_l0c",
+          "dims": [
+            64,
+            32
+          ],
+          "dtype": "f32",
+          "is_alloc": false,
+          "size_bytes_static": 8192
+        }
+      ]
+    },
+    "loop_trip_annotation": 32
+  },
+  "loop_anchor_count": 10,
+  "tile_hint_count": 0,
+  "compute_anchor_count": 156,
+  "memory_anchor_count": 249,
+  "readiness": "READY_FOR_TILING_PLAN_SCAFFOLD",
+  "risk": "HIGH",
+  "semantic_mutation_performed": false,
+  "production_rewrite_claim_allowed": false,
+  "loop_anchors_sample": [
+    {
+      "line": 164,
+      "text": "scf.for %arg29 = %c0_i32 to %c4_i32 step %c1_i32  : i32 {"
+    },
+    {
+      "line": 199,
+      "text": "scf.for %arg30 = %c0_i32 to %c4_i32 step %c1_i32  : i32 {"
+    },
+    {
+      "line": 819,
+      "text": "%103:2 = scf.for %arg29 = %c0_i32 to %c4_i32 step %c1_i32 iter_args(%arg30 = %101, %arg31 = %102) -> (memref<64x64xf32, #hivm.address_space<ub>>, memref<64xf32, #hivm.address_space<ub>>)  : i32 {"
+    },
+    {
+      "line": 902,
+      "text": "%172:6 = scf.for %arg32 = %c0_i32 to %c4_i32 step %c1_i32 iter_args(%arg33 = %168, %arg34 = %169, %arg35 = %170, %arg36 = %171, %arg37 = %arg30, %arg38 = %arg31) -> (memref<32xf32, #hivm.address_space<ub>>, memref<64x32x"
+    },
+    {
+      "line": 1025,
+      "text": "scf.for %arg39 = %c0 to %c32 step %c1 {"
+    },
+    {
+      "line": 1029,
+      "text": "scf.for %arg40 = %c0 to %c32 step %c1 {"
+    },
+    {
+      "line": 1064,
+      "text": "scf.for %arg39 = %c0 to %c32 step %c1 {"
+    },
+    {
+      "line": 1068,
+      "text": "scf.for %arg40 = %c0 to %c32 step %c1 {"
+    },
+    {
+      "line": 1094,
+      "text": "scf.for %arg39 = %99 to %100 step %c1 {"
+    },
+    {
+      "line": 1100,
+      "text": "scf.for %arg40 = %274 to %275 step %c1 {"
+    }
+  ],
+  "tile_hints_sample": [],
+  "proposed_rewrite_steps": [
+    "derive canonical loop nest and logical axes from MLIR regions",
+    "split or retile loop bounds according to selected TilingPlan knobs",
+    "rewrite load/compute/store offsets and tail masks",
+    "compose with MultiBufferPlan slot parity when applicable",
+    "run real HivmOpsEditor/MLIR verifier before accepting"
+  ],
+  "blockers_before_semantic_mutation": [
+    "operation-level loop split/index remap is not implemented without real MLIR verifier",
+    "tail mask/pad legality cannot be proven from text-only analysis",
+    "address calculation and use-def dominance require real MLIR/HIVM environment"
+  ]
+}

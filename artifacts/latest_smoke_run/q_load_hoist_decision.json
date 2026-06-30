@@ -1,0 +1,31 @@
+{
+  "schema_version": "hivm_q_load_hoist_decision_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase3d_load_hoist_proof",
+  "candidate_count": 1,
+  "local_proof_passed_count": 1,
+  "hoist_allowed_count": 0,
+  "deferred_count": 1,
+  "hoist_unlocked": false,
+  "decisions": [
+    {
+      "candidate_id": 0,
+      "load_op_id": 0,
+      "load_line": 43,
+      "decision": "deferred",
+      "local_proof_passed": true,
+      "hoist_allowed": false,
+      "gates": {
+        "q_or_stream_load_anchor_found": true,
+        "inside_loop": true,
+        "loop_invariant_by_visible_text": true,
+        "no_same_loop_destination_overwrite": true,
+        "event_liveness_ok": true,
+        "capacity_after_lifetime_extension_ok": true,
+        "target_parser_region_motion_proof": false
+      },
+      "reason": "missing gate(s): target_parser_region_motion_proof",
+      "recommended_backend_action": "emit_to_vtriton_hivmopseditor_for_region_motion_proof"
+    }
+  ],
+  "global_policy": "local proof can nominate a candidate, but production hoist requires target parser region-motion proof"
+}

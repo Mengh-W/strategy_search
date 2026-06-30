@@ -1,0 +1,931 @@
+{
+  "schema_version": "hivm_multibuffer_stage_mutation_plan_v1",
+  "version": "V4.9-multibuffer-stage-boundary-analysis",
+  "overall_decision": "MULTIBUFFER_STAGE_PLAN_READY_NOT_MUTATED",
+  "action_count": 12,
+  "actions": [
+    {
+      "action_id": "multibuffer_stage_plan_action_0000",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%q_ub",
+        "line": 8,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x128xf16, #hivm.address_space<ub>>",
+        "text": "%q_ub = memref.alloc() : memref<32x128xf16, #hivm.address_space<ub>>"
+      },
+      "producer": {
+        "line": 35,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>) outs(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 38,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 3,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0001",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%p_ub",
+        "line": 14,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x64xf16, #hivm.address_space<ub>>",
+        "text": "%p_ub = memref.alloc() : memref<32x64xf16, #hivm.address_space<ub>>"
+      },
+      "producer": {
+        "line": 82,
+        "op": "hivm.hir.vsub",
+        "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x1xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<32x1xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 85,
+        "op": "hivm.hir.vexp",
+        "text": "hivm.hir.vexp ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 3,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0002",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%s_ub",
+        "line": 12,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x64xf16, #hivm.address_space<ub>>",
+        "text": "%s_ub = memref.alloc() : memref<32x64xf16, #hivm.address_space<ub>>"
+      },
+      "producer": {
+        "line": 76,
+        "op": "hivm.hir.fixpipe",
+        "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<32x64xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 79,
+        "op": "hivm.hir.vreduce",
+        "text": "hivm.hir.vreduce ins(%s_ub : memref<32x1xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 3,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0003",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%k_ub",
+        "line": 20,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<64x128xf16, #hivm.address_space<ub>>",
+        "text": "%k_ub = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>>"
+      },
+      "producer": {
+        "line": 56,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%K_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 62,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 6,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0004",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%v_ub",
+        "line": 22,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<64x128xf16, #hivm.address_space<ub>>",
+        "text": "%v_ub = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>>"
+      },
+      "producer": {
+        "line": 59,
+        "op": "hivm.hir.load",
+        "text": "hivm.hir.load ins(%V_gm : memref<1024x128xf16, #hivm.address_space<gm>>) outs(%v_ub : memref<64x128xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 65,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%v_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 6,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0005",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%v_l1",
+        "line": 30,
+        "kind": "memref_alloc",
+        "scope": "L1_CBUF",
+        "type": "memref<64x128xf16, #hivm.address_space<cbuf>>",
+        "text": "%v_l1 = memref.alloc() : memref<64x128xf16, #hivm.address_space<cbuf>>"
+      },
+      "producer": {
+        "line": 91,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%v_l1 : memref<32x64xf16, #hivm.address_space<cbuf>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 95,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%p_ub, %v_l1 : memref<32x64xf16, #hivm.address_space<ub>>, memref<32x64xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 4,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0006",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%m_ub",
+        "line": 16,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x1xf32, #hivm.address_space<ub>>",
+        "text": "%m_ub = memref.alloc() : memref<32x1xf32, #hivm.address_space<ub>>"
+      },
+      "producer": {
+        "line": 79,
+        "op": "hivm.hir.vreduce",
+        "text": "hivm.hir.vreduce ins(%s_ub : memref<32x1xf16, #hivm.address_space<ub>>) outs(%m_ub : memref<32x1xf32, #hivm.address_space<ub>>) {reduce_op=\"max\"}",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 82,
+        "op": "hivm.hir.vsub",
+        "text": "hivm.hir.vsub ins(%s_ub, %m_ub : memref<32x1xf16, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%p_ub : memref<32x1xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 3,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0007",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%acc_ub",
+        "line": 10,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x128xf32, #hivm.address_space<ub>>",
+        "text": "%acc_ub = memref.alloc() : memref<32x128xf32, #hivm.address_space<ub>>"
+      },
+      "producer": {
+        "line": 98,
+        "op": "hivm.hir.fixpipe",
+        "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%acc_ub : memref<32x64xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 107,
+        "op": "hivm.hir.vdiv",
+        "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<32x1xf32, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<32x1xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 9,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0008",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%q_l1",
+        "line": 24,
+        "kind": "memref_alloc",
+        "scope": "L1_CBUF",
+        "type": "memref<32x128xf16, #hivm.address_space<cbuf>>",
+        "text": "%q_l1 = memref.alloc() : memref<32x128xf16, #hivm.address_space<cbuf>>"
+      },
+      "producer": {
+        "line": 38,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%q_ub : memref<32x128xf16, #hivm.address_space<ub>>) outs(%q_l1 : memref<32x128xf16, #hivm.address_space<cbuf>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 73,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<32x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x128xf32, #hivm.address_space<cc>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 35,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0009",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%k_l1_ping",
+        "line": 26,
+        "kind": "memref_alloc",
+        "scope": "L1_CBUF",
+        "type": "memref<64x128xf16, #hivm.address_space<cbuf>>",
+        "text": "%k_l1_ping = memref.alloc() : memref<64x128xf16, #hivm.address_space<cbuf>>"
+      },
+      "producer": {
+        "line": 62,
+        "op": "hivm.hir.nd2nz",
+        "text": "hivm.hir.nd2nz ins(%k_ub : memref<64x128xf16, #hivm.address_space<ub>>) outs(%k_l1_ping : memref<64x128xf16, #hivm.address_space<cbuf>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 73,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<32x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x128xf32, #hivm.address_space<cc>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 11,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0010",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%l_ub",
+        "line": 18,
+        "kind": "memref_alloc",
+        "scope": "UB",
+        "type": "memref<32x1xf32, #hivm.address_space<ub>>",
+        "text": "%l_ub = memref.alloc() : memref<32x1xf32, #hivm.address_space<ub>>"
+      },
+      "producer": {
+        "line": 88,
+        "op": "hivm.hir.vreduce",
+        "text": "hivm.hir.vreduce ins(%p_ub : memref<32x64xf16, #hivm.address_space<ub>>) outs(%l_ub : memref<32x64xf32, #hivm.address_space<ub>>) {reduce_op=\"sum\"}",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 107,
+        "op": "hivm.hir.vdiv",
+        "text": "hivm.hir.vdiv ins(%acc_ub, %l_ub : memref<32x1xf32, #hivm.address_space<ub>>, memref<32x1xf32, #hivm.address_space<ub>>) outs(%acc_ub : memref<32x1xf32, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 19,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    },
+    {
+      "action_id": "multibuffer_stage_plan_action_0011",
+      "mutation_kind": "double_buffer_stage_boundary_plan",
+      "status": "STAGE_PLANNED_NOT_MUTATED",
+      "stage_boundary_status": "READY_FOR_PINGPONG_PLAN",
+      "risk_level": "LOW",
+      "target": {
+        "symbol": "%s_l0c",
+        "line": 32,
+        "kind": "memref_alloc",
+        "scope": "L0C",
+        "type": "memref<32x64xf32, #hivm.address_space<cc>>",
+        "text": "%s_l0c = memref.alloc() : memref<32x64xf32, #hivm.address_space<cc>>"
+      },
+      "producer": {
+        "line": 73,
+        "op": "hivm.hir.mmad",
+        "text": "hivm.hir.mmad ins(%q_l1, %k_l1_ping : memref<32x128xf16, #hivm.address_space<cbuf>>, memref<32x128xf16, #hivm.address_space<cbuf>>) outs(%s_l0c : memref<32x128xf32, #hivm.address_space<cc>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 76,
+        "op": "hivm.hir.fixpipe",
+        "text": "hivm.hir.fixpipe ins(%s_l0c : memref<32x64xf32, #hivm.address_space<cc>>) outs(%s_ub : memref<32x64xf16, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "producer_consumer_distance": 3,
+      "sync_context_preview": [
+        {
+          "line": 69,
+          "op": "hivm.hir.wait_flag",
+          "text": "hivm.hir.wait_flag {pipe=\"M\",event=\"EVENT_ID0\"}"
+        },
+        {
+          "line": 99,
+          "op": "hivm.hir.set_flag",
+          "text": "hivm.hir.set_flag {pipe=\"FIX\",event=\"EVENT_ID0\"}"
+        }
+      ],
+      "loop_context_lines": [
+        42,
+        43,
+        44,
+        53
+      ],
+      "proposed_pingpong_rewrite": {
+        "slot_count": 2,
+        "producer_slot_expr": "slot[iteration % 2]",
+        "consumer_slot_expr": "slot[(iteration + required_lag) % 2]",
+        "requires_sync_edge": true,
+        "requires_capacity_multiplier": 2
+      },
+      "hivmopseditor_migration": {
+        "operation_level_steps": [
+          "locate target defining op by line/symbol",
+          "locate producer and consumer operations from stage pair",
+          "clone target buffer op or create second slot in same address space",
+          "rewrite producer stage uses to ping/pong slot",
+          "rewrite consumer stage uses to lagged slot",
+          "insert/reuse SyncPlan set_flag/wait_flag edges",
+          "delete obsolete barrier only after verifier passes",
+          "exportToFile and mlir::verify"
+        ],
+        "required_editor_capabilities": [
+          "listOps with source locations",
+          "clone operation or create equivalent buffer/view op",
+          "replace uses within region",
+          "insert set_flag/wait_flag around stage boundary",
+          "verify/export roundtrip"
+        ]
+      },
+      "blockers_before_semantic_mutation": [
+        "need real alias/dominance analysis",
+        "need exact loop parity expression from MLIR region",
+        "need capacity gate for doubled local buffer",
+        "need verifier and DES/trace validation"
+      ]
+    }
+  ],
+  "semantic_mutation_performed": false,
+  "production_rewrite_claim_allowed": false
+}

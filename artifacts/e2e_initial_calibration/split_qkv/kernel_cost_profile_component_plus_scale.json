@@ -1,0 +1,370 @@
+{
+  "enabled": true,
+  "source": "mlir_plus_product_artifacts",
+  "uses_profiling_target": true,
+  "kernel_type": "scalar_control_heavy",
+  "dominant_component": "scalar",
+  "ratios": {
+    "compute": 0.0,
+    "memory": 0.05996176730054504,
+    "vector": 0.23618963314824798,
+    "scalar": 0.4767383598790755,
+    "sync": 0.22711023967213154
+  },
+  "static_ratios": {
+    "compute": 0.0,
+    "memory": 0.06516903912752746,
+    "vector": 0.29727130449628447,
+    "scalar": 0.3904111714071428,
+    "sync": 0.24714848496904518
+  },
+  "product_ratios": {
+    "compute": 0.0,
+    "memory": 0.05215085956007138,
+    "vector": 0.14456712612619319,
+    "scalar": 0.6062291425869744,
+    "sync": 0.19705287172676106
+  },
+  "weights": {
+    "compute_cycle_correction": 1.056,
+    "memory_cycle_correction": 1.1614,
+    "vector_cycle_correction": 1.0852140749537287,
+    "scalar_cycle_correction": 1.6615077418851216,
+    "sync_cycle_correction": 1.3505437037213117,
+    "small_tile_fragmentation_correction": 1.30598445,
+    "memory_path_cycle_correction": 1.0108773486193456,
+    "alignment_cycle_correction": 1.0577083333333333,
+    "workspace_pressure_correction": 1.1237368540280448,
+    "overlap_confidence": 0.8947308078451542,
+    "cv_overlap_confidence": 0.9137248608636912,
+    "cv_pattern_opportunity_correction": 0.9715,
+    "compute_multiplier": 1.056,
+    "memory_multiplier": 1.1614,
+    "vector_multiplier": 1.0852140749537287,
+    "scalar_control_multiplier": 1.6615077418851216,
+    "sync_multiplier": 1.3505437037213117,
+    "small_tile_scalar_penalty_scale": 1.30598445,
+    "memory_path_multiplier": 1.0108773486193456,
+    "alignment_penalty_scale": 1.0577083333333333,
+    "buffer_pressure_scale": 1.1237368540280448,
+    "overlap_reward_scale": 0.8947308078451542,
+    "cv_reward_scale": 0.9137248608636912,
+    "cube_reward_scale": 1.0,
+    "cv_pattern_opportunity_scale": 0.9715,
+    "loop_weighted_scalar_multiplier": 1.30598445
+  },
+  "raw_features": {
+    "compute_score": 0.0,
+    "memory_score": 221.8,
+    "vector_score": 1011.75,
+    "scalar_score": 1328.7475,
+    "sync_score": 841.1591562499999,
+    "scalar_family_counts": {
+      "arith_scalar": 21,
+      "index_cast": 10,
+      "reinterpret_cast": 16,
+      "pointer_cast": 119,
+      "apply": 8,
+      "scalar_load": 19,
+      "scf_for": 5,
+      "scf_if": 1,
+      "get_block_idx": 1,
+      "set_mask_norm": 1,
+      "set_ffts_base_addr": 0
+    },
+    "trace_scalar_hint": 11.06,
+    "trace_sync_hint": 4.12,
+    "product_pipe_fraction": {
+      "pipe_s": 0.7691199032962945,
+      "pipe_unknown": 9.29843321400344e-05,
+      "mte3": 0.011948486679994421,
+      "vector": 0.18341159514621785,
+      "mte2": 0.03245153191687201,
+      "pipe_all": 0.002975498628481101
+    },
+    "product_critical_pipe": "pipe_s",
+    "advanced_mlir_features": {
+      "loop_weighted": {
+        "max_loop_depth": 16,
+        "flat_counts_by_component": {
+          "compute": 0,
+          "memory": 12,
+          "vector": 95,
+          "scalar": 319,
+          "sync": 104
+        },
+        "loop_weighted_counts_by_component": {
+          "compute": 0.0,
+          "memory": 51.0,
+          "vector": 403.75,
+          "scalar": 1357.25,
+          "sync": 438.75
+        },
+        "inner_loop_counts_by_component": {
+          "compute": 0,
+          "memory": 12,
+          "vector": 95,
+          "scalar": 313,
+          "sync": 103
+        },
+        "loop_weighted_ratios": {
+          "compute": 0.0,
+          "memory": 0.022659,
+          "vector": 0.179385,
+          "scalar": 0.603021,
+          "sync": 0.194935
+        },
+        "inner_loop_sync_count": 103,
+        "inner_loop_scalar_count": 313
+      },
+      "memory_path": {
+        "path_counts": {
+          "ub->ub": 2
+        },
+        "path_bytes": {
+          "ub->ub": 10240
+        },
+        "op_bytes": {
+          "copy": 25600,
+          "nd2nz": 0,
+          "fixpipe": 0,
+          "load_store": 27776
+        },
+        "total_path_bytes": 10240,
+        "gm_related_bytes": 0,
+        "l0_l1_related_bytes": 0
+      },
+      "buffer_lifetime": {
+        "by_space": {
+          "ub": {
+            "count": 209,
+            "bytes": 571776,
+            "span_sum": 11549,
+            "byte_span_sum": 26103136,
+            "max_span": 509,
+            "avg_span": 55.25837320574163
+          }
+        },
+        "top_double_buffer_candidates": [
+          {
+            "name": "73",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 175,
+            "double_buffer_benefit_proxy": 14.6491
+          },
+          {
+            "name": "107",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 173,
+            "double_buffer_benefit_proxy": 14.6167
+          },
+          {
+            "name": "collapse_shape_5",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 390,
+            "double_buffer_benefit_proxy": 13.1146
+          },
+          {
+            "name": "8",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 366,
+            "double_buffer_benefit_proxy": 12.9754
+          },
+          {
+            "name": "collapse_shape_25",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 86,
+            "double_buffer_benefit_proxy": 12.6529
+          },
+          {
+            "name": "69",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 294,
+            "double_buffer_benefit_proxy": 12.4956
+          },
+          {
+            "name": "collapse_shape_72",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 67,
+            "double_buffer_benefit_proxy": 9.2712
+          },
+          {
+            "name": "75",
+            "space": "ub",
+            "size_bytes": 4096,
+            "live_span": 233,
+            "double_buffer_benefit_proxy": 8.78
+          },
+          {
+            "name": "118",
+            "space": "ub",
+            "size_bytes": 4096,
+            "live_span": 155,
+            "double_buffer_benefit_proxy": 8.1274
+          },
+          {
+            "name": "126",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 33,
+            "double_buffer_benefit_proxy": 7.7482
+          },
+          {
+            "name": "collapse_shape_29",
+            "space": "ub",
+            "size_bytes": 4096,
+            "live_span": 105,
+            "double_buffer_benefit_proxy": 7.5055
+          },
+          {
+            "name": "subview_57",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 13,
+            "double_buffer_benefit_proxy": 7.477
+          },
+          {
+            "name": "collapse_shape",
+            "space": "ub",
+            "size_bytes": 2048,
+            "live_span": 509,
+            "double_buffer_benefit_proxy": 6.8492
+          },
+          {
+            "name": "7",
+            "space": "ub",
+            "size_bytes": 2048,
+            "live_span": 500,
+            "double_buffer_benefit_proxy": 6.8296
+          },
+          {
+            "name": "65",
+            "space": "ub",
+            "size_bytes": 2048,
+            "live_span": 321,
+            "double_buffer_benefit_proxy": 6.344
+          },
+          {
+            "name": "66",
+            "space": "ub",
+            "size_bytes": 2048,
+            "live_span": 311,
+            "double_buffer_benefit_proxy": 6.3093
+          },
+          {
+            "name": "collapse_shape_62",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 14,
+            "double_buffer_benefit_proxy": 5.9502
+          },
+          {
+            "name": "97",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 7,
+            "double_buffer_benefit_proxy": 5.8915
+          },
+          {
+            "name": "105",
+            "space": "ub",
+            "size_bytes": 16384,
+            "live_span": 7,
+            "double_buffer_benefit_proxy": 5.8915
+          },
+          {
+            "name": "132",
+            "space": "ub",
+            "size_bytes": 8192,
+            "live_span": 12,
+            "double_buffer_benefit_proxy": 5.6358
+          }
+        ],
+        "num_candidate_buffers": 20
+      },
+      "sync_criticality": {
+        "sync_counts": {
+          "set_flag": 23,
+          "wait_flag": 23,
+          "pipe_barrier": 57,
+          "sync_block_set": 0,
+          "sync_block_wait": 0
+        },
+        "total_sync_ops": 103,
+        "inner_loop_sync_count": 103,
+        "event_pair_count": 0,
+        "missing_set_or_wait_pairs": 0,
+        "cross_pipe_event_pairs": 0,
+        "sync_criticality_proxy": 0.45
+      },
+      "alignment_tail": {
+        "dim_total": 240,
+        "dim_not_multiple_of_16": 45,
+        "dim_misalignment_ratio": 0.1875,
+        "mask_or_tail_ops": 13,
+        "storage_aligned_annotations": 1,
+        "offset_count": 0,
+        "offset_not_32B_aligned": 0,
+        "offset_misalignment_ratio": 0.0
+      },
+      "sequence_patterns": {
+        "patterns": {
+          "copy_nd2nz_mmad": 0,
+          "mmad_fixpipe_vector": 0,
+          "vector_to_store": 5,
+          "sync_dense_pair": 2
+        },
+        "cv_pipeline_opportunity_proxy": 0.05,
+        "op_sequence_len": 983
+      }
+    },
+    "feature_strengths": {
+      "sync_criticality": 0.45,
+      "loop_scalar_ratio": 0.603021,
+      "memory_path_strength": 0.05438674309672835,
+      "buffer_pressure_strength": 0.4124561800934824,
+      "alignment_penalty_strength": 0.23083333333333333,
+      "cv_pipeline_opportunity_proxy": 0.05
+    }
+  },
+  "note": "Kernel-specific correction factors are derived only from MLIR and compiler product artifacts; no measured/profiling target or DES makespan is used. They correct component cycle estimates rather than adding a separate ranking score. msprof component prior applied.",
+  "msprof_component_prior": {
+    "enabled": true,
+    "before": {
+      "compute_cycle_correction": 1.056,
+      "memory_cycle_correction": 1.0384426203777433,
+      "vector_cycle_correction": 1.0852140749537287,
+      "scalar_cycle_correction": 1.6615077418851216,
+      "sync_cycle_correction": 1.3505437037213117,
+      "overlap_confidence": 0.8947308078451542,
+      "cv_overlap_confidence": 0.9137248608636912
+    },
+    "learned_from_msprof": {
+      "compute_cycle_correction": 0.98,
+      "memory_cycle_correction": 1.1614,
+      "vector_cycle_correction": 1.03675,
+      "scalar_cycle_correction": 1.1305962695357066,
+      "sync_cycle_correction": 1.115661390832703,
+      "overlap_confidence": 0.9318590727781979,
+      "cv_overlap_confidence": 0.9441125606484984
+    },
+    "after": {
+      "compute_cycle_correction": 1.056,
+      "memory_cycle_correction": 1.1614,
+      "vector_cycle_correction": 1.0852140749537287,
+      "scalar_cycle_correction": 1.6615077418851216,
+      "sync_cycle_correction": 1.3505437037213117,
+      "overlap_confidence": 0.8947308078451542,
+      "cv_overlap_confidence": 0.9137248608636912
+    },
+    "dominant_runtime_signal": "memory",
+    "note": "Single-sample msprof component prior; it adjusts component cycle corrections but should not be treated as a trained ranking model."
+  }
+}

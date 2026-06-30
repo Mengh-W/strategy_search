@@ -1,0 +1,66 @@
+{
+  "mutation_performed": true,
+  "rewritten_operand_type_count": 10,
+  "rewrites": [
+    {
+      "line": 104,
+      "value": "%k_l1_ping",
+      "from_type": "memref<32x128xf16, #hivm.address_space<cbuf>",
+      "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+    },
+    {
+      "line": 104,
+      "value": "%s_l0c",
+      "from_type": "memref<32x128xf32, #hivm.address_space<cc>",
+      "to_type": "memref<32x64xf32, #hivm.address_space<cc>"
+    },
+    {
+      "line": 115,
+      "value": "%m_ub",
+      "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+    },
+    {
+      "line": 118,
+      "value": "%m_ub",
+      "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+    },
+    {
+      "line": 123,
+      "value": "%l_ub",
+      "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x1xf32, #hivm.address_space<ub>"
+    },
+    {
+      "line": 127,
+      "value": "%v_l1",
+      "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
+      "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+    },
+    {
+      "line": 133,
+      "value": "%v_l1",
+      "from_type": "memref<32x64xf16, #hivm.address_space<cbuf>",
+      "to_type": "memref<64x128xf16, #hivm.address_space<cbuf>"
+    },
+    {
+      "line": 140,
+      "value": "%acc_ub_mb1_ping",
+      "from_type": "memref<32x64xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+    },
+    {
+      "line": 151,
+      "value": "%acc_ub_mb1_ping",
+      "from_type": "memref<32x1xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+    },
+    {
+      "line": 151,
+      "value": "%acc_ub_mb1_ping",
+      "from_type": "memref<32x1xf32, #hivm.address_space<ub>",
+      "to_type": "memref<32x128xf32, #hivm.address_space<ub>"
+    }
+  ]
+}

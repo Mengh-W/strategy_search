@@ -1,0 +1,37 @@
+{
+  "schema_version": "hivm_phase6e_backend_build_plan_v1",
+  "phase": "Phase-6E",
+  "steps": [
+    {
+      "step": 1,
+      "action": "Install adapter into <vTriton>/tools/hivm-operation-backend",
+      "script": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/scripts/phase6e_apply_vtriton_backend_patch.py"
+    },
+    {
+      "step": 2,
+      "action": "Patch <vTriton>/tools/CMakeLists.txt with add_subdirectory(hivm-operation-backend) if absent"
+    },
+    {
+      "step": 3,
+      "action": "Reconfigure vTriton with its existing MLIR/BishengIR options"
+    },
+    {
+      "step": 4,
+      "action": "Build target hivm-operation-backend"
+    },
+    {
+      "step": 5,
+      "action": "Run --print-capabilities and require real MLIR/HivmOpsEditor identity"
+    },
+    {
+      "step": 6,
+      "action": "Run inventory/roundtrip/verify-only on restricted positive fixtures"
+    },
+    {
+      "step": 7,
+      "action": "Only then run guarded GM round-trip deletion mutation on restricted positive fixture"
+    }
+  ],
+  "q_load_hoist_status": "disabled_until_dominance_region_motion_algorithm_is_implemented",
+  "gm_roundtrip_status": "first_real_mutation_candidate_after_backend_build_and_verify"
+}

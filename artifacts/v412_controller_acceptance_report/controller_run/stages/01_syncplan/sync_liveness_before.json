@@ -1,0 +1,668 @@
+{
+  "schema_version": "hivm_sync_liveness_report_v1",
+  "report_kind": "portable_textual_sync_event_liveness",
+  "num_sync_ops": 402,
+  "num_events": 12,
+  "num_pipe_barrier": 80,
+  "num_sync_block": 96,
+  "event_reports": [
+    {
+      "event_id": "%100",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        392
+      ],
+      "wait_lines": [
+        294
+      ]
+    },
+    {
+      "event_id": "%102",
+      "status": "UNPAIRED",
+      "set_count": 0,
+      "wait_count": 1,
+      "set_lines": [],
+      "wait_lines": [
+        259
+      ]
+    },
+    {
+      "event_id": "%66",
+      "status": "UNPAIRED",
+      "set_count": 0,
+      "wait_count": 1,
+      "set_lines": [],
+      "wait_lines": [
+        406
+      ]
+    },
+    {
+      "event_id": "%68",
+      "status": "UNPAIRED",
+      "set_count": 0,
+      "wait_count": 1,
+      "set_lines": [],
+      "wait_lines": [
+        400
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID0>",
+      "status": "OK_PAIRED",
+      "set_count": 69,
+      "wait_count": 65,
+      "set_lines": [
+        149,
+        157,
+        296,
+        309,
+        322,
+        335,
+        364,
+        370,
+        381,
+        388,
+        402,
+        418,
+        430,
+        458,
+        463,
+        467,
+        472,
+        477,
+        708,
+        722,
+        726,
+        762,
+        796,
+        809,
+        816,
+        818,
+        846,
+        856,
+        872,
+        876,
+        896,
+        900,
+        964,
+        969,
+        978,
+        996,
+        1001,
+        1009,
+        1040,
+        1079,
+        1088,
+        1111,
+        1119,
+        1155,
+        1175,
+        1194,
+        1213,
+        1240,
+        1250,
+        1264,
+        1287,
+        1305,
+        1327,
+        1405,
+        1418,
+        1437,
+        1453,
+        1469,
+        1500,
+        1504,
+        1555,
+        1570,
+        1576,
+        1589,
+        1590,
+        1591,
+        1659,
+        1676,
+        1690
+      ],
+      "wait_lines": [
+        312,
+        325,
+        338,
+        344,
+        372,
+        379,
+        386,
+        420,
+        432,
+        438,
+        445,
+        465,
+        470,
+        479,
+        709,
+        723,
+        732,
+        807,
+        808,
+        847,
+        857,
+        873,
+        879,
+        894,
+        895,
+        965,
+        975,
+        982,
+        997,
+        1007,
+        1013,
+        1043,
+        1062,
+        1063,
+        1082,
+        1117,
+        1122,
+        1179,
+        1198,
+        1217,
+        1241,
+        1253,
+        1267,
+        1268,
+        1301,
+        1321,
+        1323,
+        1399,
+        1420,
+        1439,
+        1451,
+        1456,
+        1472,
+        1501,
+        1519,
+        1566,
+        1579,
+        1580,
+        1588,
+        1652,
+        1661,
+        1673,
+        1674,
+        1679,
+        1701
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID1>",
+      "status": "OK_PAIRED",
+      "set_count": 13,
+      "wait_count": 11,
+      "set_lines": [
+        150,
+        158,
+        289,
+        374,
+        412,
+        810,
+        817,
+        897,
+        901,
+        979,
+        987,
+        1058,
+        1150
+      ],
+      "wait_lines": [
+        367,
+        439,
+        446,
+        967,
+        974,
+        1023,
+        1024,
+        1322,
+        1324,
+        1581,
+        1582
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID2>",
+      "status": "OK_PAIRED",
+      "set_count": 8,
+      "wait_count": 7,
+      "set_lines": [
+        151,
+        159,
+        283,
+        314,
+        811,
+        898,
+        1010,
+        1018
+      ],
+      "wait_lines": [
+        306,
+        440,
+        447,
+        999,
+        1006,
+        1325,
+        1583
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID3>",
+      "status": "OK_PAIRED",
+      "set_count": 8,
+      "wait_count": 7,
+      "set_lines": [
+        152,
+        160,
+        266,
+        327,
+        812,
+        899,
+        1143,
+        1186
+      ],
+      "wait_lines": [
+        319,
+        441,
+        448,
+        1116,
+        1173,
+        1326,
+        1584
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID4>",
+      "status": "OK_PAIRED",
+      "set_count": 6,
+      "wait_count": 5,
+      "set_lines": [
+        153,
+        161,
+        272,
+        340,
+        813,
+        1205
+      ],
+      "wait_lines": [
+        332,
+        442,
+        449,
+        1192,
+        1585
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID5>",
+      "status": "OK_PAIRED",
+      "set_count": 5,
+      "wait_count": 5,
+      "set_lines": [
+        154,
+        162,
+        422,
+        814,
+        1224
+      ],
+      "wait_lines": [
+        415,
+        443,
+        450,
+        1211,
+        1586
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID6>",
+      "status": "OK_PAIRED",
+      "set_count": 5,
+      "wait_count": 5,
+      "set_lines": [
+        155,
+        163,
+        434,
+        815,
+        1315
+      ],
+      "wait_lines": [
+        427,
+        444,
+        451,
+        1226,
+        1587
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID7>",
+      "status": "OK_PAIRED",
+      "set_count": 1,
+      "wait_count": 1,
+      "set_lines": [
+        156
+      ],
+      "wait_lines": [
+        452
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "event_id": "%100",
+      "reason": "wait_before_set_text_order",
+      "set_lines": [
+        392
+      ],
+      "wait_lines": [
+        294
+      ]
+    },
+    {
+      "event_id": "%102",
+      "reason": "event_missing_set_or_wait",
+      "set_lines": [],
+      "wait_lines": [
+        259
+      ]
+    },
+    {
+      "event_id": "%66",
+      "reason": "event_missing_set_or_wait",
+      "set_lines": [],
+      "wait_lines": [
+        406
+      ]
+    },
+    {
+      "event_id": "%68",
+      "reason": "event_missing_set_or_wait",
+      "set_lines": [],
+      "wait_lines": [
+        400
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID0>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        149,
+        157,
+        296,
+        309,
+        322,
+        335,
+        364,
+        370,
+        381,
+        388,
+        402,
+        418,
+        430,
+        458,
+        463,
+        467,
+        472,
+        477,
+        708,
+        722,
+        726,
+        762,
+        796,
+        809,
+        816,
+        818,
+        846,
+        856,
+        872,
+        876,
+        896,
+        900,
+        964,
+        969,
+        978,
+        996,
+        1001,
+        1009,
+        1040,
+        1079,
+        1088,
+        1111,
+        1119,
+        1155,
+        1175,
+        1194,
+        1213,
+        1240,
+        1250,
+        1264,
+        1287,
+        1305,
+        1327,
+        1405,
+        1418,
+        1437,
+        1453,
+        1469,
+        1500,
+        1504,
+        1555,
+        1570,
+        1576,
+        1589,
+        1590,
+        1591,
+        1659,
+        1676,
+        1690
+      ],
+      "wait_lines": [
+        312,
+        325,
+        338,
+        344,
+        372,
+        379,
+        386,
+        420,
+        432,
+        438,
+        445,
+        465,
+        470,
+        479,
+        709,
+        723,
+        732,
+        807,
+        808,
+        847,
+        857,
+        873,
+        879,
+        894,
+        895,
+        965,
+        975,
+        982,
+        997,
+        1007,
+        1013,
+        1043,
+        1062,
+        1063,
+        1082,
+        1117,
+        1122,
+        1179,
+        1198,
+        1217,
+        1241,
+        1253,
+        1267,
+        1268,
+        1301,
+        1321,
+        1323,
+        1399,
+        1420,
+        1439,
+        1451,
+        1456,
+        1472,
+        1501,
+        1519,
+        1566,
+        1579,
+        1580,
+        1588,
+        1652,
+        1661,
+        1673,
+        1674,
+        1679,
+        1701
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID1>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        150,
+        158,
+        289,
+        374,
+        412,
+        810,
+        817,
+        897,
+        901,
+        979,
+        987,
+        1058,
+        1150
+      ],
+      "wait_lines": [
+        367,
+        439,
+        446,
+        967,
+        974,
+        1023,
+        1024,
+        1322,
+        1324,
+        1581,
+        1582
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID2>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        151,
+        159,
+        283,
+        314,
+        811,
+        898,
+        1010,
+        1018
+      ],
+      "wait_lines": [
+        306,
+        440,
+        447,
+        999,
+        1006,
+        1325,
+        1583
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID3>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        152,
+        160,
+        266,
+        327,
+        812,
+        899,
+        1143,
+        1186
+      ],
+      "wait_lines": [
+        319,
+        441,
+        448,
+        1116,
+        1173,
+        1326,
+        1584
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID4>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        153,
+        161,
+        272,
+        340,
+        813,
+        1205
+      ],
+      "wait_lines": [
+        332,
+        442,
+        449,
+        1192,
+        1585
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID5>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        154,
+        162,
+        422,
+        814,
+        1224
+      ],
+      "wait_lines": [
+        415,
+        443,
+        450,
+        1211,
+        1586
+      ]
+    },
+    {
+      "event_id": "<EVENT_ID6>",
+      "reason": "event_reused_multiple_sets_or_waits_textual",
+      "set_lines": [
+        155,
+        163,
+        434,
+        815,
+        1315
+      ],
+      "wait_lines": [
+        427,
+        444,
+        451,
+        1226,
+        1587
+      ]
+    }
+  ],
+  "blockers": [],
+  "passed_portable_liveness": true,
+  "production_rewrite_claim_allowed": false,
+  "requires_real_scheduler_or_des_liveness": true
+}

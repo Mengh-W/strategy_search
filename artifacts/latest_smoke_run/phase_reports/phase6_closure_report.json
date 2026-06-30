@@ -1,0 +1,35 @@
+{
+  "schema_version": "hivm_phase6f_closure_report_v1",
+  "phase": "Phase-6F",
+  "phase6_status": "closed_waiting_for_real_backend_binary",
+  "what_is_done": [
+    "restricted true IR rewrite positive cases are implemented in a narrow Python tool",
+    "vTriton source-aware HivmOpsEditor backend adapter skeleton is generated",
+    "local vTriton build integration scripts are generated",
+    "compiled backend acceptance gate is implemented"
+  ],
+  "what_is_not_done": [
+    "broad production Q-load hoist on real kernels",
+    "broad production GM round-trip deletion on real kernels",
+    "real double-buffer rewrite",
+    "full CVPipeline overlap rewrite",
+    "real tiling loop lowering",
+    "msprof validation"
+  ],
+  "next_phase_recommendation": "Phase-7 should start only after a compiled real hivm-operation-backend binary passes Phase-6F acceptance. If accepted, start with one restricted GM deletion trial; keep Q-load hoist locked until dominance/region-motion is implemented in the real backend.",
+  "phase7_entry_conditions": [
+    "hivm-operation-backend binary provided",
+    "--print-capabilities declares real MLIR/HivmOpsEditor backend",
+    "inventory/roundtrip/verify smoke tests pass on at least one fixture",
+    "limited GM deletion mode is available",
+    "tritonsim-hivm available before claiming DES/trace validation"
+  ],
+  "production_mutations_unlocked": {
+    "q_load_hoist": false,
+    "gm_roundtrip_deletion_broad": false,
+    "restricted_gm_roundtrip_deletion_trial": false,
+    "real_double_buffer": false,
+    "full_cv_overlap": false,
+    "real_tiling_loop_lowering": false
+  }
+}

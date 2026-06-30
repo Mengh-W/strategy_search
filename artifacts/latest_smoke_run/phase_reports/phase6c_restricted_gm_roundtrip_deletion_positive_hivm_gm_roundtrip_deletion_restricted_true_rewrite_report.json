@@ -1,0 +1,31 @@
+{
+  "schema_version": "restricted_hivm_true_rewrite_report_v1",
+  "backend": "restricted_hivm_true_rewriter_phase6c",
+  "backend_kind": "restricted_textual_true_rewriter",
+  "is_real_mlir_backend": false,
+  "uses_hivmopseditor": false,
+  "uses_mlir_operation_walk": false,
+  "production_mutation": false,
+  "restricted_true_mutation": true,
+  "status": "mutated_restricted_fixture",
+  "input": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/sample_input/phase6_positive_fixtures/restricted_gm_roundtrip_deletion_positive.hivm.mlir",
+  "output": "/mnt/data/hivm_work/smoke_out/optimized.phase6c.restricted_gm_roundtrip_deletion_positive_hivm.gm_roundtrip_deletion.hivm.mlir",
+  "mutation_kind": "gm_roundtrip_deletion",
+  "mutation_performed": true,
+  "deleted_pair_count": 1,
+  "changed_line_count": 2,
+  "actions": [
+    {
+      "type": "gm_roundtrip_deletion",
+      "load_source_line": 8,
+      "store_deleted_line": 9,
+      "reload_deleted_line": 10,
+      "gm": "%A_gm",
+      "tmp_buffer": "%tmp_ub",
+      "reload_buffer": "%tmp2_ub",
+      "structural_change": "commented out one store and one reload in restricted fixture"
+    }
+  ],
+  "blockers": [],
+  "disclaimer": "This is a real file-level IR mutation for restricted positive fixtures only. It is not a production MLIR/HivmOpsEditor rewrite backend."
+}

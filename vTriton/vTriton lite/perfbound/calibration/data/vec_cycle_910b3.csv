@@ -1,0 +1,37 @@
+# Vector intrinsic cycle costs for Ascend 910B3
+# Format: tilesim-compatible CSV for Vector op latency modeling
+# Columns: intrinsic, computing_cycles, head_cycles, interval_cycles
+#
+# Population status: SEED VALUES from ascend_910b.json calibration
+# Source: configs/ascend_910b.json → calibration.vector_op_cycles_per_vec_instruction
+# These are cycle costs per 128-element vector instruction.
+#
+# Actual measured values will come from CCE microbenchmarks:
+# - vector_peak_elemwise_{add,mul,max,min}.cce (VADD, VMUL, VMAX, VMIN)
+# - vector_peak_transcendental.cce (VEXP, VLOG, VSQRT, VRSQRT)
+#
+# Related: perfbound/calibration/constants.py (VecOpType, VectorConfig)
+# Related: .omc/specs/performance_bound_model.md §A.1 (P0 constants)
+
+#intrinsic,computing_cycles,head_cycles,interval_cycles
+add,1,0,1
+sub,1,0,1
+mul,1,0,1
+div,3,0,3
+max,1,0,1
+min,1,0,1
+exp,4,0,4
+log,3,0,3
+sqrt,2,0,2
+rsqrt,2,0,2
+tanh,3,0,3
+sigmoid,3,0,3
+relu,1,0,1
+neg,1,0,1
+abs,1,0,1
+cast,1,0,1
+reduce_sum,2,0,2
+reduce_max,2,0,2
+reduce_min,2,0,2
+broadcast,1,0,1
+select,1,0,1

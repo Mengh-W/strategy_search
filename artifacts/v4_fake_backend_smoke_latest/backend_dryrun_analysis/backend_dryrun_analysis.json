@@ -1,0 +1,354 @@
+{
+  "schema_version": "hivm_backend_dryrun_analysis_v1",
+  "contract_schema_version": "hivm_four_plan_backend_contract_v1_sync_multibuffer_subset",
+  "dry_run_schema_version": "fake_hivm_dry_run_report_v2",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "backend_status": "dry_run_only_fake_backend_no_mutation",
+  "is_real_mlir_backend": false,
+  "action_count_contract": 9,
+  "action_count_dry_run": 9,
+  "decision_counts": {
+    "BLOCKED_FAKE_BACKEND": 9
+  },
+  "actions": [
+    {
+      "action_id": "sync_001_barrier_to_directional_event",
+      "plan": "SyncPlan",
+      "mutation_kind": "sync_barrier_to_directional_event",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "event_pairs_reported",
+        "event_liveness_passed",
+        "no_deadlock_or_conflict_reported"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": null,
+        "address_space": null,
+        "producer_count": 0,
+        "consumer_count": 0,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": false,
+        "static_priority_score": 0,
+        "static_risk_reasons": [
+          "producer_count=0",
+          "consumer_count=0"
+        ]
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    },
+    {
+      "action_id": "mb_001_clone_q_ub",
+      "plan": "MultiBufferPlan",
+      "mutation_kind": "clone_local_buffer_slots_and_replace_uses",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "use_def_resolution_ok",
+        "all_uses_accounted_for",
+        "capacity_recheck_passed",
+        "buffer_liveness_passed",
+        "post_mutate_verify_expected"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": "%q_ub",
+        "address_space": "ub",
+        "producer_count": 1,
+        "consumer_count": 1,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": false,
+        "static_priority_score": 19,
+        "static_risk_reasons": []
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    },
+    {
+      "action_id": "mb_002_clone_p_ub",
+      "plan": "MultiBufferPlan",
+      "mutation_kind": "clone_local_buffer_slots_and_replace_uses",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "use_def_resolution_ok",
+        "all_uses_accounted_for",
+        "capacity_recheck_passed",
+        "buffer_liveness_passed",
+        "post_mutate_verify_expected"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": "%p_ub",
+        "address_space": "ub",
+        "producer_count": 2,
+        "consumer_count": 3,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": true,
+        "static_priority_score": 12,
+        "static_risk_reasons": [
+          "producer_count=2",
+          "consumer_count=3",
+          "self_update_op_seen"
+        ]
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    },
+    {
+      "action_id": "mb_003_clone_k_ub",
+      "plan": "MultiBufferPlan",
+      "mutation_kind": "clone_local_buffer_slots_and_replace_uses",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "use_def_resolution_ok",
+        "all_uses_accounted_for",
+        "capacity_recheck_passed",
+        "buffer_liveness_passed",
+        "post_mutate_verify_expected"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": "%k_ub",
+        "address_space": "ub",
+        "producer_count": 1,
+        "consumer_count": 1,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": false,
+        "static_priority_score": 19,
+        "static_risk_reasons": []
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    },
+    {
+      "action_id": "mb_004_clone_v_ub",
+      "plan": "MultiBufferPlan",
+      "mutation_kind": "clone_local_buffer_slots_and_replace_uses",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "use_def_resolution_ok",
+        "all_uses_accounted_for",
+        "capacity_recheck_passed",
+        "buffer_liveness_passed",
+        "post_mutate_verify_expected"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": "%v_ub",
+        "address_space": "ub",
+        "producer_count": 1,
+        "consumer_count": 1,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": false,
+        "static_priority_score": 19,
+        "static_risk_reasons": []
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    },
+    {
+      "action_id": "mb_005_clone_q_l1",
+      "plan": "MultiBufferPlan",
+      "mutation_kind": "clone_local_buffer_slots_and_replace_uses",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "use_def_resolution_ok",
+        "all_uses_accounted_for",
+        "capacity_recheck_passed",
+        "buffer_liveness_passed",
+        "post_mutate_verify_expected"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": "%q_l1",
+        "address_space": "cbuf",
+        "producer_count": 1,
+        "consumer_count": 1,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": false,
+        "static_priority_score": 19,
+        "static_risk_reasons": []
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    },
+    {
+      "action_id": "mb_006_clone_k_l1",
+      "plan": "MultiBufferPlan",
+      "mutation_kind": "clone_local_buffer_slots_and_replace_uses",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "use_def_resolution_ok",
+        "all_uses_accounted_for",
+        "capacity_recheck_passed",
+        "buffer_liveness_passed",
+        "post_mutate_verify_expected"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": "%k_l1",
+        "address_space": "cbuf",
+        "producer_count": 1,
+        "consumer_count": 1,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": false,
+        "static_priority_score": 19,
+        "static_risk_reasons": []
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    },
+    {
+      "action_id": "mb_007_clone_v_l1",
+      "plan": "MultiBufferPlan",
+      "mutation_kind": "clone_local_buffer_slots_and_replace_uses",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "use_def_resolution_ok",
+        "all_uses_accounted_for",
+        "capacity_recheck_passed",
+        "buffer_liveness_passed",
+        "post_mutate_verify_expected"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": "%v_l1",
+        "address_space": "cbuf",
+        "producer_count": 1,
+        "consumer_count": 1,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": false,
+        "static_priority_score": 19,
+        "static_risk_reasons": []
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    },
+    {
+      "action_id": "mb_008_clone_acc_ub",
+      "plan": "MultiBufferPlan",
+      "mutation_kind": "clone_local_buffer_slots_and_replace_uses",
+      "mode": "dry_run_first",
+      "dry_run_seen": true,
+      "backend_located": true,
+      "passed_proofs": [
+        "operation_found",
+        "located"
+      ],
+      "missing_proofs": [
+        "use_def_resolution_ok",
+        "all_uses_accounted_for",
+        "capacity_recheck_passed",
+        "buffer_liveness_passed",
+        "post_mutate_verify_expected"
+      ],
+      "failed_proofs": [],
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ],
+      "static_complexity": {
+        "target_buffer": "%acc_ub",
+        "address_space": "ub",
+        "producer_count": 2,
+        "consumer_count": 2,
+        "has_gm_store_consumer": false,
+        "has_self_update_hint": true,
+        "static_priority_score": 11,
+        "static_risk_reasons": [
+          "producer_count=2",
+          "consumer_count=2",
+          "self_update_op_seen"
+        ]
+      },
+      "decision": "BLOCKED_FAKE_BACKEND",
+      "reason": "fake backend cannot prove MLIR/HivmOpsEditor legality or perform production mutation"
+    }
+  ],
+  "overall_decision": "WAIT_FOR_REAL_BACKEND",
+  "notes": [
+    "This report analyzes dry-run proof completeness only; it does not mutate IR.",
+    "Fake backend output is always blocked from production mutation.",
+    "The first mutation milestone is restricted to one MultiBufferPlan action at a time."
+  ]
+}

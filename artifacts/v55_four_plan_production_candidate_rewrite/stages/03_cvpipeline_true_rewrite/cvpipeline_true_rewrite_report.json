@@ -1,0 +1,171 @@
+{
+  "schema_version": "hivm_cvpipeline_restricted_true_rewrite_v1",
+  "version": "V5.1-cvpipeline-restricted-true-rewrite",
+  "mutation_kind": "restricted_pipeline_sync_and_slot_binding_rewrite",
+  "mutation_performed": true,
+  "requested_action_count": 2,
+  "rewritten_action_count": 2,
+  "skipped_action_count": 0,
+  "rewritten_actions": [
+    {
+      "action_id": "cvpipeline_true_rewrite_action_0000",
+      "source_stage_action_id": "cvpipeline_stage_plan_action_0000",
+      "mutation_kind": "restricted_pipeline_sync_and_slot_binding_rewrite",
+      "risk_level": "LOW",
+      "window_id": "cv_window_0000",
+      "line_span": [
+        8,
+        75
+      ],
+      "stage_line_spans": {
+        "load_or_view": [
+          8,
+          50
+        ],
+        "compute": [
+          72,
+          72
+        ],
+        "store": [
+          75,
+          75
+        ]
+      },
+      "events": {
+        "load_to_compute": "EVENT_ID_CVP_L2C_0",
+        "compute_to_store": "EVENT_ID_CVP_C2S_0"
+      },
+      "pipes": {
+        "load_to_compute": {
+          "set_pipe": "PIPE_MTE2",
+          "wait_pipe": "PIPE_V"
+        },
+        "compute_to_store": {
+          "set_pipe": "PIPE_V",
+          "wait_pipe": "PIPE_MTE3"
+        }
+      },
+      "slot_binding": {
+        "base_symbol": "%k_ub",
+        "ping": "%k_ub_mb2_ping",
+        "pong": "%k_ub_mb2_pong",
+        "binding_policy": "best_effort_existing_multibuffer_slot"
+      },
+      "rewrite_policy": {
+        "mode": "additive_pipeline_sync_edges_with_optional_slot_binding",
+        "operation_movement": false,
+        "loop_skewing": false,
+        "prologue_steady_epilogue_materialization": "metadata_and_sync_edges_only"
+      },
+      "reasons": [
+        "load_compute_store_order_detected",
+        "sync_segment_between_load_compute_store",
+        "loop_context_detected",
+        "textual_symbol_overlap_between_stages",
+        "view_segment_can_attach_to_load_stage"
+      ],
+      "warnings": [],
+      "status": "REWRITTEN",
+      "inserted_sync_edges": [
+        "load_to_compute",
+        "compute_to_store"
+      ],
+      "inserted_event_count": 4,
+      "slot_binding_replacement_lines": [
+        32,
+        37
+      ]
+    },
+    {
+      "action_id": "cvpipeline_true_rewrite_action_0001",
+      "source_stage_action_id": "cvpipeline_stage_plan_action_0003",
+      "mutation_kind": "restricted_pipeline_sync_and_slot_binding_rewrite",
+      "risk_level": "MEDIUM",
+      "window_id": "cv_window_0003",
+      "line_span": [
+        86,
+        90
+      ],
+      "stage_line_spans": {
+        "load_or_view": [
+          86,
+          86
+        ],
+        "compute": [
+          88,
+          88
+        ],
+        "store": [
+          90,
+          90
+        ]
+      },
+      "events": {
+        "load_to_compute": "EVENT_ID_CVP_L2C_1",
+        "compute_to_store": "EVENT_ID_CVP_C2S_1"
+      },
+      "pipes": {
+        "load_to_compute": {
+          "set_pipe": "PIPE_MTE2",
+          "wait_pipe": "PIPE_V"
+        },
+        "compute_to_store": {
+          "set_pipe": "PIPE_V",
+          "wait_pipe": "PIPE_MTE3"
+        }
+      },
+      "slot_binding": {
+        "base_symbol": "%k_ub",
+        "ping": "%k_ub_mb2_ping",
+        "pong": "%k_ub_mb2_pong",
+        "binding_policy": "best_effort_existing_multibuffer_slot"
+      },
+      "rewrite_policy": {
+        "mode": "additive_pipeline_sync_edges_with_optional_slot_binding",
+        "operation_movement": false,
+        "loop_skewing": false,
+        "prologue_steady_epilogue_materialization": "metadata_and_sync_edges_only"
+      },
+      "reasons": [
+        "load_compute_store_order_detected",
+        "loop_context_detected",
+        "textual_symbol_overlap_between_stages"
+      ],
+      "warnings": [
+        "no_sync_segment_inside_window"
+      ],
+      "status": "REWRITTEN",
+      "inserted_sync_edges": [
+        "load_to_compute",
+        "compute_to_store"
+      ],
+      "inserted_event_count": 4,
+      "slot_binding_replacement_lines": []
+    }
+  ],
+  "skipped_actions": [],
+  "replacement_records": [
+    {
+      "action_id": "cvpipeline_true_rewrite_action_0000",
+      "old_symbol": "%k_ub",
+      "new_symbol": "%k_ub_mb2_ping",
+      "role": "pipeline_slot_binding_ping",
+      "line": 32,
+      "before": "%k_ub = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>",
+      "after": "%k_ub_mb2_ping = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>"
+    },
+    {
+      "action_id": "cvpipeline_true_rewrite_action_0000",
+      "old_symbol": "%k_ub",
+      "new_symbol": "%k_ub_mb2_ping",
+      "role": "pipeline_slot_binding_ping",
+      "line": 37,
+      "before": "%k_ub_mb2_pong = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>",
+      "after": "%k_ub_mb2_pong = memref.alloc() : memref<64x128xf16, #hivm.address_space<ub>"
+    }
+  ],
+  "replacement_count": 2,
+  "semantic_mutation_performed": true,
+  "production_rewrite_claim_allowed": false,
+  "claim_boundary": "portable restricted text-level CVPipelinePlan rewrite; inserts official-style EVENT_ID sync edges and optional slot binding but does not move operations or perform loop skewing"
+}

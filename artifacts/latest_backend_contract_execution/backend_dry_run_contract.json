@@ -1,0 +1,211 @@
+{
+  "schema_version": "fake_hivm_dry_run_report_v2",
+  "backend": "fake_hivm_operation_backend_ci_fixture",
+  "is_real_mlir_backend": false,
+  "input": "sample_input/fa_best.hivm.mlir",
+  "edit_script": "artifacts/latest_backend_contract/sync_multibuffer_backend_contract.json",
+  "production_mutation": false,
+  "status": "dry_run_only_fake_backend_no_mutation",
+  "action_count": 9,
+  "located_action_count": 9,
+  "actions": [
+    {
+      "action_id": "sync_002_existing_event_liveness_check",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_001_clone_k_l1_ping",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_002_clone_k_l1_pong",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_003_clone_q_ub",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_004_clone_p_ub",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_005_clone_k_ub",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_006_clone_v_ub",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_007_clone_q_l1",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    },
+    {
+      "action_id": "mb_008_clone_v_l1",
+      "candidate_id": null,
+      "located": true,
+      "operation_found": true,
+      "operation": {
+        "op_id": 0,
+        "operation_name": "func.func",
+        "source_line": 2,
+        "text_preview": "func.func @fa(%Q_gm : memref<64x128xf16, #hivm.address_space<gm>>, %K_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %V_gm : memref<1024x128xf16, #hivm.address_space<gm>>, %O_gm : memref<64x128xf16, #hivm.address_space<gm>>) {",
+        "operand_count": 4,
+        "result_count": 0,
+        "region_path": [],
+        "block_id": "fake_block_0"
+      },
+      "dominance_ok": false,
+      "region_motion_ok": false,
+      "blockers": [
+        "fake_backend_cannot_prove_dominance",
+        "fake_backend_cannot_prove_region_motion"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "summary": "Initial weak cost-model calibration using two E2E msprof samples. Not a trained ranking calibration.",
+  "items": [
+    {
+      "case": "split_qkv component_prior",
+      "selected_op_name": "split_qkv_rmsnorm_mrope_kernel",
+      "task_duration_us": 2433.789,
+      "measured_total_cycles": 4502509.65,
+      "dominant_runtime_signal": "memory",
+      "component_ratios_vs_wall": {
+        "compute": 0.0,
+        "memory": 0.26882261970595217,
+        "vector": 0.10453135626924756,
+        "scalar_control": 0.13746975740600684
+      },
+      "best_strategy_id": "candidate_00005",
+      "best_predicted_cycles": 171931.79312442214,
+      "current_ir_estimated_predicted_cycles": 136667.94785197426,
+      "weights": {
+        "memory_cycle_correction": 1.1614,
+        "scalar_cycle_correction": 1.6615077418851216,
+        "sync_cycle_correction": 1.3505437037213117,
+        "overlap_confidence": 0.8947308078451542,
+        "cv_overlap_confidence": 0.9137248608636912
+      },
+      "component_prior": {
+        "enabled": true,
+        "before": {
+          "compute_cycle_correction": 1.056,
+          "memory_cycle_correction": 1.0384426203777433,
+          "vector_cycle_correction": 1.0852140749537287,
+          "scalar_cycle_correction": 1.6615077418851216,
+          "sync_cycle_correction": 1.3505437037213117,
+          "overlap_confidence": 0.8947308078451542,
+          "cv_overlap_confidence": 0.9137248608636912
+        },
+        "learned_from_msprof": {
+          "compute_cycle_correction": 0.98,
+          "memory_cycle_correction": 1.1614,
+          "vector_cycle_correction": 1.03675,
+          "scalar_cycle_correction": 1.1305962695357066,
+          "sync_cycle_correction": 1.115661390832703,
+          "overlap_confidence": 0.9318590727781979,
+          "cv_overlap_confidence": 0.9441125606484984
+        },
+        "after": {
+          "compute_cycle_correction": 1.056,
+          "memory_cycle_correction": 1.1614,
+          "vector_cycle_correction": 1.0852140749537287,
+          "scalar_cycle_correction": 1.6615077418851216,
+          "sync_cycle_correction": 1.3505437037213117,
+          "overlap_confidence": 0.8947308078451542,
+          "cv_overlap_confidence": 0.9137248608636912
+        },
+        "dominant_runtime_signal": "memory",
+        "note": "Single-sample msprof component prior; it adjusts component cycle corrections but should not be treated as a trained ranking model."
+      },
+      "absolute_calibration": {
+        "enabled": false,
+        "mode": "component_prior",
+        "reason": "msprof absolute scale calibration disabled or unavailable"
+      }
+    },
+    {
+      "case": "split_qkv component_plus_scale",
+      "selected_op_name": "split_qkv_rmsnorm_mrope_kernel",
+      "task_duration_us": 2433.789,
+      "measured_total_cycles": 4502509.65,
+      "dominant_runtime_signal": "memory",
+      "component_ratios_vs_wall": {
+        "compute": 0.0,
+        "memory": 0.26882261970595217,
+        "vector": 0.10453135626924756,
+        "scalar_control": 0.13746975740600684
+      },
+      "best_strategy_id": "candidate_00005",
+      "best_predicted_cycles": 5664272.931960409,
+      "current_ir_estimated_predicted_cycles": 4502509.65,
+      "weights": {
+        "memory_cycle_correction": 1.1614,
+        "scalar_cycle_correction": 1.6615077418851216,
+        "sync_cycle_correction": 1.3505437037213117,
+        "overlap_confidence": 0.8947308078451542,
+        "cv_overlap_confidence": 0.9137248608636912
+      },
+      "component_prior": {
+        "enabled": true,
+        "before": {
+          "compute_cycle_correction": 1.056,
+          "memory_cycle_correction": 1.0384426203777433,
+          "vector_cycle_correction": 1.0852140749537287,
+          "scalar_cycle_correction": 1.6615077418851216,
+          "sync_cycle_correction": 1.3505437037213117,
+          "overlap_confidence": 0.8947308078451542,
+          "cv_overlap_confidence": 0.9137248608636912
+        },
+        "learned_from_msprof": {
+          "compute_cycle_correction": 0.98,
+          "memory_cycle_correction": 1.1614,
+          "vector_cycle_correction": 1.03675,
+          "scalar_cycle_correction": 1.1305962695357066,
+          "sync_cycle_correction": 1.115661390832703,
+          "overlap_confidence": 0.9318590727781979,
+          "cv_overlap_confidence": 0.9441125606484984
+        },
+        "after": {
+          "compute_cycle_correction": 1.056,
+          "memory_cycle_correction": 1.1614,
+          "vector_cycle_correction": 1.0852140749537287,
+          "scalar_cycle_correction": 1.6615077418851216,
+          "sync_cycle_correction": 1.3505437037213117,
+          "overlap_confidence": 0.8947308078451542,
+          "cv_overlap_confidence": 0.9137248608636912
+        },
+        "dominant_runtime_signal": "memory",
+        "note": "Single-sample msprof component prior; it adjusts component cycle corrections but should not be treated as a trained ranking model."
+      },
+      "absolute_calibration": {
+        "enabled": true,
+        "mode": "component_plus_scale",
+        "measured_total_cycles": 4502509.65,
+        "current_ir_predicted_cycles_before_scale": 136667.94785197426,
+        "raw_global_cycle_scale": 32.94488371828552,
+        "global_cycle_scale": 32.94488371828552,
+        "selected_op_type": "split_qkv_rmsnorm_mrope_kernel",
+        "task_duration_us": 2433.789,
+        "note": "Single-kernel absolute calibration: all predicted_cycles are multiplied by the same global_cycle_scale, so candidate ranking is not changed. Use multiple profiled strategies to train ranking calibration."
+      }
+    },
+    {
+      "case": "chunk_kda component_prior",
+      "selected_op_name": "chunk_kda_bwd_kernel_wy_dqkg_fused_opt_v2",
+      "task_duration_us": 111891.595,
+      "measured_total_cycles": 206999450.75,
+      "dominant_runtime_signal": "scalar_control",
+      "component_ratios_vs_wall": {
+        "compute": 0.005717364204165648,
+        "memory": 0.08272700911985391,
+        "vector": 0.04483942694712681,
+        "scalar_control": 0.8399565937012516
+      },
+      "best_strategy_id": "candidate_00241",
+      "best_predicted_cycles": 20040.493464307765,
+      "current_ir_estimated_predicted_cycles": 25247.393238300494,
+      "weights": {
+        "memory_cycle_correction": 1.2335138452938152,
+        "scalar_cycle_correction": 1.8018,
+        "sync_cycle_correction": 1.4530029583518125,
+        "overlap_confidence": 0.7385272990880146,
+        "cv_overlap_confidence": 0.7823818392704117
+      },
+      "component_prior": {
+        "enabled": true,
+        "before": {
+          "compute_cycle_correction": 1.0592701951757917,
+          "memory_cycle_correction": 1.2335138452938152,
+          "vector_cycle_correction": 1.0455383102592741,
+          "scalar_cycle_correction": 1.476339481146851,
+          "sync_cycle_correction": 1.4530029583518125,
+          "overlap_confidence": 0.9205690314209337,
+          "cv_overlap_confidence": 0.9181529667709256
+        },
+        "learned_from_msprof": {
+          "compute_cycle_correction": 0.9812,
+          "memory_cycle_correction": 1.0496362054719124,
+          "vector_cycle_correction": 1.01575,
+          "scalar_cycle_correction": 1.8018,
+          "sync_cycle_correction": 1.3963454018239707,
+          "overlap_confidence": 0.7385272990880146,
+          "cv_overlap_confidence": 0.7823818392704117
+        },
+        "after": {
+          "compute_cycle_correction": 1.0592701951757917,
+          "memory_cycle_correction": 1.2335138452938152,
+          "vector_cycle_correction": 1.0455383102592741,
+          "scalar_cycle_correction": 1.8018,
+          "sync_cycle_correction": 1.4530029583518125,
+          "overlap_confidence": 0.7385272990880146,
+          "cv_overlap_confidence": 0.7823818392704117
+        },
+        "dominant_runtime_signal": "scalar_control",
+        "note": "Single-sample msprof component prior; it adjusts component cycle corrections but should not be treated as a trained ranking model."
+      },
+      "absolute_calibration": {
+        "enabled": false,
+        "mode": "component_prior",
+        "reason": "msprof absolute scale calibration disabled or unavailable"
+      }
+    },
+    {
+      "case": "chunk_kda component_plus_scale",
+      "selected_op_name": "chunk_kda_bwd_kernel_wy_dqkg_fused_opt_v2",
+      "task_duration_us": 111891.595,
+      "measured_total_cycles": 206999450.75,
+      "dominant_runtime_signal": "scalar_control",
+      "component_ratios_vs_wall": {
+        "compute": 0.005717364204165648,
+        "memory": 0.08272700911985391,
+        "vector": 0.04483942694712681,
+        "scalar_control": 0.8399565937012516
+      },
+      "best_strategy_id": "candidate_00241",
+      "best_predicted_cycles": 164308889.26693472,
+      "current_ir_estimated_predicted_cycles": 206999450.75,
+      "weights": {
+        "memory_cycle_correction": 1.2335138452938152,
+        "scalar_cycle_correction": 1.8018,
+        "sync_cycle_correction": 1.4530029583518125,
+        "overlap_confidence": 0.7385272990880146,
+        "cv_overlap_confidence": 0.7823818392704117
+      },
+      "component_prior": {
+        "enabled": true,
+        "before": {
+          "compute_cycle_correction": 1.0592701951757917,
+          "memory_cycle_correction": 1.2335138452938152,
+          "vector_cycle_correction": 1.0455383102592741,
+          "scalar_cycle_correction": 1.476339481146851,
+          "sync_cycle_correction": 1.4530029583518125,
+          "overlap_confidence": 0.9205690314209337,
+          "cv_overlap_confidence": 0.9181529667709256
+        },
+        "learned_from_msprof": {
+          "compute_cycle_correction": 0.9812,
+          "memory_cycle_correction": 1.0496362054719124,
+          "vector_cycle_correction": 1.01575,
+          "scalar_cycle_correction": 1.8018,
+          "sync_cycle_correction": 1.3963454018239707,
+          "overlap_confidence": 0.7385272990880146,
+          "cv_overlap_confidence": 0.7823818392704117
+        },
+        "after": {
+          "compute_cycle_correction": 1.0592701951757917,
+          "memory_cycle_correction": 1.2335138452938152,
+          "vector_cycle_correction": 1.0455383102592741,
+          "scalar_cycle_correction": 1.8018,
+          "sync_cycle_correction": 1.4530029583518125,
+          "overlap_confidence": 0.7385272990880146,
+          "cv_overlap_confidence": 0.7823818392704117
+        },
+        "dominant_runtime_signal": "scalar_control",
+        "note": "Single-sample msprof component prior; it adjusts component cycle corrections but should not be treated as a trained ranking model."
+      },
+      "absolute_calibration": {
+        "enabled": true,
+        "mode": "component_plus_scale",
+        "measured_total_cycles": 206999450.75,
+        "current_ir_predicted_cycles_before_scale": 25247.393238300494,
+        "raw_global_cycle_scale": 8198.844482525832,
+        "global_cycle_scale": 8198.844482525832,
+        "selected_op_type": "chunk_kda_bwd_kernel_wy_dqkg_fused_opt_v2",
+        "task_duration_us": 111891.595,
+        "note": "Single-kernel absolute calibration: all predicted_cycles are multiplied by the same global_cycle_scale, so candidate ranking is not changed. Use multiple profiled strategies to train ranking calibration."
+      }
+    }
+  ]
+}

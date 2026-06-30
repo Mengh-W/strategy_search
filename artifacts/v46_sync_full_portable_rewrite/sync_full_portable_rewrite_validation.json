@@ -1,0 +1,710 @@
+{
+  "schema_version": "hivm_sync_rewrite_validator_v1",
+  "validation_kind": "portable_restricted_sync_rewrite_structural_delta",
+  "before_counts": {
+    "pipe_barrier": 80,
+    "set_flag": 116,
+    "wait_flag": 110,
+    "line_count": 1715
+  },
+  "after_counts": {
+    "pipe_barrier": 80,
+    "set_flag": 190,
+    "wait_flag": 184,
+    "line_count": 1863
+  },
+  "before_non_comment_counts": {
+    "pipe_barrier": 80
+  },
+  "after_non_comment_counts": {
+    "pipe_barrier": 6
+  },
+  "delta_counts": {
+    "pipe_barrier": 0,
+    "set_flag": 74,
+    "wait_flag": 74,
+    "line_count": 148
+  },
+  "expected_rewrites": 74,
+  "generated_events": {
+    "%hivm_sync_auto0": {
+      "set_lines": [
+        302
+      ],
+      "wait_lines": [
+        303
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto1": {
+      "set_lines": [
+        364
+      ],
+      "wait_lines": [
+        365
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto2": {
+      "set_lines": [
+        650
+      ],
+      "wait_lines": [
+        651
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto3": {
+      "set_lines": [
+        655
+      ],
+      "wait_lines": [
+        656
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto4": {
+      "set_lines": [
+        660
+      ],
+      "wait_lines": [
+        661
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto5": {
+      "set_lines": [
+        665
+      ],
+      "wait_lines": [
+        666
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto6": {
+      "set_lines": [
+        675
+      ],
+      "wait_lines": [
+        676
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto7": {
+      "set_lines": [
+        699
+      ],
+      "wait_lines": [
+        700
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto8": {
+      "set_lines": [
+        704
+      ],
+      "wait_lines": [
+        705
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto9": {
+      "set_lines": [
+        793
+      ],
+      "wait_lines": [
+        794
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto10": {
+      "set_lines": [
+        800
+      ],
+      "wait_lines": [
+        801
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto11": {
+      "set_lines": [
+        807
+      ],
+      "wait_lines": [
+        808
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto12": {
+      "set_lines": [
+        813
+      ],
+      "wait_lines": [
+        814
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto13": {
+      "set_lines": [
+        907
+      ],
+      "wait_lines": [
+        908
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto14": {
+      "set_lines": [
+        934
+      ],
+      "wait_lines": [
+        935
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto15": {
+      "set_lines": [
+        939
+      ],
+      "wait_lines": [
+        940
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto16": {
+      "set_lines": [
+        944
+      ],
+      "wait_lines": [
+        945
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto17": {
+      "set_lines": [
+        949
+      ],
+      "wait_lines": [
+        950
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto18": {
+      "set_lines": [
+        956
+      ],
+      "wait_lines": [
+        957
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto19": {
+      "set_lines": [
+        961
+      ],
+      "wait_lines": [
+        962
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto20": {
+      "set_lines": [
+        971
+      ],
+      "wait_lines": [
+        972
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto21": {
+      "set_lines": [
+        977
+      ],
+      "wait_lines": [
+        978
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto22": {
+      "set_lines": [
+        984
+      ],
+      "wait_lines": [
+        985
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto23": {
+      "set_lines": [
+        990
+      ],
+      "wait_lines": [
+        991
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto24": {
+      "set_lines": [
+        996
+      ],
+      "wait_lines": [
+        997
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto25": {
+      "set_lines": [
+        1027
+      ],
+      "wait_lines": [
+        1028
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto26": {
+      "set_lines": [
+        1211
+      ],
+      "wait_lines": [
+        1212
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto27": {
+      "set_lines": [
+        1217
+      ],
+      "wait_lines": [
+        1218
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto28": {
+      "set_lines": [
+        1223
+      ],
+      "wait_lines": [
+        1224
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto29": {
+      "set_lines": [
+        1243
+      ],
+      "wait_lines": [
+        1244
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto30": {
+      "set_lines": [
+        1264
+      ],
+      "wait_lines": [
+        1265
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto31": {
+      "set_lines": [
+        1285
+      ],
+      "wait_lines": [
+        1286
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto32": {
+      "set_lines": [
+        1338
+      ],
+      "wait_lines": [
+        1339
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto33": {
+      "set_lines": [
+        1344
+      ],
+      "wait_lines": [
+        1345
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto34": {
+      "set_lines": [
+        1349
+      ],
+      "wait_lines": [
+        1350
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto35": {
+      "set_lines": [
+        1388
+      ],
+      "wait_lines": [
+        1389
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto36": {
+      "set_lines": [
+        1415
+      ],
+      "wait_lines": [
+        1416
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto37": {
+      "set_lines": [
+        1421
+      ],
+      "wait_lines": [
+        1422
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto38": {
+      "set_lines": [
+        1428
+      ],
+      "wait_lines": [
+        1429
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto39": {
+      "set_lines": [
+        1433
+      ],
+      "wait_lines": [
+        1434
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto40": {
+      "set_lines": [
+        1443
+      ],
+      "wait_lines": [
+        1444
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto41": {
+      "set_lines": [
+        1453
+      ],
+      "wait_lines": [
+        1454
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto42": {
+      "set_lines": [
+        1459
+      ],
+      "wait_lines": [
+        1460
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto43": {
+      "set_lines": [
+        1469
+      ],
+      "wait_lines": [
+        1470
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto44": {
+      "set_lines": [
+        1475
+      ],
+      "wait_lines": [
+        1476
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto45": {
+      "set_lines": [
+        1485
+      ],
+      "wait_lines": [
+        1486
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto46": {
+      "set_lines": [
+        1496
+      ],
+      "wait_lines": [
+        1497
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto47": {
+      "set_lines": [
+        1503
+      ],
+      "wait_lines": [
+        1504
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto48": {
+      "set_lines": [
+        1509
+      ],
+      "wait_lines": [
+        1510
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto49": {
+      "set_lines": [
+        1515
+      ],
+      "wait_lines": [
+        1516
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto50": {
+      "set_lines": [
+        1562
+      ],
+      "wait_lines": [
+        1563
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto51": {
+      "set_lines": [
+        1578
+      ],
+      "wait_lines": [
+        1579
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto52": {
+      "set_lines": [
+        1584
+      ],
+      "wait_lines": [
+        1585
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto53": {
+      "set_lines": [
+        1617
+      ],
+      "wait_lines": [
+        1618
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto54": {
+      "set_lines": [
+        1623
+      ],
+      "wait_lines": [
+        1624
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto55": {
+      "set_lines": [
+        1634
+      ],
+      "wait_lines": [
+        1635
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto56": {
+      "set_lines": [
+        1640
+      ],
+      "wait_lines": [
+        1641
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto57": {
+      "set_lines": [
+        1651
+      ],
+      "wait_lines": [
+        1652
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto58": {
+      "set_lines": [
+        1657
+      ],
+      "wait_lines": [
+        1658
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto59": {
+      "set_lines": [
+        1664
+      ],
+      "wait_lines": [
+        1665
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto60": {
+      "set_lines": [
+        1674
+      ],
+      "wait_lines": [
+        1675
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto61": {
+      "set_lines": [
+        1726
+      ],
+      "wait_lines": [
+        1727
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto62": {
+      "set_lines": [
+        1732
+      ],
+      "wait_lines": [
+        1733
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto63": {
+      "set_lines": [
+        1742
+      ],
+      "wait_lines": [
+        1743
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto64": {
+      "set_lines": [
+        1749
+      ],
+      "wait_lines": [
+        1750
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto65": {
+      "set_lines": [
+        1755
+      ],
+      "wait_lines": [
+        1756
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto66": {
+      "set_lines": [
+        1765
+      ],
+      "wait_lines": [
+        1766
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto67": {
+      "set_lines": [
+        1771
+      ],
+      "wait_lines": [
+        1772
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto68": {
+      "set_lines": [
+        1777
+      ],
+      "wait_lines": [
+        1778
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto69": {
+      "set_lines": [
+        1783
+      ],
+      "wait_lines": [
+        1784
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto70": {
+      "set_lines": [
+        1794
+      ],
+      "wait_lines": [
+        1795
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto71": {
+      "set_lines": [
+        1800
+      ],
+      "wait_lines": [
+        1801
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto72": {
+      "set_lines": [
+        1828
+      ],
+      "wait_lines": [
+        1829
+      ],
+      "other_lines": []
+    },
+    "%hivm_sync_auto73": {
+      "set_lines": [
+        1835
+      ],
+      "wait_lines": [
+        1836
+      ],
+      "other_lines": []
+    }
+  },
+  "event_pair_errors": [],
+  "checks": {
+    "brace_balance_before_ok": true,
+    "brace_balance_after_ok": true,
+    "set_flag_increased_by_expected": true,
+    "wait_flag_increased_by_expected": true,
+    "line_count_increased_by_expected": true,
+    "generated_events_paired": true,
+    "non_comment_pipe_barrier_decreased_by_expected": true
+  },
+  "passed_portable_validation": true,
+  "production_rewrite_claim_allowed": false,
+  "requires_real_hivmopseditor_verify": true
+}

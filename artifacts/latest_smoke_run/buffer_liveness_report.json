@@ -1,0 +1,919 @@
+{
+  "schema_version": "hivm_buffer_liveness_report_v1",
+  "producer": "strategy_search_demo_v3.3.2_phase3b_buffer_liveness",
+  "parser_mode": "conservative_line_scanner__future_target_vtriton_hivmopseditor",
+  "buffer_count": 17,
+  "local_buffer_count": 13,
+  "gm_buffer_count": 4,
+  "capacity_recheck": {
+    "policy": "conservative_sum_of_static_local_allocations",
+    "default_limits_source": "Ascend 910B defaults from project hardware config; target backend should override with exact hardware JSON",
+    "peak_by_space": {
+      "l0c": {
+        "conservative_peak_bytes": 8192,
+        "default_limit_bytes": 262144,
+        "within_default_limit": true,
+        "utilization": 0.03125
+      },
+      "l1": {
+        "conservative_peak_bytes": 32768,
+        "default_limit_bytes": 1048576,
+        "within_default_limit": true,
+        "utilization": 0.03125
+      },
+      "ub": {
+        "conservative_peak_bytes": 98816,
+        "default_limit_bytes": 262144,
+        "within_default_limit": true,
+        "utilization": 0.376953
+      }
+    },
+    "unknown_size_buffers": [],
+    "passed_conservative_capacity_recheck": true
+  },
+  "rewrite_implications": {
+    "q_load_hoist": "allowed only if target buffer lifetime extension remains within capacity and dependency graph has no intervening overwrite",
+    "real_double_buffer": "requires multiplying selected buffer size by nbuf and re-running this capacity gate",
+    "real_cv_overlap": "requires stage buffer live ranges and event liveness beyond this approximation"
+  },
+  "rewrite_blockers": [
+    {
+      "buffer": "%O_gm",
+      "reason": "gm_output_or_boundary should not be hoisted/double-buffered without stronger proof"
+    },
+    {
+      "buffer": "%acc_ub",
+      "reason": "accumulator should not be hoisted/double-buffered without stronger proof"
+    },
+    {
+      "buffer": "%o_ub",
+      "reason": "output should not be hoisted/double-buffered without stronger proof"
+    },
+    {
+      "buffer": "%s_l0c",
+      "reason": "accumulator should not be hoisted/double-buffered without stronger proof"
+    }
+  ],
+  "buffers": [
+    {
+      "var": "%K_gm",
+      "declaration_kind": "boundary_or_operand",
+      "decl_line": 20,
+      "space": "gm",
+      "address_space_raw": "gm",
+      "dims": [
+        1024,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 262144,
+      "memref_main": "1024x128xf16",
+      "buffer_role": "gm_input_or_boundary",
+      "first_use_line": 46,
+      "last_use_line": 46,
+      "read_count": 1,
+      "write_count": 0,
+      "access_count": 1,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": false,
+      "eligible_for_lifetime_extension_candidate": false,
+      "accesses": [
+        {
+          "op_id": 2,
+          "line": 46,
+          "access": "read",
+          "op_name": "hivm.hir.load",
+          "role": "load",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%O_gm",
+      "declaration_kind": "boundary_or_operand",
+      "decl_line": 22,
+      "space": "gm",
+      "address_space_raw": "gm",
+      "dims": [
+        64,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 16384,
+      "memref_main": "64x128xf16",
+      "buffer_role": "gm_output_or_boundary",
+      "first_use_line": 73,
+      "last_use_line": 73,
+      "read_count": 0,
+      "write_count": 1,
+      "access_count": 1,
+      "loop_lines_touched": [],
+      "live_across_loop_approx": false,
+      "eligible_for_lifetime_extension_candidate": false,
+      "accesses": [
+        {
+          "op_id": 18,
+          "line": 73,
+          "access": "write",
+          "op_name": "hivm.hir.store",
+          "role": "store",
+          "parent_loop": null
+        }
+      ]
+    },
+    {
+      "var": "%Q_gm",
+      "declaration_kind": "boundary_or_operand",
+      "decl_line": 19,
+      "space": "gm",
+      "address_space_raw": "gm",
+      "dims": [
+        64,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 16384,
+      "memref_main": "64x128xf16",
+      "buffer_role": "gm_input_or_boundary",
+      "first_use_line": 43,
+      "last_use_line": 43,
+      "read_count": 1,
+      "write_count": 0,
+      "access_count": 1,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": false,
+      "eligible_for_lifetime_extension_candidate": false,
+      "accesses": [
+        {
+          "op_id": 0,
+          "line": 43,
+          "access": "read",
+          "op_name": "hivm.hir.load",
+          "role": "load",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%V_gm",
+      "declaration_kind": "boundary_or_operand",
+      "decl_line": 21,
+      "space": "gm",
+      "address_space_raw": "gm",
+      "dims": [
+        1024,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 262144,
+      "memref_main": "1024x128xf16",
+      "buffer_role": "gm_input_or_boundary",
+      "first_use_line": 47,
+      "last_use_line": 47,
+      "read_count": 1,
+      "write_count": 0,
+      "access_count": 1,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": false,
+      "eligible_for_lifetime_extension_candidate": false,
+      "accesses": [
+        {
+          "op_id": 3,
+          "line": 47,
+          "access": "read",
+          "op_name": "hivm.hir.load",
+          "role": "load",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%acc_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 28,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        64,
+        128
+      ],
+      "dtype": "f32",
+      "static_shape": true,
+      "size_bytes": 32768,
+      "memref_main": "64x128xf32",
+      "buffer_role": "accumulator",
+      "first_use_line": 64,
+      "last_use_line": 72,
+      "read_count": 1,
+      "write_count": 2,
+      "access_count": 3,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": false,
+      "accesses": [
+        {
+          "op_id": 14,
+          "line": 64,
+          "access": "write",
+          "op_name": "hivm.hir.fixpipe",
+          "role": "fixpipe",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 16,
+          "line": 71,
+          "access": "write",
+          "op_name": "hivm.hir.vdiv",
+          "role": "vector",
+          "parent_loop": null
+        },
+        {
+          "op_id": 17,
+          "line": 72,
+          "access": "read",
+          "op_name": "hivm.hir.cast",
+          "role": "vector",
+          "parent_loop": null
+        }
+      ]
+    },
+    {
+      "var": "%k_l1",
+      "declaration_kind": "alloc",
+      "decl_line": 36,
+      "space": "l1",
+      "address_space_raw": "cbuf",
+      "dims": [
+        32,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 8192,
+      "memref_main": "32x128xf16",
+      "buffer_role": "stream_buffer",
+      "first_use_line": 48,
+      "last_use_line": 55,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 4,
+          "line": 48,
+          "access": "write",
+          "op_name": "hivm.hir.nd2nz",
+          "role": "layout",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 7,
+          "line": 55,
+          "access": "read",
+          "op_name": "hivm.hir.mmad",
+          "role": "cube",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%k_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 33,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        32,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 8192,
+      "memref_main": "32x128xf16",
+      "buffer_role": "stream_buffer",
+      "first_use_line": 46,
+      "last_use_line": 48,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 2,
+          "line": 46,
+          "access": "write",
+          "op_name": "hivm.hir.load",
+          "role": "load",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 4,
+          "line": 48,
+          "access": "read",
+          "op_name": "hivm.hir.nd2nz",
+          "role": "layout",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%l_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 32,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        64,
+        1
+      ],
+      "dtype": "f32",
+      "static_shape": true,
+      "size_bytes": 256,
+      "memref_main": "64x1xf32",
+      "buffer_role": "softmax_or_score_buffer",
+      "first_use_line": 60,
+      "last_use_line": 71,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 12,
+          "line": 60,
+          "access": "write",
+          "op_name": "hivm.hir.vreduce",
+          "role": "vector",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 16,
+          "line": 71,
+          "access": "read",
+          "op_name": "hivm.hir.vdiv",
+          "role": "vector",
+          "parent_loop": null
+        }
+      ]
+    },
+    {
+      "var": "%m_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 31,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        64,
+        1
+      ],
+      "dtype": "f32",
+      "static_shape": true,
+      "size_bytes": 256,
+      "memref_main": "64x1xf32",
+      "buffer_role": "softmax_or_score_buffer",
+      "first_use_line": 57,
+      "last_use_line": 58,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 9,
+          "line": 57,
+          "access": "write",
+          "op_name": "hivm.hir.vreduce",
+          "role": "vector",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 10,
+          "line": 58,
+          "access": "read",
+          "op_name": "hivm.hir.vsub",
+          "role": "vector",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%o_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 39,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        64,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 16384,
+      "memref_main": "64x128xf16",
+      "buffer_role": "output",
+      "first_use_line": 72,
+      "last_use_line": 73,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [],
+      "live_across_loop_approx": false,
+      "eligible_for_lifetime_extension_candidate": false,
+      "accesses": [
+        {
+          "op_id": 17,
+          "line": 72,
+          "access": "write",
+          "op_name": "hivm.hir.cast",
+          "role": "vector",
+          "parent_loop": null
+        },
+        {
+          "op_id": 18,
+          "line": 73,
+          "access": "read",
+          "op_name": "hivm.hir.store",
+          "role": "store",
+          "parent_loop": null
+        }
+      ]
+    },
+    {
+      "var": "%p_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 30,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        64,
+        32
+      ],
+      "dtype": "f32",
+      "static_shape": true,
+      "size_bytes": 8192,
+      "memref_main": "64x32xf32",
+      "buffer_role": "softmax_or_score_buffer",
+      "first_use_line": 58,
+      "last_use_line": 60,
+      "read_count": 2,
+      "write_count": 2,
+      "access_count": 4,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 10,
+          "line": 58,
+          "access": "write",
+          "op_name": "hivm.hir.vsub",
+          "role": "vector",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 11,
+          "line": 59,
+          "access": "read",
+          "op_name": "hivm.hir.vexp",
+          "role": "vector",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 11,
+          "line": 59,
+          "access": "write",
+          "op_name": "hivm.hir.vexp",
+          "role": "vector",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 12,
+          "line": 60,
+          "access": "read",
+          "op_name": "hivm.hir.vreduce",
+          "role": "vector",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%q_l1",
+      "declaration_kind": "alloc",
+      "decl_line": 35,
+      "space": "l1",
+      "address_space_raw": "cbuf",
+      "dims": [
+        64,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 16384,
+      "memref_main": "64x128xf16",
+      "buffer_role": "stream_buffer",
+      "first_use_line": 44,
+      "last_use_line": 44,
+      "read_count": 0,
+      "write_count": 1,
+      "access_count": 1,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": false,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 1,
+          "line": 44,
+          "access": "write",
+          "op_name": "hivm.hir.nd2nz",
+          "role": "layout",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%q_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 27,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        64,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 16384,
+      "memref_main": "64x128xf16",
+      "buffer_role": "stream_buffer",
+      "first_use_line": 43,
+      "last_use_line": 44,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 0,
+          "line": 43,
+          "access": "write",
+          "op_name": "hivm.hir.load",
+          "role": "load",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 1,
+          "line": 44,
+          "access": "read",
+          "op_name": "hivm.hir.nd2nz",
+          "role": "layout",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%s_l0c",
+      "declaration_kind": "alloc",
+      "decl_line": 38,
+      "space": "l0c",
+      "address_space_raw": "cc",
+      "dims": [
+        64,
+        32
+      ],
+      "dtype": "f32",
+      "static_shape": true,
+      "size_bytes": 8192,
+      "memref_main": "64x32xf32",
+      "buffer_role": "accumulator",
+      "first_use_line": 55,
+      "last_use_line": 64,
+      "read_count": 2,
+      "write_count": 2,
+      "access_count": 4,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": false,
+      "accesses": [
+        {
+          "op_id": 7,
+          "line": 55,
+          "access": "write",
+          "op_name": "hivm.hir.mmad",
+          "role": "cube",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 8,
+          "line": 56,
+          "access": "read",
+          "op_name": "hivm.hir.fixpipe",
+          "role": "fixpipe",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 13,
+          "line": 63,
+          "access": "write",
+          "op_name": "hivm.hir.mmad",
+          "role": "cube",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 14,
+          "line": 64,
+          "access": "read",
+          "op_name": "hivm.hir.fixpipe",
+          "role": "fixpipe",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%s_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 29,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        64,
+        32
+      ],
+      "dtype": "f32",
+      "static_shape": true,
+      "size_bytes": 8192,
+      "memref_main": "64x32xf32",
+      "buffer_role": "softmax_or_score_buffer",
+      "first_use_line": 56,
+      "last_use_line": 57,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 8,
+          "line": 56,
+          "access": "write",
+          "op_name": "hivm.hir.fixpipe",
+          "role": "fixpipe",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 9,
+          "line": 57,
+          "access": "read",
+          "op_name": "hivm.hir.vreduce",
+          "role": "vector",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%v_l1",
+      "declaration_kind": "alloc",
+      "decl_line": 37,
+      "space": "l1",
+      "address_space_raw": "cbuf",
+      "dims": [
+        32,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 8192,
+      "memref_main": "32x128xf16",
+      "buffer_role": "stream_buffer",
+      "first_use_line": 49,
+      "last_use_line": 63,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 5,
+          "line": 49,
+          "access": "write",
+          "op_name": "hivm.hir.nd2nz",
+          "role": "layout",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 13,
+          "line": 63,
+          "access": "read",
+          "op_name": "hivm.hir.mmad",
+          "role": "cube",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "var": "%v_ub",
+      "declaration_kind": "alloc",
+      "decl_line": 34,
+      "space": "ub",
+      "address_space_raw": "ub",
+      "dims": [
+        32,
+        128
+      ],
+      "dtype": "f16",
+      "static_shape": true,
+      "size_bytes": 8192,
+      "memref_main": "32x128xf16",
+      "buffer_role": "stream_buffer",
+      "first_use_line": 47,
+      "last_use_line": 49,
+      "read_count": 1,
+      "write_count": 1,
+      "access_count": 2,
+      "loop_lines_touched": [
+        42
+      ],
+      "live_across_loop_approx": true,
+      "eligible_for_lifetime_extension_candidate": true,
+      "accesses": [
+        {
+          "op_id": 3,
+          "line": 47,
+          "access": "write",
+          "op_name": "hivm.hir.load",
+          "role": "load",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        },
+        {
+          "op_id": 5,
+          "line": 49,
+          "access": "read",
+          "op_name": "hivm.hir.nd2nz",
+          "role": "layout",
+          "parent_loop": {
+            "line": 42,
+            "induction": "%j",
+            "depth": 2
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Peak local bytes are over-approximated because this line scanner cannot prove non-overlapping lifetimes.",
+    "Precise lifetime and alias proof require MLIR Operation walk / vTriton HivmOpsEditor."
+  ]
+}

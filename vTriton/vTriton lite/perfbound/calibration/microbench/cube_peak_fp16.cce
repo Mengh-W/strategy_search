@@ -1,0 +1,15 @@
+/*
+ * Cube Peak FP16 Microbenchmark
+ *
+ * Measures sustained Cube work using 30 repeats of 128x128x4096-equivalent
+ * Mmad tiles. Kernel name is kept stable for msprof extraction.
+ */
+#include "vt_microbench_common.h"
+
+extern "C" __global__ __aicore__ void cube_peak_fp16(GM_ADDR a, GM_ADDR b, GM_ADDR c)
+{
+    KERNEL_TASK_TYPE_DEFAULT(KERNEL_TYPE_AIC_ONLY);
+    VTCalib::CubePeakFp16Kernel op;
+    op.Init(a, b, c);
+    op.Process();
+}

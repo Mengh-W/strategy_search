@@ -1,0 +1,118 @@
+diff --git a/third_party/ascend/backend/driver.py b/third_party/ascend/backend/driver.py
+index 2bc8fe83..acc9ca88 100644
+--- a/third_party/ascend/backend/driver.py
++++ b/third_party/ascend/backend/driver.py
+@@ -37,6 +37,17 @@ from triton.backends.ascend.utils import (_precompile_npu_hash, _precompile_npu_
+                                           get_backend_func)
+ 
+ 
++def _is_compile_only():
++    """Check if TRITON_COMPILE_ONLY mode is enabled."""
++    return os.environ.get("TRITON_COMPILE_ONLY", "").lower() in ("1", "true")
++
++
++# Auto-activate compile-only mock layer when TRITON_COMPILE_ONLY is set
++if _is_compile_only():
++    from . import compile_only_mock
++    compile_only_mock.install()
++
++
+ class NPUUtils(object):
+ 
+     def __new__(cls):
+@@ -45,6 +56,9 @@ class NPUUtils(object):
+         return cls.instance
+ 
+     def __init__(self):
++        if _is_compile_only():
++            self.npu_utils_mod = None
++            return
+         dirname = os.path.dirname(os.path.realpath(__file__))
+         src_path = os.path.join(dirname, "npu_utils.cpp")
+         src = Path(src_path).read_text()
+@@ -69,10 +83,14 @@ class NPUUtils(object):
+         env_arch = get_ascend_arch_from_env()
+ 
+     def load_binary(self, name, kernel, shared, device, mix_mode):
++        if self.npu_utils_mod is None:
++            return (None, None, 0, 0)
+         return self.npu_utils_mod.load_kernel_binary(name, kernel, shared, device, mix_mode)
+ 
+     @functools.lru_cache()
+     def get_device_properties(self, device):
++        if self.npu_utils_mod is None:
++            return {"max_shared_mem": 1, "num_aicore": 20, "num_vectorcore": 40}
+         # temperoarily added "max_shared_mem" properties to avoid triton-compiler complain
+         # fetch available memory at runtime
+         num_aic = self.get_aicore_num()
+@@ -81,11 +99,16 @@ class NPUUtils(object):
+ 
+     @functools.lru_cache()
+     def get_arch(self):
++        if self.npu_utils_mod is None:
++            env_arch = get_ascend_arch_from_env()
++            return env_arch if env_arch else "Ascend910_9599"
+         # temporarily return empty arch descriptor
+         return self.npu_utils_mod.get_arch()
+ 
+     @functools.lru_cache()
+     def get_aicore_num(self):
++        if self.npu_utils_mod is None:
++            return 20
+         # temporarily return empty arch descriptor
+         return self.npu_utils_mod.get_aicore_num()
+ 
+@@ -98,6 +121,11 @@ class NPULauncher(object):
+ 
+     def __init__(self, src, metadata):
+         self.compile_only = os.getenv("TRITON_COMPILE_ONLY", 'false').lower() in ('true', '1')
++        if self.compile_only:
++            self.launch = None
++            self.mix_mode = getattr(metadata, 'mix_mode', None)
++            self.shared = getattr(metadata, 'shared', 0)
++            return
+         self.enable_msprof_register_tensor = os.getenv("TRITON_REGISTER_TENSOR_MSPROF",
+                                                        'false').lower() in ('true', '1')
+         debug_mode = metadata.debug
+@@ -179,6 +207,8 @@ class NPUDriver(DriverBase):
+         """
+         Get current device
+         """
++        if _is_compile_only():
++            return 0
+         return get_backend_func("get_current_device")
+ 
+     def get_active_torch_device(self):
+@@ -189,12 +219,16 @@ class NPUDriver(DriverBase):
+         """
+         Set current device as the given device
+         """
++        if _is_compile_only():
++            return
+         return get_backend_func("set_current_device", device)
+ 
+     def get_current_stream(self, device: Optional[int] = None) -> int:
+         """
+         Get stream for current device
+         """
++        if _is_compile_only():
++            return 0
+         # According to torch_npu, the content of a torch.npu.Stream is essentilly an rtStream_t
+         # TODO: use CANN API instead of torchnpu
+         return get_backend_func("get_current_stream", device)
+@@ -204,9 +238,15 @@ class NPUDriver(DriverBase):
+         return do_bench
+ 
+     def get_device_interface(self):
++        if _is_compile_only():
++            import torch
++            return torch
+         return get_backend_func("get_device_interface")
+ 
+     def get_empty_cache_for_benchmark(self):
++        if _is_compile_only():
++            import torch
++            return torch.empty(192 * 1024 * 1024 // 4, dtype=torch.int32)
+         cache_size = 192 * 1024 * 1024
+         return get_backend_func("get_empty_tensor", cache_size // 4)
+ 

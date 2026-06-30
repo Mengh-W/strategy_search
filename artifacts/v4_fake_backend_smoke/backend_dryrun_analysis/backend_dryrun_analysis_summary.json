@@ -1,0 +1,9 @@
+{
+  "schema_version": "hivm_backend_dryrun_analysis_outputs_v1",
+  "analysis": "artifacts/v4_fake_backend_smoke/backend_dryrun_analysis/backend_dryrun_analysis.json",
+  "selection": "artifacts/v4_fake_backend_smoke/backend_dryrun_analysis/guarded_mutation_selection.json",
+  "single_guarded_action_contract": null,
+  "overall_decision": "WAIT_FOR_REAL_BACKEND",
+  "selected_action_id": null,
+  "selected": false
+}

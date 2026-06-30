@@ -1,0 +1,127 @@
+{
+  "schema_version": "hivm_multibuffer_true_rewrite_actions_v1",
+  "version": "V5.0-multibuffer-restricted-true-rewrite",
+  "action_count": 3,
+  "actions": [
+    {
+      "action_id": "multibuffer_true_rewrite_action_0000",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0003",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%29",
+        "line": 642,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%29 = hivm.hir.pointer_cast(%c148480_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%29",
+      "target_line": 642,
+      "producer_line": 643,
+      "consumer_line": 646,
+      "producer": {
+        "line": 643,
+        "op": "hivm.hir.varange",
+        "text": "hivm.hir.varange offset[%c0] strides[%c1] outs(%29 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 646,
+        "op": "hivm.hir.vadd",
+        "text": "hivm.hir.vadd ins(%29, %28 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%30 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%29_mb0_ping",
+        "pong": "%29_mb0_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0001",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0004",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%31",
+        "line": 647,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%31 = hivm.hir.pointer_cast(%c148736_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%31",
+      "target_line": 647,
+      "producer_line": 649,
+      "consumer_line": 652,
+      "producer": {
+        "line": 649,
+        "op": "hivm.hir.vmax",
+        "text": "hivm.hir.vmax ins(%30, %27 : memref<64xi32, #hivm.address_space<ub>>, i32) outs(%31 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 652,
+        "op": "hivm.hir.vcmp",
+        "text": "hivm.hir.vcmp ins(%31, %30 : memref<64xi32, #hivm.address_space<ub>>, memref<64xi32, #hivm.address_space<ub>>) outs(%32 : memref<64xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%31_mb1_ping",
+        "pong": "%31_mb1_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    },
+    {
+      "action_id": "multibuffer_true_rewrite_action_0002",
+      "source_stage_action_id": "multibuffer_stage_plan_action_0002",
+      "mutation_kind": "restricted_additive_pingpong_buffer_rewrite",
+      "target": {
+        "symbol": "%37",
+        "line": 659,
+        "kind": "hivm_pointer_cast",
+        "scope": "UB",
+        "type": "memref<64xi32, #hivm.address_space<ub>>",
+        "text": "%37 = hivm.hir.pointer_cast(%c57600_i64) : memref<64xi32, #hivm.address_space<ub>>"
+      },
+      "symbol": "%37",
+      "target_line": 659,
+      "producer_line": 660,
+      "consumer_line": 663,
+      "producer": {
+        "line": 660,
+        "op": "hivm.hir.vbrc",
+        "text": "hivm.hir.vbrc ins(%36 : i32) outs(%37 : memref<64xi32, #hivm.address_space<ub>>)",
+        "symbol_context": "write_like_outs"
+      },
+      "consumer": {
+        "line": 663,
+        "op": "hivm.hir.vcmp",
+        "text": "hivm.hir.vcmp ins(%30, %37 : memref<64xi32, #hivm.address_space<ub>>, memref<64xi32, #hivm.address_space<ub>>) outs(%38 : memref<64xi1, #hivm.address_space<ub>>)",
+        "symbol_context": "read_like_ins"
+      },
+      "slot_symbols": {
+        "ping": "%37_mb2_ping",
+        "pong": "%37_mb2_pong"
+      },
+      "risk_level": "LOW",
+      "rewrite_policy": {
+        "mode": "additive_non_destructive",
+        "fallback_original_buffer_preserved": true,
+        "current_pair_binding": "producer_and_consumer_use_ping_slot",
+        "pong_slot_status": "created_for_followup_cross_iteration_binding"
+      }
+    }
+  ]
+}

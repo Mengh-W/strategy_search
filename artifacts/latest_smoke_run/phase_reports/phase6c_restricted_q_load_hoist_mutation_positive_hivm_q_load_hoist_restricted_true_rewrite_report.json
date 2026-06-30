@@ -1,0 +1,32 @@
+{
+  "schema_version": "restricted_hivm_true_rewrite_report_v1",
+  "backend": "restricted_hivm_true_rewriter_phase6c",
+  "backend_kind": "restricted_textual_true_rewriter",
+  "is_real_mlir_backend": false,
+  "uses_hivmopseditor": false,
+  "uses_mlir_operation_walk": false,
+  "production_mutation": false,
+  "restricted_true_mutation": true,
+  "status": "mutated_restricted_fixture",
+  "input": "/mnt/data/hivm_work/repo_raw/strategy_search_demo_V3.3.1/sample_input/phase6_positive_fixtures/restricted_q_load_hoist_mutation_positive.hivm.mlir",
+  "output": "/mnt/data/hivm_work/smoke_out/optimized.phase6c.restricted_q_load_hoist_mutation_positive_hivm.q_load_hoist.hivm.mlir",
+  "mutation_kind": "q_load_hoist",
+  "mutation_performed": true,
+  "changed_line_count": 2,
+  "actions": [
+    {
+      "type": "q_load_hoist",
+      "loop_line": 10,
+      "load_line_before": 11,
+      "nd2nz_line_before": 12,
+      "inserted_before_loop_line": 10,
+      "buffers": {
+        "q_ub": "%q_ub",
+        "q_l1": "%q_l1"
+      },
+      "structural_change": "moved two operation lines before scf.for"
+    }
+  ],
+  "blockers": [],
+  "disclaimer": "This is a real file-level IR mutation for restricted positive fixtures only. It is not a production MLIR/HivmOpsEditor rewrite backend."
+}
